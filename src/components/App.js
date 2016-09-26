@@ -1,6 +1,6 @@
 import React from 'react'
 
-const App = () => (
+const App = ({ params }) => (
   <div>
     <h1>Hello!</h1>
   </div>
