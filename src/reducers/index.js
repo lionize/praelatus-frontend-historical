@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
-
-const baseReducer = (state = {}, action) => {
-  return state
-}
+import tickets from 'reducers/tickets'
 
 const reducer = combineReducers({
-  baseReducer
+  tickets
 })
 
 export default reducer
+
+export const getVisibleTickets = (state) => {
+  return state.tickets
+}

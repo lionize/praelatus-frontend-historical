@@ -1,9 +1,8 @@
 import React from 'react'
+import VisibleTicketList from 'containers/VisibleTicketList'
 
 const App = ({ params }) => (
-  <div>
-    <h1>Hello!</h1>
-  </div>
+  <VisibleTicketList />
 )
 
 export default App
