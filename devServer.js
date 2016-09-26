@@ -9,7 +9,7 @@ const port = 3000
 new webpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   historyApiFallback: true,
-}).list(port, host, (err) => {
+}).listen(port, host, (err) => {
   if (err) {
     return console.error(err)
   }
