@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr'
+import * as schema from 'actions/schema'
 import * as api from 'api'
 import * as types from 'constants'
 
@@ -6,7 +8,7 @@ export const fetchTickets = () => (dispatch) => {
     response => {
       dispatch({
         type: types.FETCH_TODOS_SUCCESS,
-        response
+        response: normalize(response, schema.arrayOfTickets)
       })
     },
     error => {
@@ -17,3 +19,4 @@ export const fetchTickets = () => (dispatch) => {
     }
   )
 }
+
