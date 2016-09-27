@@ -8,5 +8,5 @@ const reducer = combineReducers({
 export default reducer
 
 export const getVisibleTickets = (state) => {
-  return state.tickets
+  return state.tickets.entities
 }
