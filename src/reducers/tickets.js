@@ -17,7 +17,6 @@ const byId = (state = {}, action) => {
 }
 
 const ids = (state = [], action) => {
-  console.log(action)
   switch (action.type) {
     case FETCH_TICKETS_SUCCESS:
       return action.response.result
