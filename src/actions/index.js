@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr'
 import fetch from 'isomorphic-fetch'
 import * as schema from 'actions/schema'
-import * as types from 'constants'
+import * as types from 'constants/actionTypes'
 
 const URL = 'http://localhost:8080/api/v1'
 
