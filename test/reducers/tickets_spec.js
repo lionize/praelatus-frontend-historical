@@ -1,5 +1,10 @@
 import { expect } from 'chai'
-import reducer from '../../src/reducers/tickets'
+import {
+  FETCH_TICKETS_SUCCESS,
+  FETCH_TICKETS_FAILURE,
+  FETCH_TICKETS_REQUEST,
+} from 'constants/actionTypes'
+import reducer from 'reducers/tickets'
 
 describe('tickets reducer', () => {
   describe('FETCH_TICKETS_SUCCESS', () => {
@@ -10,7 +15,7 @@ describe('tickets reducer', () => {
       },
       result: [1]
     }
-    const action = {type: 'FETCH_TICKETS_SUCCESS', response}
+    const action = {type: FETCH_TICKETS_SUCCESS, response}
     const nextState = reducer(initialState, action)
 
     it('adds the tickets', () => {
@@ -27,7 +32,7 @@ describe('tickets reducer', () => {
   describe('FETCH_TICKETS_FAILURE', () => {
     const initialState = {}
     const message = 'Error!'
-    const action = {type: 'FETCH_TICKETS_FAILURE', message}
+    const action = {type: FETCH_TICKETS_FAILURE, message}
     const nextState = reducer(initialState, action)
     it('sets errorMessage', () => {
       expect(nextState.errorMessage).to.eq('Error!')
@@ -38,7 +43,7 @@ describe('tickets reducer', () => {
     const initialState = {
       errorMessage: 'Error!'
     }
-    const action = {type: 'FETCH_TICKETS_REQUEST'}
+    const action = {type: FETCH_TICKETS_REQUEST}
     const nextState = reducer(initialState, action)
 
     it('clears the error message', () => {
