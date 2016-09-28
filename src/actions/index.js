@@ -5,16 +5,16 @@ import * as types from 'constants/actionTypes'
 
 const URL = 'http://localhost:8080/api/v1'
 
-const fetchTicketsRequest = () => ({
+export const fetchTicketsRequest = () => ({
   type: types.FETCH_TICKETS_REQUEST
 })
 
-const fetchTicketsSuccess = (response) => ({
+export const fetchTicketsSuccess = (response) => ({
   type: types.FETCH_TICKETS_SUCCESS,
   response: normalize(response, schema.arrayOfTickets)
 })
 
-const fetchTicketsFailure = (error) => ({
+export const fetchTicketsFailure = (error) => ({
   type: types.FETCH_TICKETS_FAILURE,
   message: error.message
 })
