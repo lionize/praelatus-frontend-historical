@@ -25,7 +25,8 @@ describe('ticketReducer', () => {
   it('should return the initial state', () => {
     const expectedResult = state
     const nextState = ticketReducer(undefined, {})
-    expect(ticketReducer(undefined, {})).to.deep.eq(expectedResult)
+
+    expect(nextState).to.deep.eq(expectedResult)
   })
 
   it('should handle the fetchTicketsRequest action correctly', () => {
