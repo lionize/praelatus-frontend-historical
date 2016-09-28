@@ -1,6 +1,5 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import * as actions from 'actions'
 import * as types from 'constants/actionTypes'
 import nock from 'nock'
 import { expect } from 'chai'
@@ -15,7 +14,8 @@ import {
   fetchTicketsRequest,
   fetchTicketsFailure,
   fetchTicketsSuccess,
-} from 'actions'
+  fetchTickets
+} from 'actions/tickets'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -101,7 +101,7 @@ describe('Ticket Actions', () => {
       ]
       const store = mockStore({ tickets: [] })
 
-      store.dispatch(actions.fetchTickets())
+      store.dispatch(fetchTickets())
         .then(() => {
           expect(store.getActions()).to.eq(expectedActions)
         })

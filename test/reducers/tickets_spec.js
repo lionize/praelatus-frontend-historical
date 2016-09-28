@@ -8,7 +8,7 @@ import {
   fetchTicketsRequest,
   fetchTicketsFailure,
   fetchTicketsSuccess,
-} from 'actions'
+} from 'actions/tickets'
 import ticketReducer from 'reducers/tickets'
 
 describe('ticketReducer', () => {
