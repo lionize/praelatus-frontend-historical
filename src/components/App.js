@@ -1,8 +1,9 @@
 import React from 'react'
-import VisibleTicketList from 'containers/VisibleTicketList'
 
-const App = ({ params }) => (
-  <VisibleTicketList />
+const App = (props) => (
+  <div>
+    {props.children}
+  </div>
 )
 
 export default App
