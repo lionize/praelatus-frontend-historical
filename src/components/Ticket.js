@@ -1,21 +1,18 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 const Ticket = ({
-  onClick,
+  id,
   summary,
   description
 }) => (
-  <li
-    onClick={onClick}
-  >
-    {summary}
-    {' '}
-    {description}
+  <li>
+    <Link to={`tickets/${id}`}>{id}</Link>: {summary}
   </li>
 )
 
 Ticket.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
   summary: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
 }
