@@ -7,13 +7,20 @@ import TicketList from 'components/TicketList'
 
 describe('TicketList', () => {
   it('should render a list of tickets', () => {
-    const props = [{
+    const props = [
+      {
         id: 1,
         description: "Desc",
         summary: "Summ"
-    }]
+      },
+      {
+        id: 2,
+        description: "Desc2",
+        summary: "Summ2"
+      }
+    ]
     const wrapper = mount(<TicketList tickets={props} />)
-    const list = wrapper.find('ul')
-    expect(list.length).to.eq(1)
+    const list = wrapper.find('li')
+    expect(list.length).to.eq(2)
   })
 })
