@@ -13,8 +13,7 @@ describe('TicketList', () => {
         summary: "Summ"
     }]
     const wrapper = mount(<TicketList tickets={props} />)
-    const list = wrapper.find('li')
-    console.log(list)
+    const list = wrapper.find('ul')
     expect(list.length).to.eq(1)
   })
 })

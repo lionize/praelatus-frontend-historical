@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import Ticket from 'components/Ticket'
+import TicketListItem from 'components/TicketListItem'
 
 const TicketList = ({
   tickets,
 }) => (
   <ul>
     {tickets.map(ticket =>
-      <li key={ticket.id}>
-        <Link 
-          to={`tickets/${ticket.id}`}
-        >{ticket.id}</Link>: {ticket.summary}
-      </li>
+      <TicketListItem 
+        id={ticket.id}
+        {...ticket} 
+      />
     )}
   </ul>
 )

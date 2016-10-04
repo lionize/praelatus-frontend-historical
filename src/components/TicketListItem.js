@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-const Ticket = ({
+const TicketListItem = ({
   id,
   summary,
   description
@@ -11,10 +11,10 @@ const Ticket = ({
   </li>
 )
 
-Ticket.propTypes = {
+TicketListItem.propTypes = {
   id: PropTypes.number.isRequired,
   summary: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
 }
 
-export default Ticket
+export default TicketListItem
