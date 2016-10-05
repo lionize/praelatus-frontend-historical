@@ -3,6 +3,5 @@ export const ticketsSelector = (state) => {
   return ids.map(id => state.tickets.byId[id])
 }
 
-export const ticketSelector = (state, id) => {
-  return state.tickets.byId[id]
-}
+export const ticketSelector = (state, id) => state.tickets.byId[id]
+
