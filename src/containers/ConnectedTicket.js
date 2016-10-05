@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 import { ticketSelector } from 'selectors/tickets'
 
@@ -13,7 +14,13 @@ class ConnectedTicket extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const ticket = ticketSelector(state, ownProps.params.id)
+const mapStateToProps = (state, { params }) => {
+  const ticket = ticketSelector(state, params.id)
   return { ...ticket }
 }
+
+ConnectedTicket = withRouter(connect(
+  mapStateToProps,
+)(ConnectedTicket))
+
+export default ConnectedTicket
