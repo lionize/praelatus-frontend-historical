@@ -37,7 +37,7 @@ const errorMessage = (state = null, action) => {
   }
 }
 
-const isFetching = (state = false, action) => {
+const loading = (state = false, action) => {
   switch (action.type) {
     case FETCH_TICKETS_REQUEST:
       return true
@@ -53,7 +53,7 @@ const tickets = combineReducers({
   byId,
   ids,
   errorMessage,
-  isFetching,
+  loading,
 })
 
 export default tickets

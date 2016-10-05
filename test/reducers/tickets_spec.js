@@ -15,7 +15,7 @@ describe('ticketReducer', () => {
   let state
   beforeEach(() => {
     state = {
-      isFetching: false,
+      loading: false,
       errorMessage: null,
       ids: [],
       byId: {}
@@ -32,7 +32,7 @@ describe('ticketReducer', () => {
   it('should handle the fetchTicketsRequest action correctly', () => {
     const expectedResult = {
       ...state,
-      isFetching: true
+      loading: true
     }
     const nextState = ticketReducer(state, fetchTicketsRequest())
 
