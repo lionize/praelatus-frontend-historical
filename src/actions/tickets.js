@@ -1,9 +1,8 @@
 import { normalize } from 'normalizr'
-import fetch from 'isomorphic-fetch'
 import * as schema from 'actions/schema'
 import * as types from 'constants/actionTypes'
 
-const URL = 'http://localhost:8080/api/v1'
+import * as api from 'api'
 
 export const fetchTicketsRequest = () => ({
   type: types.FETCH_TICKETS_REQUEST
@@ -21,7 +20,7 @@ export const fetchTicketsFailure = (error) => ({
 
 export const fetchTickets = () => (dispatch) => {
   dispatch(fetchTicketsRequest())
-  return fetch(`${URL}/tickets`)
+  return api.fetchTickets()
     .then(res => res.json())
     .then(json => dispatch(fetchTicketsSuccess(json.body)))
     .catch(e => dispatch(fetchTicketsFailure(e)))
