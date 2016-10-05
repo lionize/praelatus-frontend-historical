@@ -8,7 +8,7 @@ const TicketList = ({
   <ul>
     {tickets.map(ticket =>
       <TicketListItem 
-        id={ticket.id}
+        key={ticket.id}
         {...ticket} 
       />
     )}
