@@ -10,7 +10,16 @@ module.exports = {
 
   output: {
     filename: 'index.js',
-    path: __dirname
+    publicPath: '/static/',
+    path: process.env.NODE_ENV === 'production'
+      ? path.resolve(__dirname, 'build', 'release', 'static')
+      : path.resolve(__dirname, 'build', 'debug', 'static')
+  },
+
+  devServer: {
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
 
   module: {
