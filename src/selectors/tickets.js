@@ -5,3 +5,4 @@ export const ticketsSelector = (state) => {
 
 export const ticketSelector = (state, id) => state.tickets.byId[id]
 
+export const loadingSelector = (state) => state.tickets.loading
