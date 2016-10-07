@@ -1,21 +1,8 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import * as types from 'constants/actionTypes'
 import nock from 'nock'
 import { expect } from 'chai'
-
-import {
-  FETCH_TICKETS_SUCCESS,
-  FETCH_TICKETS_FAILURE,
-  FETCH_TICKETS_REQUEST,
-} from 'constants/actionTypes'
-
-import {
-  fetchTicketsRequest,
-  fetchTicketsFailure,
-  fetchTicketsSuccess,
-  fetchTickets
-} from 'actions/tickets'
+import { types, actions } from 'modules/tickets'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -30,10 +17,10 @@ describe('Ticket Actions', () => {
   describe('fetchTicketsRequest', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: FETCH_TICKETS_REQUEST,
+        type: types.FETCH_TICKETS_REQUEST,
       }
 
-      expect(fetchTicketsRequest()).to.deep.eq(expectedResult)
+      expect(actions.fetchTicketsRequest()).to.deep.eq(expectedResult)
     })
   })
 
@@ -45,7 +32,7 @@ describe('Ticket Actions', () => {
         summary: 'Ticket summary',
       }]
       const expectedResult = {
-        type: FETCH_TICKETS_SUCCESS,
+        type: types.FETCH_TICKETS_SUCCESS,
         response: {
           result: [1],
           entities: {
@@ -56,7 +43,7 @@ describe('Ticket Actions', () => {
         }
       }
 
-      expect(fetchTicketsSuccess(fixture)).to.deep.eq(expectedResult)
+      expect(actions.fetchTicketsSuccess(fixture)).to.deep.eq(expectedResult)
     })
   })
 
@@ -66,11 +53,11 @@ describe('Ticket Actions', () => {
         message: 'Error!'
       }
       const expectedResult = {
-        type: FETCH_TICKETS_FAILURE,
+        type: types.FETCH_TICKETS_FAILURE,
         message: fixture.message
       }
 
-      expect(fetchTicketsFailure(fixture)).to.deep.eq(expectedResult)
+      expect(actions.fetchTicketsFailure(fixture)).to.deep.eq(expectedResult)
     })
   })
 
@@ -101,7 +88,7 @@ describe('Ticket Actions', () => {
       ]
       const store = mockStore({ tickets: [] })
 
-      store.dispatch(fetchTickets())
+      store.dispatch(actions.fetchTickets())
         .then(() => {
           expect(store.getActions()).to.eq(expectedActions)
         })

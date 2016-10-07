@@ -1,17 +1,7 @@
 import { expect } from 'chai'
-import {
-  FETCH_TICKETS_SUCCESS,
-  FETCH_TICKETS_FAILURE,
-  FETCH_TICKETS_REQUEST,
-} from 'constants/actionTypes'
-import {
-  fetchTicketsRequest,
-  fetchTicketsFailure,
-  fetchTicketsSuccess,
-} from 'actions/tickets'
-import ticketReducer from 'reducers/tickets'
+import reducer, { actions } from 'modules/tickets'
 
-describe('ticketReducer', () => {
+describe('tickets reducer', () => {
   let state
   beforeEach(() => {
     state = {
@@ -24,7 +14,7 @@ describe('ticketReducer', () => {
 
   it('should return the initial state', () => {
     const expectedResult = state
-    const nextState = ticketReducer(undefined, {})
+    const nextState = reducer(undefined, {})
 
     expect(nextState).to.deep.eq(expectedResult)
   })
@@ -34,23 +24,23 @@ describe('ticketReducer', () => {
       ...state,
       loading: true
     }
-    const nextState = ticketReducer(state, fetchTicketsRequest())
+    const nextState = reducer(state, actions.fetchTicketsRequest())
 
     expect(nextState).to.deep.eq(expectedResult)
   })
 
   it('should handle the fetchTicketsSuccess action correctly', () => {
     const fixture = [{
-      id: 1,
+      id: 0,
       summary: 'Ticket summary',
       description: 'Ticket description',
     }]
     const expectedResult = {
       ...state,
-      ids: [1],
-      byId: { 1: fixture[0] }
+      ids: [0],
+      byId: { 0: fixture[0] }
     }
-    const nextState = ticketReducer(state, fetchTicketsSuccess(fixture))
+    const nextState = reducer(state, actions.fetchTicketsSuccess(fixture))
 
     expect(nextState).to.deep.eq(expectedResult)
   })
@@ -63,7 +53,7 @@ describe('ticketReducer', () => {
       ...state,
       errorMessage: fixture.message
     }
-    const nextState = ticketReducer(state, fetchTicketsFailure(fixture))
+    const nextState = reducer(state, actions.fetchTicketsFailure(fixture))
 
     expect(nextState).to.deep.eq(expectedResult)
   })

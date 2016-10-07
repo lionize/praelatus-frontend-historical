@@ -2,17 +2,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import nock from 'nock'
 import { expect } from 'chai'
-import {
-  FETCH_TEAMS_FAILURE,
-  FETCH_TEAMS_REQUEST,
-  FETCH_TEAMS_SUCCESS,
-} from 'constants/actionTypes'
-import {
-  fetchTeamsFailure,
-  fetchTeamsRequest,
-  fetchTeamsSuccess,
-  fetchTeams
-} from 'actions/teams'
+import { types, actions } from 'modules/teams'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -23,10 +13,10 @@ describe('Team Actions', () => {
   describe('fetchTeamsRequest', () => {
     it('should return the correct type', () => {
       const expectedResult = {
-        type: FETCH_TEAMS_REQUEST,
+        type: types.FETCH_TEAMS_REQUEST,
       }
 
-      expect(fetchTeamsRequest()).to.deep.eq(expectedResult)
+      expect(actions.fetchTeamsRequest()).to.deep.eq(expectedResult)
     })
   })
 
@@ -37,7 +27,7 @@ describe('Team Actions', () => {
         name: 'A Team'
       }]
       const expectedResult = {
-        type: FETCH_TEAMS_SUCCESS,
+        type: types.FETCH_TEAMS_SUCCESS,
         response: {
           result: [1],
           entities: {
@@ -48,7 +38,7 @@ describe('Team Actions', () => {
         }
       }
 
-      expect(fetchTeamsSuccess(fixture)).to.deep.eq(expectedResult)
+      expect(actions.fetchTeamsSuccess(fixture)).to.deep.eq(expectedResult)
     })
   })
 
@@ -58,11 +48,11 @@ describe('Team Actions', () => {
         message: 'Error!'
       }
       const expectedResult = {
-        type: FETCH_TEAMS_FAILURE,
+        type: types.FETCH_TEAMS_FAILURE,
         message: fixture.message
       }
 
-      expect(fetchTeamsFailure(fixture)).to.deep.eq(expectedResult)
+      expect(actions.fetchTeamsFailure(fixture)).to.deep.eq(expectedResult)
     })
   })
 
@@ -76,8 +66,8 @@ describe('Team Actions', () => {
         }]})
 
       const expectedActions = [
-        { type: FETCH_TEAMS_REQUEST },
-        { type: FETCH_TEAMS_SUCCESS, 
+        { type: types.FETCH_TEAMS_REQUEST },
+        { type: types.FETCH_TEAMS_SUCCESS, 
           response: {
             entities: {
               teams: {
@@ -93,7 +83,7 @@ describe('Team Actions', () => {
       ]
       const store = mockStore({ teams: [] })
 
-      store.dispatch(fetchTeams())
+      store.dispatch(actions.fetchTeams())
         .then(() => {
           expect(store.getActions()).to.eq(expectedActions)
         })
