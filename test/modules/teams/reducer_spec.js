@@ -1,17 +1,7 @@
 import { expect } from 'chai'
-import {
-  FETCH_TEAMS_SUCCESS,
-  FETCH_TEAMS_FAILURE,
-  FETCH_TEAMS_REQUEST,
-} from 'constants/actionTypes'
-import {
-  fetchTeamsRequest,
-  fetchTeamsSuccess,
-  fetchTeamsFailure,
-} from 'actions/teams'
-import teamReducer from 'reducers/teams'
+import reducer, { actions } from 'modules/teams'
 
-describe('teamReducer', () => {
+describe('team reducer', () => {
   let state
   beforeEach(() => {
     state = {
@@ -24,7 +14,7 @@ describe('teamReducer', () => {
 
   it('should return the initial state', () => {
     const expectedResult = state
-    const nextState = teamReducer(undefined, {})
+    const nextState = reducer(undefined, {})
 
     expect(nextState).to.deep.eq(expectedResult)
   })
@@ -34,7 +24,7 @@ describe('teamReducer', () => {
       ...state,
       loading: true
     }
-    const nextState = teamReducer(state, fetchTeamsRequest())
+    const nextState = reducer(state, actions.fetchTeamsRequest())
 
     expect(nextState).to.deep.eq(expectedResult)
   })
@@ -52,7 +42,7 @@ describe('teamReducer', () => {
       ids: [1],
       byId: { 1: fixture[0] }
     }
-    const nextState = teamReducer(state, fetchTeamsSuccess(fixture))
+    const nextState = reducer(state, actions.fetchTeamsSuccess(fixture))
 
     expect(nextState).to.deep.eq(expectedResult)
   })
@@ -65,7 +55,7 @@ describe('teamReducer', () => {
       ...state,
       error: fixture.message
     }
-    const nextState = teamReducer(state, fetchTeamsFailure(fixture))
+    const nextState = reducer(state, actions.fetchTeamsFailure(fixture))
 
     expect(nextState).to.deep.eq(expectedResult)
   })

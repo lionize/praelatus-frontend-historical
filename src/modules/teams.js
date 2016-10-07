@@ -22,7 +22,7 @@ const byId = (state = {}, action) => {
 
 const ids = (state = [], action) => {
   switch (action.type) {
-    case FETCH_TEAMS_SUCCESS:
+    case types.FETCH_TEAMS_SUCCESS:
       return action.response.result
     default:
       return state
@@ -31,10 +31,10 @@ const ids = (state = [], action) => {
 
 const error = (state = null, action) => {
   switch (action.type) {
-    case FETCH_TEAMS_FAILURE:
+    case types.FETCH_TEAMS_FAILURE:
       return action.message
-    case FETCH_TEAMS_SUCCESS:
-    case FETCH_TEAMS_REQUEST:
+    case types.FETCH_TEAMS_SUCCESS:
+    case types.FETCH_TEAMS_REQUEST:
       return null
     default:
       return state
@@ -43,11 +43,10 @@ const error = (state = null, action) => {
 
 const loading = (state = false, action) => {
   switch (action.type) {
-    case FETCH_TEAMS_REQUEST:
-      console.log('request')
+    case types.FETCH_TEAMS_REQUEST:
       return true
-    case FETCH_TEAMS_SUCCESS:
-    case FETCH_TEAMS_FAILURE:
+    case types.FETCH_TEAMS_SUCCESS:
+    case types.FETCH_TEAMS_FAILURE:
       return false
     default:
       return state
