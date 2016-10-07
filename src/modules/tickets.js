@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { normalize } from 'normalizr'
-import * as schema from 'actions/schema'
+import * as schema from 'schema'
 import * as api from 'api'
 
 export const types = {
