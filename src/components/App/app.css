@@ -1,5 +1,3 @@
-$size: 4em;
-
-.title {
-  font-size: $size;
+.main {
+  lost-utility: clearfix;
 }

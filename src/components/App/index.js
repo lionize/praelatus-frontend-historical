@@ -6,7 +6,10 @@ import 'styles/core.css'
 const App = (props) => (
   <div>
     <Header />
-    {props.children}
+    <main className={styles.main}>
+      {/*props.sidebar*/}
+      {props.main}
+    </main>
   </div>
 )
 
