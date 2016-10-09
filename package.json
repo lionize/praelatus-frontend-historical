@@ -41,6 +41,7 @@
     "autoprefixer": "^6.5.0",
     "css-loader": "^0.25.0",
     "isomorphic-fetch": "^2.2.1",
+    "lost": "^7.1.0",
     "normalizr": "^2.2.1",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
