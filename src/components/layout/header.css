@@ -1,7 +1,9 @@
 .container {
-  background: #000;
+  background: #80357f;
 }
 
 .brand {
-  color: #fff;
+  margin: 0;
+  font-size: 1.5rem;
+  padding: 5px;
 }
