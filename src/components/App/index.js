@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './app.css'
+import Header from 'components/layout/Header'
 
 const App = (props) => (
   <div>
-    <h1 class={styles.title}>The App</h1>
+    <Header />
     {props.children}
   </div>
 )
