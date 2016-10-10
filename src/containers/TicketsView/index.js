@@ -13,8 +13,24 @@ class TicketsView extends Component {
   }
 
   render() {
-    const { tickets } = this.props
+    const { tickets, params } = this.props
 
+    if (params.id) {
+      return (
+        <div>
+          {params.id}
+        </div>
+      )
+    }
+
+    if (children) {
+      return (
+        <div>
+        {children}
+      </div>
+      )
+    }
+    
     return (
       <TicketList tickets={tickets} />
     )
