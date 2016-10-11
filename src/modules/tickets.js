@@ -74,9 +74,9 @@ export const actions = {
     message: error.message,
   }),
 
-  fetchTickets: () => (dispatch) => {
+  fetchTickets: (filters = {}) => (dispatch) => {
     dispatch(actions.fetchTicketsRequest())
-    return api.fetchTickets()
+    return api.fetchTickets(filters)
       .then(res => res.json())
       .then(json => dispatch(actions.fetchTicketsSuccess(json.body)))
       .catch(e => dispatch(actions.fetchTicketsFailure(e)))
