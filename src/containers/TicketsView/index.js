@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { actions } from 'modules/tickets'
-import { ticketsSelector } from 'modules/tickets'
+import {
+  actions,
+  ticketsSelector,
+} from 'modules/tickets'
 
 import TicketList from 'components/TicketList'
-import styles from './ticketsView.css'
 
 class TicketsView extends Component {
+  static propTypes = {
+    tickets: PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    fetchTickets: PropTypes.func.isRequired,
+  }
+
   componentWillMount() {
     this.props.fetchTickets()
   }
@@ -26,19 +33,19 @@ class TicketsView extends Component {
     if (children) {
       return (
         <div>
-        {children}
-      </div>
+          {children}
+        </div>
       )
     }
-    
+
     return (
       <TicketList tickets={tickets} />
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  tickets: ticketsSelector(state)
+const mapStateToProps = state => ({
+  tickets: ticketsSelector(state),
 })
 
 export default connect(mapStateToProps, actions)(TicketsView)

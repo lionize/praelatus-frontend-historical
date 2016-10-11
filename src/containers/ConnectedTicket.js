@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 
@@ -9,15 +9,20 @@ import Ticket from 'components/Ticket'
 
 class ConnectedTicket extends Component {
   static defaultProps = {
-    loading: true
+    loading: true,
+  }
+
+  static propTypes = {
+    fetchTickets: PropTypes.func.isRequired,
+    ticket: PropTypes.object.isRequired,
+    loading: PropTypes.bool,
   }
 
   componentWillMount() {
-    this.props.dispatch(fetchTickets())
+    this.props.fetchTickets()
   }
 
   render() {
-    console.log(this.props.loading)
     if (this.props.loading) {
       return (
         <span>Loading...</span>
@@ -36,8 +41,7 @@ const mapStateToProps = (state, { params }) => {
   return { ticket, loading }
 }
 
-ConnectedTicket = withRouter(connect(
+export default withRouter(connect(
   mapStateToProps,
+  { fetchTickets }
 )(ConnectedTicket))
-
-export default ConnectedTicket

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import styles from './ticketList.css'
 
-const TicketList = ({ tickets }) => ( 
+const TicketList = ({ tickets }) => (
   <div className={styles.container}>
     {tickets.map(ticket =>
-      <div 
+      <div
         key={ticket.id}
         className={styles.ticket}
       >
@@ -15,5 +15,8 @@ const TicketList = ({ tickets }) => (
     )}
   </div>
 )
+TicketList.propTypes = {
+  tickets: PropTypes.object.isRequired,
+}
 
 export default TicketList

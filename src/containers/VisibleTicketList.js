@@ -6,6 +6,10 @@ import { getVisibleTickets } from 'reducers'
 import TicketList from 'components/TicketList'
 
 class VisibleTicketList extends Component {
+  static propTypes = {
+    tickets: PropTypes.object.isRequired,
+    fetchTickets: PropTypes.func.isRequired,
+  }
   componentDidMount() {
     this.fetchData()
   }
@@ -26,13 +30,11 @@ class VisibleTicketList extends Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => ({
-  tickets: getVisibleTickets(state)
+const mapStateToProps = state => ({
+  tickets: getVisibleTickets(state),
 })
 
-VisibleTicketList = withRouter(connect(
+export default withRouter(connect(
   mapStateToProps,
   actions
 )(VisibleTicketList))
-
-export default VisibleTicketList
