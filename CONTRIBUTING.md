@@ -7,6 +7,12 @@ you can get hacking on Tessera.
 
 ## Quick Start
 
+Tessera-client currently doesn't have a build process. 
+
+To run the project in development mode, run `npm start`.
+
+To run the tests, run `npm run test`. To run them in watch mode, run `npm run test:watch`.
+
 You're ready to read the contribution guidelines [below](#guidelines)!
 
 ## Contribution Guidelines
