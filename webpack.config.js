@@ -49,7 +49,7 @@ module.exports = {
   },
 
   resolve: {
-    root: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
+    root: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
     extensions: ['', '.js']
   },
 
