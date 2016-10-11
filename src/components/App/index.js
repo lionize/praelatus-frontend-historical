@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './app.css'
 import Header from 'components/layout/Header'
 import 'styles/core.css'
 
-const App = (props) => (
+const App = props => (
   <div>
     <Header />
     <main className={styles.container}>
@@ -16,5 +16,9 @@ const App = (props) => (
     </main>
   </div>
 )
+App.propTypes = {
+  sidebar: PropTypes.object,
+  main: PropTypes.object,
+}
 
 export default App

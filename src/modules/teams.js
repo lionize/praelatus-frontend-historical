@@ -13,7 +13,7 @@ const byId = (state = {}, action) => {
   if (action.response) {
     return {
       ...state,
-      ...action.response.entities.teams
+      ...action.response.entities.teams,
     }
   }
 
@@ -57,24 +57,24 @@ const reducer = combineReducers({
   byId,
   ids,
   error,
-  loading
+  loading,
 })
 
 export default reducer
 
 export const actions = {
   fetchTeamsRequest: () => ({
-    type: types.FETCH_TEAMS_REQUEST
+    type: types.FETCH_TEAMS_REQUEST,
   }),
 
-  fetchTeamsSuccess: (response) => ({
+  fetchTeamsSuccess: response => ({
     type: types.FETCH_TEAMS_SUCCESS,
-    response: normalize(response, schema.arrayOfTeams)
+    response: normalize(response, schema.arrayOfTeams),
   }),
 
-  fetchTeamsFailure: (error) => ({
+  fetchTeamsFailure: e => ({
     type: types.FETCH_TEAMS_FAILURE,
-    message: error.message
+    message: e.message,
   }),
 
   fetchTeams: () => (dispatch) => {
@@ -83,5 +83,5 @@ export const actions = {
       .then(res => res.json())
       .then(json => dispatch(actions.fetchTeamsSuccess(json.body)))
       .catch(e => dispatch(actions.fetchTeamsFailure(e)))
-  }
+  },
 }

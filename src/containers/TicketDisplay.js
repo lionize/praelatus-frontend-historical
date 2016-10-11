@@ -1,15 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class TicketDisplay extends Component {
-  componentWillMount() {
-  }
-
-  render() {
-    return (
-      <div>
-      </div>
-    )
-  }
-}
+const TicketDisplay = () => (
+  <div />
+)
 
 export default TicketDisplay

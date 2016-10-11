@@ -1,14 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styles from './ticketsSidebar.css'
 
-class TicketsSidebar extends Component {
-  render() {
-    return (
-      <div className={styles.container}>
-        This is the TicketsSidebar
-      </div>
-    )
-  }
-}
+const TicketsSidebar = () => (
+  <div className={styles.container}>
+    This is a TicketsSidebar
+  </div>
+)
 
 export default TicketsSidebar

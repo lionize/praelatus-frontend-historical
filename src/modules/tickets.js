@@ -13,7 +13,7 @@ const byId = (state = {}, action) => {
   if (action.response) {
     return {
       ...state,
-      ...action.response.entities.tickets
+      ...action.response.entities.tickets,
     }
   }
 
@@ -64,14 +64,14 @@ export default reducer
 export const actions = {
   fetchTicketsRequest: () => ({ type: types.FETCH_TICKETS_REQUEST }),
 
-  fetchTicketsSuccess: (response) => ({
+  fetchTicketsSuccess: response => ({
     type: types.FETCH_TICKETS_SUCCESS,
-    response: normalize(response, schema.arrayOfTickets)
+    response: normalize(response, schema.arrayOfTickets),
   }),
 
-  fetchTicketsFailure: (error) => ({
+  fetchTicketsFailure: error => ({
     type: types.FETCH_TICKETS_FAILURE,
-    message: error.message
+    message: error.message,
   }),
 
   fetchTickets: () => (dispatch) => {
@@ -84,10 +84,10 @@ export const actions = {
 }
 
 export const ticketsSelector = (state) => {
-  const ids = state.tickets.ids
-  return ids.map(id => state.tickets.byId[id])
+  const ticketIds = state.tickets.ids
+  return ticketIds.map(id => state.tickets.byId[id])
 }
 
 export const ticketSelector = (state, id) => state.tickets.byId[id]
 
-export const loadingSelector = (state) => state.tickets.loading
+export const loadingSelector = state => state.tickets.loading

@@ -8,7 +8,7 @@ import TicketDisplay from 'containers/TicketDisplay'
 
 const routes = (
   <Route path='/' component={App}>
-    <Route path="tickets" components={{main: TicketsView, sidebar: TicketsSidebar}}>
+    <Route path="tickets" components={{ main: TicketsView, sidebar: TicketsSidebar }}>
       <Route path=":id" component={TicketDisplay} />
     </Route>
   </Route>
