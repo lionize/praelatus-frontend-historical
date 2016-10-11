@@ -6,9 +6,13 @@ import 'styles/core.css'
 const App = (props) => (
   <div>
     <Header />
-    <main className={styles.main}>
-      {/*props.sidebar*/}
-      {props.main}
+    <main className={styles.container}>
+      <div className={styles.sidebar}>
+        {props.sidebar}
+      </div>
+      <div className={styles.main}>
+        {props.main}
+      </div>
     </main>
   </div>
 )
