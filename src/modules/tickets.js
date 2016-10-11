@@ -87,7 +87,6 @@ export const ticketsSelector = (state) => {
   const ticketIds = state.tickets.ids
   return ticketIds.map(id => state.tickets.byId[id])
 }
-
 export const ticketSelector = (state, id) => state.tickets.byId[id]
-
 export const loadingSelector = state => state.tickets.loading
+export const errorSelector = state => state.tickets.error
