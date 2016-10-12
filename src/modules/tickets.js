@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux'
-import { normalize } from 'normalizr'
+import { combineReducers } from 'redux-immutablejs'
+import { Map, List, fromJS } from 'immutable'
+import { normalize, arrayOf } from 'normalizr'
 import * as schema from 'schema'
 import * as api from 'api'
 
@@ -9,21 +10,18 @@ export const types = {
   FETCH_TICKETS_REQUEST: 'TICKETS/FETCH_REQUEST',
 }
 
-const byId = (state = {}, action) => {
+const byId = (state = Map(), action) => {
   if (action.response) {
-    return {
-      ...state,
-      ...action.response.entities.tickets,
-    }
+    return state.merge(action.response.entities.tickets)
   }
 
   return state
 }
 
-const ids = (state = [], action) => {
+const ids = (state = List(), action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_SUCCESS:
-      return action.response.result
+      return List(action.response.result)
     default:
       return state
   }
@@ -66,7 +64,7 @@ export const actions = {
 
   fetchTicketsSuccess: response => ({
     type: types.FETCH_TICKETS_SUCCESS,
-    response: normalize(response, schema.arrayOfTickets),
+    response: normalize(response, arrayOf(schema.ticket), {}),
   }),
 
   fetchTicketsFailure: error => ({

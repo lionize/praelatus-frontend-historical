@@ -1,60 +1,55 @@
 import { expect } from 'chai'
+import { List, Map } from 'immutable'
 import reducer, { actions } from 'modules/tickets'
 
 describe('tickets reducer', () => {
   let state
   beforeEach(() => {
-    state = {
+    state = Map({
       loading: false,
       errorMessage: null,
-      ids: [],
-      byId: {}
-    }
+      ids: List(),
+      byId: Map()
+    })
   })
 
-  it('should return the initial state', () => {
-    const expectedResult = state
+  it('returns a default state', () => {
     const nextState = reducer(undefined, {})
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(state).to.eq(nextState)
   })
 
-  it('should handle the fetchTicketsRequest action correctly', () => {
-    const expectedResult = {
-      ...state,
-      loading: true
-    }
+  it('handles FETCH_TICKETS_REQUEST', () => {
+    const expectedResult = state.set('loading', true)
     const nextState = reducer(state, actions.fetchTicketsRequest())
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(expectedResult)
   })
 
-  it('should handle the fetchTicketsSuccess action correctly', () => {
+  it('handles FETCH_TICKETS_SUCCESS', () => {
     const fixture = [{
       id: 0,
       summary: 'Ticket summary',
-      description: 'Ticket description',
+      description: 'Ticket description'
     }]
-    const expectedResult = {
-      ...state,
-      ids: [0],
-      byId: { 0: fixture[0] }
-    }
+    const expectedResult = state.merge(Map({
+      ids: List.of(0),
+      byId: Map({0: Map(fixture[0])})
+    }))
     const nextState = reducer(state, actions.fetchTicketsSuccess(fixture))
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(expectedResult)
   })
 
-  it('should handle the fetchTicketsFailure action correctly', () => {
+  it('handles FETCH_TICKETS_FAILURE', () => {
     const fixture = {
       message: 'Error!'
     }
-    const expectedResult = {
-      ...state,
+    const expectedResult = state.merge(Map({
       errorMessage: fixture.message
-    }
+    }))
     const nextState = reducer(state, actions.fetchTicketsFailure(fixture))
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(expectedResult)
   })
 })
