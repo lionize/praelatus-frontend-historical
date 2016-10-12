@@ -11,6 +11,10 @@ export const ticket = new Schema('tickets', Ticket)
 
 const Team = new Record({
   id: null,
+  createdAt: null,
+  icon: null,
+  name: null,
+  urlSlug: null,
 })
 
 export const team = new Schema('teams', Team)
