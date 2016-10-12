@@ -1,7 +1,16 @@
-import { Schema, arrayOf } from 'normalizr'
+import { Record, List, Map } from 'immutable'
+import { Schema, arrayOf } from 'normalizr-immutable'
 
-export const ticket = new Schema('tickets')
-export const arrayOfTickets = arrayOf(ticket)
+const Ticket = new Record({
+  id: null,
+  summary: null,
+  description: null,
+})
 
-export const team = new Schema('teams')
-export const arrayOfTeams = arrayOf(team)
+export const ticket = new Schema('tickets', Ticket)
+
+const Team = new Record({
+  id: null,
+})
+
+export const team = new Schema('teams', Team)
