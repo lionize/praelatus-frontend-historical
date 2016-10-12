@@ -1,35 +1,32 @@
 import { expect } from 'chai'
+import { List, Map } from 'immutable'
 import reducer, { actions } from 'modules/teams'
 
-describe('team reducer', () => {
+describe('teams reducer', () => {
   let state
   beforeEach(() => {
-    state = {
+    state = Map({
       loading: false,
       error: null,
-      ids: [],
-      byId: {}
-    }
+      ids: List(),
+      byId: Map(),
+    })
   })
 
-  it('should return the initial state', () => {
-    const expectedResult = state
+  it('returns a default state', () => {
     const nextState = reducer(undefined, {})
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(state)
   })
 
-  it('should handle the fetchTeamsRequest action correctly', () => {
-    const expectedResult = {
-      ...state,
-      loading: true
-    }
+  it('handles FETCH_TEAMS_REQUEST', () => {
+    const expectedResult = state.set('loading', true)
     const nextState = reducer(state, actions.fetchTeamsRequest())
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(expectedResult)
   })
 
-  it('should handle the fetchTeamsSuccess action correctly', () => {
+  it('handles FETCH_TEAMS_SUCCESS', () => {
     const fixture = [{
 			createdAt: "Wed, 28 Sep 2016 01:17:30 GMT",
 			icon: "",
@@ -37,26 +34,24 @@ describe('team reducer', () => {
 			name: "The A Team",
 			urlSlug: "the-a-team"
     }]
-    const expectedResult = {
-      ...state,
-      ids: [1],
-      byId: { 1: fixture[0] }
-    }
+    const expectedResult = state.merge(Map({
+      ids: List.of(1),
+      byId: (Map({1: Map(fixture[0])}))
+    }))
     const nextState = reducer(state, actions.fetchTeamsSuccess(fixture))
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(expectedResult)
   })
 
-  it('should handle the fetchTeamsFailure action correctly', () => {
+  it('should handle FETCH_TEAMS_FAILURE', () => {
     const fixture = {
       message: 'Error!'
     }
-    const expectedResult = {
-      ...state,
+    const expectedResult = state.merge(Map({
       error: fixture.message
-    }
+    }))
     const nextState = reducer(state, actions.fetchTeamsFailure(fixture))
 
-    expect(nextState).to.deep.eq(expectedResult)
+    expect(nextState).to.eq(expectedResult)
   })
 })
