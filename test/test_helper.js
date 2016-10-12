@@ -1,8 +1,10 @@
 import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
+import chaiImmutable from 'chai-immutable'
 import jsdom from 'jsdom';
 
 chai.use(chaiEnzyme())
+chai.use(chaiImmutable)
 
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 const win = doc.defaultView;
