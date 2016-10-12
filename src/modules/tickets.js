@@ -27,7 +27,7 @@ const ids = (state = List(), action) => {
   }
 }
 
-const errorMessage = (state = null, action) => {
+const error = (state = null, action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_FAILURE:
       return action.message
@@ -54,7 +54,7 @@ const loading = (state = false, action) => {
 const reducer = combineReducers({
   byId,
   ids,
-  errorMessage,
+  error,
   loading,
 })
 export default reducer

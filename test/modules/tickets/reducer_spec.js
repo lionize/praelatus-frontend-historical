@@ -7,7 +7,7 @@ describe('tickets reducer', () => {
   beforeEach(() => {
     state = Map({
       loading: false,
-      errorMessage: null,
+      error: null,
       ids: List(),
       byId: Map()
     })
@@ -46,7 +46,7 @@ describe('tickets reducer', () => {
       message: 'Error!'
     }
     const expectedResult = state.merge(Map({
-      errorMessage: fixture.message
+      error: fixture.message
     }))
     const nextState = reducer(state, actions.fetchTicketsFailure(fixture))
 
