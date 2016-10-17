@@ -1,3 +1,6 @@
+import { Map, List } from 'immutable'
+import { combineReducers } from 'redux-immutablejs'
+
 /*
  * Reducer that manages a Map of all tickets in the state. The key is the
  * ticket's stringified id, and the value is a Map that represents all fields of
