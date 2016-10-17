@@ -71,14 +71,6 @@ export const actions = {
     type: types.FETCH_TICKETS_FAILURE,
     message: error.message,
   }),
-
-  fetchTickets: (filters = {}) => (dispatch) => {
-    dispatch(actions.fetchTicketsRequest())
-    return api.fetchTickets(filters)
-      .then(res => res.json())
-      .then(json => dispatch(actions.fetchTicketsSuccess(json.body)))
-      .catch(e => dispatch(actions.fetchTicketsFailure(e)))
-  },
 }
 
 export const ticketsSelector = (state) => {

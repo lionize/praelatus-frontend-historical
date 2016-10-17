@@ -59,6 +59,4 @@ describe('Ticket Actions', () => {
       expect(actions.fetchTicketsFailure(fixture)).to.deep.eq(expectedResult)
     })
   })
-
-  describe('fetchTickets', () => {})
 })

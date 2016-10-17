@@ -74,12 +74,4 @@ export const actions = {
     type: types.FETCH_TEAMS_FAILURE,
     message: e.message,
   }),
-
-  fetchTeams: () => (dispatch) => {
-    dispatch(actions.fetchTeamsRequest())
-    return api.fetchTickets()
-      .then(res => res.json())
-      .then(json => dispatch(actions.fetchTeamsSuccess(json.body)))
-      .catch(e => dispatch(actions.fetchTeamsFailure(e)))
-  },
 }

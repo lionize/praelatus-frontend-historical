@@ -54,6 +54,4 @@ describe('Team Actions', () => {
       expect(actions.fetchTeamsFailure(fixture)).to.deep.eq(expectedResult)
     })
   })
-
-  describe('fetchTeams', () => {})
 })
