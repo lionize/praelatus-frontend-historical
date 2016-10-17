@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux-immutablejs'
 import { Map, List, fromJS } from 'immutable'
-import { normalize, arrayOf } from 'normalizr'
+import { normalize, arrayOf } from 'normalizr-immutable'
 import * as schema from 'schema'
 import * as api from 'api'
 
@@ -75,8 +75,10 @@ export const actions = {
 
 export const ticketsSelector = (state) => {
   const ticketIds = state.getIn(['tickets', 'ids'])
-  return ticketIds.map(id => state.getIn(['tickets', 'byId'])[id])
+  return ticketIds.map(id => ticketSelector(state, id))
 }
-export const ticketSelector = (state, id) => state.getIn(['tickets', 'byId'])[id]
+export const ticketSelector = (state, id) => {
+  return state.getIn(['tickets', 'byId']).get(String(id))
+}
 export const loadingSelector = state => state.getIn(['tickets', 'loading'])
 export const errorSelector = state => state.getIn(['tickets', 'error'])
