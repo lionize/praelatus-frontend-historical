@@ -12,11 +12,11 @@ class TicketsView extends Component {
   static propTypes = {
     tickets: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
-    fetchTickets: PropTypes.func.isRequired,
+    fetchTicketsRequest: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
-    this.props.fetchTickets()
+    this.props.fetchTicketsRequest()
   }
 
   render() {
