@@ -5,8 +5,8 @@ import api from 'api'
 
 export function* fetchTickets(action) {
   try {
-    const response = yield call(api.fetchTickets)
-    yield put(actions.fetchTicketsSuccess(response.body))
+    const response = yield call(api.fetchTickets, {})
+    yield put(actions.fetchTicketsSuccess(response))
   } catch (e) {
     yield put(actions.fetchTicketsFailure(e))
   }
