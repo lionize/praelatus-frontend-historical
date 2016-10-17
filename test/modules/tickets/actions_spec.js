@@ -1,10 +1,9 @@
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/tickets'
 
-const middlewares = [thunk]
+const middlewares = []
 const mockStore = configureMockStore(middlewares)
 
 const URL = 'http://localhost:8080/api/v1'
@@ -61,37 +60,5 @@ describe('Ticket Actions', () => {
     })
   })
 
-  describe('fetchTickets', () => {
-    it('creates FETCH_TICKETS_SUCCESS when fetching tickets is finished', () => {
-      nock(URL)
-        .get('/tickets')
-        .reply(200, { body: [{
-          id: 1,
-          description: 'Ticket description',
-          summary: 'Ticket summary'
-        }]})
-
-      const expectedActions = [
-        { type: types.FETCH_TICKETS_REQUEST },
-        { type: types.FETCH_TICKETS_SUCCESS, response: {
-          entities: {
-            tickets: {
-              1: {
-                id: 1,
-                description: "Ticket description",
-                summary: "Ticket summary"
-              }
-            }
-          },
-          result: [1]
-        }}
-      ]
-      const store = mockStore({ tickets: [] })
-
-      store.dispatch(actions.fetchTickets())
-        .then(() => {
-          expect(store.getActions()).to.eq(expectedActions)
-        })
-    })
-  })
+  describe('fetchTickets', () => {})
 })
