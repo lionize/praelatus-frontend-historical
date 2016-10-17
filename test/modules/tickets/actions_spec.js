@@ -1,4 +1,5 @@
 import configureMockStore from 'redux-mock-store'
+import { fromJS } from 'immutable'
 import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/tickets'
@@ -42,7 +43,7 @@ describe('Ticket Actions', () => {
         }
       }
 
-      expect(actions.fetchTicketsSuccess(fixture)).to.deep.eq(expectedResult)
+      expect(actions.fetchTicketsSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 
