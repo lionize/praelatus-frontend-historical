@@ -20,7 +20,7 @@ class TicketsView extends Component {
   }
 
   render() {
-    const { tickets, params } = this.props
+    const { children, tickets, params } = this.props
 
     if (params.id) {
       return (
