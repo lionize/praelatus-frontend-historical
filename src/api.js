@@ -14,9 +14,11 @@ const fakeDB = {
 }
 
 const respondWith = info => Promise.resolve({
-  json() {
-    return Promise.resolve({ body: info })
-  },
+  body: info
 })
 
-export const fetchTickets = () => respondWith(fakeDB.tickets)
+const fetchTickets = () => respondWith(fakeDB.tickets)
+
+export default {
+  fetchTickets,
+}

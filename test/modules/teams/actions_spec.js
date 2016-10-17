@@ -1,10 +1,9 @@
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/teams'
 
-const middlewares = [thunk]
+const middlewares = []
 const mockStore = configureMockStore(middlewares)
 
 const URL = 'http://localhost:8080/api/v1'
@@ -53,40 +52,6 @@ describe('Team Actions', () => {
       }
 
       expect(actions.fetchTeamsFailure(fixture)).to.deep.eq(expectedResult)
-    })
-  })
-
-  describe('fetchTeams', () => {
-    it('creates FETCH_TEAMS_SUCCESS when fetching teams is finished', () => {
-      nock(URL)
-        .get('/teams')
-        .reply(200, { body: [{
-          id: 1,
-          name: 'A Team'
-        }]})
-
-      const expectedActions = [
-        { type: types.FETCH_TEAMS_REQUEST },
-        { type: types.FETCH_TEAMS_SUCCESS, 
-          response: {
-            entities: {
-              teams: {
-                1: {
-                  id: 1,
-                  name: 'A Team'
-                }
-              }
-            },
-            result: [1]
-          } 
-        }
-      ]
-      const store = mockStore({ teams: [] })
-
-      store.dispatch(actions.fetchTeams())
-        .then(() => {
-          expect(store.getActions()).to.eq(expectedActions)
-        })
     })
   })
 })

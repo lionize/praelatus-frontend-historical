@@ -12,15 +12,15 @@ class TicketsView extends Component {
   static propTypes = {
     tickets: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
-    fetchTickets: PropTypes.func.isRequired,
+    fetchTicketsRequest: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
-    this.props.fetchTickets()
+    this.props.fetchTicketsRequest()
   }
 
   render() {
-    const { tickets, params } = this.props
+    const { children, tickets, params } = this.props
 
     if (params.id) {
       return (
