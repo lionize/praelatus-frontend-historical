@@ -6,7 +6,8 @@
   "scripts": {
     "start": "babel-node devServer.js",
     "test": "cross-env NODE_PATH=./src mocha --compilers js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "doc": "node ./node_modules/jsdoc/jsdoc.js src -r -c jsdoc.json -d docs -t ./node_modules/docdash"
   },
   "repository": {
     "type": "git",
