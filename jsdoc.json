@@ -1,0 +1,4 @@
+{
+  "plugins": ["plugins/markdown"],
+  "template": "node_modules/docdash"
+}
