@@ -1,4 +1,5 @@
 import configureMockStore from 'redux-mock-store'
+import { fromJS } from 'immutable'
 import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/teams'
@@ -23,7 +24,10 @@ describe('Team Actions', () => {
     it('should return the correct type and the correct response', () => {
       const fixture = [{
         id: 1,
-        name: 'A Team'
+        name: 'A Team',
+        icon: "",
+        createdAt: "",
+        urlSlug: ""
       }]
       const expectedResult = {
         type: types.FETCH_TEAMS_SUCCESS,
@@ -37,7 +41,7 @@ describe('Team Actions', () => {
         }
       }
 
-      expect(actions.fetchTeamsSuccess(fixture)).to.deep.eq(expectedResult)
+      expect(actions.fetchTeamsSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 
