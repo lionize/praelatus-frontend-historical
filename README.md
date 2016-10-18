@@ -1,13 +1,13 @@
-# Tessera [![License](https://img.shields.io/badge/license-AGPLv3-blue.svg)](https://github.com/chasinglogic/tessera/blob/master/LICENSE)
+# Praelatus [![License](https://img.shields.io/badge/license-AGPLv3-blue.svg)](https://github.com/praelatus/frontend/blob/master/LICENSE)
 
 An Open Source ticketing / bug tracking system front end.
 
 If you're looking for the REST API it's
-[here](https://github.com/chasinglogic/tessera)
+[here](https://github.com/praelatus/backend)
 
 | Stable | Nightly |
 |:------:|:-------:|
-| [![Build Status](https://travis-ci.org/chasinglogic/tessera.svg?branch=master)](https://travis-ci.org/chasinglogic/tessera) | [![Build Status](https://travis-ci.org/chasinglogic/tessera.svg?branch=develop)](https://travis-ci.org/chasinglogic/tessera) |
+| [![Build Status](https://travis-ci.org/praelatus/frontend.svg?branch=master)](https://travis-ci.org/praelatus/frontend) | [![Build Status](https://travis-ci.org/praelatus/frontend.svg?branch=develop)](https://travis-ci.org/praelatus/frontend) |
 
 ## Why
 
@@ -32,18 +32,18 @@ The basics:
 All pull requests should go to the develop branch not master. Thanks!
 
 We follow the Contributor Covenant code of conduct, you can find it 
-[here](https://github.com/chasinglogic/tessera/blob/master/code_of_conduct.md)
+[here](https://github.com/praelatus/frontend/blob/master/code_of_conduct.md)
 
-Need help getting started hacking on Tessera? No problem we have a
-[CONTRIBUTING.md](https://github.com/chasignlogic/tessera/blob/develop/CONTRIBUTING.md) 
+Need help getting started hacking on Praelatus? No problem we have a
+[CONTRIBUTING.md](https://github.com/praelatus/frontend/blob/develop/CONTRIBUTING.md) 
 just for that!
 
 ## License
 
-Tessera is distributed under the AGPLv3
+Praelatus is distributed under the AGPLv3
 
 ```
-  Tessera, an Open Source Bug Tracking / Ticketing system.
+  Praelatus, an Open Source Bug Tracking / Ticketing system.
   Mathew Robinson & Mark Chandler (c) 2016
   
   This program is free software: you can redistribute it and/or modify
