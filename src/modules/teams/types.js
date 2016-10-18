@@ -1,3 +1,5 @@
+/** @module teams/types */
+
 /**
  * Constants that represent the types of actions that are dispatched by team
  * actions. 

@@ -1,8 +1,10 @@
+/** @module teams/reducers */
+
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import { types } from 'modules/teams'
 
-/*
+/**
  * Reducer that manages a Map of all teams in the state. The key is the
  * team's stringified id, and the value is a Map that represents all fields of
  * the team.
@@ -26,7 +28,7 @@ const byId = (state = Map(), action) => {
   return state
 }
 
-/*
+/**
  * Reducer that manages a List of all team ids in the state. 
  *
  * When teams are fetched successfully from the server, the reducer will
@@ -46,7 +48,7 @@ const ids = (state = List(), action) => {
   }
 }
 
-/*
+/**
  * Reducer that manages the error message for the teams portion of the state.
  *
  * If an action with a type of FETCH_TEAMS_FAILURE is passed, the state is
@@ -72,7 +74,7 @@ const error = (state = null, action) => {
   }
 }
 
-/*
+/**
  * Reducer that manages the loading state for the teams portion of the state.
  *
  * If an action with a type of FETCH_TEAMS_REQUEST is passed, the state is
@@ -99,7 +101,7 @@ const loading = (state = false, action) => {
   }
 }
 
-/*
+/**
  * Combines all of the reducers into a single reducer structure. The state is
  * handled as a Map, with each key representing that piece of the team state.
  *

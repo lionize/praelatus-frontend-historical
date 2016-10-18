@@ -1,8 +1,10 @@
+/** @module tickets/reducers */
+
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import { types } from 'modules/tickets'
 
-/*
+/**
  * Reducer that manages a Map of all tickets in the state. The key is the
  * ticket's stringified id, and the value is a Map that represents all fields of
  * the ticket.
@@ -26,7 +28,7 @@ const byId = (state = Map(), action) => {
   return state
 }
 
-/*
+/**
  * Reducer that manages a List of all ticket ids in the state. 
  *
  * When tickets are fetched successfully from the server, the reducer will
@@ -46,7 +48,7 @@ const ids = (state = List(), action) => {
   }
 }
 
-/*
+/**
  * Reducer that manages the error message for the tickets portion of the state.
  *
  * If an action with a type of FETCH_TICKETS_FAILURE is passed, the state is
@@ -72,7 +74,7 @@ const error = (state = null, action) => {
   }
 }
 
-/*
+/**
  * Reducer that manages the loading state for the tickets portion of the state.
  *
  * If an action with a type of FETCH_TICKETS_REQUEST is passed, the state is
@@ -99,25 +101,27 @@ const loading = (state = false, action) => {
   }
 }
 
-/*
+/**
  * Combines all of the reducers into a single reducer structure. The state is
  * handled as a Map, with each key representing that piece of the ticket state.
  *
  * The tickets state structure ends up looking like the following:
  * 
+ * ``` javascript
  * Map {
  *   byId:Map,
  *   ids:List,
  *   error:string?,
  *   loading:boolean 
  * }
+ * ```
  *
  * When an action is passed to the tickets reducer, each reducer is called with
  * its piece of the combined state as well as the action. The returned value
  * from each reducer represents the new state value for that portion of the
  * state.
  *
- * @returns {function} - The combined reducers.
+ * @return {function} - The combined reducers.
  */
 const reducer = combineReducers({
   byId,

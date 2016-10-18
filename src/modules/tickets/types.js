@@ -1,3 +1,5 @@
+/** @module tickets/types */
+
 /**
  * Constants that represent the types of actions that are dispatched by ticket
  * actions. 
