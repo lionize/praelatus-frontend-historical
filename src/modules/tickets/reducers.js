@@ -1,5 +1,6 @@
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
+import { types } from 'modules/tickets'
 
 /*
  * Reducer that manages a Map of all tickets in the state. The key is the
