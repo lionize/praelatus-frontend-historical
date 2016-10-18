@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>teams/selectors - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-teams_actions.html">teams/actions</a><ul class='methods'><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsFailure">fetchTeamsFailure</a></li><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsRequest">fetchTeamsRequest</a></li><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsSuccess">fetchTeamsSuccess</a></li></ul></li><li><a href="module-teams_reducers.html">teams/reducers</a><ul class='methods'><li data-type='method'><a href="module-teams_reducers.html#~byId">byId</a></li><li data-type='method'><a href="module-teams_reducers.html#~error">error</a></li><li data-type='method'><a href="module-teams_reducers.html#~ids">ids</a></li><li data-type='method'><a href="module-teams_reducers.html#~loading">loading</a></li></ul></li><li><a href="module-teams_selectors.html">teams/selectors</a><ul class='methods'><li data-type='method'><a href="module-teams_selectors.html#.errorSelector">errorSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.loadingSelector">loadingSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.teamSelector">teamSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.teamsSelector">teamsSelector</a></li></ul></li><li><a href="module-teams_types.html">teams/types</a></li><li><a href="module-tickets_actions.html">tickets/actions</a><ul class='methods'><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsFailure">fetchTicketsFailure</a></li><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsRequest">fetchTicketsRequest</a></li><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsSuccess">fetchTicketsSuccess</a></li></ul></li><li><a href="module-tickets_reducers.html">tickets/reducers</a><ul class='methods'><li data-type='method'><a href="module-tickets_reducers.html#~byId">byId</a></li><li data-type='method'><a href="module-tickets_reducers.html#~error">error</a></li><li data-type='method'><a href="module-tickets_reducers.html#~ids">ids</a></li><li data-type='method'><a href="module-tickets_reducers.html#~loading">loading</a></li></ul></li><li><a href="module-tickets_selectors.html">tickets/selectors</a><ul class='methods'><li data-type='method'><a href="module-tickets_selectors.html#.errorSelector">errorSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.loadingSelector">loadingSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.ticketSelector">ticketSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.ticketsSelector">ticketsSelector</a></li></ul></li><li><a href="module-tickets_types.html">tickets/types</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">teams/selectors</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".errorSelector"><span class="type-signature">(static) </span>errorSelector<span class="signature">(state)</span><span class="type-signature"> &rarr; (nullable) {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_selectors.js.html">teams/selectors.js</a>, <a href="teams_selectors.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Selector that fetches the error message from the team state.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Map</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The global state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>The current error message.</li>
+</ul>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".loadingSelector"><span class="type-signature">(static) </span>loadingSelector<span class="signature">(state)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_selectors.js.html">teams/selectors.js</a>, <a href="teams_selectors.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Selector that fetches the loading state from the team state.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Map</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The global state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>The current loading state.</li>
+</ul>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".teamSelector"><span class="type-signature">(static) </span>teamSelector<span class="signature">(state, id)</span><span class="type-signature"> &rarr; {Map}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_selectors.js.html">teams/selectors.js</a>, <a href="teams_selectors.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Selector that fetches a single team from the team state.</p>
+<p>The selector gets all of the teams by id from teams.byId and then gets
+the team by the passed id from that List.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Map</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The global state.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the team being selected.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>The selected team.</li>
+</ul>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Map</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".teamsSelector"><span class="type-signature">(static) </span>teamsSelector<span class="signature">(state)</span><span class="type-signature"> &rarr; {List}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="teams_selectors.js.html">teams/selectors.js</a>, <a href="teams_selectors.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Selector that fetches all teams from the team state.</p>
+<p>The selector collects all of the ids from teams.ids and then maps them into
+the corresponding teams.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Map</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The global state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <ul>
+<li>A List of selected teams.</li>
+</ul>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">List</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Mon Oct 17 2016 22:12:31 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

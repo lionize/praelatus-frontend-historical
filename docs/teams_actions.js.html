@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>teams/actions.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-teams_actions.html">teams/actions</a><ul class='methods'><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsFailure">fetchTeamsFailure</a></li><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsRequest">fetchTeamsRequest</a></li><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsSuccess">fetchTeamsSuccess</a></li></ul></li><li><a href="module-teams_reducers.html">teams/reducers</a><ul class='methods'><li data-type='method'><a href="module-teams_reducers.html#~byId">byId</a></li><li data-type='method'><a href="module-teams_reducers.html#~error">error</a></li><li data-type='method'><a href="module-teams_reducers.html#~ids">ids</a></li><li data-type='method'><a href="module-teams_reducers.html#~loading">loading</a></li></ul></li><li><a href="module-teams_selectors.html">teams/selectors</a><ul class='methods'><li data-type='method'><a href="module-teams_selectors.html#.errorSelector">errorSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.loadingSelector">loadingSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.teamSelector">teamSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.teamsSelector">teamsSelector</a></li></ul></li><li><a href="module-teams_types.html">teams/types</a></li><li><a href="module-tickets_actions.html">tickets/actions</a><ul class='methods'><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsFailure">fetchTicketsFailure</a></li><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsRequest">fetchTicketsRequest</a></li><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsSuccess">fetchTicketsSuccess</a></li></ul></li><li><a href="module-tickets_reducers.html">tickets/reducers</a><ul class='methods'><li data-type='method'><a href="module-tickets_reducers.html#~byId">byId</a></li><li data-type='method'><a href="module-tickets_reducers.html#~error">error</a></li><li data-type='method'><a href="module-tickets_reducers.html#~ids">ids</a></li><li data-type='method'><a href="module-tickets_reducers.html#~loading">loading</a></li></ul></li><li><a href="module-tickets_selectors.html">tickets/selectors</a><ul class='methods'><li data-type='method'><a href="module-tickets_selectors.html#.errorSelector">errorSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.loadingSelector">loadingSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.ticketSelector">ticketSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.ticketsSelector">ticketsSelector</a></li></ul></li><li><a href="module-tickets_types.html">tickets/types</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">teams/actions.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module teams/actions */
+
+import { normalize, arrayOf } from 'normalizr-immutable'
+import * as schema from 'schema'
+import { types } from 'modules/teams'
+
+/**
+ * Action that represents a request for teams to be fetched. 
+ *
+ * This action currently takes no parameters, and is simply signaling to the
+ * application that teams should be fetched.
+ *
+ * @returns {object} - An object that contains the action's type.
+ */
+const fetchTeamsRequest = () => ({
+  type: types.FETCH_TEAMS_REQUEST,
+})
+
+/**
+ * Action that represents a successful fetch of teams.
+ *
+ * The action contains a normalized response from the server.
+ *
+ * @param {Record} [response] - The Record
+ * representing the teams that were fetched and a List of the ids of the
+ * teams.
+ * @returns {object} - An object that contains the action's type and the
+ * normalized server response.
+ */
+const fetchTeamsSuccess = response => ({
+  type: types.FETCH_TEAMS_SUCCESS,
+  response: normalize(response, arrayOf(schema.team), {}),
+})
+
+/**
+ * Action that represents a failed fetch of teams.
+ *
+ * The action contains the error message from the server.
+ *
+ * @param {object} error - The error object. The 'message' field is the only piece
+ * used for this action.
+ * @returns {object} - An object that contains the action's type and the error
+ * message.
+ */
+const fetchTeamsFailure = e => ({
+  type: types.FETCH_TEAMS_FAILURE,
+  message: e.message,
+})
+
+/**
+ * The actions combined into an object and exported as the default value.
+ */
+export default {
+  fetchTeamsRequest,
+  fetchTeamsSuccess,
+  fetchTeamsFailure,
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Mon Oct 17 2016 22:12:30 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
