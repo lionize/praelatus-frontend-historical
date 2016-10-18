@@ -1,5 +1,4 @@
 import configureMockStore from 'redux-mock-store'
-import { fromJS } from 'immutable'
 import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/tickets'
