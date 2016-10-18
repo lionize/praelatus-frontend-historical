@@ -1,7 +1,7 @@
 {
-  "name": "tessera-client",
+  "name": "praelatus-frontend",
   "version": "0.0.1",
-  "description": "The official client for Tessera, an Open Source ticketing / bug tracking system.",
+  "description": "The official client for Praelatus, an Open Source ticketing / bug tracking system.",
   "main": "index.js",
   "scripts": {
     "start": "babel-node devServer.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lionize/tessera-client.git"
+    "url": "git+https://github.com/praelatus/frontend.git"
   },
-  "author": "Adeo Tech",
+  "author": "Praelatus",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/lionize/tessera-client/issues"
+    "url": "https://github.com/praelatus/frontend/issues"
   },
-  "homepage": "https://github.com/lionize/tessera-client#readme",
+  "homepage": "https://github.com/praelatus/frontend#readme",
   "devDependencies": {
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",

@@ -1,13 +1,13 @@
 # Contributing
 
-This document describes how to get Tessera up and running for development so
-you can get hacking on Tessera.
+This document describes how to get Praelatus up and running for development so
+you can get hacking on Praelatus.
 
 ## Dependencies
 
 ## Quick Start
 
-Tessera-client currently doesn't have a build process. 
+praelatus-client currently doesn't have a build process. 
 
 To run the project in development mode, run `npm start`.
 
@@ -19,7 +19,7 @@ You're ready to read the contribution guidelines [below](#guidelines)!
 <div id="guidelines"></div>
 
 I'm going to reiterate this first since it's important. We have a [Code of
-Conduct](https://github.com/chasinglogic/tessera/blob/master/code_of_conduct.md). 
+Conduct](https://github.com/praelatus/frontend/blob/master/code_of_conduct.md). 
 
 Follow it.
 
@@ -54,11 +54,11 @@ Further paragraphs come after blank lines.
 2. We follow
    [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) so
    please branch responsibly. All pull requests should be made against
-   [Develop](https://github.com/chasinglogic/tessera/tree/develop)
+   [Develop](https://github.com/praelatus/frontend/tree/develop)
 
 3. If you have a question, *ask*! We don't mind answering any questions you may
    have.
 
 That's it! If you have any further questions or want some more real time
 interaction we have a slack and if you'd like an invite you can send an email
-to tesserafoss@gmail.com until we get the heroku thing set up!
+to praelatusfoss@gmail.com until we get the heroku thing set up!
