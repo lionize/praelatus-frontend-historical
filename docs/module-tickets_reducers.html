@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tickets/reducers - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-teams_actions.html">teams/actions</a><ul class='methods'><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsFailure">fetchTeamsFailure</a></li><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsRequest">fetchTeamsRequest</a></li><li data-type='method'><a href="module-teams_actions.html#~fetchTeamsSuccess">fetchTeamsSuccess</a></li></ul></li><li><a href="module-teams_reducers.html">teams/reducers</a><ul class='methods'><li data-type='method'><a href="module-teams_reducers.html#~byId">byId</a></li><li data-type='method'><a href="module-teams_reducers.html#~error">error</a></li><li data-type='method'><a href="module-teams_reducers.html#~ids">ids</a></li><li data-type='method'><a href="module-teams_reducers.html#~loading">loading</a></li></ul></li><li><a href="module-teams_selectors.html">teams/selectors</a><ul class='methods'><li data-type='method'><a href="module-teams_selectors.html#.errorSelector">errorSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.loadingSelector">loadingSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.teamSelector">teamSelector</a></li><li data-type='method'><a href="module-teams_selectors.html#.teamsSelector">teamsSelector</a></li></ul></li><li><a href="module-teams_types.html">teams/types</a></li><li><a href="module-tickets_actions.html">tickets/actions</a><ul class='methods'><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsFailure">fetchTicketsFailure</a></li><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsRequest">fetchTicketsRequest</a></li><li data-type='method'><a href="module-tickets_actions.html#~fetchTicketsSuccess">fetchTicketsSuccess</a></li></ul></li><li><a href="module-tickets_reducers.html">tickets/reducers</a><ul class='methods'><li data-type='method'><a href="module-tickets_reducers.html#~byId">byId</a></li><li data-type='method'><a href="module-tickets_reducers.html#~error">error</a></li><li data-type='method'><a href="module-tickets_reducers.html#~ids">ids</a></li><li data-type='method'><a href="module-tickets_reducers.html#~loading">loading</a></li></ul></li><li><a href="module-tickets_selectors.html">tickets/selectors</a><ul class='methods'><li data-type='method'><a href="module-tickets_selectors.html#.errorSelector">errorSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.loadingSelector">loadingSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.ticketSelector">ticketSelector</a></li><li data-type='method'><a href="module-tickets_selectors.html#.ticketsSelector">ticketsSelector</a></li></ul></li><li><a href="module-tickets_types.html">tickets/types</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tickets/reducers</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~reducer"><span class="type-signature">(inner, constant) </span>reducer<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tickets_reducers.js.html">tickets/reducers.js</a>, <a href="tickets_reducers.js.html#line126">line 126</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Combines all of the reducers into a single reducer structure. The state is
+handled as a Map, with each key representing that piece of the ticket state.</p>
+<p>The tickets state structure ends up looking like the following:</p>
+<pre class="prettyprint source lang-javascript"><code>Map {
+  byId:Map,
+  ids:List,
+  error:string?,
+  loading:boolean 
+}</code></pre><p>When an action is passed to the tickets reducer, each reducer is called with
+its piece of the combined state as well as the action. The returned value
+from each reducer represents the new state value for that portion of the
+state.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="~byId"><span class="type-signature">(inner) </span>byId<span class="signature">(state<span class="signature-attributes">opt</span>, action)</span><span class="type-signature"> &rarr; {Map}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tickets_reducers.js.html">tickets/reducers.js</a>, <a href="tickets_reducers.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Reducer that manages a Map of all tickets in the state. The key is the
+ticket's stringified id, and the value is a Map that represents all fields of
+the ticket.</p>
+<p>If byId is passed an action that has a response attribute, byId will merge
+that current state with the response's tickets entities and return it.</p>
+<p>Returns the state param if passed no action or an action without a response
+attribute.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Map</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>Map</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The byId portion of the ticket state.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The action that determines how byId will deal with
+its return.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Map</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~error"><span class="type-signature">(inner) </span>error<span class="signature">(state<span class="signature-attributes">opt</span>, action)</span><span class="type-signature"> &rarr; {string|null}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tickets_reducers.js.html">tickets/reducers.js</a>, <a href="tickets_reducers.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Reducer that manages the error message for the tickets portion of the state.</p>
+<p>If an action with a type of FETCH_TICKETS_FAILURE is passed, the state is
+updated to the action's message. If the type is FETCH_TICKETS_SUCCESS or
+FETCH_TICKETS_REQUEST, we update the state to null as we no longer need the
+previous error message. Otherwise, we return the previous error message.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The error message portion of the tickets
+state.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The action that determines how error handles its 
+state return.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~ids"><span class="type-signature">(inner) </span>ids<span class="signature">(state<span class="signature-attributes">opt</span>, action)</span><span class="type-signature"> &rarr; {List}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tickets_reducers.js.html">tickets/reducers.js</a>, <a href="tickets_reducers.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Reducer that manages a List of all ticket ids in the state. </p>
+<p>When tickets are fetched successfully from the server, the reducer will
+replace its state with the new list of ids.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">List</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>List</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The ids portion of the tickets state.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The action that determines how ids handles its state
+return.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">List</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~loading"><span class="type-signature">(inner) </span>loading<span class="signature">(state<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tickets_reducers.js.html">tickets/reducers.js</a>, <a href="tickets_reducers.js.html#line92">line 92</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Reducer that manages the loading state for the tickets portion of the state.</p>
+<p>If an action with a type of FETCH_TICKETS_REQUEST is passed, the state is
+updated to true as tickets are being loaded. If an action with type
+FETCH_TICKETS_SUCCESS or FETCH_TICKETS_FAILURE is passed, state is set to
+false as we are no longer loading any tickets. Otherwise we return the
+current state.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>The loading state portion of the tickets
+state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Mon Oct 17 2016 22:12:31 GMT-0400 (EDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
