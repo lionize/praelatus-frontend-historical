@@ -1,4 +1,4 @@
-# System Explanation
+# Redux Explanation
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -10,6 +10,8 @@
 - [How-To](#how-to)
   - [Normalizing Server Responses](#normalizing-server-responses)
 - [Create a Module Step by Step](#create-a-module-step-by-step)
+	- [Normalize the Server Responses](#normalize-the-server-responses)
+	- [Tell a Story With Sagas](#tell-a-story-with-sagas)
 
 ## Introduction
 
@@ -405,6 +407,8 @@ Map {
 
 As you can see, the reducers are smart enough to know to update themselves based on the action that is dispatched. We don't need to manually update each piece of the state–it does that automatically using the information attached to the action. Data just flows through the system without us needing to do anything other than send actions to it. Cool, right?
 
+### Normalize the Server Responses
+
 We can finally move on to the `FETCH_PROJECTS_SUCCESS` action, which is the meat of our data flow. But first, we need to implement a `normalizr` schema so that the system can process the information coming back from the server.
 
 To do that, let's implement the `Project` schema:
@@ -460,6 +464,8 @@ response: Map {
 ```
 
 The `result` field represents all of the ids of the projects we fetched, and the `entities.projects` field is a map of all of those project objects.
+
+### Finish the Reducers
 
 Now that we have the normalized response in the action, we can implement the `FETCH_PROJECTS_SUCCESS` action for all of our reducers:
 
@@ -553,7 +559,7 @@ const error = (state = null, action) => {
 }
 ```
 
-We lumped `FETCH_PROJECTS_SUCCESS` in with `FETCH_PROJECTS_REQUEST` to return null. This is because if we are requesting new projects OR have successfully retrieved the projects, we have no error.
+We lumped `FETCH_PROJECTS_SUCCESS` in with `FETCH_PROJECTS_REQUEST` to return null. This is because if we are requesting new projects or have successfully retrieved the projects, we have no error.
 
 ```javascript
 const loading = (state = false, action) => {
@@ -570,3 +576,14 @@ const loading = (state = false, action) => {
 ```
 
 Much like the `error` reducer, we simply joined `FETCH_PROJECTS_SUCCESS` with `FETCH_PROJECTS_FAILURE`, because either way, we are no longer loading projects.
+
+### Tell a Story With Sagas
+
+### In Review
+
+Here are the steps to creating a new module:
+
+1. **Plan out your state shape.** What should the keys be named? What should be the default state for each key?
+2. **Create your reducer outline.** Each function should represent a key of the state. Start by having it return its previous state.
+3. **Create an index file for the module.** This is where all of the other parts of the module will be imported and re-exported.
+4. **Implement action types.** This is the easiest step.
