@@ -6,8 +6,13 @@ const Ticket = new Record({
   summary: null,
   description: null,
 })
-
 export const ticket = new Schema('tickets', Ticket)
+
+const Project = new Record({
+  id: null,
+  name: null,
+})
+export const project = new Schema('projects', Project)
 
 const Team = new Record({
   id: null,
@@ -16,5 +21,4 @@ const Team = new Record({
   name: null,
   urlSlug: null,
 })
-
 export const team = new Schema('teams', Team)
