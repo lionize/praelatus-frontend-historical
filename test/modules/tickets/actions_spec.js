@@ -8,7 +8,7 @@ const mockStore = configureMockStore(middlewares)
 
 const URL = 'http://localhost:8080/api/v1'
 
-describe('Ticket Actions', () => {
+describe('tickets module actions', () => {
   afterEach(() => {
     nock.cleanAll()
   })

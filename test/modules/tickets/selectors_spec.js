@@ -8,7 +8,7 @@ const {
   loadingSelector,
 } = selectors
 
-describe('tickets selectors', () => {
+describe('tickets module selectors', () => {
   it('ticketsSelector returns all tickets', () => {
     const state = fromJS({
       tickets: {
