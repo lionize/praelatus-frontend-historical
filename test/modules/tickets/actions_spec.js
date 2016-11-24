@@ -1,12 +1,5 @@
-import configureMockStore from 'redux-mock-store'
-import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/tickets'
-
-const middlewares = []
-const mockStore = configureMockStore(middlewares)
-
-const URL = 'http://localhost:8080/api/v1'
 
 describe('tickets module actions', () => {
   afterEach(() => {
