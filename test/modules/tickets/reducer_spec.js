@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { List, Map } from 'immutable'
 import reducer, { actions } from 'modules/tickets'
 
-describe('tickets reducer', () => {
+describe('tickets module reducers', () => {
   let state
   beforeEach(() => {
     state = Map({

@@ -1,18 +1,7 @@
-import configureMockStore from 'redux-mock-store'
-import nock from 'nock'
 import { expect } from 'chai'
 import { types, actions } from 'modules/tickets'
 
-const middlewares = []
-const mockStore = configureMockStore(middlewares)
-
-const URL = 'http://localhost:8080/api/v1'
-
-describe('Ticket Actions', () => {
-  afterEach(() => {
-    nock.cleanAll()
-  })
-
+describe('tickets module actions', () => {
   describe('fetchTicketsRequest', () => {
     it('should return the correct type', () => {
       const expectedResult = {
@@ -57,6 +46,61 @@ describe('Ticket Actions', () => {
       }
 
       expect(actions.fetchTicketsFailure(fixture)).to.deep.eq(expectedResult)
+    })
+  })
+
+  describe('createTicketRequest', () => {
+    it('should return the correct type', () => {
+      const expectedResult = {
+        type: types.CREATE_TICKET_REQUEST
+      }
+
+      expect(actions.createTicketRequest()).to.deep.eq(expectedResult)
+    })
+  })
+
+  describe('createTicketSuccess', () => {
+    const fixture = {
+      id: 1,
+      description: "This is a cool ticket",
+      summary: "This is a ticket summary"
+    }
+    const expectedResult = {
+      type: types.CREATE_TICKET_SUCCESS,
+      response: {
+        result: 1,
+        entities: {
+          tickets: {
+            1: fixture
+          }
+        }
+      }
+    }
+
+    it('should return the correct type', () => {
+      expect(actions.createTicketSuccess(fixture).type).to.deep.eq(expectedResult.type)
+    })
+
+    it('should return the correct response', () => {
+      expect(actions.createTicketSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
+    })
+  })
+
+  describe('createTicketFailure', () => {
+    const fixture = {
+      message: "Error!",
+    }
+    const expectedResult = {
+      type: types.CREATE_TICKET_FAILURE,
+      message: fixture.message,
+    }
+
+    it('should return the correct type', () => {
+      expect(actions.createTicketFailure(fixture).type).to.eq(expectedResult.type)
+    })
+
+    it('should return the correct response', () => {
+      expect(actions.createTicketFailure(fixture).message).to.eq(expectedResult.message)
     })
   })
 })

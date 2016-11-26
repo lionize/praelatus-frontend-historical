@@ -5,14 +5,14 @@ import * as schema from 'schema'
 import { types } from 'modules/tickets'
 
 /**
- * Action that represents a request for tickets to be fetched. 
+ * Action that represents a request for tickets to be fetched.
  *
  * This action currently takes no parameters, and is simply signaling to the
  * application that tickets should be fetched.
  *
  * @returns {object} - An object that contains the action's type.
  */
-const fetchTicketsRequest = () => ({ 
+const fetchTicketsRequest = () => ({
   type: types.FETCH_TICKETS_REQUEST,
 })
 
@@ -47,6 +47,20 @@ const fetchTicketsFailure = error => ({
   message: error.message,
 })
 
+const createTicketRequest = () => ({
+  type: types.CREATE_TICKET_REQUEST,
+})
+
+const createTicketSuccess = response => ({
+  type: types.CREATE_TICKET_SUCCESS,
+  response: normalize(response, schema.ticket, {}),
+})
+
+const createTicketFailure = error => ({
+  type: types.CREATE_TICKET_FAILURE,
+  message: error.message,
+})
+
 /**
  * The actions combined into an object and exported as the default value.
  */
@@ -54,4 +68,7 @@ export default {
   fetchTicketsRequest,
   fetchTicketsSuccess,
   fetchTicketsFailure,
+  createTicketRequest,
+  createTicketSuccess,
+  createTicketFailure,
 }
