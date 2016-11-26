@@ -69,6 +69,8 @@ const error = (state = null, action) => {
       return action.message
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_REQUEST:
+    case types.CREATE_TICKET_SUCCESS:
+    case types.CREATE_TICKET_REQUEST:
       return null
     default:
       return state
@@ -97,6 +99,8 @@ const loading = (state = false, action) => {
       return true
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_FAILURE:
+    case types.CREATE_TICKET_SUCCESS:
+    case types.CREATE_TICKET_FAILURE:
       return false
     default:
       return state

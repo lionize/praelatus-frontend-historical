@@ -3,74 +3,134 @@ import { List, Map } from 'immutable'
 import reducer, { actions } from 'modules/tickets'
 
 describe('tickets module reducers', () => {
-  let state
-  beforeEach(() => {
-    state = Map({
+  const state = Map({
+    loading: true,
+    error: 'Error',
+    ids: List(),
+    byId: Map()
+  })
+
+  it('returns a default state', () => {
+    const expectedResult = Map({
       loading: false,
       error: null,
       ids: List(),
       byId: Map()
     })
-  })
-
-  it('returns a default state', () => {
     const nextState = reducer(undefined, {})
-
-    expect(state).to.eq(nextState)
-  })
-
-  it('handles FETCH_TICKETS_REQUEST', () => {
-    const expectedResult = state.set('loading', true)
-    const nextState = reducer(state, actions.fetchTicketsRequest())
 
     expect(nextState).to.eq(expectedResult)
   })
 
-  it('handles FETCH_TICKETS_SUCCESS', () => {
+  describe('FETCH_TICKETS_REQUEST', () => {
+    const nextState = reducer(state, actions.fetchTicketsRequest())
+
+    it('sets loading to true', () => {
+      expect(nextState.get('loading')).to.eq(true)
+    })
+
+    it('sets error to null', () => {
+      expect(nextState.get('error')).to.eq(null)
+    })
+  })
+
+  describe('FETCH_TICKETS_SUCCESS', () => {
     const fixture = [{
       id: 0,
       summary: 'Ticket summary',
       description: 'Ticket description'
     }]
-    const expectedResult = state.merge(Map({
-      ids: List.of(0),
-      byId: Map({0: Map(fixture[0])})
-    }))
     const nextState = reducer(state, actions.fetchTicketsSuccess(fixture))
 
-    expect(nextState).to.eq(expectedResult)
+    it('adds tickets to the state', () => {
+      const expectedResult = state.merge(Map({
+        ids: List.of(0),
+        byId: Map({0: Map(fixture[0])}),
+        error: null,
+        loading: false
+      }))
+
+      expect(nextState).to.eq(expectedResult)
+    })
+
+    it('sets error to null', () => {
+      expect(nextState.get('error')).to.eq(null)
+    })
+
+    it('sets loading to false', () => {
+      expect(nextState.get('loading')).to.eq(false)
+    })
   })
 
-  it('handles FETCH_TICKETS_FAILURE', () => {
+  describe('FETCH_TICKETS_FAILURE', () => {
     const fixture = {
       message: 'Error!'
     }
-    const expectedResult = state.merge(Map({
-      error: fixture.message
-    }))
     const nextState = reducer(state, actions.fetchTicketsFailure(fixture))
 
-    expect(nextState).to.eq(expectedResult)
+    it('add the error message to state', () => {
+      expect(nextState.get('error')).to.eq(fixture.message)
+    })
+
+    it('sets loading to false', () => {
+      expect(nextState.get('loading')).to.eq(false)
+    })
   })
 
-  it('handles CREATE_TICKET_REQUEST', () => {
-    const expectedResult = state.set('loading', true)
+  describe('CREATE_TICKET_REQUEST', () => {
     const nextState = reducer(state, actions.createTicketRequest())
 
-    expect(nextState).to.eq(expectedResult)
+    it('sets error to null', () => {
+      expect(nextState.get('error')).to.eq(null)
+    })
+
+    it('sets loading to true', () => {
+      expect(nextState.get('loading')).to.eq(true)
+    })
   })
 
-  it('handles CREATE_TICKET_SUCCESS', () => {
+  describe('CREATE_TICKET_SUCCESS', () => {
+    const fixture = [{
+      id: 0,
+      summary: 'Ticket summary',
+      description: 'Ticket description'
+    }]
+    const nextState = reducer(state, actions.fetchTicketsSuccess(fixture))
 
+    it('adds the ticket to the state', () => {
+      const expectedResult = state.merge(Map({
+        ids: List.of(0),
+        byId: Map({0: Map(fixture[0])}),
+        error: null,
+        loading: false
+      }))
+
+      expect(nextState).to.eq(expectedResult)
+    })
+
+    it('sets loading to false', () => {
+      expect(nextState.get('loading')).to.eq(false)
+    })
+
+    it('sets error to null', () => {
+      expect(nextState.get('error')).to.eq(null)
+    })
   })
 
-  it('handles CREATE_TICKET_FAILURE', () => {
+  describe('CREATE_TICKET_FAILURE', () => {
     const fixture = {
       message: 'Error!'
     }
-    const expectedResult = state.set('error', fixture.message)
     const nextState = reducer(state, actions.createTicketFailure(fixture))
 
-    expect(nextState).to.eq(expectedResult)
+    it('adds the error to state', () => {
+      const expectedResult = state.set('error', fixture.message)
+
+      expect(nextState.get('error')).to.eq(fixture.message)
+    })
+
+    it('sets loading to false', () => {
+      expect(nextState.get('loading')).to.eq(false)
+    })
   })
 })
