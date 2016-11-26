@@ -52,4 +52,25 @@ describe('tickets module reducers', () => {
 
     expect(nextState).to.eq(expectedResult)
   })
+
+  it('handles CREATE_TICKET_REQUEST', () => {
+    const expectedResult = state.set('loading', true)
+    const nextState = reducer(state, actions.createTicketRequest())
+
+    expect(nextState).to.eq(expectedResult)
+  })
+
+  it('handles CREATE_TICKET_SUCCESS', () => {
+
+  })
+
+  it('handles CREATE_TICKET_FAILURE', () => {
+    const fixture = {
+      message: 'Error!'
+    }
+    const expectedResult = state.set('error', fixture.message)
+    const nextState = reducer(state, actions.createTicketFailure(fixture))
+
+    expect(nextState).to.eq(expectedResult)
+  })
 })

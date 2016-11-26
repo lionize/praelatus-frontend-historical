@@ -65,6 +65,7 @@ const ids = (state = List(), action) => {
 const error = (state = null, action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_FAILURE:
+    case types.CREATE_TICKET_FAILURE:
       return action.message
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_REQUEST:
@@ -92,6 +93,7 @@ const error = (state = null, action) => {
 const loading = (state = false, action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_REQUEST:
+    case types.CREATE_TICKET_REQUEST:
       return true
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_FAILURE:
