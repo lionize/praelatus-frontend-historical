@@ -50,12 +50,21 @@ describe('tickets module actions', () => {
   })
 
   describe('createTicketRequest', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: types.CREATE_TICKET_REQUEST
-      }
+    const fixture = {
+      summary: 'Ticket summary',
+      description: 'Ticket description'
+    }
+    const expectedResult = {
+      type: types.CREATE_TICKET_REQUEST,
+      payload: fixture
+    }
 
-      expect(actions.createTicketRequest()).to.deep.eq(expectedResult)
+    it('should return the correct type', () => {
+      expect(actions.createTicketRequest(fixture).type).to.eq(expectedResult.type)
+    })
+
+    it('should contain the payload', () => {
+      expect(actions.createTicketRequest(fixture).payload).to.deep.eq(expectedResult.payload)
     })
   })
 
@@ -105,12 +114,22 @@ describe('tickets module actions', () => {
   })
 
   describe('updateTicketRequest', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: types.UPDATE_TICKET_REQUEST
-      }
+    const fixture = {
+      id: 0,
+      summary: 'Ticket summary',
+      description: 'Ticket description'
+    }
+    const expectedResult = {
+      type: types.UPDATE_TICKET_REQUEST,
+      payload: fixture
+    }
 
-      expect(actions.updateTicketRequest()).to.deep.eq(expectedResult)
+    it('should return the correct type', () => {
+      expect(actions.updateTicketRequest(fixture).type).to.eq(expectedResult.type)
+    })
+
+    it('should contain the payload', () => {
+      expect(actions.updateTicketRequest(fixture).payload).to.eq(expectedResult.payload)
     })
   })
 
@@ -161,12 +180,18 @@ describe('tickets module actions', () => {
   })
 
   describe('deleteTicketRequest', () => {
-    it('should return the correct type', () => {
-      const expectedResult = {
-        type: types.DELETE_TICKET_REQUEST
-      }
+    const fixture = { id: 0 }
+    const expectedResult = {
+      type: types.DELETE_TICKET_REQUEST,
+      payload: fixture
+    }
 
-      expect(actions.deleteTicketRequest()).to.deep.eq(expectedResult)
+    it('should return the correct type', () => {
+      expect(actions.deleteTicketRequest(fixture).type).to.eq(expectedResult.type)
+    })
+
+    it('should contain the payload', () => {
+      expect(actions.deleteTicketRequest(fixture).payload).to.eq(expectedResult.payload)
     })
   })
 

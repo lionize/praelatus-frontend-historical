@@ -47,8 +47,9 @@ const fetchTicketsFailure = error => ({
   message: error.message,
 })
 
-const createTicketRequest = () => ({
+const createTicketRequest = payload => ({
   type: types.CREATE_TICKET_REQUEST,
+  payload: payload,
 })
 
 const createTicketSuccess = response => ({
@@ -61,8 +62,9 @@ const createTicketFailure = error => ({
   message: error.message,
 })
 
-const updateTicketRequest = () => ({
+const updateTicketRequest = payload => ({
   type: types.UPDATE_TICKET_REQUEST,
+  payload: payload,
 })
 
 const updateTicketSuccess = response => ({
@@ -75,8 +77,9 @@ const updateTicketFailure = error => ({
   message: error.message,
 })
 
-const deleteTicketRequest = () => ({
+const deleteTicketRequest = payload => ({
   type: types.DELETE_TICKET_REQUEST,
+  payload: payload,
 })
 
 const deleteTicketSuccess = id => ({
