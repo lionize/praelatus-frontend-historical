@@ -61,6 +61,20 @@ const createTicketFailure = error => ({
   message: error.message,
 })
 
+const updateTicketRequest = () => ({
+  type: types.UPDATE_TICKET_REQUEST,
+})
+
+const updateTicketSuccess = response => ({
+  type: types.UPDATE_TICKET_SUCCESS,
+  response: normalize(response, schema.ticket, {}),
+})
+
+const updateTicketFailure = error => ({
+  type: types.UPDATE_TICKET_FAILURE,
+  message: error.message,
+})
+
 /**
  * The actions combined into an object and exported as the default value.
  */
@@ -71,4 +85,7 @@ export default {
   createTicketRequest,
   createTicketSuccess,
   createTicketFailure,
+  updateTicketRequest,
+  updateTicketSuccess,
+  updateTicketFailure,
 }

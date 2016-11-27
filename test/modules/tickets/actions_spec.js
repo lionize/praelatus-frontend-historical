@@ -103,4 +103,60 @@ describe('tickets module actions', () => {
       expect(actions.createTicketFailure(fixture).message).to.eq(expectedResult.message)
     })
   })
+
+  describe('updateTicketRequest', () => {
+    it('should return the correct type', () => {
+      const expectedResult = {
+        type: types.UPDATE_TICKET_REQUEST
+      }
+
+      expect(actions.updateTicketRequest()).to.deep.eq(expectedResult)
+    })
+  })
+
+  describe('updateTicketSuccess', () => {
+    const fixture = {
+      id: 1,
+      description: "This is a cool ticket",
+      summary: "This is a ticket summary"
+    }
+    const expectedResult = {
+      type: types.UPDATE_TICKET_SUCCESS,
+      response: {
+        result: 1,
+        entities: {
+          tickets: {
+            1: fixture
+          }
+        }
+      }
+    }
+
+    it('should return the correct type', () => {
+      expect(actions.updateTicketSuccess(fixture).type).to.eq(expectedResult.type)
+    })
+
+    it('should return the correct response', () => {
+      expect(actions.updateTicketSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
+    })
+  })
+
+  describe('updateTicketFailure', () => {
+    const fixture = {
+      message: 'Error!'
+    }
+    const expectedResult = {
+      type: types.UPDATE_TICKET_FAILURE,
+      message: fixture.message
+    }
+    const actualResult = actions.updateTicketFailure(fixture)
+
+    it('should return the correct type', () => {
+      expect(actualResult.type).to.eq(expectedResult.type)
+    })
+
+    it('should return the correct response', () => {
+      expect(actualResult.message).to.eq(expectedResult.message)
+    })
+  })
 })
