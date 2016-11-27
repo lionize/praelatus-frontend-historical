@@ -159,4 +159,49 @@ describe('tickets module actions', () => {
       expect(actualResult.message).to.eq(expectedResult.message)
     })
   })
+
+  describe('deleteTicketRequest', () => {
+    it('should return the correct type', () => {
+      const expectedResult = {
+        type: types.DELETE_TICKET_REQUEST
+      }
+
+      expect(actions.deleteTicketRequest()).to.deep.eq(expectedResult)
+    })
+  })
+
+  describe('deleteTicketSuccess', () => {
+    const expectedResult = {
+      type: types.DELETE_TICKET_SUCCESS,
+      id: 1,
+    }
+    const actualResult = actions.deleteTicketSuccess(1)
+
+    it('should return the correct type', () => {
+      expect(actualResult.type).to.eq(expectedResult.type)
+    })
+
+    it('should return the correct id', () => {
+      expect(actualResult.id).to.eq(expectedResult.id)
+    })
+  })
+
+  describe('deleteTicketFailure', () => {
+    const fixture = {
+      message: 'Error!'
+    }
+    const expectedResult = {
+      type: types.DELETE_TICKET_FAILURE,
+      message: fixture.message
+    }
+    const actualResult = actions.deleteTicketFailure(fixture)
+
+    it('should return the correct type', () => {
+      expect(actualResult.type).to.eq(expectedResult.type)
+    })
+
+    it('should return the correct response', () => {
+      expect(actualResult.message).to.eq(expectedResult.message)
+    })
+  })
 })

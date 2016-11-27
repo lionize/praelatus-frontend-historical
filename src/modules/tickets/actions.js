@@ -75,6 +75,20 @@ const updateTicketFailure = error => ({
   message: error.message,
 })
 
+const deleteTicketRequest = () => ({
+  type: types.DELETE_TICKET_REQUEST,
+})
+
+const deleteTicketSuccess = id => ({
+  type: types.DELETE_TICKET_SUCCESS,
+  id: id,
+})
+
+const deleteTicketFailure = error => ({
+  type: types.DELETE_TICKET_FAILURE,
+  message: error.message,
+})
+
 /**
  * The actions combined into an object and exported as the default value.
  */
@@ -88,4 +102,7 @@ export default {
   updateTicketRequest,
   updateTicketSuccess,
   updateTicketFailure,
+  deleteTicketRequest,
+  deleteTicketSuccess,
+  deleteTicketFailure,
 }
