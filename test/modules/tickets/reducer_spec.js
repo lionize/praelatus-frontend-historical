@@ -134,8 +134,6 @@ describe('tickets module reducers', () => {
     })
   })
 
-
-
   describe('UPDATE_TICKET_REQUEST', () => {
     const nextState = reducer(state, actions.updateTicketRequest())
 
@@ -193,6 +191,69 @@ describe('tickets module reducers', () => {
     it('adds the error to state', () => {
       const expectedResult = state.set('error', fixture.message)
 
+      expect(nextState.get('error')).to.eq(fixture.message)
+    })
+
+    it('sets loading to false', () => {
+      expect(nextState.get('loading')).to.eq(false)
+    })
+  })
+
+  describe('DELETE_TICKET_REQUEST', () => {
+    const nextState = reducer(state, actions.deleteTicketRequest())
+
+    it('sets error to null', () => {
+      expect(nextState.get('error')).to.eq(null)
+    })
+
+    it('sets loading to true', () => {
+      expect(nextState.get('loading')).to.eq(true)
+    })
+  })
+
+  describe('DELETE_TICKET_SUCCESS', () => {
+    const fixture = {
+      id: 1,
+      summary: 'Ticket summary',
+      description: 'Ticket description'
+    }
+    const newState = state.merge(Map({
+      ids: List.of(1),
+      byId: Map({1: Map({
+        id: 1,
+        summary: 'This is a summary!',
+        description: 'This is a description!'
+      })})
+    }))
+    const nextState = reducer(newState, actions.deleteTicketSuccess(fixture.id))
+
+    it('removes the ticket from the state', () => {
+      const expectedResult = state.merge(Map({
+        ids: List(),
+        byId: Map(),
+        error: null,
+        loading: false
+      }))
+
+      expect(nextState).to.eq(expectedResult)
+    })
+
+    it('sets loading to false', () => {
+      expect(nextState.get('loading')).to.eq(false)
+    })
+
+    it('sets error to null', () => {
+      expect(nextState.get('error')).to.eq(null)
+    })
+  })
+
+  describe('DELETE_TICKET_FAILURE', () => {
+    const fixture = {
+      message: 'Error!'
+    }
+    const nextState = reducer(state, actions.deleteTicketFailure(fixture))
+
+    it('adds the error to state', () => {
       expect(nextState.get('error')).to.eq(fixture.message)
     })
 

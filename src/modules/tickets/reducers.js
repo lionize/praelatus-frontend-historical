@@ -21,6 +21,10 @@ import { types } from 'modules/tickets'
  * @return {Map}
  */
 const byId = (state = Map(), action) => {
+  if (action.type === types.DELETE_TICKET_SUCCESS) {
+    return state.delete(action.id.toString())
+  }
+
   if (action.response) {
     return state.merge(action.response.entities.tickets)
   }
@@ -45,6 +49,9 @@ const ids = (state = List(), action) => {
       return List(action.response.result)
     case types.CREATE_TICKET_SUCCESS:
       return state.push(action.response.result)
+    case types.DELETE_TICKET_SUCCESS:
+      const index = state.indexOf(action.id)
+      return state.delete(index)
     default:
       return state
   }
@@ -69,6 +76,7 @@ const error = (state = null, action) => {
     case types.FETCH_TICKETS_FAILURE:
     case types.CREATE_TICKET_FAILURE:
     case types.UPDATE_TICKET_FAILURE:
+    case types.DELETE_TICKET_FAILURE:
       return action.message
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_REQUEST:
@@ -76,6 +84,8 @@ const error = (state = null, action) => {
     case types.CREATE_TICKET_REQUEST:
     case types.UPDATE_TICKET_SUCCESS:
     case types.UPDATE_TICKET_REQUEST:
+    case types.DELETE_TICKET_SUCCESS:
+    case types.DELETE_TICKET_REQUEST:
       return null
     default:
       return state
@@ -102,6 +112,7 @@ const loading = (state = false, action) => {
     case types.FETCH_TICKETS_REQUEST:
     case types.CREATE_TICKET_REQUEST:
     case types.UPDATE_TICKET_REQUEST:
+    case types.DELETE_TICKET_REQUEST:
       return true
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_FAILURE:
@@ -109,6 +120,8 @@ const loading = (state = false, action) => {
     case types.CREATE_TICKET_FAILURE:
     case types.UPDATE_TICKET_SUCCESS:
     case types.UPDATE_TICKET_FAILURE:
+    case types.DELETE_TICKET_SUCCESS:
+    case types.DELETE_TICKET_FAILURE:
       return false
     default:
       return state
