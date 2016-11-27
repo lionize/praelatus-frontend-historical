@@ -29,7 +29,7 @@ const byId = (state = Map(), action) => {
 }
 
 /**
- * Reducer that manages a List of all ticket ids in the state. 
+ * Reducer that manages a List of all ticket ids in the state.
  *
  * When tickets are fetched successfully from the server, the reducer will
  * replace its state with the new list of ids.
@@ -43,6 +43,8 @@ const ids = (state = List(), action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_SUCCESS:
       return List(action.response.result)
+    case types.CREATE_TICKET_SUCCESS:
+      return state.push(action.response.result)
     default:
       return state
   }
@@ -58,7 +60,7 @@ const ids = (state = List(), action) => {
  *
  * @param {string|null} [state=null] - The error message portion of the tickets
  * state.
- * @param {object} action - The action that determines how error handles its 
+ * @param {object} action - The action that determines how error handles its
  * state return.
  * @return {string|null}
  */
@@ -66,11 +68,14 @@ const error = (state = null, action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_FAILURE:
     case types.CREATE_TICKET_FAILURE:
+    case types.UPDATE_TICKET_FAILURE:
       return action.message
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_REQUEST:
     case types.CREATE_TICKET_SUCCESS:
     case types.CREATE_TICKET_REQUEST:
+    case types.UPDATE_TICKET_SUCCESS:
+    case types.UPDATE_TICKET_REQUEST:
       return null
     default:
       return state
@@ -96,11 +101,14 @@ const loading = (state = false, action) => {
   switch (action.type) {
     case types.FETCH_TICKETS_REQUEST:
     case types.CREATE_TICKET_REQUEST:
+    case types.UPDATE_TICKET_REQUEST:
       return true
     case types.FETCH_TICKETS_SUCCESS:
     case types.FETCH_TICKETS_FAILURE:
     case types.CREATE_TICKET_SUCCESS:
     case types.CREATE_TICKET_FAILURE:
+    case types.UPDATE_TICKET_SUCCESS:
+    case types.UPDATE_TICKET_FAILURE:
       return false
     default:
       return state
@@ -112,13 +120,13 @@ const loading = (state = false, action) => {
  * handled as a Map, with each key representing that piece of the ticket state.
  *
  * The tickets state structure ends up looking like the following:
- * 
+ *
  * ``` javascript
  * Map {
  *   byId:Map,
  *   ids:List,
  *   error:string?,
- *   loading:boolean 
+ *   loading:boolean
  * }
  * ```
  *
