@@ -6,11 +6,14 @@ import { types } from 'modules/tickets'
 
 /**
  * Reducer that manages a Map of all tickets in the state. The key is the
- * ticket's stringified id, and the value is a Map that represents all fields of
- * the ticket.
+ * ticket's stringified id, and the value is a Map that represents all fields
+ * of the ticket.
  *
  * If byId is passed an action that has a response attribute, byId will merge
  * that current state with the response's tickets entities and return it.
+ *
+ * If byId is passed a ticket delete action, byId will delete that ticket and
+ * return the result.
  *
  * Returns the state param if passed no action or an action without a response
  * attribute.
@@ -38,9 +41,15 @@ const byId = (state = Map(), action) => {
  * When tickets are fetched successfully from the server, the reducer will
  * replace its state with the new list of ids.
  *
+ * When a ticket is created, the reducer will add that ticket to its list of
+ * ids and return the new list.
+ *
+ * When a ticket is deleted, the reducer will remove that ticket's id from the
+ * list and return the result.
+ *
  * @param {List} [state=List] - The ids portion of the tickets state.
- * @param {object} action - The action that determines how ids handles its state
- * return.
+ * @param {object} action - The action that determines how ids handles its
+ * state return.
  * @return {List}
  */
 const ids = (state = List(), action) => {
@@ -60,10 +69,10 @@ const ids = (state = List(), action) => {
 /**
  * Reducer that manages the error message for the tickets portion of the state.
  *
- * If an action with a type of FETCH_TICKETS_FAILURE is passed, the state is
- * updated to the action's message. If the type is FETCH_TICKETS_SUCCESS or
- * FETCH_TICKETS_REQUEST, we update the state to null as we no longer need the
- * previous error message. Otherwise, we return the previous error message.
+ * If an action with a failure type is passed, the state is updated to the
+ * action's message. If the type is a success or request, we update the state
+ * to null as we no longer need the previous error message. Otherwise, we
+ * return the previous error message.
  *
  * @param {string|null} [state=null] - The error message portion of the tickets
  * state.
@@ -95,11 +104,10 @@ const error = (state = null, action) => {
 /**
  * Reducer that manages the loading state for the tickets portion of the state.
  *
- * If an action with a type of FETCH_TICKETS_REQUEST is passed, the state is
- * updated to true as tickets are being loaded. If an action with type
- * FETCH_TICKETS_SUCCESS or FETCH_TICKETS_FAILURE is passed, state is set to
- * false as we are no longer loading any tickets. Otherwise we return the
- * current state.
+ * If an action with a request type is passed, the state is updated to true as
+ * tickets are being loaded. If an action with type request or failure is
+ * passed, state is set to false as we are no longer loading any tickets.
+ * Otherwise we return the current state.
  *
  * @param {boolean} [state=false] - The loading state portion of the tickets
  * state.

@@ -1,8 +1,22 @@
+/** @module tickets/sagas */
+
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import { actions, types } from 'modules/tickets'
 import api from 'api'
 
+/**
+ * Saga that represents async interaction with the server for fetching tickets.
+ *
+ * The function calls the api fetchTickets method passing the action's
+ * payload (filter options, etc.).
+ *
+ * It calls the fetchTicketsSuccess action passing the response if the call is
+ * successful, and calls the fetchTicketsFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* fetchTickets(action = {}) {
   try {
     const payload = action.payload || {}
@@ -13,6 +27,19 @@ export function* fetchTickets(action = {}) {
   }
 }
 
+/**
+ * Saga that represents async interaction with the server for creating a
+ * ticket.
+ *
+ * The function calls the api createTicket method passing the action's payload
+ * (information about the ticket to be created).
+ *
+ * It calls the createTicketSuccess action passing the response if the call is
+ * successful, and calls the createTicketFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* createTicket(action = {}) {
   try {
     const payload = action.payload || {}
@@ -23,6 +50,19 @@ export function* createTicket(action = {}) {
   }
 }
 
+/**
+ * Saga that represents async interaction with the server for updating a
+ * ticket.
+ *
+ * The function calls the api updateTicket method passing the action's payload
+ * (id of and updated fields for the ticket to be updated).
+ *
+ * If calls the updateTicketSuccess action passing the response if the call is
+ * successful, and calls the updateTicketFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* updateTicket(action = {}) {
   try {
     const payload = action.payload || {}
@@ -33,6 +73,19 @@ export function* updateTicket(action = {}) {
   }
 }
 
+/**
+ * Saga that represents async interaction with the server for deleting a
+ * ticket.
+ *
+ * The function calls the api deleteTicket method passing the action's payload
+ * (the id of the ticket being deleted).
+ *
+ * It calls the deleteTicketSuccess action passing the response if the call is
+ * successful, and calls the deleteTicketFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* deleteTicket(action = {}) {
   try {
     const payload = action.payload || {}
@@ -43,6 +96,14 @@ export function* deleteTicket(action = {}) {
   }
 }
 
+/**
+ * Watcher generator the details all of the ticket module sagas and their take
+ * types.
+ *
+ * If the saga is added using takeEvery, the saga will process every action
+ * that it receives. If the saga is added using takeLatest, the saga will drop
+  * all previous actions that it received and only handle the latest call.
+ */
 export default function* watcher() {
   yield [
     takeEvery(types.FETCH_TICKETS_REQUEST, fetchTickets),
