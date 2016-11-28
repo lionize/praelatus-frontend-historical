@@ -17,8 +17,14 @@ const respondWith = info => Promise.resolve({
   body: info
 })
 
-const fetchTickets = () => respondWith(fakeDB.tickets)
+const fetchTickets = payload => respondWith(fakeDB.tickets)
+const createTicket = payload => {}
+const updateTicket = payload => {}
+const deleteTicket = payload => {}
 
 export default {
   fetchTickets,
+  createTicket,
+  updateTicket,
+  deleteTicket,
 }

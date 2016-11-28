@@ -13,6 +13,8 @@ To run the project in development mode, run `npm start`.
 
 To run the tests, run `npm run test`. To run them in watch mode, run `npm run test:watch`.
 
+Be sure to check out a basic explanation of how the [system works](https://github.com/praelatus/frontend/SYSTEM_EXPLANATION.md)
+
 You're ready to read the contribution guidelines [below](#guidelines)!
 
 ## Contribution Guidelines
