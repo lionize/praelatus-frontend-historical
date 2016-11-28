@@ -1,13 +1,14 @@
 import { expect } from 'chai'
 import { fromJS } from 'immutable'
-import {
+import { selectors } from 'modules/tickets'
+const {
   ticketsSelector,
   ticketSelector,
-  loadingSelector,
   errorSelector,
-} from 'modules/tickets'
+  loadingSelector,
+} = selectors
 
-describe('tickets selectors', () => {
+describe('tickets module selectors', () => {
   it('ticketsSelector returns all tickets', () => {
     const state = fromJS({
       tickets: {
