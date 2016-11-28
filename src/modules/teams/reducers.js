@@ -21,6 +21,10 @@ import { types } from 'modules/teams'
  * @return {Map}
  */
 const byId = (state = Map(), action) => {
+  if (action.type === types.DELETE_TEAM_SUCCESS) {
+    return state.delete(action.id.toString())
+  }
+
   if (action.response) {
     return state.merge(action.response.entities.teams)
   }
@@ -43,6 +47,11 @@ const ids = (state = List(), action) => {
   switch (action.type) {
     case types.FETCH_TEAMS_SUCCESS:
       return List(action.response.result)
+    case types.CREATE_TEAM_SUCCESS:
+      return state.push(action.response.result)
+    case types.DELETE_TEAM_SUCCESS:
+      const index = state.indexOf(action.id)
+      return state.delete(index)
     default:
       return state
   }
@@ -65,9 +74,18 @@ const ids = (state = List(), action) => {
 const error = (state = null, action) => {
   switch (action.type) {
     case types.FETCH_TEAMS_FAILURE:
+    case types.CREATE_TEAM_FAILURE:
+    case types.UPDATE_TEAM_FAILURE:
+    case types.DELETE_TEAM_FAILURE:
       return action.message
     case types.FETCH_TEAMS_SUCCESS:
     case types.FETCH_TEAMS_REQUEST:
+    case types.CREATE_TEAM_SUCCESS:
+    case types.CREATE_TEAM_REQUEST:
+    case types.UPDATE_TEAM_SUCCESS:
+    case types.UPDATE_TEAM_REQUEST:
+    case types.DELETE_TEAM_SUCCESS:
+    case types.DELETE_TEAM_REQUEST:
       return null
     default:
       return state
@@ -92,9 +110,18 @@ const error = (state = null, action) => {
 const loading = (state = false, action) => {
   switch (action.type) {
     case types.FETCH_TEAMS_REQUEST:
+    case types.CREATE_TEAM_REQUEST:
+    case types.UPDATE_TEAM_REQUEST:
+    case types.DELETE_TEAM_REQUEST:
       return true
     case types.FETCH_TEAMS_SUCCESS:
     case types.FETCH_TEAMS_FAILURE:
+    case types.CREATE_TEAM_SUCCESS:
+    case types.CREATE_TEAM_FAILURE:
+    case types.UPDATE_TEAM_SUCCESS:
+    case types.UPDATE_TEAM_FAILURE:
+    case types.DELETE_TEAM_SUCCESS:
+    case types.DELETE_TEAM_FAILURE:
       return false
     default:
       return state
