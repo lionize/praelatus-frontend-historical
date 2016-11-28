@@ -95,3 +95,20 @@ export function* deleteTeam(action = {}) {
     yield put(actions.deleteTeamFailure(e))
   }
 }
+
+/**
+ * Watcher generator details all of the team module sagas and their take
+ * types.
+ *
+ * If the saga is added using takeEvery, the saga will process every action
+ * that it receives. If the saga is added using takeLatest, the saga will drop
+  * all previous actions that it received and only handle the latest call.
+ */
+export default function* watcher() {
+  yield [
+    takeEvery(types.FETCH_TEAMS_REQUEST, fetchTeams),
+    takeEvery(types.CREATE_TEAM_REQUEST, createTeam),
+    takeEvery(types.UPDATE_TEAM_REQUEST, updateTeam),
+    takeEvery(types.DELETE_TEAM_REQUEST, deleteTeam),
+  ]
+}
