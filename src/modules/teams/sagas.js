@@ -1,8 +1,22 @@
+/** @module teams/sagas */
+
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import { actions, types } from 'modules/teams'
 import api from 'api'
 
+/**
+ * Saga that represents async interaction with the server for fetching teams.
+ *
+ * The function calls the api fetchTeams method passing the action's
+ * payload (filter options, etc.).
+ *
+ * It calls the fetchTeamsSuccess action passing the response if the call is
+ * successful, and calls the fetchTeamsFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* fetchTeams(action = {}) {
   try {
     const payload = action.payload || {}
@@ -13,6 +27,19 @@ export function* fetchTeams(action = {}) {
   }
 }
 
+/**
+ * Saga that represents async interaction with the server for creating a
+ * team.
+ *
+ * The function calls the api createTeam method passing the action's payload
+ * (information about the team to be created).
+ *
+ * It calls the createTeamSuccess action passing the response if the call is
+ * successful, and calls the createTeamFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* createTeam(action = {}) {
   try {
     const payload = action.payload || {}
@@ -23,6 +50,19 @@ export function* createTeam(action = {}) {
   }
 }
 
+/**
+ * Saga that represents async interaction with the server for updating a
+ * team.
+ *
+ * The function calls the api updateTeam method passing the action's payload
+ * (id of and updated fields for the team to be updated).
+ *
+ * If calls the updateTeamSuccess action passing the response if the call is
+ * successful, and calls the updateTeamFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* updateTeam(action = {}) {
   try {
     const payload = action.payload || {}
@@ -33,6 +73,19 @@ export function* updateTeam(action = {}) {
   }
 }
 
+/**
+ * Saga that represents async interaction with the server for deleting a
+ * team.
+ *
+ * The function calls the api deleteTeam method passing the action's payload
+ * (the id of the team being deleted).
+ *
+ * It calls the deleteTeamSuccess action passing the response if the call is
+ * successful, and calls the deleteTeamFailure action passing the error from
+ * the server if the call fails.
+ *
+ * @param {object} action - The action that contains payload information.
+ */
 export function* deleteTeam(action = {}) {
   try {
     const payload = action.payload || {}
