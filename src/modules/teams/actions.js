@@ -47,6 +47,51 @@ const fetchTeamsFailure = e => ({
   message: e.message,
 })
 
+const createTeamRequest = payload => ({
+  type: types.CREATE_TEAM_REQUEST,
+  payload: payload,
+})
+
+const createTeamSuccess = response => ({
+  type: types.CREATE_TEAM_SUCCESS,
+  response: normalize(response, schema.team, {}),
+})
+
+const createTeamFailure = error => ({
+  type: types.CREATE_TEAM_FAILURE,
+  message: error.message,
+})
+
+const updateTeamRequest = payload => ({
+  type: types.UPDATE_TEAM_REQUEST,
+  payload: payload,
+})
+
+const updateTeamSuccess = response => ({
+  type: types.UPDATE_TEAM_SUCCESS,
+  response: normalize(response, schema.team, {}),
+})
+
+const updateTeamFailure = error => ({
+  type: types.UPDATE_TEAM_FAILURE,
+  message: error.message,
+})
+
+const deleteTeamRequest = payload => ({
+  type: types.DELETE_TEAM_REQUEST,
+  payload: payload,
+})
+
+const deleteTeamSuccess = id => ({
+  type: types.DELETE_TEAM_SUCCESS,
+  id: id,
+})
+
+const deleteTeamFailure = error => ({
+  type: types.DELETE_TEAM_FAILURE,
+  message: error.message,
+})
+
 /**
  * The actions combined into an object and exported as the default value.
  */
@@ -54,4 +99,13 @@ export default {
   fetchTeamsRequest,
   fetchTeamsSuccess,
   fetchTeamsFailure,
+  createTeamRequest,
+  createTeamSuccess,
+  createTeamFailure,
+  updateTeamRequest,
+  updateTeamSuccess,
+  updateTeamFailure,
+  deleteTeamRequest,
+  deleteTeamSuccess,
+  deleteTeamFailure,
 }
