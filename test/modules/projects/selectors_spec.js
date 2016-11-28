@@ -15,7 +15,8 @@ describe('projects selectors', () => {
         byId: {
           1: {
             id: 1,
-            name: "Best Project",
+            summary: "This is a summary!",
+            description: "This is a description!"
           }
         }
       }
@@ -23,7 +24,8 @@ describe('projects selectors', () => {
     const expected = fromJS([
       {
         id: 1,
-        name: "Best Project",
+        summary: "This is a summary!",
+        description: "This is a description!"
       }
     ])
 
@@ -37,14 +39,16 @@ describe('projects selectors', () => {
         byId: {
           1: {
             id: 1,
-            name: "Best Project",
+            summary: "This is a summary!",
+            description: "This is a description!"
           }
         }
       }
     })
     const expected = fromJS({
       id: 1,
-      name: 'Best Project',
+      summary: "This is a summary!",
+      description: "This is a description!"
     })
 
     expect(projectSelector(state, 1)).to.deep.eq(expected)
@@ -53,7 +57,7 @@ describe('projects selectors', () => {
   it('loadingSelector returns the loading status', () => {
     const state = fromJS({
       projects: {
-        loading: true,
+        loading: true
       }
     })
     const expected = true
@@ -64,10 +68,10 @@ describe('projects selectors', () => {
   it('errorSelector returns the error status', () => {
     const state = fromJS({
       projects: {
-        error: 'Error!'
+        error: 'This is an error!'
       }
     })
-    const expected = 'Error!'
+    const expected = 'This is an error!'
 
     expect(errorSelector(state)).to.eq(expected)
   })
