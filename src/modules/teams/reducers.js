@@ -5,9 +5,12 @@ import { combineReducers } from 'redux-immutablejs'
 import { types } from 'modules/teams'
 
 /**
- * Reducer that manages a Map of all teams in the state. The key is the
- * team's stringified id, and the value is a Map that represents all fields of
- * the team.
+ * Reducer that manages a Map of all teams in the state. The key is the team's
+ * stringified id, and the value is a Map that represents all fields of the
+ * team.
+ *
+ * If byId is passed a team delete action, byId will delete that ticket and
+ * return the result.
  *
  * If byId is passed an action that has a response attribute, byId will merge
  * that current state with the response's teams entities and return it.
@@ -33,14 +36,20 @@ const byId = (state = Map(), action) => {
 }
 
 /**
- * Reducer that manages a List of all team ids in the state. 
+ * Reducer that manages a List of all team ids in the state.
  *
  * When teams are fetched successfully from the server, the reducer will
  * replace its state with the new list of ids.
  *
+ * When a team is created, the reducer will add that team to its list of ids
+ * and return the new list.
+ *
+ * When a team is deleted, the reducer will remove that team's id from the list
+ * and return the result.
+ *
  * @param {List} [state=List] - The ids portion of the teams state.
- * @param {object} action - The action that determines how ids handles its state
- * return.
+ * @param {object} action - The action that determines how ids handles its
+ * state return.
  * @return {List}
  */
 const ids = (state = List(), action) => {
@@ -60,14 +69,14 @@ const ids = (state = List(), action) => {
 /**
  * Reducer that manages the error message for the teams portion of the state.
  *
- * If an action with a type of FETCH_TEAMS_FAILURE is passed, the state is
- * updated to the action's message. If the type is FETCH_TEAMS_SUCCESS or
- * FETCH_TEAMS_REQUEST, we update the state to null as we no longer need the
- * previous error message. Otherwise, we return the previous error message.
+ * If an action with a failure type is passed, the state is updated to the
+ * action's message. If the type is success or request, we update the state to
+ * null as we no longer need the previous error message. Otherwise, we return
+ * the previous error message.
  *
  * @param {string|null} [state=null] - The error message portion of the teams
  * state.
- * @param {object} action - The action that determines how error handles its 
+ * @param {object} action - The action that determines how error handles its
  * state return.
  * @return {string|null}
  */
@@ -95,11 +104,10 @@ const error = (state = null, action) => {
 /**
  * Reducer that manages the loading state for the teams portion of the state.
  *
- * If an action with a type of FETCH_TEAMS_REQUEST is passed, the state is
- * updated to true as teams are being loaded. If an action with type
- * FETCH_TEAMS_SUCCESS or FETCH_TEAMS_FAILURE is passed, state is set to
- * false as we are no longer loading any teams. Otherwise we return the
- * current state.
+ * If an action with a type of request is passed, the state is updated to true
+ * as teams are being loaded. If an action with type success or failure is
+ * passed, state is set to false as we are no longer loading any teams.
+ * Otherwise we return the current state.
  *
  * @param {boolean} [state=false] - The loading state portion of the teams
  * state.
@@ -133,12 +141,12 @@ const loading = (state = false, action) => {
  * handled as a Map, with each key representing that piece of the team state.
  *
  * The teams state structure ends up looking like the following:
- * 
+ *
  * Map {
  *   byId:Map,
  *   ids:List,
  *   error:string?,
- *   loading:boolean 
+ *   loading:boolean
  * }
  *
  * When an action is passed to the teams reducer, each reducer is called with
