@@ -22,9 +22,18 @@ const createTicket = payload => {}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
 
+const fetchTeams = payload => {}
+const createTeam = payload => {}
+const updateTeam = payload => {}
+const deleteTeam = payload => {}
+
 export default {
   fetchTickets,
   createTicket,
   updateTicket,
   deleteTicket,
+  fetchTeams,
+  createTeam,
+  updateTeam,
+  deleteTeam
 }
