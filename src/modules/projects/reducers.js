@@ -5,9 +5,12 @@ import { combineReducers } from 'redux-immutablejs'
 import { types } from 'modules/projects'
 
 /**
- * Reducer that manages a Map of all projects in the state. The key is the
- * project's stringified id, and the value is a Map that represents all fields of
- * the project.
+ * Reducer that manages a Map of all projects in the state. The key is the project's
+ * stringified id, and the value is a Map that represents all fields of the
+ * project.
+ *
+ * If byId is passed a project delete action, byId will delete that ticket and
+ * return the result.
  *
  * If byId is passed an action that has a response attribute, byId will merge
  * that current state with the response's projects entities and return it.
@@ -21,6 +24,10 @@ import { types } from 'modules/projects'
  * @return {Map}
  */
 const byId = (state = Map(), action) => {
+  if (action.type === types.DELETE_PROJECT_SUCCESS) {
+    return state.delete(action.id.toString())
+  }
+
   if (action.response) {
     return state.merge(action.response.entities.projects)
   }
@@ -29,20 +36,31 @@ const byId = (state = Map(), action) => {
 }
 
 /**
- * Reducer that manages a List of all project ids in the state. 
+ * Reducer that manages a List of all project ids in the state.
  *
  * When projects are fetched successfully from the server, the reducer will
  * replace its state with the new list of ids.
  *
+ * When a project is created, the reducer will add that project to its list of ids
+ * and return the new list.
+ *
+ * When a project is deleted, the reducer will remove that project's id from the list
+ * and return the result.
+ *
  * @param {List} [state=List] - The ids portion of the projects state.
- * @param {object} action - The action that determines how ids handles its state
- * return.
+ * @param {object} action - The action that determines how ids handles its
+ * state return.
  * @return {List}
  */
 const ids = (state = List(), action) => {
   switch (action.type) {
     case types.FETCH_PROJECTS_SUCCESS:
       return List(action.response.result)
+    case types.CREATE_PROJECT_SUCCESS:
+      return state.push(action.response.result)
+    case types.DELETE_PROJECT_SUCCESS:
+      const index = state.indexOf(action.id)
+      return state.delete(index)
     default:
       return state
   }
@@ -51,23 +69,32 @@ const ids = (state = List(), action) => {
 /**
  * Reducer that manages the error message for the projects portion of the state.
  *
- * If an action with a type of FETCH_projectS_FAILURE is passed, the state is
- * updated to the action's message. If the type is FETCH_projectS_SUCCESS or
- * FETCH_projectS_REQUEST, we update the state to null as we no longer need the
- * previous error message. Otherwise, we return the previous error message.
+ * If an action with a failure type is passed, the state is updated to the
+ * action's message. If the type is success or request, we update the state to
+ * null as we no longer need the previous error message. Otherwise, we return
+ * the previous error message.
  *
  * @param {string|null} [state=null] - The error message portion of the projects
  * state.
- * @param {object} action - The action that determines how error handles its 
+ * @param {object} action - The action that determines how error handles its
  * state return.
  * @return {string|null}
  */
 const error = (state = null, action) => {
   switch (action.type) {
     case types.FETCH_PROJECTS_FAILURE:
+    case types.CREATE_PROJECT_FAILURE:
+    case types.UPDATE_PROJECT_FAILURE:
+    case types.DELETE_PROJECT_FAILURE:
       return action.message
     case types.FETCH_PROJECTS_SUCCESS:
     case types.FETCH_PROJECTS_REQUEST:
+    case types.CREATE_PROJECT_SUCCESS:
+    case types.CREATE_PROJECT_REQUEST:
+    case types.UPDATE_PROJECT_SUCCESS:
+    case types.UPDATE_PROJECT_REQUEST:
+    case types.DELETE_PROJECT_SUCCESS:
+    case types.DELETE_PROJECT_REQUEST:
       return null
     default:
       return state
@@ -77,11 +104,10 @@ const error = (state = null, action) => {
 /**
  * Reducer that manages the loading state for the projects portion of the state.
  *
- * If an action with a type of FETCH_projectS_REQUEST is passed, the state is
- * updated to true as projects are being loaded. If an action with type
- * FETCH_projectS_SUCCESS or FETCH_projectS_FAILURE is passed, state is set to
- * false as we are no longer loading any projects. Otherwise we return the
- * current state.
+ * If an action with a type of request is passed, the state is updated to true
+ * as projects are being loaded. If an action with type success or failure is
+ * passed, state is set to false as we are no longer loading any projects.
+ * Otherwise we return the current state.
  *
  * @param {boolean} [state=false] - The loading state portion of the projects
  * state.
@@ -92,9 +118,18 @@ const error = (state = null, action) => {
 const loading = (state = false, action) => {
   switch (action.type) {
     case types.FETCH_PROJECTS_REQUEST:
+    case types.CREATE_PROJECT_REQUEST:
+    case types.UPDATE_PROJECT_REQUEST:
+    case types.DELETE_PROJECT_REQUEST:
       return true
     case types.FETCH_PROJECTS_SUCCESS:
     case types.FETCH_PROJECTS_FAILURE:
+    case types.CREATE_PROJECT_SUCCESS:
+    case types.CREATE_PROJECT_FAILURE:
+    case types.UPDATE_PROJECT_SUCCESS:
+    case types.UPDATE_PROJECT_FAILURE:
+    case types.DELETE_PROJECT_SUCCESS:
+    case types.DELETE_PROJECT_FAILURE:
       return false
     default:
       return state
@@ -106,12 +141,12 @@ const loading = (state = false, action) => {
  * handled as a Map, with each key representing that piece of the project state.
  *
  * The projects state structure ends up looking like the following:
- * 
+ *
  * Map {
  *   byId:Map,
  *   ids:List,
  *   error:string?,
- *   loading:boolean 
+ *   loading:boolean
  * }
  *
  * When an action is passed to the projects reducer, each reducer is called with
@@ -128,4 +163,3 @@ const reducer = combineReducers({
   loading,
 })
 export default reducer
-

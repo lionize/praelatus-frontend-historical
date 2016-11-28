@@ -27,6 +27,11 @@ const createTeam = payload => {}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
+const fetchProjects = payload => {}
+const createProject = payload => {}
+const updateProject = payload => {}
+const deleteProject = payload => {}
+
 export default {
   fetchTickets,
   createTicket,
@@ -35,5 +40,9 @@ export default {
   fetchTeams,
   createTeam,
   updateTeam,
-  deleteTeam
+  deleteTeam,
+  fetchProjects,
+  createProject,
+  updateProject,
+  deleteProject,
 }
