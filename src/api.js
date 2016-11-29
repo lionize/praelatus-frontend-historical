@@ -32,6 +32,11 @@ const createProject = payload => {}
 const updateProject = payload => {}
 const deleteProject = payload => {}
 
+const fetchComments = payload => {}
+const createComment = payload => {}
+const updateComment = payload => {}
+const deleteComment = payload => {}
+
 export default {
   fetchTickets,
   createTicket,
@@ -45,4 +50,8 @@ export default {
   createProject,
   updateProject,
   deleteProject,
+  fetchComments,
+  createComment,
+  updateComment,
+  deleteComment,
 }
