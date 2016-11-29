@@ -22,3 +22,9 @@ const Team = new Record({
   urlSlug: null,
 })
 export const team = new Schema('teams', Team)
+
+const Comment = new Record({
+  id: null,
+  text: null,
+})
+export const comment = new Schema('comments', Comment)
