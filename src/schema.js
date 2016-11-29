@@ -28,3 +28,14 @@ const Comment = new Record({
   text: null,
 })
 export const comment = new Schema('comments', Comment)
+
+const User = new Record({
+  id: null,
+  username: null,
+  email: null,
+  fullName: null,
+  gravatar: null,
+  profilePic: null,
+  isAdmin: null,
+})
+export const user = new Schema('users', User)

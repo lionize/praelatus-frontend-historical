@@ -37,6 +37,11 @@ const createComment = payload => {}
 const updateComment = payload => {}
 const deleteComment = payload => {}
 
+const fetchUsers = payload => {}
+const createUser = payload => {}
+const updateUser = payload => {}
+const deleteUser = payload => {}
+
 export default {
   fetchTickets,
   createTicket,
@@ -54,4 +59,8 @@ export default {
   createComment,
   updateComment,
   deleteComment,
+  fetchUsers,
+  createUser,
+  updateUser,
+  deleteUser,
 }
