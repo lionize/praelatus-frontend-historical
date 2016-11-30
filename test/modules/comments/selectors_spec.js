@@ -15,8 +15,7 @@ describe('comments selectors', () => {
         byId: {
           1: {
             id: 1,
-            summary: "This is a summary!",
-            description: "This is a description!"
+            body: 'This is a comment'
           }
         }
       }
@@ -24,8 +23,7 @@ describe('comments selectors', () => {
     const expected = fromJS([
       {
         id: 1,
-        summary: "This is a summary!",
-        description: "This is a description!"
+        body: 'This is a comment'
       }
     ])
 
@@ -39,16 +37,14 @@ describe('comments selectors', () => {
         byId: {
           1: {
             id: 1,
-            summary: "This is a summary!",
-            description: "This is a description!"
+            body: 'This is a comment'
           }
         }
       }
     })
     const expected = fromJS({
       id: 1,
-      summary: "This is a summary!",
-      description: "This is a description!"
+      body: 'This is a comment'
     })
 
     expect(commentSelector(state, 1)).to.deep.eq(expected)
