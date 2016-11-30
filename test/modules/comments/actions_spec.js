@@ -16,7 +16,7 @@ describe('comments module actions', () => {
     it('should return the correct type and the correct response', () => {
       const fixture = [{
         id: 1,
-        text: 'A Comment',
+        body: 'A Comment',
       }]
       const expectedResult = {
         type: types.FETCH_COMMENTS_SUCCESS,
@@ -51,7 +51,7 @@ describe('comments module actions', () => {
   describe('createCommentRequest', () => {
     const fixture = {
       id: 0,
-      text: 'A Comment',
+      body: 'A Comment',
     }
     const expectedResult = {
       type: types.CREATE_COMMENT_REQUEST,
@@ -70,7 +70,7 @@ describe('comments module actions', () => {
   describe('createCommentSuccess', () => {
     const fixture = {
       id: 0,
-      text: 'A Comment',
+      body: 'A Comment',
     }
     const expectedResult = {
       type: types.CREATE_COMMENT_SUCCESS,
@@ -116,7 +116,7 @@ describe('comments module actions', () => {
   describe('updateCommentRequest', () => {
     const fixture = {
       id: 0,
-      text: 'A Comment',
+      body: 'A Comment',
     }
     const expectedResult = {
       type: types.UPDATE_COMMENT_REQUEST,
@@ -136,7 +136,7 @@ describe('comments module actions', () => {
   describe('updateCommentSuccess', () => {
     const fixture = {
       id: 0,
-      text: 'A Comment',
+      body: 'A Comment',
     }
     const expectedResult = {
       type: types.UPDATE_COMMENT_SUCCESS,
