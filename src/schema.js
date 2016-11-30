@@ -25,7 +25,7 @@ export const team = new Schema('teams', Team)
 
 const Comment = new Record({
   id: null,
-  text: null,
+  body: null,
 })
 export const comment = new Schema('comments', Comment)
 
