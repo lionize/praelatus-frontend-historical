@@ -10,7 +10,12 @@ export const ticket = new Schema('tickets', Ticket)
 
 const Project = new Record({
   id: null,
+  createdDate: null,
   name: null,
+  key: null,
+  homepage: null,
+  iconURL: null,
+  repo: null,
 })
 export const project = new Schema('projects', Project)
 
