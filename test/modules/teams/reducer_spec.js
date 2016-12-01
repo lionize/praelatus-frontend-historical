@@ -37,10 +37,7 @@ describe('teams module reducers', () => {
   describe('FETCH_TEAMS_SUCCESS', () => {
     const fixture = [{
 			id: 1,
-			createdAt: "Wed, 28 Sep 2016 01:17:30 GMT",
-			icon: "",
 			name: "The A Team",
-			urlSlug: "the-a-team"
     }]
     const nextState = reducer(state, actions.fetchTeamsSuccess(fixture))
 
@@ -93,10 +90,7 @@ describe('teams module reducers', () => {
   describe('CREATE_TEAM_SUCCESS', () => {
     const fixture = {
       id: 1,
-      createdAt: "Wed, 28 Sep 2016 01:17:30 GMT",
-      icon: "",
       name: "The A Team",
-      urlSlug: "the-a-team"
     }
     const nextState = reducer(state, actions.createTeamSuccess(fixture))
 
@@ -150,19 +144,13 @@ describe('teams module reducers', () => {
   describe('UPDATE_TEAM_SUCCESS', () => {
     const fixture = {
       id: 1,
-      createdAt: "Wed, 28 Sep 2016 01:17:30 GMT",
-      icon: "",
       name: "The A Team",
-      urlSlug: "the-a-team"
     }
     const newState = state.merge(Map({
       ids: List.of(1),
       byId: Map({ 1: Map({
         id: 1,
-        createdAt: "Wed, 28 Sep 2016 01:17:30 GMT",
-        icon: "",
         name: "The B Team",
-        urlSlug: "the-b-team"
       }) })
     }))
     const nextState = reducer(newState, actions.updateTeamSuccess(fixture))
