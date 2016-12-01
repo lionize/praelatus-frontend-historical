@@ -16,7 +16,12 @@ describe('projects module actions', () => {
     it('should return the correct type and the correct response', () => {
       const fixture = [{
         id: 1,
+        createdDate: '',
         name: 'A Project',
+        key: 'a-project',
+        homepage: '',
+        iconURL: '',
+        repo: '',
       }]
       const expectedResult = {
         type: types.FETCH_PROJECTS_SUCCESS,
@@ -50,11 +55,13 @@ describe('projects module actions', () => {
 
   describe('createProjectRequest', () => {
     const fixture = {
-      id: 0,
+      id: 1,
+      createdDate: '',
       name: 'A Project',
-      icon: "",
-      createdAt: "",
-      urlSlug: ""
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }
     const expectedResult = {
       type: types.CREATE_PROJECT_REQUEST,
@@ -72,16 +79,21 @@ describe('projects module actions', () => {
 
   describe('createProjectSuccess', () => {
     const fixture = {
-      id: 0,
+      id: 1,
+      createdDate: '',
       name: 'A Project',
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }
     const expectedResult = {
       type: types.CREATE_PROJECT_SUCCESS,
       response: {
-        result: 0,
+        result: 1,
         entities: {
           projects: {
-            0: fixture
+            1: fixture
           }
         }
       }
@@ -118,11 +130,13 @@ describe('projects module actions', () => {
 
   describe('updateProjectRequest', () => {
     const fixture = {
-      id: 0,
+      id: 1,
+      createdDate: '',
       name: 'A Project',
-      icon: "",
-      createdAt: "",
-      urlSlug: ""
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }
     const expectedResult = {
       type: types.UPDATE_PROJECT_REQUEST,
@@ -141,16 +155,21 @@ describe('projects module actions', () => {
 
   describe('updateProjectSuccess', () => {
     const fixture = {
-      id: 0,
+      id: 1,
+      createdDate: '',
       name: 'A Project',
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }
     const expectedResult = {
       type: types.UPDATE_PROJECT_SUCCESS,
       response: {
-        result: 0,
+        result: 1,
         entities: {
           projects: {
-            0: fixture
+            1: fixture
           }
         }
       }
