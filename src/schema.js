@@ -21,10 +21,7 @@ export const project = new Schema('projects', Project)
 
 const Team = new Record({
   id: null,
-  createdAt: null,
-  icon: null,
   name: null,
-  urlSlug: null,
 })
 export const team = new Schema('teams', Team)
 
