@@ -5,7 +5,7 @@ import {
   projectSelector,
   loadingSelector,
   errorSelector,
-} from 'modules/projects'
+} from 'selectors/projects'
 
 describe('projects selectors', () => {
   it('projectsSelector returns all projects', () => {

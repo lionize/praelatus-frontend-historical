@@ -2,7 +2,7 @@
 
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
-import { types } from 'modules/projects'
+import types from 'types/projects'
 
 /**
  * Reducer that manages a Map of all projects in the state. The key is the project's

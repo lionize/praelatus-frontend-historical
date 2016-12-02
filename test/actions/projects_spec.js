@@ -1,5 +1,6 @@
 import { expect } from 'chai'
-import { types, actions } from 'modules/projects'
+import types from 'types/projects'
+import * as actions from 'actions/projects'
 
 describe('projects module actions', () => {
   describe('fetchProjectsRequest', () => {

@@ -2,7 +2,7 @@
 
 import { normalize, arrayOf } from 'normalizr-immutable'
 import * as schema from 'schema'
-import { types } from 'modules/projects'
+import types from 'types/projects'
 
 /**
  * Action that represents a request for projects to be fetched.
@@ -12,7 +12,7 @@ import { types } from 'modules/projects'
  *
  * @returns {object} - An object that contains the action's type.
  */
-const fetchProjectsRequest = () => ({
+export const fetchProjectsRequest = () => ({
   type: types.FETCH_PROJECTS_REQUEST,
 })
 
@@ -27,7 +27,7 @@ const fetchProjectsRequest = () => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const fetchProjectsSuccess = response => ({
+export const fetchProjectsSuccess = response => ({
   type: types.FETCH_PROJECTS_SUCCESS,
   response: normalize(response, arrayOf(schema.project), {}),
 })
@@ -42,7 +42,7 @@ const fetchProjectsSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const fetchProjectsFailure = e => ({
+export const fetchProjectsFailure = e => ({
   type: types.FETCH_PROJECTS_FAILURE,
   message: e.message,
 })
@@ -53,7 +53,7 @@ const fetchProjectsFailure = e => ({
  * @param {object} payload - The payload object. Represents the project that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const createProjectRequest = payload => ({
+export const createProjectRequest = payload => ({
   type: types.CREATE_PROJECT_REQUEST,
   payload: payload,
 })
@@ -69,7 +69,7 @@ const createProjectRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const createProjectSuccess = response => ({
+export const createProjectSuccess = response => ({
   type: types.CREATE_PROJECT_SUCCESS,
   response: normalize(response, schema.project, {}),
 })
@@ -84,7 +84,7 @@ const createProjectSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const createProjectFailure = error => ({
+export const createProjectFailure = error => ({
   type: types.CREATE_PROJECT_FAILURE,
   message: error.message,
 })
@@ -95,7 +95,7 @@ const createProjectFailure = error => ({
  * @param {object} payload - The payload object. Represents the project that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const updateProjectRequest = payload => ({
+export const updateProjectRequest = payload => ({
   type: types.UPDATE_PROJECT_REQUEST,
   payload: payload,
 })
@@ -111,7 +111,7 @@ const updateProjectRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const updateProjectSuccess = response => ({
+export const updateProjectSuccess = response => ({
   type: types.UPDATE_PROJECT_SUCCESS,
   response: normalize(response, schema.project, {}),
 })
@@ -126,7 +126,7 @@ const updateProjectSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const updateProjectFailure = error => ({
+export const updateProjectFailure = error => ({
   type: types.UPDATE_PROJECT_FAILURE,
   message: error.message,
 })
@@ -140,7 +140,7 @@ const updateProjectFailure = error => ({
  * @param {object} payload - The payload object. Represents the project that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const deleteProjectRequest = payload => ({
+export const deleteProjectRequest = payload => ({
   type: types.DELETE_PROJECT_REQUEST,
   payload: payload,
 })
@@ -156,7 +156,7 @@ const deleteProjectRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const deleteProjectSuccess = id => ({
+export const deleteProjectSuccess = id => ({
   type: types.DELETE_PROJECT_SUCCESS,
   id: id,
 })
@@ -171,25 +171,7 @@ const deleteProjectSuccess = id => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const deleteProjectFailure = error => ({
+export const deleteProjectFailure = error => ({
   type: types.DELETE_PROJECT_FAILURE,
   message: error.message,
 })
-
-/**
- * The actions combined into an object and exported as the default value.
- */
-export default {
-  fetchProjectsRequest,
-  fetchProjectsSuccess,
-  fetchProjectsFailure,
-  createProjectRequest,
-  createProjectSuccess,
-  createProjectFailure,
-  updateProjectRequest,
-  updateProjectSuccess,
-  updateProjectFailure,
-  deleteProjectRequest,
-  deleteProjectSuccess,
-  deleteProjectFailure,
-}

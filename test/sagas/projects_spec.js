@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import api from 'api'
-import { actions } from 'modules/projects'
-import * as sagas from 'modules/projects/sagas'
+import * as actions from 'actions/projects'
+import * as sagas from 'sagas/projects'
 
 describe('projects module sagas', () => {
   describe('GET: fetch projects', () => {
