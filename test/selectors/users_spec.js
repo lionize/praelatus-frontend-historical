@@ -5,7 +5,7 @@ import {
   userSelector,
   loadingSelector,
   errorSelector,
-} from 'modules/users'
+} from 'selectors/users'
 
 describe('users selectors', () => {
   it('usersSelector returns all users', () => {

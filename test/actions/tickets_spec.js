@@ -1,8 +1,6 @@
 import { expect } from 'chai'
 import * as actions from 'actions/tickets'
 import types from 'types/tickets'
-console.log('actions', actions)
-console.log('types', types)
 
 describe('tickets module actions', () => {
   describe('fetchTicketsRequest', () => {

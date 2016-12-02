@@ -2,7 +2,7 @@
 
 import { normalize, arrayOf } from 'normalizr-immutable'
 import * as schema from 'schema'
-import { types } from 'modules/users'
+import types from 'types/users'
 
 /**
  * Action that represents a request for users to be fetched.
@@ -12,7 +12,7 @@ import { types } from 'modules/users'
  *
  * @returns {object} - An object that contains the action's type.
  */
-const fetchUsersRequest = () => ({
+export const fetchUsersRequest = () => ({
   type: types.FETCH_USERS_REQUEST,
 })
 
@@ -27,7 +27,7 @@ const fetchUsersRequest = () => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const fetchUsersSuccess = response => ({
+export const fetchUsersSuccess = response => ({
   type: types.FETCH_USERS_SUCCESS,
   response: normalize(response, arrayOf(schema.user), {}),
 })
@@ -42,7 +42,7 @@ const fetchUsersSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const fetchUsersFailure = e => ({
+export const fetchUsersFailure = e => ({
   type: types.FETCH_USERS_FAILURE,
   message: e.message,
 })
@@ -53,7 +53,7 @@ const fetchUsersFailure = e => ({
  * @param {object} payload - The payload object. Represents the user that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const createUserRequest = payload => ({
+export const createUserRequest = payload => ({
   type: types.CREATE_USER_REQUEST,
   payload: payload,
 })
@@ -69,7 +69,7 @@ const createUserRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const createUserSuccess = response => ({
+export const createUserSuccess = response => ({
   type: types.CREATE_USER_SUCCESS,
   response: normalize(response, schema.user, {}),
 })
@@ -84,7 +84,7 @@ const createUserSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const createUserFailure = error => ({
+export const createUserFailure = error => ({
   type: types.CREATE_USER_FAILURE,
   message: error.message,
 })
@@ -95,7 +95,7 @@ const createUserFailure = error => ({
  * @param {object} payload - The payload object. Represents the user that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const updateUserRequest = payload => ({
+export const updateUserRequest = payload => ({
   type: types.UPDATE_USER_REQUEST,
   payload: payload,
 })
@@ -111,7 +111,7 @@ const updateUserRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const updateUserSuccess = response => ({
+export const updateUserSuccess = response => ({
   type: types.UPDATE_USER_SUCCESS,
   response: normalize(response, schema.user, {}),
 })
@@ -126,7 +126,7 @@ const updateUserSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const updateUserFailure = error => ({
+export const updateUserFailure = error => ({
   type: types.UPDATE_USER_FAILURE,
   message: error.message,
 })
@@ -140,7 +140,7 @@ const updateUserFailure = error => ({
  * @param {object} payload - The payload object. Represents the user that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const deleteUserRequest = payload => ({
+export const deleteUserRequest = payload => ({
   type: types.DELETE_USER_REQUEST,
   payload: payload,
 })
@@ -156,7 +156,7 @@ const deleteUserRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const deleteUserSuccess = id => ({
+export const deleteUserSuccess = id => ({
   type: types.DELETE_USER_SUCCESS,
   id: id,
 })
@@ -171,25 +171,8 @@ const deleteUserSuccess = id => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const deleteUserFailure = error => ({
+export const deleteUserFailure = error => ({
   type: types.DELETE_USER_FAILURE,
   message: error.message,
 })
 
-/**
- * The actions combined into an object and exported as the default value.
- */
-export default {
-  fetchUsersRequest,
-  fetchUsersSuccess,
-  fetchUsersFailure,
-  createUserRequest,
-  createUserSuccess,
-  createUserFailure,
-  updateUserRequest,
-  updateUserSuccess,
-  updateUserFailure,
-  deleteUserRequest,
-  deleteUserSuccess,
-  deleteUserFailure,
-}

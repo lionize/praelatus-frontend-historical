@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 import { List, Map } from 'immutable'
-import reducer, { actions } from 'modules/users'
+import reducer from 'reducers/users'
+import * as actions from 'actions/users'
 
 describe('users module reducers', () => {
   const state = Map({
