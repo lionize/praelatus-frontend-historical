@@ -3,6 +3,8 @@ import { Schema, arrayOf } from 'normalizr-immutable'
 
 const Ticket = new Record({
   id: null,
+  createdDate: null,
+  updatedDate: null,
   summary: null,
   description: null,
 })
