@@ -5,7 +5,7 @@ import {
   teamSelector,
   loadingSelector,
   errorSelector,
-} from 'modules/teams'
+} from 'selectors/teams'
 
 describe('teams selectors', () => {
   it('teamsSelector returns all teams', () => {

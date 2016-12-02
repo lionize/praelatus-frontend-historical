@@ -2,7 +2,7 @@
 
 import { normalize, arrayOf } from 'normalizr-immutable'
 import * as schema from 'schema'
-import { types } from 'modules/teams'
+import types from 'types/teams'
 
 /**
  * Action that represents a request for teams to be fetched.
@@ -12,7 +12,7 @@ import { types } from 'modules/teams'
  *
  * @returns {object} - An object that contains the action's type.
  */
-const fetchTeamsRequest = () => ({
+export const fetchTeamsRequest = () => ({
   type: types.FETCH_TEAMS_REQUEST,
 })
 
@@ -27,7 +27,7 @@ const fetchTeamsRequest = () => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const fetchTeamsSuccess = response => ({
+export const fetchTeamsSuccess = response => ({
   type: types.FETCH_TEAMS_SUCCESS,
   response: normalize(response, arrayOf(schema.team), {}),
 })
@@ -42,7 +42,7 @@ const fetchTeamsSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const fetchTeamsFailure = e => ({
+export const fetchTeamsFailure = e => ({
   type: types.FETCH_TEAMS_FAILURE,
   message: e.message,
 })
@@ -53,7 +53,7 @@ const fetchTeamsFailure = e => ({
  * @param {object} payload - The payload object. Represents the team that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const createTeamRequest = payload => ({
+export const createTeamRequest = payload => ({
   type: types.CREATE_TEAM_REQUEST,
   payload: payload,
 })
@@ -69,7 +69,7 @@ const createTeamRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const createTeamSuccess = response => ({
+export const createTeamSuccess = response => ({
   type: types.CREATE_TEAM_SUCCESS,
   response: normalize(response, schema.team, {}),
 })
@@ -84,7 +84,7 @@ const createTeamSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const createTeamFailure = error => ({
+export const createTeamFailure = error => ({
   type: types.CREATE_TEAM_FAILURE,
   message: error.message,
 })
@@ -95,7 +95,7 @@ const createTeamFailure = error => ({
  * @param {object} payload - The payload object. Represents the team that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const updateTeamRequest = payload => ({
+export const updateTeamRequest = payload => ({
   type: types.UPDATE_TEAM_REQUEST,
   payload: payload,
 })
@@ -111,7 +111,7 @@ const updateTeamRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const updateTeamSuccess = response => ({
+export const updateTeamSuccess = response => ({
   type: types.UPDATE_TEAM_SUCCESS,
   response: normalize(response, schema.team, {}),
 })
@@ -126,7 +126,7 @@ const updateTeamSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const updateTeamFailure = error => ({
+export const updateTeamFailure = error => ({
   type: types.UPDATE_TEAM_FAILURE,
   message: error.message,
 })
@@ -140,7 +140,7 @@ const updateTeamFailure = error => ({
  * @param {object} payload - The payload object. Represents the team that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const deleteTeamRequest = payload => ({
+export const deleteTeamRequest = payload => ({
   type: types.DELETE_TEAM_REQUEST,
   payload: payload,
 })
@@ -156,7 +156,7 @@ const deleteTeamRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const deleteTeamSuccess = id => ({
+export const deleteTeamSuccess = id => ({
   type: types.DELETE_TEAM_SUCCESS,
   id: id,
 })
@@ -171,25 +171,7 @@ const deleteTeamSuccess = id => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const deleteTeamFailure = error => ({
+export const deleteTeamFailure = error => ({
   type: types.DELETE_TEAM_FAILURE,
   message: error.message,
 })
-
-/**
- * The actions combined into an object and exported as the default value.
- */
-export default {
-  fetchTeamsRequest,
-  fetchTeamsSuccess,
-  fetchTeamsFailure,
-  createTeamRequest,
-  createTeamSuccess,
-  createTeamFailure,
-  updateTeamRequest,
-  updateTeamSuccess,
-  updateTeamFailure,
-  deleteTeamRequest,
-  deleteTeamSuccess,
-  deleteTeamFailure,
-}

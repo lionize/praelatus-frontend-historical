@@ -2,7 +2,7 @@
 
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
-import { types } from 'modules/teams'
+import types from 'types/teams'
 
 /**
  * Reducer that manages a Map of all teams in the state. The key is the team's

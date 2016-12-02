@@ -1,5 +1,6 @@
 import { expect } from 'chai'
-import { types, actions } from 'modules/teams'
+import types from 'types/teams'
+import * as actions from 'actions/teams'
 
 describe('teams module actions', () => {
   describe('fetchTeamsRequest', () => {
