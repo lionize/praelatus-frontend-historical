@@ -5,7 +5,7 @@ import {
   commentSelector,
   loadingSelector,
   errorSelector,
-} from 'modules/comments'
+} from 'selectors/comments'
 
 describe('comments selectors', () => {
   it('commentsSelector returns all comments', () => {

@@ -2,7 +2,7 @@
 
 import { normalize, arrayOf } from 'normalizr-immutable'
 import * as schema from 'schema'
-import { types } from 'modules/comments'
+import types from 'types/comments'
 
 /**
  * Action that represents a request for comments to be fetched.
@@ -12,7 +12,7 @@ import { types } from 'modules/comments'
  *
  * @returns {object} - An object that contains the action's type.
  */
-const fetchCommentsRequest = () => ({
+export const fetchCommentsRequest = () => ({
   type: types.FETCH_COMMENTS_REQUEST,
 })
 
@@ -27,7 +27,7 @@ const fetchCommentsRequest = () => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const fetchCommentsSuccess = response => ({
+export const fetchCommentsSuccess = response => ({
   type: types.FETCH_COMMENTS_SUCCESS,
   response: normalize(response, arrayOf(schema.comment), {}),
 })
@@ -42,7 +42,7 @@ const fetchCommentsSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const fetchCommentsFailure = e => ({
+export const fetchCommentsFailure = e => ({
   type: types.FETCH_COMMENTS_FAILURE,
   message: e.message,
 })
@@ -53,7 +53,7 @@ const fetchCommentsFailure = e => ({
  * @param {object} payload - The payload object. Represents the comment that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const createCommentRequest = payload => ({
+export const createCommentRequest = payload => ({
   type: types.CREATE_COMMENT_REQUEST,
   payload: payload,
 })
@@ -69,7 +69,7 @@ const createCommentRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const createCommentSuccess = response => ({
+export const createCommentSuccess = response => ({
   type: types.CREATE_COMMENT_SUCCESS,
   response: normalize(response, schema.comment, {}),
 })
@@ -84,7 +84,7 @@ const createCommentSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const createCommentFailure = error => ({
+export const createCommentFailure = error => ({
   type: types.CREATE_COMMENT_FAILURE,
   message: error.message,
 })
@@ -95,7 +95,7 @@ const createCommentFailure = error => ({
  * @param {object} payload - The payload object. Represents the comment that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const updateCommentRequest = payload => ({
+export const updateCommentRequest = payload => ({
   type: types.UPDATE_COMMENT_REQUEST,
   payload: payload,
 })
@@ -111,7 +111,7 @@ const updateCommentRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const updateCommentSuccess = response => ({
+export const updateCommentSuccess = response => ({
   type: types.UPDATE_COMMENT_SUCCESS,
   response: normalize(response, schema.comment, {}),
 })
@@ -126,7 +126,7 @@ const updateCommentSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const updateCommentFailure = error => ({
+export const updateCommentFailure = error => ({
   type: types.UPDATE_COMMENT_FAILURE,
   message: error.message,
 })
@@ -140,7 +140,7 @@ const updateCommentFailure = error => ({
  * @param {object} payload - The payload object. Represents the comment that should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const deleteCommentRequest = payload => ({
+export const deleteCommentRequest = payload => ({
   type: types.DELETE_COMMENT_REQUEST,
   payload: payload,
 })
@@ -156,7 +156,7 @@ const deleteCommentRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const deleteCommentSuccess = id => ({
+export const deleteCommentSuccess = id => ({
   type: types.DELETE_COMMENT_SUCCESS,
   id: id,
 })
@@ -171,25 +171,8 @@ const deleteCommentSuccess = id => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const deleteCommentFailure = error => ({
+export const deleteCommentFailure = error => ({
   type: types.DELETE_COMMENT_FAILURE,
   message: error.message,
 })
 
-/**
- * The actions combined into an object and exported as the default value.
- */
-export default {
-  fetchCommentsRequest,
-  fetchCommentsSuccess,
-  fetchCommentsFailure,
-  createCommentRequest,
-  createCommentSuccess,
-  createCommentFailure,
-  updateCommentRequest,
-  updateCommentSuccess,
-  updateCommentFailure,
-  deleteCommentRequest,
-  deleteCommentSuccess,
-  deleteCommentFailure,
-}

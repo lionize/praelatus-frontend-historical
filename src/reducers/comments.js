@@ -2,7 +2,7 @@
 
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
-import { types } from 'modules/comments'
+import types from 'types/comments'
 
 /**
  * Reducer that manages a Map of all comments in the state. The key is the project's

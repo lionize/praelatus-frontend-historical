@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import api from 'api'
-import { actions } from 'modules/comments'
-import * as sagas from 'modules/comments/sagas'
+import * as actions from 'actions/comments'
+import * as sagas from 'sagas/comments'
 
 describe('comments module sagas', () => {
   describe('GET: fetch comments', () => {

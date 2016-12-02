@@ -1,8 +1,6 @@
 import { expect } from 'chai'
 import types from 'types/users'
 import * as actions from 'actions/users'
-console.log('types', types)
-console.log('actions', actions)
 
 describe('users module actions', () => {
   describe('fetchUsersRequest', () => {

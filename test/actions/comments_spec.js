@@ -1,5 +1,6 @@
 import { expect } from 'chai'
-import { types, actions } from 'modules/comments'
+import types from 'types/comments'
+import * as actions from 'actions/comments'
 
 describe('comments module actions', () => {
   describe('fetchCommentsRequest', () => {
