@@ -2,7 +2,8 @@
 
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
-import { actions, types } from 'modules/tickets'
+import * as actions from 'actions/tickets'
+import types from 'types/tickets'
 import api from 'api'
 
 /**

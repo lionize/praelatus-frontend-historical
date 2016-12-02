@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { fromJS } from 'immutable'
-import { selectors } from 'modules/tickets'
+import * as selectors from 'selectors/tickets'
 const {
   ticketsSelector,
   ticketSelector,

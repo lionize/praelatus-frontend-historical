@@ -2,7 +2,7 @@
 
 import { normalize, arrayOf } from 'normalizr-immutable'
 import * as schema from 'schema'
-import { types } from 'modules/tickets'
+import types from 'types/tickets'
 
 /**
  * Action that represents a request for tickets to be fetched.
@@ -12,7 +12,7 @@ import { types } from 'modules/tickets'
  *
  * @returns {object} - An object that contains the action's type.
  */
-const fetchTicketsRequest = () => ({
+export const fetchTicketsRequest = () => ({
   type: types.FETCH_TICKETS_REQUEST,
 })
 
@@ -26,7 +26,7 @@ const fetchTicketsRequest = () => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const fetchTicketsSuccess = response => ({
+export const fetchTicketsSuccess = response => ({
   type: types.FETCH_TICKETS_SUCCESS,
   response: normalize(response, arrayOf(schema.ticket), {}),
 })
@@ -41,7 +41,7 @@ const fetchTicketsSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const fetchTicketsFailure = error => ({
+export const fetchTicketsFailure = error => ({
   type: types.FETCH_TICKETS_FAILURE,
   message: error.message,
 })
@@ -53,7 +53,7 @@ const fetchTicketsFailure = error => ({
  * should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const createTicketRequest = payload => ({
+export const createTicketRequest = payload => ({
   type: types.CREATE_TICKET_REQUEST,
   payload: payload,
 })
@@ -68,7 +68,7 @@ const createTicketRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const createTicketSuccess = response => ({
+export const createTicketSuccess = response => ({
   type: types.CREATE_TICKET_SUCCESS,
   response: normalize(response, schema.ticket, {}),
 })
@@ -83,7 +83,7 @@ const createTicketSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const createTicketFailure = error => ({
+export const createTicketFailure = error => ({
   type: types.CREATE_TICKET_FAILURE,
   message: error.message,
 })
@@ -95,7 +95,7 @@ const createTicketFailure = error => ({
  * should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const updateTicketRequest = payload => ({
+export const updateTicketRequest = payload => ({
   type: types.UPDATE_TICKET_REQUEST,
   payload: payload,
 })
@@ -110,7 +110,7 @@ const updateTicketRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const updateTicketSuccess = response => ({
+export const updateTicketSuccess = response => ({
   type: types.UPDATE_TICKET_SUCCESS,
   response: normalize(response, schema.ticket, {}),
 })
@@ -125,7 +125,7 @@ const updateTicketSuccess = response => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const updateTicketFailure = error => ({
+export const updateTicketFailure = error => ({
   type: types.UPDATE_TICKET_FAILURE,
   message: error.message,
 })
@@ -137,7 +137,7 @@ const updateTicketFailure = error => ({
  * should be created.
  * @returns {object} - An object that contains the action's type.
  */
-const deleteTicketRequest = payload => ({
+export const deleteTicketRequest = payload => ({
   type: types.DELETE_TICKET_REQUEST,
   payload: payload,
 })
@@ -151,7 +151,7 @@ const deleteTicketRequest = payload => ({
  * @returns {object} - An object that contains the action's type and the
  * normalized server response.
  */
-const deleteTicketSuccess = id => ({
+export const deleteTicketSuccess = id => ({
   type: types.DELETE_TICKET_SUCCESS,
   id: id,
 })
@@ -166,25 +166,8 @@ const deleteTicketSuccess = id => ({
  * @returns {object} - An object that contains the action's type and the error
  * message.
  */
-const deleteTicketFailure = error => ({
+export const deleteTicketFailure = error => ({
   type: types.DELETE_TICKET_FAILURE,
   message: error.message,
 })
 
-/**
- * The actions combined into an object and exported as the default value.
- */
-export default {
-  fetchTicketsRequest,
-  fetchTicketsSuccess,
-  fetchTicketsFailure,
-  createTicketRequest,
-  createTicketSuccess,
-  createTicketFailure,
-  updateTicketRequest,
-  updateTicketSuccess,
-  updateTicketFailure,
-  deleteTicketRequest,
-  deleteTicketSuccess,
-  deleteTicketFailure,
-}
