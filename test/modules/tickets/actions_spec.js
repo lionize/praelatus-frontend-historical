@@ -16,6 +16,8 @@ describe('tickets module actions', () => {
     it('should return the correct type and the correct response', () => {
       const fixture = [{
         id: 1,
+        createdDate: '',
+        updatedDate: '',
         description: 'Ticket description',
         summary: 'Ticket summary',
       }]
@@ -71,6 +73,8 @@ describe('tickets module actions', () => {
   describe('createTicketSuccess', () => {
     const fixture = {
       id: 1,
+      createdDate: '',
+      updatedDate: '',
       description: "This is a cool ticket",
       summary: "This is a ticket summary"
     }
@@ -116,6 +120,8 @@ describe('tickets module actions', () => {
   describe('updateTicketRequest', () => {
     const fixture = {
       id: 0,
+      createdDate: '',
+      updatedDate: '',
       summary: 'Ticket summary',
       description: 'Ticket description'
     }
@@ -136,6 +142,8 @@ describe('tickets module actions', () => {
   describe('updateTicketSuccess', () => {
     const fixture = {
       id: 1,
+      createdDate: '',
+      updatedDate: '',
       description: "This is a cool ticket",
       summary: "This is a ticket summary"
     }

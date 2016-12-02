@@ -37,6 +37,8 @@ describe('tickets module reducers', () => {
   describe('FETCH_TICKETS_SUCCESS', () => {
     const fixture = [{
       id: 0,
+      createdDate: '',
+      updatedDate: '',
       summary: 'Ticket summary',
       description: 'Ticket description'
     }]
@@ -92,6 +94,8 @@ describe('tickets module reducers', () => {
   describe('CREATE_TICKET_SUCCESS', () => {
     const fixture = {
       id: 0,
+      createdDate: '',
+      updatedDate: '',
       summary: 'Ticket summary',
       description: 'Ticket description'
     }
@@ -149,6 +153,8 @@ describe('tickets module reducers', () => {
   describe('UPDATE_TICKET_SUCCESS', () => {
     const fixture = {
       id: 1,
+      createdDate: '',
+      updatedDate: '',
       summary: 'Ticket summary',
       description: 'Ticket description'
     }
