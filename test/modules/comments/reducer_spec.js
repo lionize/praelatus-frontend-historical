@@ -37,7 +37,7 @@ describe('comments module reducers', () => {
   describe('FETCH_COMMENTS_SUCCESS', () => {
     const fixture = [{
 			id: 1,
-			text: "A Comment",
+			body: "A Comment",
     }]
     const nextState = reducer(state, actions.fetchCommentsSuccess(fixture))
 
@@ -90,7 +90,7 @@ describe('comments module reducers', () => {
   describe('CREATE_COMMENT_SUCCESS', () => {
     const fixture = {
       id: 1,
-      text: "A Comment",
+      body: "A Comment",
     }
     const nextState = reducer(state, actions.createCommentSuccess(fixture))
 
@@ -144,7 +144,7 @@ describe('comments module reducers', () => {
   describe('UPDATE_COMMENT_SUCCESS', () => {
     const fixture = {
       id: 1,
-      text: 'A Comment'
+      body: 'A Comment'
     }
     const newState = state.merge(Map({
       ids: List.of(1),

@@ -36,8 +36,13 @@ describe('projects module reducers', () => {
 
   describe('FETCH_PROJECTS_SUCCESS', () => {
     const fixture = [{
-			id: 1,
-			name: "The A Project",
+      id: 1,
+      createdDate: '',
+      name: 'A Project',
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }]
     const nextState = reducer(state, actions.fetchProjectsSuccess(fixture))
 
@@ -90,7 +95,12 @@ describe('projects module reducers', () => {
   describe('CREATE_PROJECT_SUCCESS', () => {
     const fixture = {
       id: 1,
-      name: "The A Project",
+      createdDate: '',
+      name: 'A Project',
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }
     const nextState = reducer(state, actions.createProjectSuccess(fixture))
 
@@ -144,7 +154,12 @@ describe('projects module reducers', () => {
   describe('UPDATE_PROJECT_SUCCESS', () => {
     const fixture = {
       id: 1,
-      name: 'The A Project'
+      createdDate: '',
+      name: 'A Project',
+      key: 'a-project',
+      homepage: '',
+      iconURL: '',
+      repo: '',
     }
     const newState = state.merge(Map({
       ids: List.of(1),

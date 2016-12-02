@@ -17,9 +17,6 @@ describe('teams module actions', () => {
       const fixture = [{
         id: 1,
         name: 'A Team',
-        icon: "",
-        createdAt: "",
-        urlSlug: ""
       }]
       const expectedResult = {
         type: types.FETCH_TEAMS_SUCCESS,
@@ -55,9 +52,6 @@ describe('teams module actions', () => {
     const fixture = {
       id: 0,
       name: 'A Team',
-      icon: "",
-      createdAt: "",
-      urlSlug: ""
     }
     const expectedResult = {
       type: types.CREATE_TEAM_REQUEST,
@@ -77,9 +71,6 @@ describe('teams module actions', () => {
     const fixture = {
       id: 0,
       name: 'A Team',
-      icon: "",
-      createdAt: "",
-      urlSlug: ""
     }
     const expectedResult = {
       type: types.CREATE_TEAM_SUCCESS,
@@ -126,9 +117,6 @@ describe('teams module actions', () => {
     const fixture = {
       id: 0,
       name: 'A Team',
-      icon: "",
-      createdAt: "",
-      urlSlug: ""
     }
     const expectedResult = {
       type: types.UPDATE_TEAM_REQUEST,
@@ -149,9 +137,6 @@ describe('teams module actions', () => {
     const fixture = {
       id: 0,
       name: 'A Team',
-      icon: "",
-      createdAt: "",
-      urlSlug: ""
     }
     const expectedResult = {
       type: types.UPDATE_TEAM_SUCCESS,
