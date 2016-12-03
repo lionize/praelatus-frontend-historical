@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { List, Map } from 'immutable'
 import reducer from 'reducers/comments'
 import * as actions from 'actions/comments'
+import { fetchDataSuccess } from 'actions/data'
 
 describe('comments module reducers', () => {
   const state = Map({
@@ -35,12 +36,12 @@ describe('comments module reducers', () => {
     })
   })
 
-  describe('FETCH_COMMENTS_SUCCESS', () => {
+  describe('FETCH_DATA_SUCCESS', () => {
     const fixture = [{
 			id: 1,
 			body: "A Comment",
     }]
-    const nextState = reducer(state, actions.fetchCommentsSuccess(fixture))
+    const nextState = reducer(state, fetchDataSuccess(fixture, 'comment'))
 
     it('adds comments to the state', () => {
       const expectedResult = state.merge(Map({

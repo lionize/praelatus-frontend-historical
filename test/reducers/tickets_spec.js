@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { List, Map } from 'immutable'
 import reducer from 'reducers/tickets'
 import * as actions from 'actions/tickets'
+import { fetchDataSuccess } from 'actions/data'
 
 describe('tickets module reducers', () => {
   const state = Map({
@@ -35,7 +36,7 @@ describe('tickets module reducers', () => {
     })
   })
 
-  describe('FETCH_TICKETS_SUCCESS', () => {
+  describe('FETCH_DATA_SUCCESS', () => {
     const fixture = [{
       id: 0,
       createdDate: '',
@@ -43,7 +44,7 @@ describe('tickets module reducers', () => {
       summary: 'Ticket summary',
       description: 'Ticket description'
     }]
-    const nextState = reducer(state, actions.fetchTicketsSuccess(fixture))
+    const nextState = reducer(state, fetchDataSuccess(fixture, 'ticket'))
 
     it('adds tickets to the state', () => {
       const expectedResult = state.merge(Map({

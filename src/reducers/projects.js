@@ -3,6 +3,7 @@
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import types from 'types/projects'
+import dataTypes from 'types/data'
 
 /**
  * Reducer that manages a Map of all projects in the state. The key is the project's
@@ -54,8 +55,11 @@ const byId = (state = Map(), action) => {
  */
 const ids = (state = List(), action) => {
   switch (action.type) {
-    case types.FETCH_PROJECTS_SUCCESS:
-      return List(action.response.result)
+    case dataTypes.FETCH_DATA_SUCCESS:
+      if (action.responseType === 'project')
+        return List(action.response.result)
+      else
+        return state
     case types.CREATE_PROJECT_SUCCESS:
       return state.push(action.response.result)
     case types.DELETE_PROJECT_SUCCESS:
@@ -87,7 +91,7 @@ const error = (state = null, action) => {
     case types.UPDATE_PROJECT_FAILURE:
     case types.DELETE_PROJECT_FAILURE:
       return action.message
-    case types.FETCH_PROJECTS_SUCCESS:
+    case dataTypes.FETCH_DATA_SUCCESS:
     case types.FETCH_PROJECTS_REQUEST:
     case types.CREATE_PROJECT_SUCCESS:
     case types.CREATE_PROJECT_REQUEST:
@@ -122,7 +126,7 @@ const loading = (state = false, action) => {
     case types.UPDATE_PROJECT_REQUEST:
     case types.DELETE_PROJECT_REQUEST:
       return true
-    case types.FETCH_PROJECTS_SUCCESS:
+    case dataTypes.FETCH_DATA_SUCCESS:
     case types.FETCH_PROJECTS_FAILURE:
     case types.CREATE_PROJECT_SUCCESS:
     case types.CREATE_PROJECT_FAILURE:

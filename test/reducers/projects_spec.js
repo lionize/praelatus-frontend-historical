@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { List, Map } from 'immutable'
 import reducer from 'reducers/projects'
 import * as actions from 'actions/projects'
+import { fetchDataSuccess } from 'actions/data'
 
 describe('projects module reducers', () => {
   const state = Map({
@@ -35,7 +36,7 @@ describe('projects module reducers', () => {
     })
   })
 
-  describe('FETCH_PROJECTS_SUCCESS', () => {
+  describe('FETCH_DATA_SUCCESS', () => {
     const fixture = [{
       id: 1,
       createdDate: '',
@@ -45,7 +46,7 @@ describe('projects module reducers', () => {
       iconURL: '',
       repo: '',
     }]
-    const nextState = reducer(state, actions.fetchProjectsSuccess(fixture))
+    const nextState = reducer(state, fetchDataSuccess(fixture, 'project'))
 
     it('adds projects to the state', () => {
       const expectedResult = state.merge(Map({
