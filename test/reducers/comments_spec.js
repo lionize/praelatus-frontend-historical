@@ -5,6 +5,16 @@ import * as actions from 'actions/comments'
 import { fetchDataSuccess } from 'actions/data'
 
 describe('comments module reducers', () => {
+  const authorFixture = {
+    id: 1,
+    username: 'mark',
+    email: 'mark@test.com',
+    fullName: 'Mark',
+    gravatar: 'mark@test.com',
+    profilePic: 'mark@test.com',
+    isAdmin: false,
+  }
+
   const state = Map({
     loading: true,
     error: 'Error!',
@@ -40,13 +50,18 @@ describe('comments module reducers', () => {
     const fixture = [{
 			id: 1,
 			body: "A Comment",
+      author: authorFixture,
     }]
     const nextState = reducer(state, fetchDataSuccess(fixture, 'comment'))
 
     it('adds comments to the state', () => {
       const expectedResult = state.merge(Map({
         ids: List.of(1),
-        byId: (Map({1: Map(fixture[0])})),
+        byId: (Map({1: Map({
+          id: fixture[0].id,
+          body: fixture[0].body,
+          author: 1,
+        })})),
         error: null,
         loading: false
       }))
@@ -93,13 +108,18 @@ describe('comments module reducers', () => {
     const fixture = {
       id: 1,
       body: "A Comment",
+      author: authorFixture,
     }
     const nextState = reducer(state, actions.createCommentSuccess(fixture))
 
     it('adds the comment to the state', () => {
       const expectedResult = state.merge(Map({
         ids: List.of(1),
-        byId: Map({ 1: Map(fixture) }),
+        byId: Map({ 1: Map({
+          id: fixture.id,
+          body: fixture.body,
+          author: authorFixture.id,
+        }) }),
         error: null,
         loading: false
       }))
@@ -146,13 +166,15 @@ describe('comments module reducers', () => {
   describe('UPDATE_COMMENT_SUCCESS', () => {
     const fixture = {
       id: 1,
-      body: 'A Comment'
+      body: 'A Comment',
+      author: authorFixture,
     }
     const newState = state.merge(Map({
       ids: List.of(1),
       byId: Map({ 1: Map({
         id: 1,
         name: "B Comment",
+        author: authorFixture.id,
       }) })
     }))
     const nextState = reducer(newState, actions.updateCommentSuccess(fixture))
@@ -160,7 +182,11 @@ describe('comments module reducers', () => {
     it('replaces the old comment in the state', () => {
       const expectedResult = state.merge(Map({
         ids: List.of(1),
-        byId: Map({ 1: Map(fixture) }),
+        byId: Map({ 1: Map({
+          id: fixture.id,
+          body: fixture.body,
+          author: authorFixture.id,
+        }) }),
         error: null,
         loading: false
       }))

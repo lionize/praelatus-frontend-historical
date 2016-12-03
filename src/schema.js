@@ -1,6 +1,17 @@
 import { Record, List, Map } from 'immutable'
 import { Schema, arrayOf } from 'normalizr-immutable'
 
+const User = new Record({
+  id: null,
+  username: null,
+  email: null,
+  fullName: null,
+  gravatar: null,
+  profilePic: null,
+  isAdmin: null,
+})
+export const user = new Schema('users', User)
+
 const Ticket = new Record({
   id: null,
   createdDate: null,
@@ -30,16 +41,10 @@ export const team = new Schema('teams', Team)
 const Comment = new Record({
   id: null,
   body: null,
+  author: new User({})
 })
 export const comment = new Schema('comments', Comment)
-
-const User = new Record({
-  id: null,
-  username: null,
-  email: null,
-  fullName: null,
-  gravatar: null,
-  profilePic: null,
-  isAdmin: null,
+comment.define({
+  author: user,
 })
-export const user = new Schema('users', User)
+
