@@ -56,10 +56,7 @@ const byId = (state = Map(), action) => {
 const ids = (state = List(), action) => {
   switch (action.type) {
     case dataTypes.FETCH_DATA_SUCCESS:
-      if (action.responseType === 'project')
-        return List(action.response.result)
-      else
-        return state
+      return state.merge(action.response.result.get('projects'))
     case types.CREATE_PROJECT_SUCCESS:
       return state.push(action.response.result)
     case types.DELETE_PROJECT_SUCCESS:

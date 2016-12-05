@@ -57,10 +57,7 @@ const ids = (state = List(), action) => {
   console.log('action', action)
   switch (action.type) {
     case dataTypes.FETCH_DATA_SUCCESS:
-      if (action.responseType === 'comment')
-        return List(action.response.result)
-      else
-        return state
+      return state.merge(action.response.result.get('comments'))
     case types.CREATE_COMMENT_SUCCESS:
       return state.push(action.response.result)
     case types.DELETE_COMMENT_SUCCESS:
