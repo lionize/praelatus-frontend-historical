@@ -3,6 +3,16 @@ import types from 'types/comments'
 import * as actions from 'actions/comments'
 
 describe('comments module actions', () => {
+  const authorFixture = {
+    id: 1,
+    username: 'mark',
+    email: 'mark@test.com',
+    fullName: 'Mark',
+    gravatar: 'mark@test.com',
+    profilePic: 'mark@test.com',
+    isAdmin: false,
+  }
+
   describe('fetchCommentsRequest', () => {
     it('should return the correct type', () => {
       const expectedResult = {
@@ -10,28 +20,6 @@ describe('comments module actions', () => {
       }
 
       expect(actions.fetchCommentsRequest()).to.deep.eq(expectedResult)
-    })
-  })
-
-  describe('fetchCommentsSuccess', () => {
-    it('should return the correct type and the correct response', () => {
-      const fixture = [{
-        id: 1,
-        body: 'A Comment',
-      }]
-      const expectedResult = {
-        type: types.FETCH_COMMENTS_SUCCESS,
-        response: {
-          result: [1],
-          entities: {
-            comments: {
-              1: fixture[0]
-            }
-          }
-        }
-      }
-
-      expect(actions.fetchCommentsSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 
@@ -51,8 +39,9 @@ describe('comments module actions', () => {
 
   describe('createCommentRequest', () => {
     const fixture = {
-      id: 0,
-      body: 'A Comment',
+      id: 1,
+      body: "A Comment",
+      author: authorFixture,
     }
     const expectedResult = {
       type: types.CREATE_COMMENT_REQUEST,
@@ -70,16 +59,25 @@ describe('comments module actions', () => {
 
   describe('createCommentSuccess', () => {
     const fixture = {
-      id: 0,
+      id: 1,
       body: 'A Comment',
+      author: authorFixture,
     }
     const expectedResult = {
       type: types.CREATE_COMMENT_SUCCESS,
       response: {
-        result: 0,
+        result: 1,
         entities: {
           comments: {
-            0: fixture
+            1: {
+              ...fixture,
+              author: authorFixture.id,
+            }
+          },
+          users: {
+            1: {
+              ...authorFixture,
+            }
           }
         }
       }
@@ -136,16 +134,25 @@ describe('comments module actions', () => {
 
   describe('updateCommentSuccess', () => {
     const fixture = {
-      id: 0,
+      id: 1,
       body: 'A Comment',
+      author: authorFixture,
     }
     const expectedResult = {
       type: types.UPDATE_COMMENT_SUCCESS,
       response: {
-        result: 0,
+        result: 1,
         entities: {
           comments: {
-            0: fixture
+            1: {
+              ...fixture,
+              author: authorFixture.id,
+            }
+          },
+          users: {
+            1: {
+              ...authorFixture,
+            }
           }
         }
       }

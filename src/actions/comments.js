@@ -17,22 +17,6 @@ export const fetchCommentsRequest = () => ({
 })
 
 /**
- * Action that represents a successful fetch of comments.
- *
- * The action contains a normalized response from the server.
- *
- * @param {Record} [response] - The Record
- * representing the comments that were fetched and a List of the ids of the
- * comments.
- * @returns {object} - An object that contains the action's type and the
- * normalized server response.
- */
-export const fetchCommentsSuccess = response => ({
-  type: types.FETCH_COMMENTS_SUCCESS,
-  response: normalize(response, arrayOf(schema.comment), {}),
-})
-
-/**
  * Action that represents a failed fetch of comments.
  *
  * The action contains the error message from the server.
