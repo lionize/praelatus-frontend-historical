@@ -24,8 +24,8 @@ export const ticket = new Schema('tickets', Ticket)
 const Team = new Record({
   id: null,
   name: null,
-  lead: User({}),
-  members: List(),
+  lead: new User({}),
+  members: new List(),
 })
 export const team = new Schema('teams', Team)
 team.define({
@@ -41,7 +41,7 @@ const Project = new Record({
   homepage: null,
   iconURL: null,
   repo: null,
-  lead: User({}),
+  lead: new User({}),
 })
 export const project = new Schema('projects', Project)
 project.define({
