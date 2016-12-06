@@ -16,10 +16,17 @@ const Ticket = new Record({
   id: null,
   createdDate: null,
   updatedDate: null,
+  key: null,
   summary: null,
   description: null,
+  reporter: new User({}),
+  assignee: new User({}),
 })
 export const ticket = new Schema('tickets', Ticket)
+ticket.define({
+  reporter: user,
+  assignee: user,
+})
 
 const Team = new Record({
   id: null,
