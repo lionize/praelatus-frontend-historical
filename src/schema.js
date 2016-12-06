@@ -21,6 +21,18 @@ const Ticket = new Record({
 })
 export const ticket = new Schema('tickets', Ticket)
 
+const Team = new Record({
+  id: null,
+  name: null,
+  lead: User({}),
+  members: List(),
+})
+export const team = new Schema('teams', Team)
+team.define({
+  lead: user,
+  members: arrayOf(user),
+})
+
 const Project = new Record({
   id: null,
   createdDate: null,
@@ -31,12 +43,6 @@ const Project = new Record({
   repo: null,
 })
 export const project = new Schema('projects', Project)
-
-const Team = new Record({
-  id: null,
-  name: null,
-})
-export const team = new Schema('teams', Team)
 
 const Comment = new Record({
   id: null,

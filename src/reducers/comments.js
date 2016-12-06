@@ -54,7 +54,6 @@ const byId = (state = Map(), action) => {
  * @return {List}
  */
 const ids = (state = List(), action) => {
-  console.log('action', action)
   switch (action.type) {
     case dataTypes.FETCH_DATA_SUCCESS:
       return state.merge(action.response.result.get('comments'))
