@@ -41,8 +41,12 @@ const Project = new Record({
   homepage: null,
   iconURL: null,
   repo: null,
+  lead: User({}),
 })
 export const project = new Schema('projects', Project)
+project.define({
+  lead: user,
+})
 
 const Comment = new Record({
   id: null,
@@ -53,4 +57,3 @@ export const comment = new Schema('comments', Comment)
 comment.define({
   author: user,
 })
-

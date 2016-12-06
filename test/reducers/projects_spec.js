@@ -5,6 +5,16 @@ import * as actions from 'actions/projects'
 import { fetchDataSuccess } from 'actions/data'
 
 describe('projects module reducers', () => {
+  const leadFixture = {
+    id: 0,
+    username: 'user0',
+    email: 'user0@users.com',
+    fullName: 'User 0',
+    gravatar: 'user0@users.com',
+    profilePic: 'user0@users.com',
+    isAdmin: true,
+  }
+
   const state = Map({
     loading: true,
     error: 'Error!',
@@ -45,18 +55,24 @@ describe('projects module reducers', () => {
       homepage: '',
       iconURL: '',
       repo: '',
+      lead: leadFixture,
     }]
+    const expectedResult = {
+      ids: [1],
+      byId: {
+        1: {
+          ...fixture[0],
+          lead: 0,
+        }
+      },
+      error: null,
+      loading: false,
+    }
     const nextState = reducer(state, fetchDataSuccess(fixture, 'project'))
 
     it('adds projects to the state', () => {
-      const expectedResult = state.merge(Map({
-        ids: List.of(1),
-        byId: (Map({1: Map(fixture[0])})),
-        error: null,
-        loading: false
-      }))
-
-      expect(nextState).to.eq(expectedResult)
+      expect(nextState.toJS().ids).to.deep.eq(expectedResult.ids)
+      expect(nextState.toJS().byId).to.deep.eq(expectedResult.byId)
     })
 
     it('sets error to null', () => {
@@ -103,18 +119,24 @@ describe('projects module reducers', () => {
       homepage: '',
       iconURL: '',
       repo: '',
+      lead: leadFixture,
+    }
+    const expectedResult = {
+      ids: [1],
+      byId: {
+        1: {
+          ...fixture,
+          lead: 0,
+        }
+      },
+      error: null,
+      loading: false,
     }
     const nextState = reducer(state, actions.createProjectSuccess(fixture))
 
     it('adds the project to the state', () => {
-      const expectedResult = state.merge(Map({
-        ids: List.of(1),
-        byId: Map({ 1: Map(fixture) }),
-        error: null,
-        loading: false
-      }))
-
-      expect(nextState).to.eq(expectedResult)
+      expect(nextState.toJS().ids).to.deep.eq(expectedResult.ids)
+      expect(nextState.toJS().byId).to.deep.eq(expectedResult.byId)
     })
 
     it('sets loading to false', () => {
@@ -162,6 +184,18 @@ describe('projects module reducers', () => {
       homepage: '',
       iconURL: '',
       repo: '',
+      lead: leadFixture,
+    }
+    const expectedResult = {
+      ids: [1],
+      byId: {
+        1: {
+          ...fixture,
+          lead: 0,
+        }
+      },
+      error: null,
+      loading: false,
     }
     const newState = state.merge(Map({
       ids: List.of(1),
@@ -173,14 +207,9 @@ describe('projects module reducers', () => {
     const nextState = reducer(newState, actions.updateProjectSuccess(fixture))
 
     it('replaces the old project in the state', () => {
-      const expectedResult = state.merge(Map({
-        ids: List.of(1),
-        byId: Map({ 1: Map(fixture) }),
-        error: null,
-        loading: false
-      }))
 
-      expect(nextState).to.eq(expectedResult)
+      expect(nextState.toJS().ids).to.deep.eq(expectedResult.ids)
+      expect(nextState.toJS().byId).to.deep.eq(expectedResult.byId)
     })
 
     it('sets loading to false', () => {
