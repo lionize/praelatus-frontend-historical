@@ -17,22 +17,6 @@ export const fetchProjectsRequest = () => ({
 })
 
 /**
- * Action that represents a successful fetch of projects.
- *
- * The action contains a normalized response from the server.
- *
- * @param {Record} [response] - The Record
- * representing the projects that were fetched and a List of the ids of the
- * projects.
- * @returns {object} - An object that contains the action's type and the
- * normalized server response.
- */
-export const fetchProjectsSuccess = response => ({
-  type: types.FETCH_PROJECTS_SUCCESS,
-  response: normalize(response, arrayOf(schema.project), {}),
-})
-
-/**
  * Action that represents a failed fetch of projects.
  *
  * The action contains the error message from the server.

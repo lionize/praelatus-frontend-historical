@@ -17,21 +17,6 @@ export const fetchTicketsRequest = () => ({
 })
 
 /**
- * Action that represents a successful fetch of tickets.
- *
- * The action contains a normalized response from the server.
- *
- * @param {Record} [response] - The Record representing the tickets that were
- * fetched and a List of the ids of the tickets.
- * @returns {object} - An object that contains the action's type and the
- * normalized server response.
- */
-export const fetchTicketsSuccess = response => ({
-  type: types.FETCH_TICKETS_SUCCESS,
-  response: normalize(response, arrayOf(schema.ticket), {}),
-})
-
-/**
  * Action that represents a failed fetch of tickets.
  *
  * The action contains the error message from the server.
