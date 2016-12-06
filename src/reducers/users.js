@@ -3,6 +3,7 @@
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import types from 'types/users'
+import dataTypes from 'types/data'
 
 /**
  * Reducer that manages a Map of all users in the state. The key is the project's
@@ -54,8 +55,8 @@ const byId = (state = Map(), action) => {
  */
 const ids = (state = List(), action) => {
   switch (action.type) {
-    case types.FETCH_USERS_SUCCESS:
-      return List(action.response.result)
+    case dataTypes.FETCH_DATA_SUCCESS:
+      return state.merge(action.response.result.get('users'))
     case types.CREATE_USER_SUCCESS:
       return state.push(action.response.result)
     case types.DELETE_USER_SUCCESS:
@@ -87,7 +88,7 @@ const error = (state = null, action) => {
     case types.UPDATE_USER_FAILURE:
     case types.DELETE_USER_FAILURE:
       return action.message
-    case types.FETCH_USERS_SUCCESS:
+    case dataTypes.FETCH_DATA_SUCCESS:
     case types.FETCH_USERS_REQUEST:
     case types.CREATE_USER_SUCCESS:
     case types.CREATE_USER_REQUEST:
@@ -122,7 +123,7 @@ const loading = (state = false, action) => {
     case types.UPDATE_USER_REQUEST:
     case types.DELETE_USER_REQUEST:
       return true
-    case types.FETCH_USERS_SUCCESS:
+    case dataTypes.FETCH_DATA_SUCCESS:
     case types.FETCH_USERS_FAILURE:
     case types.CREATE_USER_SUCCESS:
     case types.CREATE_USER_FAILURE:

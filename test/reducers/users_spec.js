@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { List, Map } from 'immutable'
 import reducer from 'reducers/users'
 import * as actions from 'actions/users'
+import { fetchDataSuccess } from 'actions/data'
 
 describe('users module reducers', () => {
   const state = Map({
@@ -35,7 +36,7 @@ describe('users module reducers', () => {
     })
   })
 
-  describe('FETCH_USERS_SUCCESS', () => {
+  describe('FETCH_DATA_SUCCESS', () => {
     const fixture = [{
 			id: 1,
       username: "testuser",
@@ -45,7 +46,7 @@ describe('users module reducers', () => {
       profilePic: "",
       isAdmin: false
     }]
-    const nextState = reducer(state, actions.fetchUsersSuccess(fixture))
+    const nextState = reducer(state, fetchDataSuccess(fixture, 'user'))
 
     it('adds users to the state', () => {
       const expectedResult = state.merge(Map({

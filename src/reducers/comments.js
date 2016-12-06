@@ -3,6 +3,7 @@
 import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import types from 'types/comments'
+import dataTypes from 'types/data'
 
 /**
  * Reducer that manages a Map of all comments in the state. The key is the project's
@@ -54,8 +55,8 @@ const byId = (state = Map(), action) => {
  */
 const ids = (state = List(), action) => {
   switch (action.type) {
-    case types.FETCH_COMMENTS_SUCCESS:
-      return List(action.response.result)
+    case dataTypes.FETCH_DATA_SUCCESS:
+      return state.merge(action.response.result.get('comments'))
     case types.CREATE_COMMENT_SUCCESS:
       return state.push(action.response.result)
     case types.DELETE_COMMENT_SUCCESS:
@@ -87,7 +88,7 @@ const error = (state = null, action) => {
     case types.UPDATE_COMMENT_FAILURE:
     case types.DELETE_COMMENT_FAILURE:
       return action.message
-    case types.FETCH_COMMENTS_SUCCESS:
+    case dataTypes.FETCH_DATA_SUCCESS:
     case types.FETCH_COMMENTS_REQUEST:
     case types.CREATE_COMMENT_SUCCESS:
     case types.CREATE_COMMENT_REQUEST:
@@ -122,7 +123,7 @@ const loading = (state = false, action) => {
     case types.UPDATE_COMMENT_REQUEST:
     case types.DELETE_COMMENT_REQUEST:
       return true
-    case types.FETCH_COMMENTS_SUCCESS:
+    case dataTypes.FETCH_DATA_SUCCESS:
     case types.FETCH_COMMENTS_FAILURE:
     case types.CREATE_COMMENT_SUCCESS:
     case types.CREATE_COMMENT_FAILURE:

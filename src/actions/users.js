@@ -17,22 +17,6 @@ export const fetchUsersRequest = () => ({
 })
 
 /**
- * Action that represents a successful fetch of users.
- *
- * The action contains a normalized response from the server.
- *
- * @param {Record} [response] - The Record
- * representing the users that were fetched and a List of the ids of the
- * users.
- * @returns {object} - An object that contains the action's type and the
- * normalized server response.
- */
-export const fetchUsersSuccess = response => ({
-  type: types.FETCH_USERS_SUCCESS,
-  response: normalize(response, arrayOf(schema.user), {}),
-})
-
-/**
  * Action that represents a failed fetch of users.
  *
  * The action contains the error message from the server.

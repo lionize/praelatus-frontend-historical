@@ -3,6 +3,7 @@
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import * as actions from 'actions/tickets'
+import * as dataActions from 'actions/data'
 import types from 'types/tickets'
 import api from 'api'
 
@@ -22,7 +23,7 @@ export function* fetchTickets(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.fetchTickets, payload)
-    yield put(actions.fetchTicketsSuccess(response))
+    yield put(dataActions.fetchDataSuccess(response, 'ticket'))
   } catch (e) {
     yield put(actions.fetchTicketsFailure(e))
   }

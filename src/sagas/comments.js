@@ -4,6 +4,7 @@ import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import types from 'types/comments'
 import * as actions from 'actions/comments'
+import * as dataActions from 'actions/data'
 import api from 'api'
 
 /**
@@ -22,7 +23,7 @@ export function* fetchComments(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.fetchComments, payload)
-    yield put(actions.fetchCommentsSuccess(response))
+    yield put(dataActions.fetchDataSuccess(response, 'comment'))
   } catch (e) {
     yield put(actions.fetchCommentsFailure(e))
   }

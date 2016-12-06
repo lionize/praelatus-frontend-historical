@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 import types from 'types/users'
 import * as actions from 'actions/users'
+import * as dataActions from 'actions/data'
 
 describe('users module actions', () => {
   describe('fetchUsersRequest', () => {
@@ -13,7 +14,7 @@ describe('users module actions', () => {
     })
   })
 
-  describe('fetchUsersSuccess', () => {
+  describe('fetchDataSuccess', () => {
     it('should return the correct type and the correct response', () => {
       const fixture = [{
         id: 1,
@@ -25,9 +26,11 @@ describe('users module actions', () => {
         isAdmin: false
       }]
       const expectedResult = {
-        type: types.FETCH_USERS_SUCCESS,
+        type: types.FETCH_DATA_SUCCESS,
         response: {
-          result: [1],
+          result: {
+            users: [1],
+          },
           entities: {
             users: {
               1: fixture[0]
@@ -36,7 +39,7 @@ describe('users module actions', () => {
         }
       }
 
-      expect(actions.fetchUsersSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
+      expect(dataActions.fetchDataSuccess(fixture, 'user').response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 

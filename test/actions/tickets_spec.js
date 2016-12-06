@@ -1,8 +1,30 @@
 import { expect } from 'chai'
 import * as actions from 'actions/tickets'
+import * as dataActions from 'actions/data'
 import types from 'types/tickets'
 
 describe('tickets module actions', () => {
+  const userFixtures = [
+    {
+      id: 0,
+      username: 'user0',
+      email: 'user0@users.com',
+      fullName: 'User 0',
+      gravatar: 'user0@users.com',
+      profilePic: '',
+      isAdmin: false,
+    },
+    {
+      id: 1,
+      username: 'user1',
+      email: 'user1@users.com',
+      fullName: 'User 1',
+      gravatar: 'user1@users.com',
+      profilePic: '',
+      isAdmin: true,
+    }
+  ]
+
   describe('fetchTicketsRequest', () => {
     it('should return the correct type', () => {
       const expectedResult = {
@@ -13,28 +35,41 @@ describe('tickets module actions', () => {
     })
   })
 
-  describe('fetchTicketsSuccess', () => {
-    it('should return the correct type and the correct response', () => {
-      const fixture = [{
-        id: 1,
-        createdDate: '',
-        updatedDate: '',
-        description: 'Ticket description',
-        summary: 'Ticket summary',
-      }]
-      const expectedResult = {
-        type: types.FETCH_TICKETS_SUCCESS,
-        response: {
-          result: [1],
-          entities: {
-            tickets: {
-              1: fixture[0]
+  describe('fetchDataSuccess', () => {
+    const fixture = [{
+      id: 1,
+      createdDate: '',
+      updatedDate: '',
+      key: 'TICK-1',
+      description: "This is a cool ticket",
+      summary: "This is a ticket summary",
+      reporter: userFixtures[0],
+      assignee: userFixtures[1],
+    }]
+    const expectedResult = {
+      type: types.CREATE_TICKET_SUCCESS,
+      response: {
+        result: {
+          tickets: [1],
+          users: [0, 1],
+        },
+        entities: {
+          tickets: {
+            1: {
+              ...fixture[0],
+              reporter: 0,
+              assignee: 1,
             }
+          },
+          users: {
+            0: userFixtures[0],
+            1: userFixtures[1],
           }
         }
       }
-
-      expect(actions.fetchTicketsSuccess(fixture).response.toJS()).to.deep.eq(expectedResult.response)
+    }
+    it('should return the correct type and the correct response', () => {
+      expect(dataActions.fetchDataSuccess(fixture, 'ticket').response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 
@@ -76,8 +111,11 @@ describe('tickets module actions', () => {
       id: 1,
       createdDate: '',
       updatedDate: '',
+      key: 'TICK-1',
       description: "This is a cool ticket",
-      summary: "This is a ticket summary"
+      summary: "This is a ticket summary",
+      reporter: userFixtures[0],
+      assignee: userFixtures[1],
     }
     const expectedResult = {
       type: types.CREATE_TICKET_SUCCESS,
@@ -85,7 +123,15 @@ describe('tickets module actions', () => {
         result: 1,
         entities: {
           tickets: {
-            1: fixture
+            1: {
+              ...fixture,
+              reporter: 0,
+              assignee: 1,
+            }
+          },
+          users: {
+            0: userFixtures[0],
+            1: userFixtures[1],
           }
         }
       }
@@ -145,8 +191,11 @@ describe('tickets module actions', () => {
       id: 1,
       createdDate: '',
       updatedDate: '',
+      key: 'TICK-1',
       description: "This is a cool ticket",
-      summary: "This is a ticket summary"
+      summary: "This is a ticket summary",
+      reporter: userFixtures[0],
+      assignee: userFixtures[1],
     }
     const expectedResult = {
       type: types.UPDATE_TICKET_SUCCESS,
@@ -154,7 +203,15 @@ describe('tickets module actions', () => {
         result: 1,
         entities: {
           tickets: {
-            1: fixture
+            1: {
+              ...fixture,
+              reporter: 0,
+              assignee: 1,
+            }
+          },
+          users: {
+            0: userFixtures[0],
+            1: userFixtures[1],
           }
         }
       }

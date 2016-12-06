@@ -2,8 +2,30 @@ import { expect } from 'chai'
 import { List, Map } from 'immutable'
 import reducer from 'reducers/tickets'
 import * as actions from 'actions/tickets'
+import { fetchDataSuccess } from 'actions/data'
 
 describe('tickets module reducers', () => {
+  const userFixtures = [
+    {
+      id: 0,
+      username: 'user0',
+      email: 'user0@users.com',
+      fullName: 'User 0',
+      gravatar: 'user0@users.com',
+      profilePic: '',
+      isAdmin: false,
+    },
+    {
+      id: 1,
+      username: 'user1',
+      email: 'user1@users.com',
+      fullName: 'User 1',
+      gravatar: 'user1@users.com',
+      profilePic: '',
+      isAdmin: true,
+    }
+  ]
+
   const state = Map({
     loading: true,
     error: 'Error',
@@ -35,25 +57,33 @@ describe('tickets module reducers', () => {
     })
   })
 
-  describe('FETCH_TICKETS_SUCCESS', () => {
+  describe('FETCH_DATA_SUCCESS', () => {
     const fixture = [{
-      id: 0,
+      id: 1,
       createdDate: '',
       updatedDate: '',
+      key: 'TICK-1',
       summary: 'Ticket summary',
-      description: 'Ticket description'
+      description: 'Ticket description',
+      reporter: userFixtures[0],
+      assignee: userFixtures[1],
     }]
-    const nextState = reducer(state, actions.fetchTicketsSuccess(fixture))
+    const expectedResult = {
+      ids: [1],
+      byId: {
+        1: {
+          ...fixture[0],
+          reporter: 0,
+          assignee: 1,
+        }
+      },
+      error: null,
+      loading: false,
+    }
+    const nextState = reducer(state, fetchDataSuccess(fixture, 'ticket'))
 
     it('adds tickets to the state', () => {
-      const expectedResult = state.merge(Map({
-        ids: List.of(0),
-        byId: Map({0: Map(fixture[0])}),
-        error: null,
-        loading: false
-      }))
-
-      expect(nextState).to.eq(expectedResult)
+      expect(nextState.toJS()).to.deep.eq(expectedResult)
     })
 
     it('sets error to null', () => {
@@ -94,23 +124,31 @@ describe('tickets module reducers', () => {
 
   describe('CREATE_TICKET_SUCCESS', () => {
     const fixture = {
-      id: 0,
+      id: 1,
       createdDate: '',
       updatedDate: '',
+      key: 'TICK-1',
       summary: 'Ticket summary',
-      description: 'Ticket description'
+      description: 'Ticket description',
+      reporter: userFixtures[0],
+      assignee: userFixtures[1],
+    }
+    const expectedResult = {
+      ids: [1],
+      byId: {
+        1: {
+          ...fixture,
+          reporter: 0,
+          assignee: 1,
+        }
+      },
+      error: null,
+      loading: false,
     }
     const nextState = reducer(state, actions.createTicketSuccess(fixture))
 
     it('adds the ticket to the state', () => {
-      const expectedResult = state.merge(Map({
-        ids: List.of(0),
-        byId: Map({0: Map(fixture)}),
-        error: null,
-        loading: false
-      }))
-
-      expect(nextState).to.eq(expectedResult)
+      expect(nextState.toJS()).to.deep.eq(expectedResult)
     })
 
     it('sets loading to false', () => {
@@ -156,8 +194,23 @@ describe('tickets module reducers', () => {
       id: 1,
       createdDate: '',
       updatedDate: '',
+      key: 'TICK-1',
       summary: 'Ticket summary',
-      description: 'Ticket description'
+      description: 'Ticket description',
+      reporter: userFixtures[0],
+      assignee: userFixtures[1],
+    }
+    const expectedResult = {
+      ids: [1],
+      byId: {
+        1: {
+          ...fixture,
+          reporter: 0,
+          assignee: 1,
+        }
+      },
+      error: null,
+      loading: false,
     }
     const newState = state.merge(Map({
       ids: List.of(1),
@@ -170,14 +223,7 @@ describe('tickets module reducers', () => {
     const nextState = reducer(newState, actions.updateTicketSuccess(fixture))
 
     it('replaces the old ticket in the state', () => {
-      const expectedResult = state.merge(Map({
-        ids: List.of(1),
-        byId: Map({1: Map(fixture)}),
-        error: null,
-        loading: false
-      }))
-
-      expect(nextState).to.eq(expectedResult)
+      expect(nextState.toJS()).to.deep.eq(expectedResult)
     })
 
     it('sets loading to false', () => {

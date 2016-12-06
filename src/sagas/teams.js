@@ -3,6 +3,7 @@
 import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import * as actions from 'actions/teams'
+import * as dataActions from 'actions/data'
 import types from 'types/teams'
 import api from 'api'
 
@@ -22,7 +23,7 @@ export function* fetchTeams(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.fetchTeams, payload)
-    yield put(actions.fetchTeamsSuccess(response))
+    yield put(dataActions.fetchDataSuccess(response, 'team'))
   } catch (e) {
     yield put(actions.fetchTeamsFailure(e))
   }

@@ -4,6 +4,7 @@ import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import types from 'types/projects'
 import * as actions from 'actions/projects'
+import * as dataActions from 'actions/data'
 import api from 'api'
 
 /**
@@ -22,7 +23,7 @@ export function* fetchProjects(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.fetchProjects, payload)
-    yield put(actions.fetchProjectsSuccess(response))
+    yield put(dataActions.fetchDataSuccess(response, 'project'))
   } catch (e) {
     yield put(actions.fetchProjectsFailure(e))
   }
