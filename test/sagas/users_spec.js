@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import api from 'api'
 import * as actions from 'actions/users'
+import * as dataActions from 'actions/data'
 import * as sagas from 'sagas/users'
 
 describe('users module sagas', () => {
@@ -12,12 +13,12 @@ describe('users module sagas', () => {
       expect(generator.next().value).to.deep.eq(call(api.fetchUsers, {}))
     })
 
-    it('fetches tickets', () => {
+    it('fetches users', () => {
       const generator = sagas.fetchUsers()
       generator.next()
       const response = []
       const next = generator.next(response).value
-      const expected = put(actions.fetchUsersSuccess(response))
+      const expected = put(dataActions.fetchDataSuccess(response, 'user'))
 
       expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
       expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
