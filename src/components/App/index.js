@@ -1,19 +1,15 @@
 import React, { PropTypes } from 'react'
-import styles from './app.css'
-import Header from 'components/layout/Header'
-import 'styles/core.css'
 
 const App = props => (
-  <div>
-    <Header />
-    <main className={styles.container}>
-      <div className={styles.sidebar}>
-        {props.sidebar}
+  <div className="container">
+    <div className="row">
+      <div className="col-md-6">
+        First
       </div>
-      <div className={styles.main}>
-        {props.main}
+      <div className="col-md-6">
+        Second
       </div>
-    </main>
+    </div>
   </div>
 )
 App.propTypes = {
