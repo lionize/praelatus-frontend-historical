@@ -46,7 +46,6 @@
     "css-loader": "^0.25.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
-    "lost": "^7.1.0",
     "normalizr": "^2.2.1",
     "normalizr-immutable": "0.0.3",
     "postcss-loader": "^0.13.0",

@@ -45,7 +45,6 @@ module.exports = {
     return [
       require('precss'),
       require('autoprefixer'),
-      require('lost'),
     ]
   },
 
