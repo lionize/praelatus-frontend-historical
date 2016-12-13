@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from 'components/layout/Header'
+import Footer from 'components/layout/Footer'
 import './app.css'
 
 const App = props => (
@@ -108,15 +109,7 @@ const App = props => (
         </div>
       </div>
     </div>
-    
-    <div className="footer">
-      <nav className="nav nav-inline">
-        <a className="nav-link">Powered by Praelatus</a>
-        <a className="nav-link">Terms of use</a>
-        <a className="nav-link">Answers</a>
-        <a className="nav-link">Maintenance schedule</a>
-      </nav>
-    </div>
+    <Footer />
   </div>
 )
 
