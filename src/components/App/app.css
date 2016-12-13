@@ -1,4 +1,27 @@
-.container {
+.priority-high {
+  color: red;
+}
+
+table {
+  margin-bottom: 0 !important;
+}
+
+.activity-profile-pic {
+  width: 48px;
+  float: left;
+  margin-right: 15px;
+}
+
+.btn-show-more {
+  width: 100%;
+}
+
+.footer {
+  height: 75px;
+  background: #f0f0f0;
+  text-align: center;
   margin-top: 10px;
-  lost-utility: clearfix;
+  padding-top: 10px;
+  font-size: 0.85em;
+  border:  1px solid #e0e0e0;
 }
