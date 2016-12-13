@@ -32,11 +32,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1',
-          'postcss-loader'
-        ]
+        loader: 'style!css'
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=10000'
       }
     ]
   },
