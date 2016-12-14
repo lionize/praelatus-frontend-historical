@@ -1,12 +1,14 @@
 import React from 'react'
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 import './Header.css'
 
 const Header = () => (
-  <nav className="nav-main navbar navbar-light bg-faded">
-    <a className="navbar-brand" href="#">
+  <Navbar color="faded" className="nav-main" light>
+    <NavbarBrand href="/">
       <img src="assets/images/praelatus.png" width="30" height="30" alt="" />
       Praelatus
-    </a>
+    </NavbarBrand>
+
     <ul className="nav navbar-nav">
       <li className="nav-item active">
         <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
@@ -30,7 +32,7 @@ const Header = () => (
       <input className="form-control" type="text" placeholder="Search" />
       <button className="btn btn-outline-primary" type="submit">Search</button>
     </form>
-  </nav>
+  </Navbar>
 )
 
 export default Header

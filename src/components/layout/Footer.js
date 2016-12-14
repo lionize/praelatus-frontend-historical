@@ -1,14 +1,15 @@
 import React from 'react'
+import { Nav, NavLink } from 'reactstrap'
 import './Footer.css'
 
 const Footer = () => (
   <div className="footer">
-    <nav className="nav nav-inline">
-      <a className="nav-link">Powered by Praelatus</a>
-      <a className="nav-link">Terms of use</a>
-      <a className="nav-link">Answers</a>
-      <a className="nav-link">Maintenance schedule</a>
-    </nav>
+    <Nav inline>
+      <NavLink>Powered by Praelatus</NavLink>
+      <NavLink>Terms of use</NavLink>
+      <NavLink>Answers</NavLink>
+      <NavLink>Maintenance schedule</NavLink>
+    </Nav>
   </div>
 )
 
