@@ -1,16 +1,11 @@
 import React from 'react'
-import { Route } from 'react-router'
-
+import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
-import TicketsView from 'containers/TicketsView'
-import TicketsSidebar from 'containers/TicketsSidebar'
-import TicketDisplay from 'containers/TicketDisplay'
+import Home from 'components/Home'
 
 const routes = (
   <Route path='/' component={App}>
-    <Route path="tickets" components={{ main: TicketsView, sidebar: TicketsSidebar }}>
-      <Route path=":id" component={TicketDisplay} />
-    </Route>
+    <IndexRoute component={Home} />
   </Route>
 )
 

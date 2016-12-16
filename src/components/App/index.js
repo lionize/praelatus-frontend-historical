@@ -1,24 +1,14 @@
-import React, { PropTypes } from 'react'
-import styles from './app.css'
+import React from 'react'
 import Header from 'components/layout/Header'
-import 'styles/core.css'
+import Footer from 'components/layout/Footer'
+import './app.css'
 
-const App = props => (
-  <div>
+const App = ({ children }) => (
+  <div className="container-fluid">
     <Header />
-    <main className={styles.container}>
-      <div className={styles.sidebar}>
-        {props.sidebar}
-      </div>
-      <div className={styles.main}>
-        {props.main}
-      </div>
-    </main>
+    { children }
+    <Footer />
   </div>
 )
-App.propTypes = {
-  sidebar: PropTypes.object,
-  main: PropTypes.object,
-}
 
 export default App
