@@ -1,43 +1,129 @@
-const fakeDB = {
-  tickets: [
-    {
-      id: 1425,
-      description: "When testing the component XXX123, I am unable to get it to render when it is missing a non-required parameter. If I don't pass the 'foo' param, it errors out.",
-      summary: "Component XXX123 not rendering without 'foo' param",
-    },
-    {
-      id: 2421,
-      description: 'I am loading the app on my old Nokia brickphone and the application is very slow to move between pages. Just getting to this page so I could write this took me 5 minutes!',
-      summary: 'Tessera slow on mobile',
-    },
-  ],
-}
+const users = [
+  {
+    id: 0,
+    username: 'User 1',
+    email: 'user1@users.com',
+    fullName: 'User 1',
+    gravatar: 'user1@users.com',
+    profilePic: '',
+    isAdmin: false,
+  },
+  {
+    id: 1,
+    username: 'User 2',
+    email: 'user2@users.com',
+    fullName: 'User 2',
+    gravatar: 'user2@users.com',
+    profilePic: '',
+    isAdmin: false,
+  }
+]
+
+const tickets = [
+  {
+    id: 0,
+    createdDate: '',
+    updatedDate: '',
+    key: 'TICKET-1',
+    summary: 'First ticket',
+    description: 'A ticket that is first',
+    reporter: users[0],
+    assignee: users[1],
+  },
+  {
+    id: 1,
+    createdDate: '',
+    updatedDate: '',
+    key: 'TICKET-2',
+    summary: 'Second ticket',
+    description: 'A ticket that is second',
+    reporter: users[1],
+    assignee: users[0],
+  }
+]
+
+const teams = [
+  {
+    id: 0,
+    name: 'Team 1',
+    lead: users[0],
+    members: users,
+  },
+  {
+    id: 0,
+    name: 'Team 2',
+    lead: users[1],
+    members: users,
+  }
+]
+
+const projects = [
+  {
+    id: 0,
+    createdDate: '',
+    name: 'Project 1',
+    key: 'PROJECT-1',
+    homepage: '',
+    iconURL: '',
+    repo: '',
+    lead: users[0],
+  },
+  {
+    id: 1,
+    createdDate: '',
+    name: 'Project 2',
+    key: 'PROJECT-2',
+    homepage: '',
+    iconURL: '',
+    repo: '',
+    lead: users[1],
+  }
+]
+
+const comments = [
+  {
+    id: 0,
+    body: 'This is first comment',
+    author: users[0],
+  },
+  {
+    id: 1,
+    body: 'This is second comment',
+    author: users[1],
+  }
+]
 
 const respondWith = info => Promise.resolve({
-  body: info
+  ...info
 })
 
-const fetchTickets = payload => respondWith(fakeDB.tickets)
+const fetchTickets = payload => respondWith(tickets)
 const createTicket = payload => {}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
 
-const fetchTeams = payload => {}
+const fetchTeams = payload => respondWith(teams)
 const createTeam = payload => {}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
-const fetchProjects = payload => {}
+const fetchProjects = payload => respondWith(projects)
 const createProject = payload => {}
 const updateProject = payload => {}
 const deleteProject = payload => {}
 
-const fetchComments = payload => {}
+const fetchComments = payload => respondWith(comments)
 const createComment = payload => {}
 const updateComment = payload => {}
 const deleteComment = payload => {}
 
-const fetchUsers = payload => {}
+const fetchUsers = payload => {
+  if (payload.id) {
+    return respondWith([users[payload.id]])
+  } else {
+    return respondWith(users)
+  }
+}
 const createUser = payload => {}
 const updateUser = payload => {}
 const deleteUser = payload => {}
