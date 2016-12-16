@@ -12,8 +12,9 @@ import types from 'types/users'
  *
  * @returns {object} - An object that contains the action's type.
  */
-export const fetchUsersRequest = () => ({
+export const fetchUsersRequest = payload => ({
   type: types.FETCH_USERS_REQUEST,
+  payload: payload,
 })
 
 /**
