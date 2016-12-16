@@ -19,3 +19,4 @@ class SagasManager {
 }
 
 export default new SagasManager
+
