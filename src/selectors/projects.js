@@ -11,7 +11,7 @@
  * @returns {List} - A List of selected projects.
  */
 export const projectsSelector = (state) => {
-  const projectIds = state.getIn(['projects', 'ids'])
+  const projectIds = state.getIn(['data', 'projects', 'ids'])
   return projectIds.map(id => projectSelector(state, id))
 }
 
@@ -27,7 +27,7 @@ export const projectsSelector = (state) => {
  * @returns {Map} - The selected project.
  */
 export const projectSelector = (state, id) => {
-  return state.getIn(['projects', 'byId']).get(String(id))
+  return state.getIn(['data', 'projects', 'byId']).get(String(id))
 }
 
 /**
@@ -37,7 +37,7 @@ export const projectSelector = (state, id) => {
  * @param {Map} state - The global state.
  * @returns {boolean} - The current loading state.
  */
-export const loadingSelector = state => state.getIn(['projects', 'loading'])
+export const loadingSelector = state => state.getIn(['data', 'projects', 'loading'])
 
 /**
  * Selector that fetches the error message from the project state.
@@ -46,4 +46,4 @@ export const loadingSelector = state => state.getIn(['projects', 'loading'])
  * @param {Map} state - The global state.
  * @returns {string?} - The current error message.
  */
-export const errorSelector = state => state.getIn(['projects', 'error'])
+export const errorSelector = state => state.getIn(['data', 'projects', 'error'])

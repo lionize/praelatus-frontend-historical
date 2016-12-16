@@ -8,8 +8,8 @@ import {
 } from 'selectors/comments'
 
 describe('comments selectors', () => {
-  it('commentsSelector returns all comments', () => {
-    const state = fromJS({
+  const baseState = fromJS({
+    data: {
       comments: {
         ids: [1],
         byId: {
@@ -19,7 +19,9 @@ describe('comments selectors', () => {
           }
         }
       }
-    })
+    }
+  })
+  it('commentsSelector returns all comments', () => {
     const expected = fromJS([
       {
         id: 1,
@@ -27,46 +29,31 @@ describe('comments selectors', () => {
       }
     ])
 
-    expect(commentsSelector(state)).to.eq(expected)
+    expect(commentsSelector(baseState)).to.eq(expected)
   })
 
   it('commentSelector returns a comment', () => {
-    const state = fromJS({
-      comments: {
-        ids: [1],
-        byId: {
-          1: {
-            id: 1,
-            body: 'This is a comment'
-          }
-        }
-      }
-    })
     const expected = fromJS({
       id: 1,
       body: 'This is a comment'
     })
 
-    expect(commentSelector(state, 1)).to.deep.eq(expected)
+    expect(commentSelector(baseState, 1)).to.deep.eq(expected)
   })
 
   it('loadingSelector returns the loading status', () => {
-    const state = fromJS({
-      comments: {
-        loading: true
-      }
-    })
+    const state = fromJS(
+      baseState.setIn(['data', 'comments', 'loading'], true)
+    )
     const expected = true
 
     expect(loadingSelector(state)).to.eq(expected)
   })
 
   it('errorSelector returns the error status', () => {
-    const state = fromJS({
-      comments: {
-        error: 'This is an error!'
-      }
-    })
+    const state = fromJS(
+      baseState.setIn(['data', 'comments', 'error'], 'This is an error!')
+    )
     const expected = 'This is an error!'
 
     expect(errorSelector(state)).to.eq(expected)
