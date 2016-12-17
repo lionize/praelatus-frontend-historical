@@ -12,8 +12,9 @@ import types from 'types/projects'
  *
  * @returns {object} - An object that contains the action's type.
  */
-export const fetchProjectsRequest = () => ({
+export const fetchProjectsRequest = payload => ({
   type: types.FETCH_PROJECTS_REQUEST,
+  payload,
 })
 
 /**
