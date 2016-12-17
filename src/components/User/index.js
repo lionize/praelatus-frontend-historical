@@ -1,7 +1,15 @@
 import React from 'react'
-import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
+import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 
-const User = ({user}) => {
+const User = ({ user, loading, error }) => {
+  if (loading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
+
   if (user) {
     return (
       <div>
@@ -18,7 +26,12 @@ const User = ({user}) => {
   } else {
     return (
       <div>
-        <p>No user by that id found!</p>
+        <Card block inverse color="danger">
+          <CardTitle>User Not Found</CardTitle>
+          <CardText>No user with that id was found.</CardText>
+          { error ? <CardText>Error: {error}</CardText> : '' }
+          <Button color="secondary">See a list of all users</Button>
+        </Card>
       </div>
     )
   }

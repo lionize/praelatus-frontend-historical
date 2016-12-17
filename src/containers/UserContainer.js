@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { userSelector } from 'selectors/users'
+import { userSelector, loadingSelector } from 'selectors/users'
 import { fetchUsersRequest } from 'actions/users'
 import User from 'components/User'
 
@@ -16,7 +16,8 @@ class UserContainer extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  user: userSelector(state.get('data'), params.id)
+  user: userSelector(state, params.id),
+  loading: loadingSelector(state),
 })
 
 const mapDispatchToProps = dispatch => ({
