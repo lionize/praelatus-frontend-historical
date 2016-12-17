@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
+import Gravatar from 'components/Gravatar'
+import './user.css'
 
 const User = ({ user, loading, error }) => {
   if (loading) {
@@ -15,7 +17,7 @@ const User = ({ user, loading, error }) => {
       <div>
         <Card>
           <CardBlock>
-            <CardTitle>{user.username}</CardTitle>
+            <CardTitle><Gravatar email={user.email} /> {user.username}</CardTitle>
             <CardText>email: {user.email}</CardText>
             <CardText>fullName: {user.fullName}</CardText>
             <CardText>gravatar: {user.gravatar}</CardText>
