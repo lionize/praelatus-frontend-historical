@@ -2,10 +2,10 @@ import React from 'react'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router'
 
-const LinkButton = ({ to, children }) => (
-  <Link to={to}>
-    <Button>
-      {children}
+const LinkButton = props => (
+  <Link to={props.to}>
+    <Button {...props} >
+      {props.children}
     </Button>
   </Link>
 )
