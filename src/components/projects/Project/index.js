@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import NotFoundCard from 'components/NotFoundCard'
-import ErrorCard from 'components/ErrorCard'
+import { NotFoundCard, ErrorCard } from 'components/cards'
 
 const Project = ({ project, lead, error }) => {
   if (project) {

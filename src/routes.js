@@ -2,10 +2,8 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
 import Home from 'components/Home'
-import UserContainer from 'containers/UserContainer'
-import UserListContainer from 'containers/UserListContainer'
-import ProjectContainer from 'containers/ProjectContainer'
-import ProjectListContainer from 'containers/ProjectListContainer'
+import { UserContainer, UserListContainer } from 'containers/users'
+import { ProjectContainer, ProjectListContainer } from 'containers/projects'
 
 const routes = (
   <Route path='/' component={App}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { usersSelector } from 'selectors/users'
 import { fetchUsersRequest } from 'actions/users'
-import UserList from 'components/UserList'
+import { UserList } from 'components/users'
 
 class UserListContainer extends Component {
   componentWillMount() {
