@@ -11,7 +11,7 @@
  * @return {List} - A List of selected tickets.
  */
 export const ticketsSelector = (state) => {
-  const ticketIds = state.getIn(['tickets', 'ids'])
+  const ticketIds = state.getIn(['data', 'tickets', 'ids'])
   return ticketIds.map(id => ticketSelector(state, id))
 }
 
@@ -27,7 +27,7 @@ export const ticketsSelector = (state) => {
  * @return {Map} - The selected ticket.
  */
 export const ticketSelector = (state, id) => {
-  return state.getIn(['tickets', 'byId']).get(String(id))
+  return state.getIn(['data', 'tickets', 'byId']).get(String(id))
 }
 
 /**
@@ -37,7 +37,7 @@ export const ticketSelector = (state, id) => {
  * @param {Map} state - The global state.
  * @return {boolean} - The current loading state.
  */
-export const loadingSelector = state => state.getIn(['tickets', 'loading'])
+export const loadingSelector = state => state.getIn(['data', 'tickets', 'loading'])
 
 /**
  * Selector that fetches the error message from the ticket state.
@@ -46,4 +46,4 @@ export const loadingSelector = state => state.getIn(['tickets', 'loading'])
  * @param {Map} state - The global state.
  * @return {string?} - The current error message.
  */
-export const errorSelector = state => state.getIn(['tickets', 'error'])
+export const errorSelector = state => state.getIn(['data', 'tickets', 'error'])

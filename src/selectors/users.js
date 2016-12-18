@@ -11,7 +11,7 @@
  * @returns {List} - A List of selected users.
  */
 export const usersSelector = (state) => {
-  const userIds = state.getIn(['users', 'ids'])
+  const userIds = state.getIn(['data', 'users', 'ids'])
   return userIds.map(id => userSelector(state, id))
 }
 
@@ -27,7 +27,7 @@ export const usersSelector = (state) => {
  * @returns {Map} - The selected user.
  */
 export const userSelector = (state, id) => {
-  return state.getIn(['users', 'byId']).get(String(id))
+  return state.getIn(['data', 'users', 'byId']).get(String(id))
 }
 
 /**
@@ -37,7 +37,7 @@ export const userSelector = (state, id) => {
  * @param {Map} state - The global state.
  * @returns {boolean} - The current loading state.
  */
-export const loadingSelector = state => state.getIn(['users', 'loading'])
+export const loadingSelector = state => state.getIn(['data', 'users', 'loading'])
 
 /**
  * Selector that fetches the error message from the user state.
@@ -46,4 +46,4 @@ export const loadingSelector = state => state.getIn(['users', 'loading'])
  * @param {Map} state - The global state.
  * @returns {string?} - The current error message.
  */
-export const errorSelector = state => state.getIn(['users', 'error'])
+export const errorSelector = state => state.getIn(['data', 'users', 'error'])

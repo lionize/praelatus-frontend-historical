@@ -11,7 +11,7 @@
  * @returns {List} - A List of selected teams.
  */
 export const teamsSelector = (state) => {
-  const teamIds = state.getIn(['teams', 'ids'])
+  const teamIds = state.getIn(['data', 'teams', 'ids'])
   return teamIds.map(id => teamSelector(state, id))
 }
 
@@ -27,7 +27,7 @@ export const teamsSelector = (state) => {
  * @returns {Map} - The selected team.
  */
 export const teamSelector = (state, id) => {
-  return state.getIn(['teams', 'byId']).get(String(id))
+  return state.getIn(['data', 'teams', 'byId']).get(String(id))
 }
 
 /**
@@ -37,7 +37,7 @@ export const teamSelector = (state, id) => {
  * @param {Map} state - The global state.
  * @returns {boolean} - The current loading state.
  */
-export const loadingSelector = state => state.getIn(['teams', 'loading'])
+export const loadingSelector = state => state.getIn(['data', 'teams', 'loading'])
 
 /**
  * Selector that fetches the error message from the team state.
@@ -46,4 +46,4 @@ export const loadingSelector = state => state.getIn(['teams', 'loading'])
  * @param {Map} state - The global state.
  * @returns {string?} - The current error message.
  */
-export const errorSelector = state => state.getIn(['teams', 'error'])
+export const errorSelector = state => state.getIn(['data', 'teams', 'error'])

@@ -11,7 +11,7 @@
  * @returns {List} - A List of selected comments.
  */
 export const commentsSelector = (state) => {
-  const commentIds = state.getIn(['comments', 'ids'])
+  const commentIds = state.getIn(['data', 'comments', 'ids'])
   return commentIds.map(id => commentSelector(state, id))
 }
 
@@ -27,7 +27,7 @@ export const commentsSelector = (state) => {
  * @returns {Map} - The selected comment.
  */
 export const commentSelector = (state, id) => {
-  return state.getIn(['comments', 'byId']).get(String(id))
+  return state.getIn(['data', 'comments', 'byId']).get(String(id))
 }
 
 /**
@@ -37,7 +37,7 @@ export const commentSelector = (state, id) => {
  * @param {Map} state - The global state.
  * @returns {boolean} - The current loading state.
  */
-export const loadingSelector = state => state.getIn(['comments', 'loading'])
+export const loadingSelector = state => state.getIn(['data', 'comments', 'loading'])
 
 /**
  * Selector that fetches the error message from the comment state.
@@ -46,4 +46,4 @@ export const loadingSelector = state => state.getIn(['comments', 'loading'])
  * @param {Map} state - The global state.
  * @returns {string?} - The current error message.
  */
-export const errorSelector = state => state.getIn(['comments', 'error'])
+export const errorSelector = state => state.getIn(['data', 'comments', 'error'])
