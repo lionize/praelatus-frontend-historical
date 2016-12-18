@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import Gravatar from 'components/Gravatar'
+import { Gravatar } from 'components/misc'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 import './user.css'
 
