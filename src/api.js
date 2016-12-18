@@ -107,7 +107,13 @@ const createTeam = payload => {}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
-const fetchProjects = payload => respondWith(projects)
+const fetchProjects = payload => {
+  if (payload.id) {
+    return respondWith([projects[payload.id]])
+  } else {
+    return respondWith(projects)
+  }
+}
 const createProject = payload => {}
 const updateProject = payload => {}
 const deleteProject = payload => {}
