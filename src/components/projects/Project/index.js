@@ -16,11 +16,9 @@ const Project = ({ project, lead, error }) => {
       </div>
     )
   } else {
-    if (error) {
-      return <ErrorCard error={error} />
-    } else {
-      return <NotFoundCard type="Project" />
-    }
+    return error
+      ? <ErrorCard error={error} />
+      : <NotFoundCard type="Project" />
   }
 }
 
