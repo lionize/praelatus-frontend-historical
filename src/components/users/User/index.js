@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import Gravatar from 'components/Gravatar'
+import { NotFoundCard, ErrorCard } from 'components/cards'
 import './user.css'
 
 const User = ({ user, loading, error }) => {
@@ -26,16 +27,9 @@ const User = ({ user, loading, error }) => {
       </div>
     )
   } else {
-    return (
-      <div>
-        <Card block inverse color="danger">
-          <CardTitle>User Not Found</CardTitle>
-          <CardText>No user with that id was found.</CardText>
-          { error ? <CardText>Error: {error}</CardText> : '' }
-          <Button color="secondary">See a list of all users</Button>
-        </Card>
-      </div>
-    )
+    return error
+      ? <ErrorCard error={error} />
+      : <NotFoundCard type="User" />
   }
 }
 
