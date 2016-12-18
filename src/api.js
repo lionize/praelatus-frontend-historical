@@ -1,7 +1,7 @@
 const users = [
   {
     id: 0,
-    username: 'User 1',
+    username: 'user1',
     email: 'user1@users.com',
     fullName: 'User 1',
     gravatar: 'user1@users.com',
@@ -10,7 +10,7 @@ const users = [
   },
   {
     id: 1,
-    username: 'User 2',
+    username: 'user2',
     email: 'user2@users.com',
     fullName: 'User 2',
     gravatar: 'user2@users.com',
