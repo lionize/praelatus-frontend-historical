@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
+import NotFoundCard from 'components/NotFoundCard'
+import ErrorCard from 'components/ErrorCard'
 
 const Project = ({ project, lead, error }) => {
   if (project) {
@@ -15,16 +17,11 @@ const Project = ({ project, lead, error }) => {
       </div>
     )
   } else {
-    return (
-      <div>
-        <Card block inverse color="danger">
-          <CardTitle>Project Not Found</CardTitle>
-          <CardText>No project with that id was found.</CardText>
-          { error ? <CardText>Error: {error}</CardText> : '' }
-          <Button color="secondary">See a list of all projects</Button>
-        </Card>
-      </div>
-    )
+    if (error) {
+      return <ErrorCard error={error} />
+    } else {
+      return <NotFoundCard type="Project" />
+    }
   }
 }
 
