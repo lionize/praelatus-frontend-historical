@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
+import { Link } from 'react-router'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 
 const Ticket = ({ ticket, reporter, assignee, loading, error }) => {
@@ -19,9 +20,16 @@ const Ticket = ({ ticket, reporter, assignee, loading, error }) => {
             <CardTitle>{ticket.key}</CardTitle>
             <CardText>Summary: {ticket.summary}</CardText>
             <CardText>Description: {ticket.description}</CardText>
-            <CardText>Reporter (from ticket): {ticket.reporter}</CardText>
-            {reporter && <CardText>Reporter: {reporter.userName}</CardText>}
-            {assignee && <CardText>Assignee: {assignee.userName}</CardText>}
+            {reporter && 
+              <CardText>
+                Reporter: <Link to={`/users/${reporter.id}`}>{reporter.username}</Link>
+              </CardText>
+            }
+            {assignee && 
+              <CardText>
+                Assignee: <Link to={`/users/${assignee.id}`}>{assignee.username}</Link>
+              </CardText>
+            }
           </CardBlock>
         </Card>
       </div>
