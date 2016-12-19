@@ -11,6 +11,7 @@ const Project = ({ project, lead, error }) => {
             <CardTitle>{project.name}</CardTitle>
             <CardText>key: {project.key}</CardText>
             <CardText>homepage: {project.homepage}</CardText>
+            {lead && <CardText>lead: {lead.fullName}</CardText>}
           </CardBlock>
         </Card>
       </div>
