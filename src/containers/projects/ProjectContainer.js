@@ -8,8 +8,14 @@ import { fetchUsersRequest } from 'actions/users'
 import { Project } from 'components/projects'
 
 class ProjectContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadProject(this.props.params.id)
+  }
+
+  componentDidUpdate({ params }) {
+    if (params.id !== this.props.params.id) {
+      this.props.loadProject(this.props.params.id)
+    }
   }
 
   componentWillReceiveProps({ project, lead }) {
