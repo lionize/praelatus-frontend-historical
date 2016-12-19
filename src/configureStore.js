@@ -10,7 +10,10 @@ const configureStore = () => {
   const middlewares = [sagaMiddleware]
 
   if (process.env.NODE_ENV !== 'production') {
-    middlewares.push(createLogger())
+    const logger = createLogger({
+        stateTransformer: state => state && state.toJS()
+    })
+    middlewares.push(logger)
   }
 
   return {
