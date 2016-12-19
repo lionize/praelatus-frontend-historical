@@ -98,7 +98,7 @@ const respondWith = info => Promise.resolve({
 })
 
 const fetchTickets = payload => {
-  if (payload.id) {
+  if (!!payload.id) {
     return respondWith([tickets[payload.id]])
   } else {
     respondWith(tickets)
@@ -114,7 +114,7 @@ const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
 const fetchProjects = payload => {
-  if (payload.id) {
+  if (!!payload.id) {
     return respondWith([projects[payload.id]])
   } else {
     return respondWith(projects)
@@ -130,7 +130,7 @@ const updateComment = payload => {}
 const deleteComment = payload => {}
 
 const fetchUsers = payload => {
-  if (payload.id) {
+  if (!!payload.id) {
     return respondWith([users[payload.id]])
   } else {
     return respondWith(users)
