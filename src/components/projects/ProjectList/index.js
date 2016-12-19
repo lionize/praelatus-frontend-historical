@@ -15,8 +15,8 @@ const ProjectList = ({ projects }) => (
         </tr>
       </thead>
       <tbody>
-        {projects.map(project =>
-          <tr key={project.id}>
+        {projects.map((project, i)=>
+          <tr key={i}>
             <td>
               <Link to={`/projects/${project.id}`}>{project.name}</Link>
             </td>
