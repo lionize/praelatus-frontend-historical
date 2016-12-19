@@ -27,8 +27,8 @@ const tickets = [
     key: 'TICKET-1',
     summary: 'First ticket',
     description: 'A ticket that is first',
-    reporter: users[0],
-    assignee: users[1],
+    reporter: users[0].id,
+    assignee: users[1].id,
   },
   {
     id: 1,
@@ -37,8 +37,8 @@ const tickets = [
     key: 'TICKET-2',
     summary: 'Second ticket',
     description: 'A ticket that is second',
-    reporter: users[1],
-    assignee: users[0],
+    reporter: users[1].id,
+    assignee: users[0].id,
   }
 ]
 
@@ -46,13 +46,13 @@ const teams = [
   {
     id: 0,
     name: 'Team 1',
-    lead: users[0],
+    lead: users[0].id,
     members: users,
   },
   {
     id: 0,
     name: 'Team 2',
-    lead: users[1],
+    lead: users[1].id,
     members: users,
   }
 ]
@@ -66,7 +66,7 @@ const projects = [
     homepage: '',
     iconURL: '',
     repo: '',
-    lead: users[0],
+    lead: users[0].id,
   },
   {
     id: 1,
@@ -76,7 +76,7 @@ const projects = [
     homepage: '',
     iconURL: '',
     repo: '',
-    lead: users[1],
+    lead: users[1].id,
   }
 ]
 
@@ -84,12 +84,12 @@ const comments = [
   {
     id: 0,
     body: 'This is first comment',
-    author: users[0],
+    author: users[0].id,
   },
   {
     id: 1,
     body: 'This is second comment',
-    author: users[1],
+    author: users[1].id,
   }
 ]
 
