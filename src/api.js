@@ -97,7 +97,13 @@ const respondWith = info => Promise.resolve({
   ...info
 })
 
-const fetchTickets = payload => respondWith(tickets)
+const fetchTickets = payload => {
+  if (payload.id) {
+    return respondWith([tickets[payload.id]])
+  } else {
+    respondWith(tickets)
+  }
+}
 const createTicket = payload => {}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
