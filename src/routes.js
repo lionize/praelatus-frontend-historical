@@ -4,6 +4,7 @@ import App from 'components/App'
 import Home from 'components/Home'
 import { UserContainer, UserListContainer } from 'containers/users'
 import { ProjectContainer, ProjectListContainer } from 'containers/projects'
+import { TicketContainer } from 'containers/tickets'
 
 const routes = (
   <Route path='/' component={App}>
@@ -15,6 +16,9 @@ const routes = (
     <Route path="projects">
       <IndexRoute component={ProjectListContainer} />
       <Route path=":id" component={ProjectContainer} />
+    </Route>
+    <Route path="tickets">
+      <Route path=":id" component={TicketContainer} />
     </Route>
   </Route>
 )
