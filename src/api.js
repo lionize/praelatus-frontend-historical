@@ -1,3 +1,6 @@
+import map from 'lodash/fp/map'
+import get from 'lodash/fp/get'
+
 const users = [
   {
     id: 0,
@@ -47,13 +50,13 @@ const teams = [
     id: 0,
     name: 'Team 1',
     lead: users[0].id,
-    members: users,
+    members: map(get('id'), users),
   },
   {
     id: 0,
     name: 'Team 2',
     lead: users[1].id,
-    members: users,
+    members: map(get('id'), users),
   }
 ]
 
