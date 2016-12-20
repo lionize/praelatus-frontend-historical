@@ -18,7 +18,10 @@ const Header = () => (
         <Link to="/projects" className="nav-link">Projects</Link>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Link</a>
+        <Link to="/tickets" className="nav-link">Tickets</Link>
+      </li>
+      <li className="nav-item">
+        <Link to="/users" className="nav-link">Users</Link>
       </li>
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
