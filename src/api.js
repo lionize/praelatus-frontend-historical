@@ -101,7 +101,7 @@ const fetchTickets = payload => {
   if (!!payload.id) {
     return respondWith([tickets[payload.id]])
   } else {
-    respondWith(tickets)
+    return respondWith(tickets)
   }
 }
 const createTicket = payload => {}
