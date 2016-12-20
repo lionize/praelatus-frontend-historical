@@ -12,8 +12,9 @@ import types from 'types/teams'
  *
  * @returns {object} - An object that contains the action's type.
  */
-export const fetchTeamsRequest = () => ({
+export const fetchTeamsRequest = payload => ({
   type: types.FETCH_TEAMS_REQUEST,
+  payload,
 })
 
 /**
