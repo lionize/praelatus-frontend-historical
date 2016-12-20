@@ -108,7 +108,13 @@ const createTicket = payload => {}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
 
-const fetchTeams = payload => respondWith(teams)
+const fetchTeams = payload => {
+  if (!!payload.id) {
+    return respondWith([tickets[payload.id]])
+  } else {
+    return respondWith(tickets)
+  }
+}
 const createTeam = payload => {}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
