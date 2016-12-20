@@ -5,6 +5,7 @@ import Home from 'components/Home'
 import { UserContainer, UserListContainer } from 'containers/users'
 import { ProjectContainer, ProjectListContainer } from 'containers/projects'
 import { TicketContainer, TicketListContainer } from 'containers/tickets'
+import { TeamContainer } from 'containers/teams'
 
 const routes = (
   <Route path='/' component={App}>
@@ -20,6 +21,9 @@ const routes = (
     <Route path="tickets">
       <IndexRoute component={TicketListContainer} />
       <Route path=":id" component={TicketContainer} />
+    </Route>
+    <Route path="teams">
+      <Route path=":id" component={TeamContainer} />
     </Route>
   </Route>
 )
