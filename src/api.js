@@ -98,7 +98,9 @@ const respondWith = info => Promise.resolve({
 })
 
 const fetchTickets = payload => {
+  console.log(payload.id)
   if (!!payload.id) {
+    console.log(tickets[payload.id])
     return respondWith([tickets[payload.id]])
   } else {
     return respondWith(tickets)
@@ -110,9 +112,9 @@ const deleteTicket = payload => {}
 
 const fetchTeams = payload => {
   if (!!payload.id) {
-    return respondWith([tickets[payload.id]])
+    return respondWith([teams[payload.id]])
   } else {
-    return respondWith(tickets)
+    return respondWith(teams)
   }
 }
 const createTeam = payload => {}
