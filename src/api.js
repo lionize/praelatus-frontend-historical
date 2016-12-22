@@ -50,7 +50,7 @@ const teams = [
     members: users,
   },
   {
-    id: 0,
+    id: 1,
     name: 'Team 2',
     lead: users[1],
     members: users,
