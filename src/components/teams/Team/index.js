@@ -2,8 +2,9 @@ import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { Link } from 'react-router'
 import { NotFoundCard, ErrorCard } from 'components/cards'
+import { UserLink } from 'components/misc'
 
-const Team = ({ team, lead, members, loading, error }) => {
+const Team = ({ team, loading, error }) => {
   if (loading) {
     return (
       <div>
@@ -18,10 +19,17 @@ const Team = ({ team, lead, members, loading, error }) => {
         <Card>
           <CardBlock>
             <CardTitle>{team.name}</CardTitle>
-            {lead &&
+            {team.lead &&
               <CardText>
-                Lead: <Link to={`/users/${lead.id}`}>{lead.username}</Link>
+                Lead: <UserLink id={team.lead.id}>{team.lead.username}</UserLink>
               </CardText>
+            }
+            {team.members && team.members.map((member, i) =>
+              <CardText key={i}>
+                Member: <UserLink id={member.id}>{member.username}</UserLink>
+              </CardText>
+            )
+
             }
           </CardBlock>
         </Card>
