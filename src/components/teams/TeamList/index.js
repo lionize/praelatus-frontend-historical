@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table } from 'reactstrap'
 import { Link } from 'react-router'
+import { TeamLink, UserLink } from 'components/misc'
 
 const TeamList = ({ teams }) => (
   <div>
@@ -16,18 +17,20 @@ const TeamList = ({ teams }) => (
         {teams.map((team, i) =>
           <tr key={i}>
             <td>
-              <Link to={`/teams/${team.id}`}>{team.name}</Link>
+              <TeamLink id={team.id}>{team.name}</TeamLink>
             </td>
             <td>
               {team.lead &&
-                team.lead.username
+                <UserLink id={team.lead.id}>{team.lead.username}</UserLink>
               }
             </td>
             <td>
               {team.members &&
                 <ul>
                   {team.members.map((member, i) =>
-                    <li key={i}>{member.username}</li>
+                    <li key={i}>
+                      <UserLink id={member.id}>{member.username}</UserLink>
+                    </li>
                   )}
                 </ul>
               }
