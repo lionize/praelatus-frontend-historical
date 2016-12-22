@@ -9,6 +9,7 @@ const TeamList = ({ teams }) => (
         <tr>
           <th>Name</th>
           <th>Lead</th>
+          <th>Members</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +18,20 @@ const TeamList = ({ teams }) => (
             <td>
               <Link to={`/teams/${team.id}`}>{team.name}</Link>
             </td>
-            <td></td>
+            <td>
+              {team.lead &&
+                team.lead.username
+              }
+            </td>
+            <td>
+              {team.members &&
+                <ul>
+                  {team.members.map((member, i) =>
+                    <li key={i}>{member.username}</li>
+                  )}
+                </ul>
+              }
+            </td>
           </tr>
         )}
       </tbody>
