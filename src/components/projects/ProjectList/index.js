@@ -9,6 +9,7 @@ const ProjectList = ({ projects }) => (
         <tr>
           <th>Name</th>
           <th>Key</th>
+          <th>Lead</th>
           <th>Created Date</th>
           <th>Homepage</th>
           <th>Repo</th>
@@ -23,6 +24,7 @@ const ProjectList = ({ projects }) => (
             <td>
               <Link to={`/projects/${project.id}`}>{project.key}</Link>
             </td>
+            <td>{project.lead.username}</td>
             <td>{project.createdDate}</td>
             <td>{project.homepage}</td>
             <td>{project.repo}</td>
