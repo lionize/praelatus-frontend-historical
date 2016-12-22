@@ -22,7 +22,7 @@ class TeamContainer extends Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-  const team = teamSelector(state, params.id)
+  let team = teamSelector(state, params.id)
 
   return {
     team,
