@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table } from 'reactstrap'
 import { Link } from 'react-router'
+import { TicketLink, UserLink } from 'components/misc'
 
 const TicketList = ({ tickets }) => (
   <div>
@@ -20,12 +21,20 @@ const TicketList = ({ tickets }) => (
           <tr key={i}>
             <td>{ticket.id}</td>
             <td>
-              <Link to={`/tickets/${ticket.id}`}>{ticket.key}</Link>
+              <TicketLink id={ticket.id}>{ticket.key}</TicketLink>
             </td>
             <td>{ticket.summary}</td>
             <td>{ticket.description}</td>
-            <td>{ticket.reporter}</td>
-            <td>{ticket.assignee}</td>
+            <td>
+              {ticket.reporter &&
+                <UserLink id={ticket.reporter.id}>{ticket.reporter.username}</UserLink>
+              }
+            </td>
+            <td>
+              {ticket.assignee &&
+                <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
+              }
+            </td>
           </tr>
         )}
       </tbody>
