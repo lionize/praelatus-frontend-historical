@@ -1,3 +1,5 @@
+import { userSelector, usersSelector } from 'selectors/users'
+
 /** @module teams/selectors */
 
 /**
@@ -33,7 +35,18 @@ export const teamsSelector = (state, ids) => {
  * @returns {Map} - The selected team.
  */
 export const teamSelector = (state, id) => {
-  return state.getIn(['data', 'teams', 'byId']).get(String(id))
+  let team = state.getIn(['data', 'teams', 'byId']).get(String(id))
+
+  if (team && team.lead != null) {
+    team = team.set('lead', userSelector(state, team.lead))
+  }
+
+  if (team && team.members != null) {
+    team = team.set('members', usersSelector(state, team.members))
+    console.log(team.members)
+  }
+
+  return team
 }
 
 /**

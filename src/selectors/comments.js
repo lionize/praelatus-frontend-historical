@@ -1,3 +1,5 @@
+import { userSelector } from 'selectors/users'
+
 /** @module comments/selectors */
 
 /**
@@ -32,7 +34,13 @@ export const commentsSelector = (state, ids) => {
  * @returns {Map} - The selected comment.
  */
 export const commentSelector = (state, id) => {
-  return state.getIn(['data', 'comments', 'byId']).get(String(id))
+  let comment = state.getIn(['data', 'comments', 'byId']).get(String(id))
+
+  if (comment && comment.author != null) {
+    comment = comment.set('author', userSelector(state, comment.author))
+  }
+
+  return comment
 }
 
 /**

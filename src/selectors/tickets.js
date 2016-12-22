@@ -1,3 +1,5 @@
+import { userSelector } from 'selectors/users'
+
 /** @module tickets/selectors */
 
 /**
@@ -32,7 +34,17 @@ export const ticketsSelector = (state, ids) => {
  * @return {Map} - The selected ticket.
  */
 export const ticketSelector = (state, id) => {
-  return state.getIn(['data', 'tickets', 'byId']).get(String(id))
+  let ticket = state.getIn(['data', 'tickets', 'byId']).get(String(id))
+
+  if (ticket && ticket.reporter != null) {
+    ticket = ticket.set('reporter', userSelector(state, ticket.reporter))
+  }
+
+  if (ticket && ticket.assignee != null) {
+    ticket = ticket.set('assignee', userSelector(state, ticket.assignee))
+  }
+
+  return ticket
 }
 
 /**

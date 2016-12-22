@@ -1,3 +1,5 @@
+import { userSelector } from 'selectors/users'
+
 /** @module projects/selectors */
 
 /**
@@ -26,13 +28,23 @@ export const projectsSelector = (state, ids) => {
  * The selector gets all of the projects by id from projects.byId and then gets
  * the project by the passed id from that List.
  *
+ * If the project has a lead id field, the selector finds
+ * the specific user and replaces the field with that
+ * user.
+ *
  * @function
  * @param {Map} state - The global state.
  * @param {number|string} id - The id of the project being selected.
  * @returns {Map} - The selected project.
  */
 export const projectSelector = (state, id) => {
-  return state.getIn(['data', 'projects', 'byId']).get(String(id))
+  let project = state.getIn(['data', 'projects', 'byId']).get(String(id))
+
+  if (project && project.lead != null) {
+    project = project.set('lead', userSelector(state, project.lead))
+  }
+
+  return project
 }
 
 /**
