@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { Link } from 'react-router'
 import { NotFoundCard, ErrorCard } from 'components/cards'
-import { UserLink } from 'components/misc'
+import { UserLink } from 'components/links'
 
 const Team = ({ team, loading, error }) => {
   if (loading) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'reactstrap'
 import { Link } from 'react-router'
-import { TicketLink, UserLink } from 'components/misc'
+import { TicketLink, UserLink } from 'components/links'
 
 const TicketList = ({ tickets }) => (
   <div>

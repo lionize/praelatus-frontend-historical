@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table } from 'reactstrap'
-import { Gravatar, UserLink } from 'components/misc'
+import { Gravatar } from 'components/misc'
+import { UserLink } from 'components/links'
 import './userList.css'
 
 const UserList = ({ users }) => {
