@@ -1,9 +1,10 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { Link } from 'react-router'
+import { UserLink } from 'components/misc'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 
-const Ticket = ({ ticket, reporter, assignee, loading, error }) => {
+const Ticket = ({ ticket, loading, error }) => {
   if (loading) {
     return (
       <div>
@@ -20,14 +21,14 @@ const Ticket = ({ ticket, reporter, assignee, loading, error }) => {
             <CardTitle>{ticket.key}</CardTitle>
             <CardText>Summary: {ticket.summary}</CardText>
             <CardText>Description: {ticket.description}</CardText>
-            {reporter && 
+            {ticket.reporter && 
               <CardText>
-                Reporter: <Link to={`/users/${reporter.id}`}>{reporter.username}</Link>
+                Reporter: <UserLink id={ticket.reporter.id}>{ticket.reporter.username}</UserLink>
               </CardText>
             }
-            {assignee && 
+            {ticket.assignee && 
               <CardText>
-                Assignee: <Link to={`/users/${assignee.id}`}>{assignee.username}</Link>
+                Assignee: <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
               </CardText>
             }
           </CardBlock>
