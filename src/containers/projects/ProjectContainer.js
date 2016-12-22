@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { projectSelector } from 'selectors/projects'
 import { userSelector } from 'selectors/users'
 import { fetchProjectsRequest } from 'actions/projects'
-import { fetchUsersRequest } from 'actions/users'
 import { Project } from 'components/projects'
 
 class ProjectContainer extends Component {
@@ -15,12 +14,6 @@ class ProjectContainer extends Component {
   componentDidUpdate({ params }) {
     if (params.id !== this.props.params.id) {
       this.props.loadProject(this.props.params.id)
-    }
-  }
-
-  componentWillReceiveProps({ project, lead }) {
-    if (project && lead == null) {
-      this.props.loadUser(project.lead)
     }
   }
 
@@ -43,9 +36,6 @@ const mapDispatchToProps = dispatch => ({
   loadProject(id) {
     dispatch(fetchProjectsRequest({id: id}))
   },
-  loadUser(id) {
-    dispatch(fetchUsersRequest({id: id}))
-  }
 })
 
 ProjectContainer = withRouter(connect(

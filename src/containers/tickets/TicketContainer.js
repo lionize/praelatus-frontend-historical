@@ -18,16 +18,6 @@ class TicketContainer extends Component {
     }
   }
 
-  componentWillReceiveProps({ ticket, reporter, assignee }) {
-    if (ticket && reporter == null) {
-      this.props.loadUser(ticket.reporter)
-    }
-
-    if (ticket && assignee == null) {
-      this.props.loadUser(ticket.assignee)
-    }
-  }
-
   render() {
     return <Ticket {...this.props} />
   }
@@ -49,10 +39,6 @@ const mapDispatchToProps = dispatch => ({
   loadTicket(id) {
     dispatch(fetchTicketsRequest({id: id}))
   },
-
-  loadUser(id) {
-    dispatch(fetchUsersRequest({id: id}))
-  }
 })
 
 TicketContainer = withRouter(connect(

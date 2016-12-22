@@ -1,6 +1,3 @@
-import map from 'lodash/fp/map'
-import get from 'lodash/fp/get'
-
 const users = [
   {
     id: 0,
@@ -30,8 +27,8 @@ const tickets = [
     key: 'TICKET-1',
     summary: 'First ticket',
     description: 'A ticket that is first',
-    reporter: users[0].id,
-    assignee: users[1].id,
+    reporter: users[0],
+    assignee: users[1],
   },
   {
     id: 1,
@@ -40,8 +37,8 @@ const tickets = [
     key: 'TICKET-2',
     summary: 'Second ticket',
     description: 'A ticket that is second',
-    reporter: users[1].id,
-    assignee: users[0].id,
+    reporter: users[1],
+    assignee: users[0],
   }
 ]
 
@@ -49,14 +46,14 @@ const teams = [
   {
     id: 0,
     name: 'Team 1',
-    lead: users[0].id,
-    members: map(get('id'), users),
+    lead: users[0],
+    members: users,
   },
   {
     id: 0,
     name: 'Team 2',
-    lead: users[1].id,
-    members: map(get('id'), users),
+    lead: users[1],
+    members: users,
   }
 ]
 
@@ -69,7 +66,7 @@ const projects = [
     homepage: '',
     iconURL: '',
     repo: '',
-    lead: users[0].id,
+    lead: users[0],
   },
   {
     id: 1,
@@ -79,7 +76,7 @@ const projects = [
     homepage: '',
     iconURL: '',
     repo: '',
-    lead: users[1].id,
+    lead: users[1],
   }
 ]
 
@@ -87,12 +84,12 @@ const comments = [
   {
     id: 0,
     body: 'This is first comment',
-    author: users[0].id,
+    author: users[0],
   },
   {
     id: 1,
     body: 'This is second comment',
-    author: users[1].id,
+    author: users[1],
   }
 ]
 
@@ -101,7 +98,6 @@ const respondWith = info => Promise.resolve({
 })
 
 const fetchTickets = payload => {
-  console.log(payload.id)
   if (!!payload.id) {
     console.log(tickets[payload.id])
     return respondWith([tickets[payload.id]])
