@@ -12,27 +12,50 @@ describe('tickets module selectors', () => {
   const baseState = fromJS({
     data: {
       tickets: {
-        ids: [1],
+        ids: [1, 2],
         byId: {
           1: {
             id: 1,
             summary: "This is a summary!",
             description: "This is a description!"
+          },
+          2: {
+            id: 2,
+            summary: 'This is a summary!',
+            description: 'This is a description',
           }
         }
       }
     }
   })
+
   it('ticketsSelector returns all tickets', () => {
     const expected = fromJS([
       {
         id: 1,
         summary: "This is a summary!",
         description: "This is a description!"
+      },
+      {
+        id: 2,
+        summary: "This is a summary!",
+        description: "This is a description"
       }
     ])
 
     expect(ticketsSelector(baseState)).to.eq(expected)
+  })
+
+  it('ticketsSelector returns specific tickets', () => {
+    const expected = fromJS([
+      {
+        id: 1,
+        summary: 'This is a summary!',
+        description: 'This is a description!'
+      }
+    ])
+
+    expect(ticketsSelector(baseState, fromJS([1]))).to.eq(expected)
   })
 
   it('ticketSelector returns a ticket', () => {

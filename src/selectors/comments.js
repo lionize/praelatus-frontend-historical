@@ -10,8 +10,13 @@
  * @param {Map} state - The global state.
  * @returns {List} - A List of selected comments.
  */
-export const commentsSelector = (state) => {
-  const commentIds = state.getIn(['data', 'comments', 'ids'])
+export const commentsSelector = (state, ids) => {
+  let commentIds = state.getIn(['data', 'comments', 'ids'])
+
+  if (ids) {
+    commentIds = commentIds.filter(id => ids.includes(id))
+  }
+
   return commentIds.map(id => commentSelector(state, id))
 }
 

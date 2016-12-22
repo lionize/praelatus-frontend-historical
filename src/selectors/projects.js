@@ -10,8 +10,13 @@
  * @param {Map} state - The global state.
  * @returns {List} - A List of selected projects.
  */
-export const projectsSelector = (state) => {
-  const projectIds = state.getIn(['data', 'projects', 'ids'])
+export const projectsSelector = (state, ids) => {
+  let projectIds = state.getIn(['data', 'projects', 'ids'])
+
+  if (ids) {
+    projectIds = projectIds.filter(id => ids.includes(id))
+  }
+
   return projectIds.map(id => projectSelector(state, id))
 }
 

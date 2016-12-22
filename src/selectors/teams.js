@@ -8,10 +8,16 @@
  *
  * @function
  * @param {Map} state - The global state.
+ * @param {List} ids - A list of ids to filter by.
  * @returns {List} - A List of selected teams.
  */
-export const teamsSelector = (state) => {
-  const teamIds = state.getIn(['data', 'teams', 'ids'])
+export const teamsSelector = (state, ids) => {
+  let teamIds = state.getIn(['data', 'teams', 'ids'])
+
+  if (ids) {
+    teamIds = teamIds.filter(id => ids.includes(id))
+  }
+
   return teamIds.map(id => teamSelector(state, id))
 }
 

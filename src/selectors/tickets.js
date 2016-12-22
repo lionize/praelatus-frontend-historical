@@ -10,8 +10,13 @@
  * @param {Map} state - The global state.
  * @return {List} - A List of selected tickets.
  */
-export const ticketsSelector = (state) => {
-  const ticketIds = state.getIn(['data', 'tickets', 'ids'])
+export const ticketsSelector = (state, ids) => {
+  let ticketIds = state.getIn(['data', 'tickets', 'ids'])
+
+  if (ids) {
+    ticketIds = ticketIds.filter(id => ids.includes(id))
+  }
+
   return ticketIds.map(id => ticketSelector(state, id))
 }
 
