@@ -17,8 +17,6 @@ const Project = ({ project, lead, error }) => {
             }
           </CardBlock>
         </Card>
-
-        <Link to={`/projects/${project.id + 1}`}>Next</Link>
       </div>
     )
   } else {
