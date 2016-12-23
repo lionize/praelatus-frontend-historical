@@ -11,27 +11,50 @@ describe('users selectors', () => {
   const baseState = fromJS({
     data: {
       users: {
-        ids: [1],
+        ids: [1, 2],
         byId: {
           1: {
             id: 1,
             summary: "This is a summary!",
             description: "This is a description!"
+          },
+          2: {
+            id: 2,
+            summary: 'This is a summary!',
+            description: 'This is a description!',
           }
         }
       }
     }
   })
+
   it('usersSelector returns all users', () => {
     const expected = fromJS([
       {
         id: 1,
         summary: "This is a summary!",
         description: "This is a description!"
+      },
+      {
+        id: 2,
+        summary: "This is a summary!",
+        description: "This is a description!"
       }
     ])
 
     expect(usersSelector(baseState)).to.eq(expected)
+  })
+
+  it('usersSelector returns specific users', () => {
+    const expected = fromJS([
+      {
+        id: 1,
+        summary: 'This is a summary!',
+        description: 'This is a description!',
+      }
+    ])
+
+    expect(usersSelector(baseState, fromJS([1]))).to.eq(expected)
   })
 
   it('userSelector returns a user', () => {

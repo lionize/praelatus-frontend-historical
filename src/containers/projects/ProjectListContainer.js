@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { projectsSelector } from 'selectors/projects'
 import { fetchProjectsRequest } from 'actions/projects'
-import ProjectList from 'components/ProjectList'
+import { ProjectList } from 'components/projects'
 
 class ProjectListContainer extends Component {
   componentWillMount() {

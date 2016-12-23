@@ -11,27 +11,50 @@ describe('teams selectors', () => {
   const baseState = fromJS({
     data: {
       teams: {
-        ids: [1],
+        ids: [1, 2],
         byId: {
           1: {
             id: 1,
             summary: "This is a summary!",
             description: "This is a description!"
+          },
+          2: {
+            id: 2,
+            summary: 'This is a summary also!',
+            description: 'This is a description also!'
           }
         }
       }
     }
   })
+
   it('teamsSelector returns all teams', () => {
     const expected = fromJS([
       {
         id: 1,
         summary: "This is a summary!",
         description: "This is a description!"
+      },
+      {
+        id: 2,
+        summary: 'This is a summary also!',
+        description: 'This is a description also!'
       }
     ])
 
     expect(teamsSelector(baseState)).to.eq(expected)
+  })
+
+  it('teamsSelector returns specific teams', () => {
+    const expected = fromJS([
+      {
+        id: 1,
+        summary: 'This is a summary!',
+        description: 'This is a description!',
+      }
+    ])
+
+    expect(teamsSelector(baseState, fromJS([1]))).to.eq(expected)
   })
 
   it('teamSelector returns a team', () => {

@@ -10,8 +10,13 @@
  * @param {Map} state - The global state.
  * @returns {List} - A List of selected users.
  */
-export const usersSelector = (state) => {
-  const userIds = state.getIn(['data', 'users', 'ids'])
+export const usersSelector = (state, ids) => {
+  let userIds = state.getIn(['data', 'users', 'ids'])
+
+  if (ids) {
+    userIds = userIds.filter(id => ids.includes(id))
+  }
+
   return userIds.map(id => userSelector(state, id))
 }
 

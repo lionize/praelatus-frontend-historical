@@ -1,3 +1,5 @@
+import { userSelector } from 'selectors/users'
+
 /** @module comments/selectors */
 
 /**
@@ -10,8 +12,13 @@
  * @param {Map} state - The global state.
  * @returns {List} - A List of selected comments.
  */
-export const commentsSelector = (state) => {
-  const commentIds = state.getIn(['data', 'comments', 'ids'])
+export const commentsSelector = (state, ids) => {
+  let commentIds = state.getIn(['data', 'comments', 'ids'])
+
+  if (ids) {
+    commentIds = commentIds.filter(id => ids.includes(id))
+  }
+
   return commentIds.map(id => commentSelector(state, id))
 }
 
@@ -27,7 +34,13 @@ export const commentsSelector = (state) => {
  * @returns {Map} - The selected comment.
  */
 export const commentSelector = (state, id) => {
-  return state.getIn(['data', 'comments', 'byId']).get(String(id))
+  let comment = state.getIn(['data', 'comments', 'byId']).get(String(id))
+
+  if (comment && comment.author != null) {
+    comment = comment.set('author', userSelector(state, comment.author))
+  }
+
+  return comment
 }
 
 /**

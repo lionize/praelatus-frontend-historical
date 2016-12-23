@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table } from 'reactstrap'
 import { Link } from 'react-router'
+import { ProjectLink, UserLink } from 'components/links'
 
 const ProjectList = ({ projects }) => ( 
   <div>
@@ -9,19 +10,25 @@ const ProjectList = ({ projects }) => (
         <tr>
           <th>Name</th>
           <th>Key</th>
+          <th>Lead</th>
           <th>Created Date</th>
           <th>Homepage</th>
           <th>Repo</th>
         </tr>
       </thead>
       <tbody>
-        {projects.map(project =>
-          <tr key={project.id}>
+        {projects.map((project, i)=>
+          <tr key={i}>
             <td>
-              <Link to={`/projects/${project.id}`}>{project.name}</Link>
+              <ProjectLink id={project.id}>{project.name}</ProjectLink>
             </td>
             <td>
-              <Link to={`/projects/${project.id}`}>{project.key}</Link>
+              <ProjectLink id={project.id}>{project.key}</ProjectLink>
+            </td>
+            <td>
+              {project.lead &&
+                <UserLink id={project.lead.id}>{project.lead.username}</UserLink>
+              }
             </td>
             <td>{project.createdDate}</td>
             <td>{project.homepage}</td>
