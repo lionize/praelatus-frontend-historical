@@ -17,6 +17,8 @@ module.exports = {
       : path.resolve(__dirname, 'build', 'debug', 'static')
   },
 
+  devtool: 'source-map',
+
   devServer: {
     historyApiFallback: {
       index: 'index.html'
