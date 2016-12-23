@@ -1,3 +1,5 @@
+import { userSelector, usersSelector } from 'selectors/users'
+
 /** @module teams/selectors */
 
 /**
@@ -8,10 +10,16 @@
  *
  * @function
  * @param {Map} state - The global state.
+ * @param {List} ids - A list of ids to filter by.
  * @returns {List} - A List of selected teams.
  */
-export const teamsSelector = (state) => {
-  const teamIds = state.getIn(['data', 'teams', 'ids'])
+export const teamsSelector = (state, ids) => {
+  let teamIds = state.getIn(['data', 'teams', 'ids'])
+
+  if (ids) {
+    teamIds = teamIds.filter(id => ids.includes(id))
+  }
+
   return teamIds.map(id => teamSelector(state, id))
 }
 
@@ -27,7 +35,18 @@ export const teamsSelector = (state) => {
  * @returns {Map} - The selected team.
  */
 export const teamSelector = (state, id) => {
-  return state.getIn(['data', 'teams', 'byId']).get(String(id))
+  let team = state.getIn(['data', 'teams', 'byId']).get(String(id))
+
+  if (team && team.lead != null) {
+    team = team.set('lead', userSelector(state, team.lead))
+  }
+
+  if (team && team.members != null) {
+    team = team.set('members', usersSelector(state, team.members))
+    console.log(team.members)
+  }
+
+  return team
 }
 
 /**

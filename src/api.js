@@ -50,7 +50,7 @@ const teams = [
     members: users,
   },
   {
-    id: 0,
+    id: 1,
     name: 'Team 2',
     lead: users[1],
     members: users,
@@ -97,18 +97,31 @@ const respondWith = info => Promise.resolve({
   ...info
 })
 
-const fetchTickets = payload => respondWith(tickets)
+const fetchTickets = payload => {
+  if (!!payload.id) {
+    console.log(tickets[payload.id])
+    return respondWith([tickets[payload.id]])
+  } else {
+    return respondWith(tickets)
+  }
+}
 const createTicket = payload => {}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
 
-const fetchTeams = payload => respondWith(teams)
+const fetchTeams = payload => {
+  if (!!payload.id) {
+    return respondWith([teams[payload.id]])
+  } else {
+    return respondWith(teams)
+  }
+}
 const createTeam = payload => {}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
 const fetchProjects = payload => {
-  if (payload.id) {
+  if (!!payload.id) {
     return respondWith([projects[payload.id]])
   } else {
     return respondWith(projects)
@@ -124,7 +137,7 @@ const updateComment = payload => {}
 const deleteComment = payload => {}
 
 const fetchUsers = payload => {
-  if (payload.id) {
+  if (!!payload.id) {
     return respondWith([users[payload.id]])
   } else {
     return respondWith(users)

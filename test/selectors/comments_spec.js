@@ -11,17 +11,37 @@ describe('comments selectors', () => {
   const baseState = fromJS({
     data: {
       comments: {
-        ids: [1],
+        ids: [1, 2],
         byId: {
           1: {
             id: 1,
             body: 'This is a comment'
+          },
+          2: {
+            id: 2,
+            body: 'This is also a comment'
           }
         }
       }
     }
   })
+
   it('commentsSelector returns all comments', () => {
+    const expected = fromJS([
+      {
+        id: 1,
+        body: 'This is a comment'
+      },
+      {
+        id: 2,
+        body: 'This is also a comment'
+      }
+    ])
+
+    expect(commentsSelector(baseState)).to.eq(expected)
+  })
+
+  it('commentsSelector returns specific comments', () => {
     const expected = fromJS([
       {
         id: 1,
@@ -29,7 +49,7 @@ describe('comments selectors', () => {
       }
     ])
 
-    expect(commentsSelector(baseState)).to.eq(expected)
+    expect(commentsSelector(baseState, fromJS([1]))).to.eq(expected)
   })
 
   it('commentSelector returns a comment', () => {

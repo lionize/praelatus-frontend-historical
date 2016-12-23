@@ -12,8 +12,9 @@ import types from 'types/tickets'
  *
  * @returns {object} - An object that contains the action's type.
  */
-export const fetchTicketsRequest = () => ({
+export const fetchTicketsRequest = payload => ({
   type: types.FETCH_TICKETS_REQUEST,
+  payload,
 })
 
 /**

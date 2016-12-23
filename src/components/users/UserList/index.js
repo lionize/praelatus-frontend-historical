@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table } from 'reactstrap'
-import Gravatar from 'components/Gravatar'
+import { Gravatar } from 'components/misc'
+import { UserLink } from 'components/links'
 import './userList.css'
 
 const UserList = ({ users }) => {
@@ -15,15 +16,17 @@ const UserList = ({ users }) => {
           </tr>
         </thead>
         <tbody>
-          {users.map(user =>
-            <tr key={user.id}>
+          {users.map((user, i) =>
+            <tr key={i}>
               <td>
                 <Gravatar
                   email={user.email}
                   size={30}
                 />
               </td>
-              <td>{user.username}</td>
+              <td>
+                <UserLink id={user.id}>{user.username}</UserLink>
+              </td>
               <td>{user.fullName}</td>
             </tr>
           )}
