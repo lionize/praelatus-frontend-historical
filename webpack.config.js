@@ -17,7 +17,7 @@ module.exports = {
       : path.resolve(__dirname, 'build', 'debug', 'static')
   },
 
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
 
   devServer: {
     historyApiFallback: {
