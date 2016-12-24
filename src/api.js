@@ -104,7 +104,6 @@ const nextID = compose(add(1), max, map('id'))
 
 const fetchTickets = payload => {
   if (!!payload.id) {
-    console.log(tickets[payload.id])
     return respondWith([tickets[payload.id]])
   } else {
     return respondWith(tickets)
