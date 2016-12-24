@@ -22,6 +22,7 @@ module.exports = {
     semi: 0,
     'jsx-quotes': 0,
     'no-undef': 0,
+    'arrow-body-style': 0,
 
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
