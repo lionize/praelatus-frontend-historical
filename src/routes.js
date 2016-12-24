@@ -2,7 +2,12 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
 import Home from 'components/Home'
-import { UserContainer, UserListContainer, ProjectContainer, ProjectNewContainer, ProjectListContainer, TicketContainer, TicketListContainer, TeamContainer, TeamListContainer } from 'containers'
+import {
+  UserContainer, UserListContainer,
+  ProjectContainer, ProjectNewContainer, ProjectListContainer,
+  TicketContainer, TicketListContainer,
+  TeamContainer, TeamNewContainer, TeamListContainer,
+} from 'containers'
 
 const routes = (
   <Route path='/' component={App}>
@@ -22,6 +27,7 @@ const routes = (
     </Route>
     <Route path="teams">
       <IndexRoute component={TeamListContainer} />
+      <Route path="new" component={TeamNewContainer} />
       <Route path=":id" component={TeamContainer} />
     </Route>
   </Route>
