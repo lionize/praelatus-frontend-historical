@@ -109,7 +109,24 @@ const fetchTickets = payload => {
     return respondWith(tickets)
   }
 }
-const createTicket = payload => {}
+const createTicket = payload => {
+  const id = nextID(tickets)
+
+  const ticket = fromJS({
+    id,
+    createdDate: '',
+    updatedDate: '',
+    key: '',
+    summary: '',
+    description: '',
+    reporter: null,
+    assignee: null,
+  }).merge(payload)
+
+  tickets.push(ticket.toJS())
+
+  return ticket
+}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
 
