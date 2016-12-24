@@ -1,3 +1,6 @@
+import { flowRight as compose, add, max, map, find } from 'lodash/fp'
+import { fromJS } from 'immutable'
+
 const users = [
   {
     id: 0,
@@ -127,7 +130,24 @@ const fetchProjects = payload => {
     return respondWith(projects)
   }
 }
-const createProject = payload => {}
+const createProject = payload => {
+  const id = compose(add(1), max, map('id'))(projects)
+
+  const project = fromJS({
+    id,
+    createdDate: '',
+    name: '',
+    key: '',
+    homepage: '',
+    iconURL: '',
+    repo: '',
+    lead: null,
+  }).merge(payload)
+
+  projects.push(project.toJS())
+
+  return project
+}
 const updateProject = payload => {}
 const deleteProject = payload => {}
 
