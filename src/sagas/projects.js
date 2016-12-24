@@ -2,6 +2,7 @@
 
 import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import types from 'types/projects'
 import * as actions from 'actions/projects'
 import * as dataActions from 'actions/data'
@@ -47,6 +48,7 @@ export function* createProject(action = {}) {
     const payload = action.payload || {}
     const response = yield call(api.createProject, payload)
     yield put(actions.createProjectSuccess(response))
+    yield put(push(`/projects/${response.get('id')}`))
   } catch (e) {
     yield put(actions.createProjectFailure(e))
   }
