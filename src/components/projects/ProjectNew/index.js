@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
+import { renderField } from 'utils'
 import { Button } from 'reactstrap'
-import { Form, FormGroup, Label, Input, FormText } from 'components/forms'
+import { Form } from 'components/forms'
 
 const validate = values => {
   const errors = {}
@@ -20,25 +21,6 @@ const validate = values => {
 const warn = values => {
   const warnings = {}
   return warnings
-}
-
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => { 
-  let state
-
-  if (warning) {
-    state = 'warning'
-  }
-  if (error) {
-    state = 'danger'
-  }
-
-  return (
-    <FormGroup color={touched ? state : null}>
-      <Label>{label}</Label>
-      <Input {...input} type={type} state={state} />
-      {touched && (error || warning) && <FormText>{error || warning}</FormText>}
-    </FormGroup>
-  )
 }
 
 const ProjectNew = ({ handleSubmit }) => (
