@@ -2,6 +2,7 @@
 
 import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import * as actions from 'actions/tickets'
 import * as dataActions from 'actions/data'
 import types from 'types/tickets'
@@ -47,6 +48,7 @@ export function* createTicket(action = {}) {
     const payload = action.payload || {}
     const response = yield call(api.createTicket, payload)
     yield put(actions.createTicketSuccess(response))
+    yield put(push(`/tickets/${response.get('id')}`))
   } catch (e) {
     yield put(actions.createTicketFailure(e))
   }
