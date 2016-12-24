@@ -2,6 +2,7 @@
 
 import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import * as actions from 'actions/teams'
 import * as dataActions from 'actions/data'
 import types from 'types/teams'
@@ -47,6 +48,7 @@ export function* createTeam(action = {}) {
     const payload = action.payload || {}
     const response = yield call(api.createTeam, payload)
     yield put(actions.createTeamSuccess(response))
+    yield put(push(`/teams/${response.get('id')}`))
   } catch (e) {
     yield put(actions.createTeamFailure(e))
   }
