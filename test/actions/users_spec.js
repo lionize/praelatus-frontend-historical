@@ -8,9 +8,10 @@ describe('users module actions', () => {
     it('should return the correct type', () => {
       const expectedResult = {
         type: types.FETCH_USERS_REQUEST,
+        payload: {},
       }
 
-      expect(actions.fetchUsersRequest()).to.deep.eq(expectedResult)
+      expect(actions.fetchUsersRequest({})).to.deep.eq(expectedResult)
     })
   })
 

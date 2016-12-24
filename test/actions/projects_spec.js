@@ -18,9 +18,10 @@ describe('projects module actions', () => {
     it('should return the correct type', () => {
       const expectedResult = {
         type: types.FETCH_PROJECTS_REQUEST,
+        payload: {},
       }
 
-      expect(actions.fetchProjectsRequest()).to.deep.eq(expectedResult)
+      expect(actions.fetchProjectsRequest({})).to.deep.eq(expectedResult)
     })
   })
 
