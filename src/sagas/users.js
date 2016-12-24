@@ -2,6 +2,7 @@
 
 import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import types from 'types/users'
 import * as actions from 'actions/users'
 import * as dataActions from 'actions/data'
@@ -47,6 +48,7 @@ export function* createUser(action = {}) {
     const payload = action.payload || {}
     const response = yield call(api.createUser, payload)
     yield put(actions.createUserSuccess(response))
+    yield put(push(`/users/${response.get('id')}`))
   } catch (e) {
     yield put(actions.createUserFailure(e))
   }
