@@ -100,6 +100,8 @@ const respondWith = info => Promise.resolve({
   ...info
 })
 
+const nextID = compose(add(1), max, map('id'))
+
 const fetchTickets = payload => {
   if (!!payload.id) {
     console.log(tickets[payload.id])
@@ -119,7 +121,20 @@ const fetchTeams = payload => {
     return respondWith(teams)
   }
 }
-const createTeam = payload => {}
+const createTeam = payload => {
+  const id = nextID(teams)
+
+  const team = fromJS({
+    id,
+    name: '',
+    lead: null,
+    members: null,
+  }).merge(payload)
+
+  teams.push(team.toJS())
+
+  return team
+}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
@@ -131,7 +146,7 @@ const fetchProjects = payload => {
   }
 }
 const createProject = payload => {
-  const id = compose(add(1), max, map('id'))(projects)
+  const id = nextID(projects)
 
   const project = fromJS({
     id,
