@@ -24,6 +24,7 @@ module.exports = {
     'no-undef': 0,
     'arrow-body-style': 0,
     'new-cap': 0,
+    'no-class-assign': 0,
 
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
