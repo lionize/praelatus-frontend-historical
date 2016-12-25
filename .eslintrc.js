@@ -1,13 +1,26 @@
 var path = require('path')
 
 module.exports = {
+  env: {
+    es6: true
+  },
+
+  parser: 'babel-eslint',
+
+  extends: 'airbnb',
+
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
+      experimentalObjectRestSpread: true
     }
   },
+
+  plugins: [
+    'react'
+  ],
 
   settings: {
     'import/parser': 'babel-eslint',
@@ -17,7 +30,7 @@ module.exports = {
       }
     }
   },
-  
+
   rules: {
     semi: 0,
     'jsx-quotes': 0,
