@@ -26,6 +26,7 @@ module.exports = {
     'new-cap': 0,
     'no-class-assign': 0,
     'no-underscore-dangle': 0,
+    'radix': 0,
 
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
