@@ -1,13 +1,26 @@
 var path = require('path')
 
 module.exports = {
+  env: {
+    es6: true
+  },
+
+  parser: 'babel-eslint',
+
+  extends: 'airbnb',
+
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
+      experimentalObjectRestSpread: true
     }
   },
+
+  plugins: [
+    'react'
+  ],
 
   settings: {
     'import/parser': 'babel-eslint',
@@ -17,11 +30,17 @@ module.exports = {
       }
     }
   },
-  
+
   rules: {
     semi: 0,
     'jsx-quotes': 0,
     'no-undef': 0,
+    'arrow-body-style': 0,
+    'new-cap': 0,
+    'no-class-assign': 0,
+    'no-underscore-dangle': 0,
+    'radix': 0,
+    'comma-dangle': ['error', 'only-multiline'],
 
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
@@ -31,5 +50,8 @@ module.exports = {
 
     'react/jsx-filename-extension': 0,
     'react/forbid-prop-types': 0,
+    'react/prop-types': 0,
+
+    'jsx-a11y/href-no-hash': 0,
   }
 }

@@ -2,7 +2,7 @@
 
 /**
  * Constants that represent the types of actions that are dispatched by user
- * actions. 
+ * actions.
  */
 export default {
   FETCH_USERS_FAILURE: 'USERS/FETCH_FAILURE',

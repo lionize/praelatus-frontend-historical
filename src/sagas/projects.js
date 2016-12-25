@@ -1,6 +1,6 @@
 /** @module projects/sagas */
 
-import { takeEvery, takeLatest } from 'redux-saga'
+import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import types from 'types/projects'
 import * as actions from 'actions/projects'

@@ -18,16 +18,15 @@ if (process.env.NODE_ENV !== 'production') {
   const logger = createLogger({
     stateTransformer: state => state && state.toJS(),
 
-    actionTransformer: action => {
+    actionTransformer: (action) => {
       if (action && action.response) {
         return {
           ...action,
           response: action.response.toJS(),
         }
-      } else {
-        return action
       }
-    }
+      return action
+    },
   })
   middlewares.push(logger)
 }
@@ -49,7 +48,8 @@ sagaMiddleware.run(sagasManager.getRootSaga())
 
 /* Configure history */
 const createSelectLocationState = () => {
-  let prevRoutingState, prevRoutingStateJS
+  let prevRoutingState
+  let prevRoutingStateJS
 
   return (state) => {
     const routingState = state.get('routing')
@@ -64,7 +64,5 @@ const createSelectLocationState = () => {
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: createSelectLocationState(),
 })
-
-console.log(history)
 
 export { store, history }

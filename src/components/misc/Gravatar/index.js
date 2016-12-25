@@ -6,8 +6,9 @@ const Gravatar = ({ email }) => {
   const src = `https://www.gravatar.com/avatar/${hash}`
 
   return (
-    <img 
-      src={src} 
+    <img
+      alt="User Avatar"
+      src={src}
       className="gravatar"
     />
   )

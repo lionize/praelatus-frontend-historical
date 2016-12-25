@@ -59,9 +59,10 @@ const ids = (state = List(), action) => {
       return state.merge(action.response.result.get('tickets'))
     case types.CREATE_TICKET_SUCCESS:
       return state.push(action.response.result)
-    case types.DELETE_TICKET_SUCCESS:
+    case types.DELETE_TICKET_SUCCESS: {
       const index = state.indexOf(action.id)
       return state.delete(index)
+    }
     default:
       return state
   }

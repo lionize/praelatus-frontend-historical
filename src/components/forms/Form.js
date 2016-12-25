@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form as ReactstrapForm } from 'reactstrap'
 
-const Form = (props) => (
+const Form = props => (
   <ReactstrapForm {...props} />
 )
 

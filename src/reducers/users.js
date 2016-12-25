@@ -59,9 +59,10 @@ const ids = (state = List(), action) => {
       return state.merge(action.response.result.get('users'))
     case types.CREATE_USER_SUCCESS:
       return state.push(action.response.result)
-    case types.DELETE_USER_SUCCESS:
+    case types.DELETE_USER_SUCCESS: {
       const index = state.indexOf(action.id)
       return state.delete(index)
+    }
     default:
       return state
   }

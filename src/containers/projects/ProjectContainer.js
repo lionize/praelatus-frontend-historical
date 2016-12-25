@@ -22,16 +22,16 @@ class ProjectContainer extends Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-  let project = projectSelector(state, params.id)
+  const project = projectSelector(state, params.id)
 
   return {
-    project, 
+    project,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   loadProject(id) {
-    dispatch(fetchProjectsRequest({id: id}))
+    dispatch(fetchProjectsRequest({ id }))
   },
 })
 

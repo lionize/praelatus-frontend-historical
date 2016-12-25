@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { Link } from 'react-router'
+import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { UserLink } from 'components/links'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 
@@ -22,11 +21,11 @@ const Project = ({ project, error }) => {
         </Card>
       </div>
     )
-  } else {
-    return error
-      ? <ErrorCard error={error} />
-      : <NotFoundCard type="Project" />
   }
+
+  return error
+    ? <ErrorCard error={error} />
+    : <NotFoundCard type="Project" />
 }
 
 export default Project

@@ -22,7 +22,7 @@ class TeamContainer extends Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-  let team = teamSelector(state, params.id)
+  const team = teamSelector(state, params.id)
 
   return {
     team,
@@ -31,7 +31,7 @@ const mapStateToProps = (state, { params }) => {
 
 const mapDispatchToProps = dispatch => ({
   loadTeam(id) {
-    dispatch(fetchTeamsRequest({id: id}))
+    dispatch(fetchTeamsRequest({ id }))
   },
 })
 

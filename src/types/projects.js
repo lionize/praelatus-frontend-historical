@@ -2,7 +2,7 @@
 
 /**
  * Constants that represent the types of actions that are dispatched by project
- * actions. 
+ * actions.
  */
 export default {
   FETCH_PROJECTS_FAILURE: 'PROJECTS/FETCH_FAILURE',

@@ -13,10 +13,10 @@ class SagasManager {
     const self = this
 
     return function* rootSaga() {
-      yield self.sagasWithArguments.map((sagaWithArguments) => fork(...sagaWithArguments));
+      yield self.sagasWithArguments.map(sagaWithArguments => fork(...sagaWithArguments));
     }
   }
 }
 
-export default new SagasManager
+export default new SagasManager()
 

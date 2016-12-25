@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormText as ReactstrapFormText } from 'reactstrap'
 
-const FormText = (props) => (
+const FormText = props => (
   <ReactstrapFormText {...props} />
 )
 

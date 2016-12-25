@@ -3,26 +3,6 @@ import { userSelector } from 'selectors/users'
 /** @module comments/selectors */
 
 /**
- * Selector that fetches all comments from the comment state.
- *
- * The selector collects all of the ids from comments.ids and then maps them into
- * the corresponding comments.
- *
- * @function
- * @param {Map} state - The global state.
- * @returns {List} - A List of selected comments.
- */
-export const commentsSelector = (state, ids) => {
-  let commentIds = state.getIn(['data', 'comments', 'ids'])
-
-  if (ids) {
-    commentIds = commentIds.filter(id => ids.includes(id))
-  }
-
-  return commentIds.map(id => commentSelector(state, id))
-}
-
-/**
  * Selector that fetches a single comment from the comment state.
  *
  * The selector gets all of the comments by id from comments.byId and then gets
@@ -41,6 +21,26 @@ export const commentSelector = (state, id) => {
   }
 
   return comment
+}
+
+/**
+ * Selector that fetches all comments from the comment state.
+ *
+ * The selector collects all of the ids from comments.ids and then maps them into
+ * the corresponding comments.
+ *
+ * @function
+ * @param {Map} state - The global state.
+ * @returns {List} - A List of selected comments.
+ */
+export const commentsSelector = (state, ids) => {
+  let commentIds = state.getIn(['data', 'comments', 'ids'])
+
+  if (ids) {
+    commentIds = commentIds.filter(id => ids.includes(id))
+  }
+
+  return commentIds.map(id => commentSelector(state, id))
 }
 
 /**

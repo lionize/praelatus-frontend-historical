@@ -1,4 +1,4 @@
-import { Record, List, Map } from 'immutable'
+import { Record, List } from 'immutable'
 import { Schema, arrayOf } from 'normalizr-immutable'
 
 const User = new Record({
@@ -58,7 +58,7 @@ project.define({
 const Comment = new Record({
   id: null,
   body: null,
-  author: new User({})
+  author: new User({}),
 })
 export const comment = new Schema('comments', Comment)
 comment.define({

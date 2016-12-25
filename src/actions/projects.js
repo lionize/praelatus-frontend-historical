@@ -1,6 +1,6 @@
 /** @module projects/actions */
 
-import { normalize, arrayOf } from 'normalizr-immutable'
+import { normalize } from 'normalizr-immutable'
 import * as schema from 'schema'
 import types from 'types/projects'
 
@@ -40,7 +40,7 @@ export const fetchProjectsFailure = e => ({
  */
 export const createProjectRequest = payload => ({
   type: types.CREATE_PROJECT_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -82,7 +82,7 @@ export const createProjectFailure = error => ({
  */
 export const updateProjectRequest = payload => ({
   type: types.UPDATE_PROJECT_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -127,7 +127,7 @@ export const updateProjectFailure = error => ({
  */
 export const deleteProjectRequest = payload => ({
   type: types.DELETE_PROJECT_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -143,7 +143,7 @@ export const deleteProjectRequest = payload => ({
  */
 export const deleteProjectSuccess = id => ({
   type: types.DELETE_PROJECT_SUCCESS,
-  id: id,
+  id,
 })
 
 /**

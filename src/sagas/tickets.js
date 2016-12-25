@@ -1,6 +1,6 @@
 /** @module tickets/sagas */
 
-import { takeEvery, takeLatest } from 'redux-saga'
+import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import * as actions from 'actions/tickets'
 import * as dataActions from 'actions/data'

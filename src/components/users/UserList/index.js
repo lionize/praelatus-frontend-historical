@@ -10,7 +10,7 @@ const UserList = ({ users }) => {
       <Table>
         <thead>
           <tr>
-            <th></th>
+            <th />
             <th>Username</th>
             <th>Full Name</th>
           </tr>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Table } from 'reactstrap'
-import { Link } from 'react-router'
 import { TeamLink, UserLink } from 'components/links'
 
 const TeamList = ({ teams }) => (
@@ -27,8 +26,8 @@ const TeamList = ({ teams }) => (
             <td>
               {team.members &&
                 <ul>
-                  {team.members.map((member, i) =>
-                    <li key={i}>
+                  {team.members.map((member, j) =>
+                    <li key={j}>
                       <UserLink id={member.id}>{member.username}</UserLink>
                     </li>
                   )}

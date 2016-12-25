@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { Link } from 'react-router'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 import { UserLink } from 'components/links'
 
@@ -35,11 +34,11 @@ const Team = ({ team, loading, error }) => {
         </Card>
       </div>
     )
-  } else {
-    return error
-      ? <ErrorCard error={error} />
-      : <NotFoundCard type="Team" />
   }
+
+  return error
+    ? <ErrorCard error={error} />
+    : <NotFoundCard type="Team" />
 }
 
 export default Team
