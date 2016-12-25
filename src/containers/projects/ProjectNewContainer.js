@@ -13,10 +13,8 @@ class ProjectNewContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
-
 ProjectNewContainer = connect(
-  mapStateToProps,
+  () => ({}),
   { createProject: createProjectRequest }
 )(ProjectNewContainer)
 
