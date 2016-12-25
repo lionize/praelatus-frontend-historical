@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
 import { renderField } from 'utils'
 import { Button } from 'reactstrap'
 import { Form } from 'components/forms'
 
-const validate = values => {
+const validate = (values) => {
   const errors = {}
 
   if (!values.get('name')) {
@@ -16,11 +16,6 @@ const validate = values => {
   }
 
   return errors
-}
-
-const warn = values => {
-  const warnings = {}
-  return warnings
 }
 
 const ProjectNew = ({ handleSubmit }) => (
@@ -36,5 +31,4 @@ const ProjectNew = ({ handleSubmit }) => (
 export default reduxForm({
   form: 'project',
   validate,
-  warn,
 })(ProjectNew)

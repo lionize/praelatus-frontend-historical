@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
 import { Button } from 'reactstrap'
 import { renderField } from 'utils'
 import { Form } from 'components/forms'
-
-const validate = values => {}
-const warn = values => {}
 
 const TicketNew = ({ handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
@@ -17,6 +14,4 @@ const TicketNew = ({ handleSubmit }) => (
 
 export default reduxForm({
   form: 'ticket',
-  validate,
-  warn,
 })(TicketNew)
