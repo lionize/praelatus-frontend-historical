@@ -40,6 +40,7 @@ module.exports = {
     'no-class-assign': 0,
     'no-underscore-dangle': 0,
     'radix': 0,
+    'comma-dangle': ['error', 'only-multiline'],
 
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
