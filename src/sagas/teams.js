@@ -1,6 +1,6 @@
 /** @module teams/sagas */
 
-import { takeEvery, takeLatest } from 'redux-saga'
+import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import * as actions from 'actions/teams'
 import * as dataActions from 'actions/data'

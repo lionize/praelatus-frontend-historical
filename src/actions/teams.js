@@ -1,6 +1,6 @@
 /** @module teams/actions */
 
-import { normalize, arrayOf } from 'normalizr-immutable'
+import { normalize } from 'normalizr-immutable'
 import * as schema from 'schema'
 import types from 'types/teams'
 
@@ -40,7 +40,7 @@ export const fetchTeamsFailure = e => ({
  */
 export const createTeamRequest = payload => ({
   type: types.CREATE_TEAM_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -82,7 +82,7 @@ export const createTeamFailure = error => ({
  */
 export const updateTeamRequest = payload => ({
   type: types.UPDATE_TEAM_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -127,7 +127,7 @@ export const updateTeamFailure = error => ({
  */
 export const deleteTeamRequest = payload => ({
   type: types.DELETE_TEAM_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -143,7 +143,7 @@ export const deleteTeamRequest = payload => ({
  */
 export const deleteTeamSuccess = id => ({
   type: types.DELETE_TEAM_SUCCESS,
-  id: id,
+  id,
 })
 
 /**

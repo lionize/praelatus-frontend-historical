@@ -2,7 +2,7 @@
 
 /**
  * Constants that represent the types of actions that are dispatched by comment
- * actions. 
+ * actions.
  */
 export default {
   FETCH_COMMENTS_FAILURE: 'COMMENTS/FETCH_FAILURE',

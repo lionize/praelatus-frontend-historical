@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Navbar, NavbarBrand } from 'reactstrap'
 import './Header.css'
 
 const Header = () => (

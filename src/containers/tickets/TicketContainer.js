@@ -31,7 +31,7 @@ const mapStateToProps = (state, { params }) => {
 
 const mapDispatchToProps = dispatch => ({
   loadTicket(id) {
-    dispatch(fetchTicketsRequest({id: id}))
+    dispatch(fetchTicketsRequest({ id }))
   },
 })
 

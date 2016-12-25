@@ -59,9 +59,10 @@ const ids = (state = List(), action) => {
       return state.merge(action.response.result.get('comments'))
     case types.CREATE_COMMENT_SUCCESS:
       return state.push(action.response.result)
-    case types.DELETE_COMMENT_SUCCESS:
+    case types.DELETE_COMMENT_SUCCESS: {
       const index = state.indexOf(action.id)
       return state.delete(index)
+    }
     default:
       return state
   }

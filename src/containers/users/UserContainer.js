@@ -22,8 +22,8 @@ const mapStateToProps = (state, { params }) => ({
 
 const mapDispatchToProps = dispatch => ({
   loadUser(id) {
-    dispatch(fetchUsersRequest({id: id}))
-  }
+    dispatch(fetchUsersRequest({ id }))
+  },
 })
 
 UserContainer = withRouter(connect(

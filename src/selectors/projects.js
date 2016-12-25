@@ -3,26 +3,6 @@ import { userSelector } from 'selectors/users'
 /** @module projects/selectors */
 
 /**
- * Selector that fetches all projects from the project state.
- *
- * The selector collects all of the ids from projects.ids and then maps them into
- * the corresponding projects.
- *
- * @function
- * @param {Map} state - The global state.
- * @returns {List} - A List of selected projects.
- */
-export const projectsSelector = (state, ids) => {
-  let projectIds = state.getIn(['data', 'projects', 'ids'])
-
-  if (ids) {
-    projectIds = projectIds.filter(id => ids.includes(id))
-  }
-
-  return projectIds.map(id => projectSelector(state, id))
-}
-
-/**
  * Selector that fetches a single project from the project state.
  *
  * The selector gets all of the projects by id from projects.byId and then gets
@@ -45,6 +25,26 @@ export const projectSelector = (state, id) => {
   }
 
   return project
+}
+
+/**
+ * Selector that fetches all projects from the project state.
+ *
+ * The selector collects all of the ids from projects.ids and then maps them into
+ * the corresponding projects.
+ *
+ * @function
+ * @param {Map} state - The global state.
+ * @returns {List} - A List of selected projects.
+ */
+export const projectsSelector = (state, ids) => {
+  let projectIds = state.getIn(['data', 'projects', 'ids'])
+
+  if (ids) {
+    projectIds = projectIds.filter(id => ids.includes(id))
+  }
+
+  return projectIds.map(id => projectSelector(state, id))
 }
 
 /**

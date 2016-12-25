@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { Link } from 'react-router'
 import { UserLink } from 'components/links'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 
@@ -21,12 +20,12 @@ const Ticket = ({ ticket, loading, error }) => {
             <CardTitle>{ticket.key}</CardTitle>
             <CardText>Summary: {ticket.summary}</CardText>
             <CardText>Description: {ticket.description}</CardText>
-            {ticket.reporter && 
+            {ticket.reporter &&
               <CardText>
                 Reporter: <UserLink id={ticket.reporter.id}>{ticket.reporter.username}</UserLink>
               </CardText>
             }
-            {ticket.assignee && 
+            {ticket.assignee &&
               <CardText>
                 Assignee: <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
               </CardText>
@@ -35,11 +34,11 @@ const Ticket = ({ ticket, loading, error }) => {
         </Card>
       </div>
     )
-  } else {
-    return error
-      ? <ErrorCard error={error} />
-      : <NotFoundCard type="Ticket" />
   }
+
+  return error
+    ? <ErrorCard error={error} />
+    : <NotFoundCard type="Ticket" />
 }
 
 export default Ticket

@@ -1,6 +1,6 @@
 /** @module users/actions */
 
-import { normalize, arrayOf } from 'normalizr-immutable'
+import { normalize } from 'normalizr-immutable'
 import * as schema from 'schema'
 import types from 'types/users'
 
@@ -14,7 +14,7 @@ import types from 'types/users'
  */
 export const fetchUsersRequest = payload => ({
   type: types.FETCH_USERS_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -40,7 +40,7 @@ export const fetchUsersFailure = e => ({
  */
 export const createUserRequest = payload => ({
   type: types.CREATE_USER_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -82,7 +82,7 @@ export const createUserFailure = error => ({
  */
 export const updateUserRequest = payload => ({
   type: types.UPDATE_USER_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -127,7 +127,7 @@ export const updateUserFailure = error => ({
  */
 export const deleteUserRequest = payload => ({
   type: types.DELETE_USER_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -143,7 +143,7 @@ export const deleteUserRequest = payload => ({
  */
 export const deleteUserSuccess = id => ({
   type: types.DELETE_USER_SUCCESS,
-  id: id,
+  id,
 })
 
 /**

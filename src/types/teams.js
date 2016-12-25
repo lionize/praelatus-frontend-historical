@@ -2,7 +2,7 @@
 
 /**
  * Constants that represent the types of actions that are dispatched by team
- * actions. 
+ * actions.
  */
 export default {
   FETCH_TEAMS_FAILURE: 'TEAMS/FETCH_FAILURE',

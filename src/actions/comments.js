@@ -1,6 +1,6 @@
 /** @module comments/actions */
 
-import { normalize, arrayOf } from 'normalizr-immutable'
+import { normalize } from 'normalizr-immutable'
 import * as schema from 'schema'
 import types from 'types/comments'
 
@@ -39,7 +39,7 @@ export const fetchCommentsFailure = e => ({
  */
 export const createCommentRequest = payload => ({
   type: types.CREATE_COMMENT_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -81,7 +81,7 @@ export const createCommentFailure = error => ({
  */
 export const updateCommentRequest = payload => ({
   type: types.UPDATE_COMMENT_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -126,7 +126,7 @@ export const updateCommentFailure = error => ({
  */
 export const deleteCommentRequest = payload => ({
   type: types.DELETE_COMMENT_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -142,7 +142,7 @@ export const deleteCommentRequest = payload => ({
  */
 export const deleteCommentSuccess = id => ({
   type: types.DELETE_COMMENT_SUCCESS,
-  id: id,
+  id,
 })
 
 /**

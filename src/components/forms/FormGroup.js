@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormGroup as ReactstrapFormGroup } from 'reactstrap'
 
-const FormGroup = (props) => (
+const FormGroup = props => (
   <ReactstrapFormGroup {...props} />
 )
 

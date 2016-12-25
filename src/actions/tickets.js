@@ -1,6 +1,6 @@
 /** @module tickets/actions */
 
-import { normalize, arrayOf } from 'normalizr-immutable'
+import { normalize } from 'normalizr-immutable'
 import * as schema from 'schema'
 import types from 'types/tickets'
 
@@ -41,7 +41,7 @@ export const fetchTicketsFailure = error => ({
  */
 export const createTicketRequest = payload => ({
   type: types.CREATE_TICKET_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -83,7 +83,7 @@ export const createTicketFailure = error => ({
  */
 export const updateTicketRequest = payload => ({
   type: types.UPDATE_TICKET_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -125,7 +125,7 @@ export const updateTicketFailure = error => ({
  */
 export const deleteTicketRequest = payload => ({
   type: types.DELETE_TICKET_REQUEST,
-  payload: payload,
+  payload,
 })
 
 /**
@@ -139,7 +139,7 @@ export const deleteTicketRequest = payload => ({
  */
 export const deleteTicketSuccess = id => ({
   type: types.DELETE_TICKET_SUCCESS,
-  id: id,
+  id,
 })
 
 /**

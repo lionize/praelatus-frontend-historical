@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardBlock, CardTitle, CardText } from 'reactstrap'
+import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { Gravatar } from 'components/misc'
 import { NotFoundCard, ErrorCard } from 'components/cards'
 import './user.css'
@@ -26,11 +26,11 @@ const User = ({ user, loading, error }) => {
         </Card>
       </div>
     )
-  } else {
-    return error
-      ? <ErrorCard error={error} />
-      : <NotFoundCard type="User" />
   }
+
+  return error
+    ? <ErrorCard error={error} />
+    : <NotFoundCard type="User" />
 }
 
 export default User

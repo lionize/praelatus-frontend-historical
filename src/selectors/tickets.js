@@ -3,26 +3,6 @@ import { userSelector } from 'selectors/users'
 /** @module tickets/selectors */
 
 /**
- * Selector that fetches all tickets from the ticket state.
- *
- * The selector collects all of the ids from tickets.ids and then maps them into
- * the corresponding tickets.
- *
- * @function
- * @param {Map} state - The global state.
- * @return {List} - A List of selected tickets.
- */
-export const ticketsSelector = (state, ids) => {
-  let ticketIds = state.getIn(['data', 'tickets', 'ids'])
-
-  if (ids) {
-    ticketIds = ticketIds.filter(id => ids.includes(id))
-  }
-
-  return ticketIds.map(id => ticketSelector(state, id))
-}
-
-/**
  * Selector that fetches a single ticket from the ticket state.
  *
  * The selector gets all of the tickets by id from tickets.byId and then gets
@@ -45,6 +25,26 @@ export const ticketSelector = (state, id) => {
   }
 
   return ticket
+}
+
+/**
+ * Selector that fetches all tickets from the ticket state.
+ *
+ * The selector collects all of the ids from tickets.ids and then maps them into
+ * the corresponding tickets.
+ *
+ * @function
+ * @param {Map} state - The global state.
+ * @return {List} - A List of selected tickets.
+ */
+export const ticketsSelector = (state, ids) => {
+  let ticketIds = state.getIn(['data', 'tickets', 'ids'])
+
+  if (ids) {
+    ticketIds = ticketIds.filter(id => ids.includes(id))
+  }
+
+  return ticketIds.map(id => ticketSelector(state, id))
 }
 
 /**
