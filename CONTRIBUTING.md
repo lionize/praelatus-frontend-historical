@@ -1,66 +1,54 @@
-# Contributing
+# Contribution Guidelines
 
-This document describes how to get Praelatus up and running for development so
-you can get hacking on Praelatus.
+## There are multiple ways to contribute to the project
 
-## Dependencies
+- Submitting bugs or feature requests! For now you can drop us a line on Github
+issues [here](https://github.com/praelatus/backend/issues)
 
-## Quick Start
+- Write documentation, we always need documentation contributions whether that
+be in the form of localization, spell check, or net new documentation. For
+information on this you can check out our [wiki](https://github.com/praelatus/backend/wiki)
 
-praelatus-client currently doesn't have a build process. 
+- Code submissions, we of course always need more code written in the forms of
+new features or bugs.
 
-To run the project in development mode, run `npm start`.
+As always for all of the above please follow our [Code of Conduct](https://github.com/chasinglogic/praelatus/blob/master/CODE_OF_CONDUCT.md)
 
-To run the tests, run `npm run test`. To run them in watch mode, run `npm run test:watch`.
+## General Contribution Guidelines
 
-Be sure to check out a basic explanation of how the [system works](https://github.com/praelatus/frontend/SYSTEM_EXPLANATION.md)
+If you're planning on working on something make sure you open an issue or claim an existing one. This helps everyone on the project, it helps us know what everyone is working on (avoiding double work) and also helps us prevent you from working on something that maybe isn't a good fit for Praelatus which will save everyone time.
 
-You're ready to read the contribution guidelines [below](#guidelines)!
+If you'd like to tackle an existing issue just add a comment claiming the ticket for yourself and we will leave it alone. If you comment on an issue but do not update the issue again in 7 days
+we will assume that you've abandoned work.
 
-## Contribution Guidelines
-<div id="guidelines"></div>
+**NOTE:** This does not mean you
+need to resolve the issue in 7 days only that you need to update it so we know you have not abandoned working on the issue.
 
-I'm going to reiterate this first since it's important. We have a [Code of
-Conduct](https://github.com/praelatus/frontend/blob/master/code_of_conduct.md). 
+## Code Contribution Guidelines
 
-Follow it.
+1. All code must be passed through `go fmt`
+2. All code must have tests. Unit tests are preferred and integration tests are allowed where appropriate.
+3. All tests must be passing on the CI system before a PR will be accepted.
+4. If your code breaks some other package feel free to adjust the other package.
 
-1. May your commit messages be short and when they are not use the space below.
-   A model commit message looks like this:
+Documentation for building Praelatus can be found [here](https://github.com/praelatus/backend/wiki/Building-Praelatus-from-Source)
 
-```
-Capitalized, short (50 chars or less) summary
+## Bug Report Guidelines
 
-More detailed explanatory text, if necessary.  Wrap it to about 72
-characters or so.  In some contexts, the first line is treated as the
-subject of an email and the rest of the text as the body.  The blank
-line separating the summary from the body is critical (unless you omit
-the body entirely); tools like rebase can get confused if you run the
-two together.
+Bug reports are welcomed and if you're not sure if the issue you're experiencing is a bug or not, report it anyway.
 
-Write your commit message in the imperative: "Fix bug" and not "Fixed bug"
-or "Fixes bug."  This convention matches up with commit messages generated
-by commands like git merge and git revert.
+All good bug reports consist of a few things and we greatly appreciate if you can include as many of these items as possible:
 
-Further paragraphs come after blank lines.
+1. A detailed description of the problem.
+    - "Opening a ticket does not work" is not a great description "Opening a ticket from any screen fails" is much better because this tells us that you are unable to open a ticket in any available method.
+2. How to repeat the issue.
+    - If we are unable to reproduce the issue it becomes impossible to solve, any configs or environment specific items you can include gives us much needed information in solving your problem.
+3. Any error messages you encounter.
+    - If you can send us the error messages you get from the app itself or in your logs that goes a long way to telling us what's going wrong.
 
-- Bullet points are okay, too
+## Feature Request Guidelines
 
-- Typically a hyphen or asterisk is used for the bullet, followed by a
-  single space, with blank lines in between, but conventions vary here
+Feature requests are always welcome as we want to make Praelatus the best it can be. In keeping with that theme we have a few guidelines for creating Feature requests
 
-- Use a hanging indent
-
-```
-
-2. We follow
-   [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) so
-   please branch responsibly. All pull requests should be made against
-   [Develop](https://github.com/praelatus/frontend/tree/develop)
-
-3. If you have a question, *ask*! We don't mind answering any questions you may
-   have.
-
-That's it! If you have any further questions or want some more real time
-interaction we have a slack and if you'd like an invite you can send an email
-to praelatusfoss@gmail.com until we get the heroku thing set up!
+1. All feature requests should clearly define a scope with a clear "done" state. Meaning that the sentence "When Praelatus does X then Y feature will be considered complete." can be applied to it.
+2. All feature requests will go through a comment period (minimum of 7 days) before being worked and at least two project maintainers will sign off as having approved the feature for work.
