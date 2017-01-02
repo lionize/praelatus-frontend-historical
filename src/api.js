@@ -151,6 +151,10 @@ const login = payload => {
   return 'test'
 }
 
+const register = payload => {
+  return 'test'
+}
+
 export default {
   fetchTickets,
   createTicket,
@@ -173,4 +177,5 @@ export default {
   updateUser,
   deleteUser,
   login,
+  register,
 }
