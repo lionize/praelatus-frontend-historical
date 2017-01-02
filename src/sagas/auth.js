@@ -26,3 +26,12 @@ export function * registerFlow(action = {}) {
     yield put(actions.registerFailure(e))
   }
 }
+
+export function * logoutFlow(action = {}) {
+  try {
+    yield put(actions.logoutSuccess())
+    yield put(push('/'))
+  } catch (e) {
+
+  }
+}

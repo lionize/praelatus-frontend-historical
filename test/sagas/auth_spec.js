@@ -6,7 +6,7 @@ import * as actions from 'actions/auth'
 import * as sagas from 'sagas/auth'
 
 describe('auth sagas', () => {
-  describe('POST: log in', () => {
+  describe('Logging in', () => {
     const fixture = {
       payload: {
         username: 'username',
@@ -54,7 +54,27 @@ describe('auth sagas', () => {
     })
   })
 
-  describe('POST: register', () => {
+  describe('Logging out', () => {
+    const generator = sagas.logoutFlow()
+
+    it('dispatches the logoutSuccess action', () => {
+      const next = generator.next().value
+      const expected = put(actions.logoutSuccess())
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('pushes to the previous page after logging out')
+
+    it('pushes to "/" after logging out', () => {
+      const next = generator.next().value
+      const expected = put(push('/'))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('Registration', () => {
     const fixture = {
       payload: {
         username: 'username',
