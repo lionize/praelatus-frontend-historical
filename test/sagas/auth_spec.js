@@ -53,4 +53,55 @@ describe('auth sagas', () => {
       expect(next).to.deep.eq(expected)
     })
   })
+
+  describe('POST: register', () => {
+    const fixture = {
+      payload: {
+        username: 'username',
+        password: 'password',
+      }
+    }
+
+    const generator = sagas.registerFlow(fixture)
+
+    it('calls the api method', () => {
+      const next = generator.next().value
+      const expected = call(api.register, fixture.payload)
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('dispatches the registerSuccess action', () => {
+      const response = {
+        id: 0,
+        username: fixture.payload.username,
+      }
+      const next = generator.next(response).value
+      const expected = put(actions.registerSuccess(response))
+
+      expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
+    })
+
+    it('pushes to the previous page after registering')
+
+    it('pushes to "/" after registering', () => {
+      const next = generator.next().value
+      const expected = put(push('/'))
+
+      expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
+    })
+
+    it('dispatches registerFailure action if registration fails', () => {
+      const generator = sagas.registerFlow(fixture)
+      generator.next()
+
+      const response = { message: 'Error!' }
+      const next = generator.throw(response).value
+      const expected = put(actions.registerFailure(response))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
 })

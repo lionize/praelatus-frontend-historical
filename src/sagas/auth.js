@@ -15,3 +15,14 @@ export function * loginFlow(action = {}) {
     yield put(actions.loginFailure(e))
   }
 }
+
+export function * registerFlow(action = {}) {
+  try {
+    const payload = action.payload || {}
+    const response = yield call(api.register, payload)
+    yield put(actions.registerSuccess(response))
+    yield put(push('/'))
+  } catch (e) {
+    yield put(actions.registerFailure(e))
+  }
+}
