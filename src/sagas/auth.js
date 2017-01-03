@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga'
+import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import types from 'types/auth'
@@ -32,6 +32,13 @@ export function * logoutFlow(action = {}) {
     yield put(actions.logoutSuccess())
     yield put(push('/'))
   } catch (e) {
-
   }
+}
+
+export default function * watcher() {
+  yield [
+    takeLatest(types.LOGIN_REQUEST, loginFlow),
+    takeEvery(types.LOGOUT_REQUEST, logoutFlow),
+    takeLatest(types.REGISTER_REQUEST, registerFlow),
+  ]
 }
