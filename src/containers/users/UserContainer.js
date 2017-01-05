@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { userSelector, loadingSelector } from 'selectors/users'
 import { fetchUsersRequest } from 'actions/users'
-import { User } from 'components/users'
+import { User } from 'components'
 
 class UserContainer extends Component {
   componentWillMount() {

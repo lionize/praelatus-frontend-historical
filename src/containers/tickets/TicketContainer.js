@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { ticketSelector } from 'selectors/tickets'
 import { fetchTicketsRequest } from 'actions/tickets'
-import { Ticket } from 'components/tickets'
+import { Ticket } from 'components'
 
 class TicketContainer extends Component {
   componentWillMount() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardTitle, CardText } from 'reactstrap'
-import { LinkButton } from 'components/misc'
+import { LinkButton } from 'components'
 
 const NotFoundCard = ({ type }) => (
   <div>

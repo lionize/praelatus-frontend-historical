@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { Gravatar } from 'components/misc'
-import { NotFoundCard, ErrorCard } from 'components/cards'
+import { Gravatar, NotFoundCard, ErrorCard } from 'components'
 import './user.css'
 
 const User = ({ user, loading, error }) => {
