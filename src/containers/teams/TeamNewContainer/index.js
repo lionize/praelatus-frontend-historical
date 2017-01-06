@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import { createTeamRequest } from 'actions/teams'
-import { TeamNew } from 'components/teams'
+import { TeamNew } from 'components'
 
 class TeamNewContainer extends Component {
   @autobind

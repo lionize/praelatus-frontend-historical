@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import { createProjectRequest } from 'actions/projects'
-import { ProjectNew } from 'components/projects'
+import { ProjectNew } from 'components'
 
 class ProjectNewContainer extends Component {
   @autobind

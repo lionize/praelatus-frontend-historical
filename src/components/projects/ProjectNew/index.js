@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
 import { renderField } from 'utils'
 import { Button } from 'reactstrap'
-import { Form } from 'components/forms'
+import { Form } from 'components'
 
 const validate = (values) => {
   const errors = {}

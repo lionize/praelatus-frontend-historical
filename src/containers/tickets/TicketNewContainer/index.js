@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import { createTicketRequest } from 'actions/tickets'
-import { TicketNew } from 'components/tickets'
+import { TicketNew } from 'components'
 
 class TicketNewContainer extends Component {
   @autobind

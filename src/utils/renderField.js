@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormGroup, Label, Input, FormText } from 'components/forms'
+import { FormGroup, Label, Input, FormText } from 'components'
 
 export default ({ input, label, type, meta: { touched, error, warning } }) => {
   let state
