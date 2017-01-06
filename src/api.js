@@ -147,6 +147,14 @@ const createUser = payload => {}
 const updateUser = payload => {}
 const deleteUser = payload => {}
 
+const login = payload => {
+  return 'test'
+}
+
+const register = payload => {
+  return 'test'
+}
+
 export default {
   fetchTickets,
   createTicket,
@@ -168,4 +176,6 @@ export default {
   createUser,
   updateUser,
   deleteUser,
+  login,
+  register,
 }

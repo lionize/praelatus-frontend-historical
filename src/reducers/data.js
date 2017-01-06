@@ -4,6 +4,7 @@ import projectsReducer from 'reducers/projects'
 import usersReducer from 'reducers/users'
 import teamsReducer from 'reducers/teams'
 import commentsReducer from 'reducers/comments'
+import authReducer from 'reducers/auth'
 
 export default combineReducers({
   tickets: ticketsReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   users: usersReducer,
   teams: teamsReducer,
   comments: commentsReducer,
+  auth: authReducer,
 })
