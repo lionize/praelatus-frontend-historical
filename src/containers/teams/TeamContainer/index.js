@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { teamSelector } from 'selectors/teams'
 import { fetchTeamsRequest } from 'actions/teams'
-import { Team } from 'components/teams'
+import { Team } from 'components'
 
 class TeamContainer extends Component {
   componentDidMount() {

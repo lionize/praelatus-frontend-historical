@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { projectSelector } from 'selectors/projects'
 import { fetchProjectsRequest } from 'actions/projects'
-import { Project } from 'components/projects'
+import { Project } from 'components'
 
 class ProjectContainer extends Component {
   componentDidMount() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { teamsSelector } from 'selectors/teams'
 import { fetchTeamsRequest } from 'actions/teams'
-import { TeamList } from 'components/teams'
+import { TeamList } from 'components'
 
 class TeamListContainer extends Component {
   componentDidMount() {

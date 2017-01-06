@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ticketsSelector } from 'selectors/tickets'
 import { fetchTicketsRequest } from 'actions/tickets'
-import { TicketList } from 'components/tickets'
+import { TicketList } from 'components'
 
 class TicketListContainer extends Component {
   componentDidMount() {

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { UserLink } from 'components/links'
-import { NotFoundCard, ErrorCard } from 'components/cards'
+import { UserLink, NotFoundCard, ErrorCard } from 'components'
 
 const Ticket = ({ ticket, loading, error }) => {
   if (loading) {

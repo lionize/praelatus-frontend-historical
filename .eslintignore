@@ -1,3 +1,4 @@
 webpack.config.js
+devServer.js
 test/*
 docs/*

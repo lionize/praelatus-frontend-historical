@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'reactstrap'
-import { TeamLink, UserLink } from 'components/links'
+import { TeamLink, UserLink } from 'components'
 
 const TeamList = ({ teams }) => (
   <div>
