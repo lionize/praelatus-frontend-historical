@@ -7,11 +7,13 @@ import {
   ProjectContainer, ProjectNewContainer, ProjectListContainer,
   TicketContainer, TicketNewContainer, TicketListContainer,
   TeamContainer, TeamNewContainer, TeamListContainer,
+  Login,
 } from 'containers'
 
 const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
+    <Route path='login' component={Login} />
     <Route path='users'>
       <IndexRoute component={UserListContainer} />
       <Route path=':id' component={UserContainer} />
