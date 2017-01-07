@@ -1,4 +1,6 @@
+import { normalize } from 'normalizr-immutable'
 import types from 'types/auth'
+import * as schema from 'schema'
 
 export const loginRequest = payload => ({
   type: types.LOGIN_REQUEST,
@@ -7,7 +9,7 @@ export const loginRequest = payload => ({
 
 export const loginSuccess = response => ({
   type: types.LOGIN_SUCCESS,
-  response,
+  response: normalize(response, schema.user),
 })
 
 export const loginFailure = error => ({
