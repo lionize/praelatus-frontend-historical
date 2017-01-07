@@ -5,6 +5,7 @@ const users = [
   {
     id: 0,
     username: 'user1',
+    password: 'user1',
     email: 'user1@users.com',
     fullName: 'User 1',
     gravatar: 'user1@users.com',
@@ -14,6 +15,7 @@ const users = [
   {
     id: 1,
     username: 'user2',
+    password: 'user2',
     email: 'user2@users.com',
     fullName: 'User 2',
     gravatar: 'user2@users.com',
@@ -199,7 +201,9 @@ const updateUser = payload => {}
 const deleteUser = payload => {}
 
 const login = payload => {
-  return 'test'
+  const user = find({ username: payload.get('username'), password: payload.get('password') }, users)
+
+  return respondWith(user)
 }
 
 const register = payload => {
