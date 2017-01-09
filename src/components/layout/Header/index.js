@@ -28,11 +28,9 @@ const Header = () => (
         <Link to="/users" className="nav-link">Users</Link>
       </li>
     </ul>
-    <form className="form-inline float-xs-right">
+    <div className="float-xs-right">
       <UserInfoBox />
-      <input className="form-control" type="text" placeholder="Search" />
-      <button className="btn btn-outline-primary" type="submit">Search</button>
-    </form>
+    </div>
   </Navbar>
 )
 
