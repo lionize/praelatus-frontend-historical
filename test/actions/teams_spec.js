@@ -29,9 +29,10 @@ describe('teams module actions', () => {
     it('should return the correct type', () => {
       const expectedResult = {
         type: types.FETCH_TEAMS_REQUEST,
+        payload: {},
       }
 
-      expect(actions.fetchTeamsRequest()).to.deep.eq(expectedResult)
+      expect(actions.fetchTeamsRequest({})).to.deep.eq(expectedResult)
     })
   })
 

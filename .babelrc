@@ -7,6 +7,8 @@
   "plugins": [
     "react-hot-loader/babel",
     "transform-react-jsx-img-import",
-    "syntax-do-expressions"
+    "syntax-do-expressions",
+    "syntax-decorators",
+    "transform-decorators-legacy"
   ]
 }

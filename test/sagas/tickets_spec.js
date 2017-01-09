@@ -1,5 +1,7 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
+import { fromJS } from 'immutable'
 import api from 'api'
 import * as actions from 'actions/tickets'
 import * as dataActions from 'actions/data'
@@ -57,6 +59,22 @@ describe('tickets module sagas', () => {
       }
       const next = generator.next(response).value
       const expected = put(actions.createTicketSuccess(response))
+
+      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+    })
+
+    it('redirects to new ticket page', () => {
+      const generator = sagas.createTicket({ payload: fixture })
+      generator.next()
+      const response = fromJS({
+        id: 0,
+        ...fixture
+      })
+      generator.next(response).value
+
+      const next = generator.next().value
+      const expected = put(push(`/teams/${response.id}`))
 
       expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
       expect(next.PUT.action.response).to.equal(expected.PUT.action.response)

@@ -29,9 +29,10 @@ describe('tickets module actions', () => {
     it('should return the correct type', () => {
       const expectedResult = {
         type: types.FETCH_TICKETS_REQUEST,
+        payload: {},
       }
 
-      expect(actions.fetchTicketsRequest()).to.deep.eq(expectedResult)
+      expect(actions.fetchTicketsRequest({})).to.deep.eq(expectedResult)
     })
   })
 

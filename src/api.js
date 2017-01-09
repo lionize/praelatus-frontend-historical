@@ -1,7 +1,11 @@
+import { flowRight as compose, add, max, map, find } from 'lodash/fp'
+import { fromJS } from 'immutable'
+
 const users = [
   {
     id: 0,
     username: 'user1',
+    password: 'user1',
     email: 'user1@users.com',
     fullName: 'User 1',
     gravatar: 'user1@users.com',
@@ -11,6 +15,7 @@ const users = [
   {
     id: 1,
     username: 'user2',
+    password: 'user2',
     email: 'user2@users.com',
     fullName: 'User 2',
     gravatar: 'user2@users.com',
@@ -97,15 +102,33 @@ const respondWith = info => Promise.resolve({
   ...info
 })
 
+const nextID = compose(add(1), max, map('id'))
+
 const fetchTickets = payload => {
   if (!!payload.id) {
-    console.log(tickets[payload.id])
     return respondWith([tickets[payload.id]])
   } else {
     return respondWith(tickets)
   }
 }
-const createTicket = payload => {}
+const createTicket = payload => {
+  const id = nextID(tickets)
+
+  const ticket = fromJS({
+    id,
+    createdDate: '',
+    updatedDate: '',
+    key: '',
+    summary: '',
+    description: '',
+    reporter: null,
+    assignee: null,
+  }).merge(payload)
+
+  tickets.push(ticket.toJS())
+
+  return ticket
+}
 const updateTicket = payload => {}
 const deleteTicket = payload => {}
 
@@ -116,7 +139,20 @@ const fetchTeams = payload => {
     return respondWith(teams)
   }
 }
-const createTeam = payload => {}
+const createTeam = payload => {
+  const id = nextID(teams)
+
+  const team = fromJS({
+    id,
+    name: '',
+    lead: null,
+    members: null,
+  }).merge(payload)
+
+  teams.push(team.toJS())
+
+  return team
+}
 const updateTeam = payload => {}
 const deleteTeam = payload => {}
 
@@ -127,7 +163,24 @@ const fetchProjects = payload => {
     return respondWith(projects)
   }
 }
-const createProject = payload => {}
+const createProject = payload => {
+  const id = nextID(projects)
+
+  const project = fromJS({
+    id,
+    createdDate: '',
+    name: '',
+    key: '',
+    homepage: '',
+    iconURL: '',
+    repo: '',
+    lead: null,
+  }).merge(payload)
+
+  projects.push(project.toJS())
+
+  return project
+}
 const updateProject = payload => {}
 const deleteProject = payload => {}
 
@@ -148,7 +201,9 @@ const updateUser = payload => {}
 const deleteUser = payload => {}
 
 const login = payload => {
-  return 'test'
+  const user = find({ username: payload.get('username'), password: payload.get('password') }, users)
+
+  return respondWith(user)
 }
 
 const register = payload => {

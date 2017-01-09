@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { Navbar, NavbarBrand } from 'reactstrap'
+import { UserInfoBox } from 'containers'
 import './Header.css'
 
 const Header = () => (
@@ -33,6 +34,7 @@ const Header = () => (
       </li>
     </ul>
     <form className="form-inline float-xs-right">
+      <UserInfoBox />
       <input className="form-control" type="text" placeholder="Search" />
       <button className="btn btn-outline-primary" type="submit">Search</button>
     </form>
