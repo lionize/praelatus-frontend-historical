@@ -1,6 +1,18 @@
 import { combineReducers } from 'redux-immutablejs'
 import types from 'types/auth'
 
+const token = (state = null, action) => {
+  switch (action.type) {
+    case types.LOGIN_SUCCESS:
+    case types.REGISTER_SUCCESS:
+      return action.response.get('token')
+    case types.LOGOUT_SUCCESS:
+      return null
+    default:
+      return state
+  }
+}
+
 const currentUser = (state = null, action) => {
   switch (action.type) {
     case types.LOGIN_SUCCESS:
@@ -49,6 +61,7 @@ const loading = (state = false, action) => {
 }
 
 export default combineReducers({
+  token,
   currentUser,
   loading,
   error,
