@@ -5,7 +5,7 @@ const currentUser = (state = null, action) => {
   switch (action.type) {
     case types.LOGIN_SUCCESS:
     case types.REGISTER_SUCCESS:
-      return action.response.result
+      return action.response.getIn(['user', 'id'])
     case types.LOGIN_FAILURE:
     case types.LOGOUT_SUCCESS:
       return null

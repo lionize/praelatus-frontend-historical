@@ -35,12 +35,15 @@ describe('auth reducers', () => {
 
   describe('LOGIN_SUCCESS', () => {
     const fixture = {
-      id: 0,
-      username: 'username',
+      token: 'TOKEN_STRING',
+      user: {
+        id: 0,
+        username: 'username',
+      }
     }
 
     const expectedResult = state.merge(Map({
-      id: fixture.id,
+      id: fixture.user.id,
       error: null,
       loading: false,
     }))
@@ -153,12 +156,15 @@ describe('auth reducers', () => {
 
   describe('REGISTER_SUCCESS', () => {
     const fixture = {
-      id: 0,
-      username: 'username',
+      token: 'TOKEN_STRING',
+      user: {
+        id: 0,
+        username: 'username',
+      }
     }
 
     const expectedResult = state.merge(Map({
-      currentUser: fixture.id,
+      currentUser: fixture.user.id,
       error: null,
       loading: false,
     }))
