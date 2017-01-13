@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr-immutable'
+import formatAuthResponse from 'utils/format-auth-response'
 import types from 'types/auth'
 import * as schema from 'schema'
 
@@ -9,7 +10,7 @@ export const loginRequest = payload => ({
 
 export const loginSuccess = response => ({
   type: types.LOGIN_SUCCESS,
-  response: normalize(response, schema.user),
+  response: formatAuthResponse(response),
 })
 
 export const loginFailure = error => ({
@@ -35,7 +36,7 @@ export const registerRequest = payload => ({
 
 export const registerSuccess = response => ({
   type: types.REGISTER_SUCCESS,
-  response,
+  response: formatAuthResponse(response),
 })
 
 export const registerFailure = error => ({
