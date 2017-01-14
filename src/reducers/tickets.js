@@ -29,7 +29,7 @@ const byId = (state = Map(), action) => {
     return state.delete(action.id.toString())
   }
 
-  if (action.response) {
+  if (action.response && action.response.entities) {
     return state.merge(action.response.entities.tickets)
   }
 
