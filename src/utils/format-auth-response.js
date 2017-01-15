@@ -1,9 +1,10 @@
 import { Map } from 'immutable'
+import { User } from 'schema'
 
 const formatAuthResponse = ({token, user}) => {
   const data = Map({
     token,
-    user: Map(user)
+    user: new User(user)
   })
 
   return data
