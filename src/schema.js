@@ -1,7 +1,7 @@
 import { Record, List } from 'immutable'
 import { Schema, arrayOf } from 'normalizr-immutable'
 
-const User = new Record({
+export const User = new Record({
   id: null,
   username: null,
   email: null,

@@ -5,6 +5,7 @@ import * as actions from 'actions/auth'
 
 describe('auth reducers', () => {
   const state = Map({
+    token: 'TOKEN',
     currentUser: null,
     loading: null,
     error: '',
@@ -12,6 +13,7 @@ describe('auth reducers', () => {
 
   it('returns a default state', () => {
     const expectedResult = Map({
+      token: null,
       currentUser: null,
       loading: false,
       error: null,
@@ -35,17 +37,25 @@ describe('auth reducers', () => {
 
   describe('LOGIN_SUCCESS', () => {
     const fixture = {
-      id: 0,
-      username: 'username',
+      token: 'TOKEN_STRING',
+      user: {
+        id: 0,
+        username: 'username',
+      }
     }
 
     const expectedResult = state.merge(Map({
-      id: fixture.id,
+      token: fixture.token,
+      id: fixture.user.id,
       error: null,
       loading: false,
     }))
 
     const nextState = reducer(state, actions.loginSuccess(fixture))
+
+    it('sets the token', () => {
+      expect(nextState.get('token')).to.eq(expectedResult.get('token'))
+    })
 
     it('sets currentUser id', () => {
       expect(nextState.get('currentUser')).to.eq(expectedResult.get('id'))
@@ -105,12 +115,17 @@ describe('auth reducers', () => {
 
   describe('LOGOUT_SUCCESS', () => {
     const expectedResult = state.merge(Map({
+      token: null,
       currentUser: null,
       error: null,
       loading: false,
     }))
 
     const nextState = reducer(state, actions.logoutSuccess())
+
+    it('sets token to null', () => {
+      expect(nextState.get('token')).to.eq(expectedResult.get('token'))
+    })
 
     it('sets currentUser to null', () => {
       expect(nextState.get('currentUser')).to.eq(expectedResult.get('currentUser'))
@@ -153,17 +168,25 @@ describe('auth reducers', () => {
 
   describe('REGISTER_SUCCESS', () => {
     const fixture = {
-      id: 0,
-      username: 'username',
+      token: 'TOKEN_STRING',
+      user: {
+        id: 0,
+        username: 'username',
+      }
     }
 
     const expectedResult = state.merge(Map({
-      currentUser: fixture.id,
+      token: fixture.token,
+      currentUser: fixture.user.id,
       error: null,
       loading: false,
     }))
 
     const nextState = reducer(state, actions.registerSuccess(fixture))
+
+    it('sets the token', () => {
+      expect(nextState.get('token')).to.eq(expectedResult.get('token'))
+    })
 
     it('sets currentUser', () => {
       expect(nextState.get('currentUser')).to.eq(expectedResult.get('currentUser'))

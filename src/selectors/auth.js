@@ -1,7 +1,7 @@
 import { userSelector } from 'selectors/users'
 
 export const currentUserSelector = (state) => {
-  const id = state.getIn(['data', 'auth', 'currentUser'])
+  const id = state.getIn(['auth', 'currentUser'])
 
   return userSelector(state, id)
 }

@@ -50,7 +50,7 @@ describe('auth actions', () => {
     })
 
     it('should return the correct response', () => {
-      expect(result.response).to.eq(expectedResult.response)
+      expect(result.response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 
@@ -129,10 +129,13 @@ describe('auth actions', () => {
 
   describe('registerSuccess', () => {
     const fixture = {
-      username: 'username',
-      password: 'password',
-      email: 'email@users.com',
-      fullName: 'User Name',
+      token: 'TOKEN_STRING',
+      user: {
+        username: 'username',
+        password: 'password',
+        email: 'email@users.com',
+        fullName: 'User Name',
+      }
     }
 
     const expectedResult = {
@@ -147,7 +150,7 @@ describe('auth actions', () => {
     })
 
     it('should return the response', () => {
-      expect(result.response).to.eq(expectedResult.response)
+      expect(result.response.toJS()).to.deep.eq(expectedResult.response)
     })
   })
 

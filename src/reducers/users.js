@@ -4,6 +4,7 @@ import { Map, List } from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import types from 'types/users'
 import dataTypes from 'types/data'
+import authTypes from 'types/auth'
 
 /**
  * Reducer that manages a Map of all users in the state. The key is the project's
@@ -29,7 +30,13 @@ const byId = (state = Map(), action) => {
     return state.delete(action.id.toString())
   }
 
-  if (action.response) {
+  if (action.type === authTypes.LOGIN_SUCCESS || action.type === authTypes.REGISTER_SUCCESS) {
+    const user = action.response.get('user')
+
+    return state.set(String(user.get('id')), user)
+  }
+
+  if (action.response && action.response.entities) {
     return state.merge(action.response.entities.users)
   }
 
@@ -59,6 +66,9 @@ const ids = (state = List(), action) => {
       return state.merge(action.response.result.get('users'))
     case types.CREATE_USER_SUCCESS:
       return state.push(action.response.result)
+    case authTypes.LOGIN_SUCCESS:
+    case authTypes.REGISTER_SUCCESS:
+      return state.push(action.response.getIn(['user', 'id']))
     case types.DELETE_USER_SUCCESS: {
       const index = state.indexOf(action.id)
       return state.delete(index)

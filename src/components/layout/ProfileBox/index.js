@@ -1,8 +1,10 @@
 import React from 'react'
+import { LogoutLink } from 'containers'
 
 const ProfileBox = ({ user }) => (
   <div>
-    {user.username}
+    Logged in as: {user.username}
+    <LogoutLink />
   </div>
 )
 

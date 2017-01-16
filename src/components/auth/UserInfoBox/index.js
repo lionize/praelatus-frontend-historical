@@ -1,12 +1,17 @@
 import React from 'react'
-import { ProfileBox, LoginLink } from 'components'
+import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
 const UserInfoBox = ({ user }) => {
   if (user) {
     return <ProfileBox user={user} />
   }
   else {
-    return <LoginLink />
+    return (
+      <div>
+        <LoginLink />
+        <RegisterLink />
+      </div>
+    )
   }
 }
 

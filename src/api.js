@@ -203,11 +203,15 @@ const deleteUser = payload => {}
 const login = payload => {
   const user = find({ username: payload.get('username'), password: payload.get('password') }, users)
 
-  return respondWith(user)
+  return respondWith({ token: 'TOKEN_STRING', user })
 }
 
 const register = payload => {
-  return 'test'
+  const user = payload.toJS()
+  users.push(user)
+  delete user.password
+
+  return respondWith({ token: 'TOKEN_STRING', user })
 }
 
 export default {
