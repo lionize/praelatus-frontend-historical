@@ -1,7 +1,5 @@
-import { normalize } from 'normalizr-immutable'
 import formatAuthResponse from 'utils/format-auth-response'
 import types from 'types/auth'
-import * as schema from 'schema'
 
 export const loginRequest = payload => ({
   type: types.LOGIN_REQUEST,
@@ -18,15 +16,15 @@ export const loginFailure = error => ({
   message: error.message,
 })
 
-export const logoutRequest = payload => ({
+export const logoutRequest = () => ({
   type: types.LOGOUT_REQUEST,
 })
 
-export const logoutSuccess = response => ({
+export const logoutSuccess = () => ({
   type: types.LOGOUT_SUCCESS,
 })
 
-export const logoutFailure = error => ({
+export const logoutFailure = () => ({
 })
 
 export const registerRequest = payload => ({

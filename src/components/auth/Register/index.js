@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form/immutable'
 import { renderField } from 'utils'
 import { Form, Button } from 'components'
 
-const validate = (values) => {
+const validate = () => {
   const errors = {}
 
   return errors
