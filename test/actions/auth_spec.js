@@ -34,7 +34,8 @@ describe('auth actions', () => {
         email: 'email@users.com',
         fullName: 'User Name',
         gravatar: 'email@users.com',
-        'is_active': true,
+        profilePic: null,
+        isAdmin: null,
       }
     }
 
