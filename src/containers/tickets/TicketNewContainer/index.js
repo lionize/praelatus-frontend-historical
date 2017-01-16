@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import { createTicketRequest } from 'actions/tickets'
-import { TicketNew } from 'components'
+import { TicketForm } from 'components'
 
 class TicketNewContainer extends Component {
   @autobind
@@ -11,7 +11,7 @@ class TicketNewContainer extends Component {
   }
 
   render() {
-    return <TicketNew onSubmit={this.handleSubmit} {...this.props} />
+    return <TicketForm onSubmit={this.handleSubmit} {...this.props} />
   }
 }
 
