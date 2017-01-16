@@ -105,17 +105,27 @@ describe('tickets module sagas', () => {
     })
 
     it('updates the ticket', () => {
-      const generator = sagas.updateTicket({ payload: fixture })
+      const generator = sagas.updateTicket({ payload: fromJS(fixture) })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.updateTicketSuccess(response))
+      const next = generator.next(true).value
+      const expected = put(actions.updateTicketSuccess(fixture))
 
       expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
       expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
     })
 
-    it('generators an error is updating fails', () => {
+    it('redirects to the given ticket', () => {
+      const generator = sagas.updateTicket({ payload: fromJS(fixture) })
+      generator.next()
+      generator.next(true).value
+      const next = generator.next().value
+      const expected = put(push(`/tickets/${fixture.id}`))
+
+      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+    })
+
+    it('generates an error is updating fails', () => {
       const generator = sagas.updateTicket({ payload: fixture })
 
       expect(generator.next().value).to.deep.eq(call(api.updateTicket, fixture))

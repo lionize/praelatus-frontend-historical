@@ -71,7 +71,11 @@ export function* updateTicket(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.updateTicket, payload)
-    yield put(actions.updateTicketSuccess(response))
+
+    if (response) {
+      yield put(actions.updateTicketSuccess(payload.toJS()))
+    }
+    yield put(push(`/tickets/${payload.get('id')}`))
   } catch (e) {
     yield put(actions.updateTicketFailure(e))
   }
