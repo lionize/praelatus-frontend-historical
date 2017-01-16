@@ -5,14 +5,13 @@ const UserInfoBox = ({ user }) => {
   if (user) {
     return <ProfileBox user={user} />
   }
-  else {
-    return (
-      <div>
-        <LoginLink />
-        <RegisterLink />
-      </div>
-    )
-  }
+
+  return (
+    <div>
+      <LoginLink />
+      <RegisterLink />
+    </div>
+  )
 }
 
 export default UserInfoBox

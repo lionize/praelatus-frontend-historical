@@ -34,7 +34,8 @@ describe('auth actions', () => {
         email: 'email@users.com',
         fullName: 'User Name',
         gravatar: 'email@users.com',
-        'is_active': true,
+        profilePic: null,
+        isAdmin: null,
       }
     }
 
@@ -132,9 +133,12 @@ describe('auth actions', () => {
       token: 'TOKEN_STRING',
       user: {
         username: 'username',
-        password: 'password',
         email: 'email@users.com',
         fullName: 'User Name',
+        gravatar: null,
+        id: null,
+        isAdmin: null,
+        profilePic: null,
       }
     }
 

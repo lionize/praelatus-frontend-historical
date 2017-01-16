@@ -8,10 +8,10 @@ import {
 
 describe('auth selectors', () => {
   const baseState = fromJS({
+    auth: {
+      currentUser: 0,
+    },
     data: {
-      auth: {
-        currentUser: 0,
-      },
       users: {
         ids: [0],
         byId: {

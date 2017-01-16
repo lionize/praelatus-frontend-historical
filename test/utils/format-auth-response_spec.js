@@ -8,6 +8,9 @@ describe('formatAuthResponse', () => {
     username: 'user0',
     fullName: 'User 0',
     email: 'user0@users.com',
+    gravatar: null,
+    isAdmin: null,
+    profilePic: null,
   }
   const result = formatAuthResponse({token, user})
 
