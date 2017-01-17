@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { UserLink, NotFoundCard, ErrorCard } from 'components'
+import { LinkButton, UserLink, NotFoundCard, ErrorCard } from 'components'
+import { TicketDeleteButtonContainer } from 'containers'
 
 const Ticket = ({ ticket, loading, error }) => {
   if (loading) {
@@ -29,6 +30,8 @@ const Ticket = ({ ticket, loading, error }) => {
                 Assignee: <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
               </CardText>
             }
+            <LinkButton to={`/tickets/${ticket.id}/edit`}>Edit</LinkButton>
+            <TicketDeleteButtonContainer id={ticket.id} />
           </CardBlock>
         </Card>
       </div>

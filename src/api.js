@@ -1,4 +1,4 @@
-import { flowRight as compose, add, max, map, find } from 'lodash/fp'
+import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
 import { fromJS } from 'immutable'
 
 const users = [
@@ -103,6 +103,7 @@ const respondWith = info => Promise.resolve({
 })
 
 const nextID = compose(add(1), max, map('id'))
+const idIndex = (id, collection) => findIndex({ id }, collection)
 
 const fetchTickets = payload => {
   if (!!payload.id) {
@@ -129,8 +130,21 @@ const createTicket = payload => {
 
   return ticket
 }
-const updateTicket = payload => {}
-const deleteTicket = payload => {}
+const updateTicket = payload => {
+  const index = idIndex(payload.get('id'), tickets)
+
+  tickets[index] = payload.toJS()
+
+  return true
+}
+
+const deleteTicket = payload => {
+  const index = idIndex(payload, tickets)
+
+  tickets.splice(index, 1)
+
+  return payload
+}
 
 const fetchTeams = payload => {
   if (!!payload.id) {

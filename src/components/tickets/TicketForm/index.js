@@ -4,7 +4,7 @@ import { Button } from 'reactstrap'
 import { renderField } from 'utils'
 import { Form } from 'components'
 
-const TicketNew = ({ handleSubmit }) => (
+const TicketForm = ({ handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
     <Field name="summary" component={renderField} type="text" label="Summary" />
     <Field name="description" component={renderField} type="textarea" label="Description" />
@@ -14,4 +14,4 @@ const TicketNew = ({ handleSubmit }) => (
 
 export default reduxForm({
   form: 'ticket',
-})(TicketNew)
+})(TicketForm)
