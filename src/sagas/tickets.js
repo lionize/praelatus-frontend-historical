@@ -94,10 +94,9 @@ export function* updateTicket(action = {}) {
  *
  * @param {object} action - The action that contains payload information.
  */
-export function* deleteTicket(action = {}) {
+export function* deleteTicket(action) {
   try {
-    const payload = action.payload || {}
-    const response = yield call(api.deleteTicket, payload)
+    const response = yield call(api.deleteTicket, action.payload)
     yield put(actions.deleteTicketSuccess(response))
     yield put(push(`/tickets`))
   } catch (e) {
