@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
+import { logoutRequest as logout } from 'actions/auth'
 import { Button } from 'components'
 
-const LogoutLink = ({ handleClick }) => (
-  <Button onClick={handleClick}>Logout</Button>
-)
+class LogoutLink extends Component {
+  @autobind
+  handleClick(e) {
+    this.props.logout()
+  }
+
+  render() {
+    return <Button onClick={this.handleClick}>Logout</Button>
+  }
+}
+
+LogoutLink = connect(null,
+  { logout, }
+)(LogoutLink)
 
 export default LogoutLink
