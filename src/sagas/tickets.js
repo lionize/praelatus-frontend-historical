@@ -99,6 +99,7 @@ export function* deleteTicket(action = {}) {
     const payload = action.payload || {}
     const response = yield call(api.deleteTicket, payload)
     yield put(actions.deleteTicketSuccess(response))
+    yield put(push(`/tickets`))
   } catch (e) {
     yield put(actions.deleteTicketFailure(e))
   }

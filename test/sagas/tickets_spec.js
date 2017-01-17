@@ -158,6 +158,17 @@ describe('tickets module sagas', () => {
       expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
     })
 
+    it('redirects to tickets index', () => {
+      const generator = sagas.deleteTicket({ payload: fixture })
+      generator.next()
+      generator.next(fixture).value
+      const next = generator.next().value
+      const expected = put(push(`/tickets`))
+
+      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
+      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+    })
+
     it('returns an error if deleting fails', () => {
       const generator = sagas.deleteTicket({ payload: fixture })
       generator.next()
