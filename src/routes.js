@@ -7,8 +7,9 @@ import {
   ProjectContainer, ProjectNewContainer, ProjectListContainer,
   TicketContainer, TicketNewContainer, TicketEditContainer, TicketListContainer,
   TeamContainer, TeamNewContainer, TeamListContainer,
-  Login, Register,
+  Register,
 } from 'containers'
+import { Login } from 'components'
 
 const routes = (
   <Route path='/' component={App}>
