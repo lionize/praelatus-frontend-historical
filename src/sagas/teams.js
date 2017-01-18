@@ -71,7 +71,11 @@ export function* updateTeam(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.updateTeam, payload)
-    yield put(actions.updateTeamSuccess(response))
+
+    if (response) {
+      yield put(actions.updateTeamSuccess(payload.toJS()))
+    }
+    yield put(push(`/teams/${payload.get('id')}`))
   } catch (e) {
     yield put(actions.updateTeamFailure(e))
   }
