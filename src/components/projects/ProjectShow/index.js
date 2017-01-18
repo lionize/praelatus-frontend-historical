@@ -3,9 +3,9 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { projectSelector } from 'selectors/projects'
 import { fetchProjectsRequest } from 'actions/projects'
-import { Project } from 'components'
+import { ProjectCard } from 'components'
 
-class ProjectContainer extends Component {
+class ProjectShow extends Component {
   componentDidMount() {
     this.props.loadProject(this.props.params.id)
   }
@@ -17,7 +17,7 @@ class ProjectContainer extends Component {
   }
 
   render() {
-    return <Project {...this.props} />
+    return <ProjectCard {...this.props} />
   }
 }
 
@@ -35,9 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-ProjectContainer = withRouter(connect(
+ProjectShow = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ProjectContainer))
+)(ProjectShow))
 
-export default ProjectContainer
+export default ProjectShow
