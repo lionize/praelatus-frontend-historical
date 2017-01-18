@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
 import Home from 'components/Home'
 import {
-  ProjectShow, ProjectNew, ProjectList,
+  ProjectShow, ProjectNew, ProjectEdit, ProjectList,
   TicketShow, TicketNew, TicketEdit, TicketList,
   TeamShow, TeamNew, TeamEdit, TeamList,
   UserShow, UserList,
@@ -22,6 +22,7 @@ const routes = (
     <Route path="projects">
       <IndexRoute component={ProjectList} />
       <Route path="new" component={ProjectNew} />
+      <Route path=":id/edit" component={ProjectEdit} />
       <Route path=":id" component={ProjectShow} />
     </Route>
     <Route path="tickets">
