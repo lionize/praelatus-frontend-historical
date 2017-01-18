@@ -174,7 +174,13 @@ const updateTeam = payload => {
 
   return true
 }
-const deleteTeam = payload => {}
+const deleteTeam = payload => {
+  const index = idIndex(payload, teams)
+
+  teams.splice(index, 1)
+
+  return payload
+}
 
 const fetchProjects = payload => {
   if (!!payload.id) {
