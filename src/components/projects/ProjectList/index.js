@@ -1,42 +1,32 @@
-import React from 'react'
-import { Table } from 'reactstrap'
-import { ProjectLink, UserLink } from 'components'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { projectsSelector } from 'selectors/projects'
+import { fetchProjectsRequest } from 'actions/projects'
+import { ProjectTable } from 'components'
 
-const ProjectList = ({ projects }) => (
-  <div>
-    <Table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Key</th>
-          <th>Lead</th>
-          <th>Created Date</th>
-          <th>Homepage</th>
-          <th>Repo</th>
-        </tr>
-      </thead>
-      <tbody>
-        {projects.map((project, i) =>
-          <tr key={i}>
-            <td>
-              <ProjectLink id={project.id}>{project.name}</ProjectLink>
-            </td>
-            <td>
-              <ProjectLink id={project.id}>{project.key}</ProjectLink>
-            </td>
-            <td>
-              {project.lead &&
-                <UserLink id={project.lead.id}>{project.lead.username}</UserLink>
-              }
-            </td>
-            <td>{project.createdDate}</td>
-            <td>{project.homepage}</td>
-            <td>{project.repo}</td>
-          </tr>
-        )}
-      </tbody>
-    </Table>
-  </div>
-)
+class ProjectList extends Component {
+  componentWillMount() {
+    this.props.loadProjects()
+  }
+
+  render() {
+    return <ProjectTable {...this.props} />
+  }
+}
+
+const mapStateToProps = state => ({
+  projects: projectsSelector(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadProjects() {
+    dispatch(fetchProjectsRequest())
+  },
+})
+
+ProjectList= connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProjectList)
 
 export default ProjectList
