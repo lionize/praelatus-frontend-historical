@@ -149,5 +149,16 @@ describe('teams module sagas', () => {
       expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
       expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
     })
+
+    it('redirects to the teams list', () => {
+      const generator = sagas.deleteTeam({ payload: fixture })
+      generator.next()
+      generator.next(fixture).value
+      const next = generator.next().value
+      const expected = put(push(`/tickets`))
+
+      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+    })
   })
 })

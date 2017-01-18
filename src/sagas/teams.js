@@ -94,11 +94,11 @@ export function* updateTeam(action = {}) {
  *
  * @param {object} action - The action that contains payload information.
  */
-export function* deleteTeam(action = {}) {
+export function* deleteTeam(action) {
   try {
-    const payload = action.payload || {}
-    const response = yield call(api.deleteTeam, payload)
+    const response = yield call(api.deleteTeam, action.payload)
     yield put(actions.deleteTeamSuccess(response))
+    yield put(push('/teams'))
   } catch (e) {
     yield put(actions.deleteTeamFailure(e))
   }
