@@ -1,27 +1,25 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
-import { Button } from 'reactstrap'
-import { renderField } from 'utils'
-import { Form } from 'components'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
+import { createTeamRequest } from 'actions/teams'
+import { TeamForm } from 'components'
 
-const validate = (values) => {
-  const errors = {}
-
-  if (!values.get('name')) {
-    errors.name = 'Required'
+class TeamNew extends Component {
+  @autobind
+  handleSubmit(values) {
+    this.props.createTeam(values)
   }
 
-  return errors
+  render() {
+    return <TeamForm onSubmit={this.handleSubmit} {...this.props} />
+  }
 }
 
-const TeamNew = ({ handleSubmit }) => (
-  <Form onSubmit={handleSubmit}>
-    <Field name="name" component={renderField} type="text" label="Name" />
-    <Button>Submit</Button>
-  </Form>
-)
+const mapStateToProps = () => ({})
 
-export default reduxForm({
-  form: 'team',
-  validate,
-})(TeamNew)
+TeamNew = connect(
+  mapStateToProps,
+  { createTeam: createTeamRequest }
+)(TeamNew)
+
+export default TeamNew
