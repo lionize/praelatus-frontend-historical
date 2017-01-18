@@ -207,8 +207,20 @@ const createProject = payload => {
 
   return project
 }
-const updateProject = payload => {}
-const deleteProject = payload => {}
+const updateProject = payload => {
+  const index = idIndex(payload.get('id'), projects)
+
+  projects[index] = payload.toJS()
+
+  return true
+}
+const deleteProject = payload => {
+  const index = idIndex(payload, projects)
+
+  projects.splice(index, 1)
+
+  return payload
+}
 
 const fetchComments = payload => respondWith(comments)
 const createComment = payload => {}
