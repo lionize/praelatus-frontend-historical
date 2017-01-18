@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { deleteTicketRequest } from 'actions/tickets'
 import { DeleteButton } from 'components'
 
-class TicketDeleteButtonContainer extends Component {
+class TicketDeleteButton extends Component {
   @autobind
   handleClick(e) {
     e.preventDefault()
@@ -24,9 +24,9 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TicketDeleteButtonContainer = connect(
+TicketDeleteButton= connect(
   mapStateToProps,
   mapDispatchToProps
-)(TicketDeleteButtonContainer)
+)(TicketDeleteButton)
 
-export default TicketDeleteButtonContainer
+export default TicketDeleteButton
