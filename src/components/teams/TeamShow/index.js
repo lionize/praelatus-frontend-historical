@@ -3,9 +3,9 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { teamSelector } from 'selectors/teams'
 import { fetchTeamsRequest } from 'actions/teams'
-import { Team } from 'components'
+import { TeamCard } from 'components'
 
-class TeamContainer extends Component {
+class TeamShow extends Component {
   componentDidMount() {
     this.props.loadTeam(this.props.params.id)
   }
@@ -17,7 +17,7 @@ class TeamContainer extends Component {
   }
 
   render() {
-    return <Team {...this.props} />
+    return <TeamCard {...this.props} />
   }
 }
 
@@ -35,9 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TeamContainer = withRouter(connect(
+TeamShow = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TeamContainer))
+)(TeamShow))
 
-export default TeamContainer
+export default TeamShow
