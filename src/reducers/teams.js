@@ -60,8 +60,7 @@ const ids = (state = List(), action) => {
     case types.CREATE_TEAM_SUCCESS:
       return state.push(action.response.result)
     case types.DELETE_TEAM_SUCCESS: {
-      const index = state.indexOf(action.id)
-      return state.delete(index)
+      return state.filter(i => i !== action.id)
     }
     default:
       return state
