@@ -94,11 +94,11 @@ export function* updateProject(action = {}) {
  *
  * @param {object} action - The action that contains payload information.
  */
-export function* deleteProject(action = {}) {
+export function* deleteProject(action) {
   try {
-    const payload = action.payload || {}
-    const response = yield call(api.deleteProject, payload)
+    const response = yield call(api.deleteProject, action.payload)
     yield put(actions.deleteProjectSuccess(response))
+    yield put(push('/projects'))
   } catch (e) {
     yield put(actions.deleteProjectFailure(e))
   }

@@ -147,5 +147,16 @@ describe('projects module sagas', () => {
       expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
       expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
     })
+
+    it('redirects to the projects list', () => {
+      const generator = sagas.deleteProject({ payload: fixture })
+      generator.next()
+      generator.next(fixture).value
+      const next = generator.next().value
+      const expected = put(push(`/projects`))
+
+      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+    })
   })
 })
