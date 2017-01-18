@@ -6,7 +6,7 @@ import { fetchTicketsRequest, updateTicketRequest } from 'actions/tickets'
 import { ticketSelector } from 'selectors/tickets'
 import { TicketForm } from 'components'
 
-class TicketEditContainer extends Component {
+class TicketEdit extends Component {
   componentDidMount() {
     this.props.loadTicket(this.props.params.id)
   }
@@ -35,9 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TicketEditContainer = withRouter(connect(
+TicketEdit= withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TicketEditContainer))
+)(TicketEdit))
 
-export default TicketEditContainer
+export default TicketEdit
