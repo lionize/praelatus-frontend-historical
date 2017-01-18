@@ -4,11 +4,10 @@ import App from 'components/App'
 import Home from 'components/Home'
 import {
   TicketContainer, TicketNewContainer, TicketEditContainer, TicketListContainer,
-  TeamListContainer,
 } from 'containers'
 import {
   ProjectShow, ProjectNew, ProjectList,
-  TeamShow, TeamNew,
+  TeamShow, TeamNew, TeamList,
   UserShow, UserList,
   Login, Register,
 } from 'components'
@@ -34,7 +33,7 @@ const routes = (
       <Route path=":id" component={TicketContainer} />
     </Route>
     <Route path="teams">
-      <IndexRoute component={TeamListContainer} />
+      <IndexRoute component={TeamList} />
       <Route path="new" component={TeamNew} />
       <Route path=":id" component={TeamShow} />
     </Route>

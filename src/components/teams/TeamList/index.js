@@ -1,44 +1,32 @@
-import React from 'react'
-import { Table } from 'reactstrap'
-import { TeamLink, UserLink } from 'components'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { teamsSelector } from 'selectors/teams'
+import { fetchTeamsRequest } from 'actions/teams'
+import { TeamTable } from 'components'
 
-const TeamList = ({ teams }) => (
-  <div>
-    <Table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Lead</th>
-          <th>Members</th>
-        </tr>
-      </thead>
-      <tbody>
-        {teams.map((team, i) =>
-          <tr key={i}>
-            <td>
-              <TeamLink id={team.id}>{team.name}</TeamLink>
-            </td>
-            <td>
-              {team.lead &&
-                <UserLink id={team.lead.id}>{team.lead.username}</UserLink>
-              }
-            </td>
-            <td>
-              {team.members &&
-                <ul>
-                  {team.members.map((member, j) =>
-                    <li key={j}>
-                      <UserLink id={member.id}>{member.username}</UserLink>
-                    </li>
-                  )}
-                </ul>
-              }
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </Table>
-  </div>
-)
+class TeamList extends Component {
+  componentDidMount() {
+    this.props.loadTeams()
+  }
+
+  render() {
+    return <TeamTable {...this.props} />
+  }
+}
+
+const mapStateToProps = state => ({
+  teams: teamsSelector(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadTeams() {
+    dispatch(fetchTeamsRequest())
+  },
+})
+
+TeamList = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TeamList)
 
 export default TeamList
