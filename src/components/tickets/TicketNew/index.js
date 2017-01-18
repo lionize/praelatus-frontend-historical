@@ -4,7 +4,7 @@ import autobind from 'autobind-decorator'
 import { createTicketRequest } from 'actions/tickets'
 import { TicketForm } from 'components'
 
-class TicketNewContainer extends Component {
+class TicketNew extends Component {
   @autobind
   handleSubmit(values) {
     this.props.createTicket(values)
@@ -17,9 +17,9 @@ class TicketNewContainer extends Component {
 
 const mapStateToProps = () => ({})
 
-TicketNewContainer = connect(
+TicketNew= connect(
   mapStateToProps,
   { createTicket: createTicketRequest }
-)(TicketNewContainer)
+)(TicketNew)
 
-export default TicketNewContainer
+export default TicketNew
