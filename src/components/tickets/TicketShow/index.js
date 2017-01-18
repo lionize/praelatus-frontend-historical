@@ -3,9 +3,9 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { ticketSelector } from 'selectors/tickets'
 import { fetchTicketsRequest } from 'actions/tickets'
-import { Ticket } from 'components'
+import { TicketCard } from 'components'
 
-class TicketContainer extends Component {
+class TicketShow extends Component {
   componentWillMount() {
     this.props.loadTicket(this.props.params.id)
   }
@@ -17,7 +17,7 @@ class TicketContainer extends Component {
   }
 
   render() {
-    return <Ticket {...this.props} />
+    return <TicketCard {...this.props} />
   }
 }
 
@@ -35,9 +35,9 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TicketContainer = withRouter(connect(
+TicketShow = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(TicketContainer))
+)(TicketShow))
 
-export default TicketContainer
+export default TicketShow
