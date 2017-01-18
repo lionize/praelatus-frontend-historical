@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-ProjectList= connect(
+ProjectList = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(ProjectList)

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { LinkButton, UserLink, NotFoundCard, ErrorCard } from 'components'
-import { TicketDeleteButton } from 'components'
+import { LinkButton, UserLink, NotFoundCard, ErrorCard, TicketDeleteButton } from 'components'
 
 const Ticket = ({ ticket, loading, error }) => {
   if (loading) {

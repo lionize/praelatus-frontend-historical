@@ -16,7 +16,7 @@ class Register extends Component {
 }
 
 Register = connect(null,
-  { register, }
+  { register }
 )(Register)
 
 export default Register

@@ -16,7 +16,7 @@ class Login extends Component {
 }
 
 Login = connect(null,
-  { login, }
+  { login }
 )(Login)
 
 export default Login

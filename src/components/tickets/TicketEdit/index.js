@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TicketEdit= withRouter(connect(
+TicketEdit = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
 )(TicketEdit))

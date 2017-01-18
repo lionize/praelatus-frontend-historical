@@ -3,7 +3,6 @@ import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { UserLink, NotFoundCard, ErrorCard } from 'components'
 
 const TeamCard = ({ team, loading, error }) => {
-  console.log('in team card')
   if (loading) {
     return (
       <div>

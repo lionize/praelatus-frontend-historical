@@ -17,7 +17,7 @@ class TicketNew extends Component {
 
 const mapStateToProps = () => ({})
 
-TicketNew= connect(
+TicketNew = connect(
   mapStateToProps,
   { createTicket: createTicketRequest }
 )(TicketNew)

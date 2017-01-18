@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TicketDeleteButton= connect(
+TicketDeleteButton = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TicketDeleteButton)

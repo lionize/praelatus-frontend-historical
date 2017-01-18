@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-TicketList= connect(
+TicketList = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(TicketList)

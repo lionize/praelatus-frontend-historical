@@ -6,7 +6,7 @@ import { Button } from 'components'
 
 class LogoutLink extends Component {
   @autobind
-  handleClick(e) {
+  handleClick() {
     this.props.logout()
   }
 
@@ -16,7 +16,7 @@ class LogoutLink extends Component {
 }
 
 LogoutLink = connect(null,
-  { logout, }
+  { logout }
 )(LogoutLink)
 
 export default LogoutLink
