@@ -5,7 +5,7 @@ An Open Source ticketing / bug tracking system front end.
 If you're looking for the REST API it's
 [here](https://github.com/praelatus/backend)
 
-| Stable | Nightly |
+| Stable | Develop |
 |:------:|:-------:|
 | [![Build Status](https://travis-ci.org/praelatus/frontend.svg?branch=master)](https://travis-ci.org/praelatus/frontend) | [![Build Status](https://travis-ci.org/praelatus/frontend.svg?branch=develop)](https://travis-ci.org/praelatus/frontend) |
 
