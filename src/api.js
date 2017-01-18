@@ -222,6 +222,7 @@ const login = payload => {
 
 const register = payload => {
   const user = payload.toJS()
+  user.id = nextID(users)
   users.push(user)
   delete user.password
 

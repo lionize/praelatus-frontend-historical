@@ -1,25 +1,22 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
-import { renderField } from 'utils'
-import { Form, Button } from 'components'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
+import { registerRequest as register } from 'actions/auth'
+import { RegisterForm } from 'components'
 
-const validate = () => {
-  const errors = {}
+class Register extends Component {
+  @autobind
+  handleSubmit(values) {
+    this.props.register(values)
+  }
 
-  return errors
+  render() {
+    return <RegisterForm onSubmit={this.handleSubmit} />
+  }
 }
 
-const Register = ({ handleSubmit }) => (
-  <Form onSubmit={handleSubmit}>
-    <Field name="username" component={renderField} type="text" label="Username" />
-    <Field name="password" component={renderField} type="password" label="Password" />
-    <Field name="name" component={renderField} type="text" label="Name" />
-    <Field name="email" component={renderField} type="email" label="Email" />
-    <Button>Submit</Button>
-  </Form>
-)
+Register = connect(null,
+  { register }
+)(Register)
 
-export default reduxForm({
-  form: 'register',
-  validate,
-})(Register)
+export default Register

@@ -1,34 +1,23 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
-import { renderField } from 'utils'
-import { Button } from 'reactstrap'
-import { Form } from 'components'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
+import { createProjectRequest } from 'actions/projects'
+import { ProjectForm } from 'components'
 
-const validate = (values) => {
-  const errors = {}
-
-  if (!values.get('name')) {
-    errors.name = 'Required'
+class ProjectNew extends Component {
+  @autobind
+  handleSubmit(values) {
+    this.props.createProject(values)
   }
 
-  if (!values.get('homepage')) {
-    errors.homepage = 'Required'
+  render() {
+    return <ProjectForm onSubmit={this.handleSubmit} {...this.props} />
   }
-
-  return errors
 }
 
-const ProjectNew = ({ handleSubmit }) => (
-  <Form onSubmit={handleSubmit}>
-    <Field name="name" component={renderField} type="text" label="Name" />
-    <Field name="homepage" component={renderField} type="text" label="Homepage" />
-    <Field name="iconURL" component={renderField} type="text" label="Icon URL" />
-    <Field name="repo" component={renderField} type="text" label="Repo" />
-    <Button>Submit</Button>
-  </Form>
-)
+ProjectNew = connect(
+  () => ({}),
+  { createProject: createProjectRequest }
+)(ProjectNew)
 
-export default reduxForm({
-  form: 'project',
-  validate,
-})(ProjectNew)
+export default ProjectNew

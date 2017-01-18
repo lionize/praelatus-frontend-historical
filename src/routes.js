@@ -3,12 +3,12 @@ import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
 import Home from 'components/Home'
 import {
-  UserContainer, UserListContainer,
-  ProjectContainer, ProjectNewContainer, ProjectListContainer,
-  TicketContainer, TicketNewContainer, TicketEditContainer, TicketListContainer,
-  TeamContainer, TeamNewContainer, TeamListContainer,
+  ProjectShow, ProjectNew, ProjectList,
+  TicketShow, TicketNew, TicketEdit, TicketList,
+  TeamShow, TeamNew, TeamList,
+  UserShow, UserList,
   Login, Register,
-} from 'containers'
+} from 'components'
 
 const routes = (
   <Route path='/' component={App}>
@@ -16,24 +16,24 @@ const routes = (
     <Route path='login' component={Login} />
     <Route path='register' component={Register} />
     <Route path='users'>
-      <IndexRoute component={UserListContainer} />
-      <Route path=':id' component={UserContainer} />
+      <IndexRoute component={UserList} />
+      <Route path=':id' component={UserShow} />
     </Route>
     <Route path="projects">
-      <IndexRoute component={ProjectListContainer} />
-      <Route path="new" component={ProjectNewContainer} />
-      <Route path=":id" component={ProjectContainer} />
+      <IndexRoute component={ProjectList} />
+      <Route path="new" component={ProjectNew} />
+      <Route path=":id" component={ProjectShow} />
     </Route>
     <Route path="tickets">
-      <IndexRoute component={TicketListContainer} />
-      <Route path="new" component={TicketNewContainer} />
-      <Route path=":id/edit" component={TicketEditContainer} />
-      <Route path=":id" component={TicketContainer} />
+      <IndexRoute component={TicketList} />
+      <Route path="new" component={TicketNew} />
+      <Route path=":id/edit" component={TicketEdit} />
+      <Route path=":id" component={TicketShow} />
     </Route>
     <Route path="teams">
-      <IndexRoute component={TeamListContainer} />
-      <Route path="new" component={TeamNewContainer} />
-      <Route path=":id" component={TeamContainer} />
+      <IndexRoute component={TeamList} />
+      <Route path="new" component={TeamNew} />
+      <Route path=":id" component={TeamShow} />
     </Route>
   </Route>
 )

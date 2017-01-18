@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { Navbar, NavbarBrand } from 'reactstrap'
-import { UserInfoBox } from 'containers'
+import { UserInfoBox } from 'components'
 import './Header.css'
 
 const Header = () => (

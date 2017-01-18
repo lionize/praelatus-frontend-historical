@@ -98,7 +98,7 @@ export function* deleteTicket(action) {
   try {
     const response = yield call(api.deleteTicket, action.payload)
     yield put(actions.deleteTicketSuccess(response))
-    yield put(push(`/tickets`))
+    yield put(push('/tickets'))
   } catch (e) {
     yield put(actions.deleteTicketFailure(e))
   }

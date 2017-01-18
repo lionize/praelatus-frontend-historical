@@ -1,38 +1,32 @@
-import React from 'react'
-import { Table } from 'reactstrap'
-import { Gravatar, UserLink } from 'components'
-import './userList.css'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { usersSelector } from 'selectors/users'
+import { fetchUsersRequest } from 'actions/users'
+import { UserTable } from 'components'
 
-const UserList = ({ users }) => {
-  return (
-    <div>
-      <Table>
-        <thead>
-          <tr>
-            <th />
-            <th>Username</th>
-            <th>Full Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, i) =>
-            <tr key={i}>
-              <td>
-                <Gravatar
-                  email={user.email}
-                  size={30}
-                />
-              </td>
-              <td>
-                <UserLink id={user.id}>{user.username}</UserLink>
-              </td>
-              <td>{user.fullName}</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
-    </div>
-  )
+class UserList extends Component {
+  componentWillMount() {
+    this.props.loadUsers()
+  }
+
+  render() {
+    return <UserTable {...this.props} />
+  }
 }
+
+const mapStateToProps = state => ({
+  users: usersSelector(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadUsers() {
+    dispatch(fetchUsersRequest())
+  },
+})
+
+UserList = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserList)
 
 export default UserList

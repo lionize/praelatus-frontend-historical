@@ -1,5 +1,5 @@
 import React from 'react'
-import { LogoutLink } from 'containers'
+import { LogoutLink } from 'components'
 
 const ProfileBox = ({ user }) => (
   <div>
