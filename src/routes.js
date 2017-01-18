@@ -5,7 +5,7 @@ import Home from 'components/Home'
 import {
   ProjectShow, ProjectNew, ProjectList,
   TicketShow, TicketNew, TicketEdit, TicketList,
-  TeamShow, TeamNew, TeamList,
+  TeamShow, TeamNew, TeamEdit, TeamList,
   UserShow, UserList,
   Login, Register,
 } from 'components'
@@ -33,6 +33,7 @@ const routes = (
     <Route path="teams">
       <IndexRoute component={TeamList} />
       <Route path="new" component={TeamNew} />
+      <Route path=":id/edit" component={TeamEdit} />
       <Route path=":id" component={TeamShow} />
     </Route>
   </Route>
