@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
-import { UserLink, NotFoundCard, ErrorCard } from 'components'
+import { LinkButton, TeamDeleteButton, UserLink, NotFoundCard, ErrorCard } from 'components'
 
 const TeamCard = ({ team, loading, error }) => {
   if (loading) {
@@ -26,9 +26,9 @@ const TeamCard = ({ team, loading, error }) => {
               <CardText key={i}>
                 Member: <UserLink id={member.id}>{member.username}</UserLink>
               </CardText>
-            )
-
-            }
+            )}
+            <LinkButton to={`/teams/${team.id}/edit`}>Edit</LinkButton>
+            <TeamDeleteButton id={team.id} />
           </CardBlock>
         </Card>
       </div>
