@@ -167,7 +167,13 @@ const createTeam = payload => {
 
   return team
 }
-const updateTeam = payload => {}
+const updateTeam = payload => {
+  const index = idIndex(payload.get('id'), teams)
+
+  teams[index] = payload.toJS()
+
+  return true
+}
 const deleteTeam = payload => {}
 
 const fetchProjects = payload => {
