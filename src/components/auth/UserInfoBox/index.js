@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { currentUserSelector } from 'selectors/auth'
 import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
 const UserInfoBox = ({ user }) => {
@@ -14,4 +16,10 @@ const UserInfoBox = ({ user }) => {
   )
 }
 
-export default UserInfoBox
+const mapStateToProps = state => ({
+  user: currentUserSelector(state),
+})
+
+export default connect(
+  mapStateToProps,
+)(UserInfoBox)
