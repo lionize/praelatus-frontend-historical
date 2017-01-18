@@ -71,7 +71,11 @@ export function* updateProject(action = {}) {
   try {
     const payload = action.payload || {}
     const response = yield call(api.updateProject, payload)
-    yield put(actions.updateProjectSuccess(response))
+
+    if (response) {
+      yield put(actions.updateProjectSuccess(payload.toJS()))
+    }
+    yield put(push(`/projects/${payload.get('id')}`))
   } catch (e) {
     yield put(actions.updateProjectFailure(e))
   }

@@ -98,12 +98,22 @@ describe('projects module sagas', () => {
       expect(generator.next().value).to.deep.eq(call(api.updateProject, fixture))
     })
 
-    it('updates the ticket', () => {
-      const generator = sagas.updateProject({ payload: fixture })
+    it('updates the project', () => {
+      const generator = sagas.updateProject({ payload: fromJS(fixture) })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.updateProjectSuccess(response))
+      const next = generator.next(true).value
+      const expected = put(actions.updateProjectSuccess(fixture))
+
+      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
+      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+    })
+
+    it('redirects to the given project', () => {
+      const generator = sagas.updateProject({ payload: fromJS(fixture) })
+      generator.next()
+      generator.next(true)
+      const next = generator.next().value
+      const expected = put(push(`/projects/${fixture.id}`))
 
       expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
       expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
