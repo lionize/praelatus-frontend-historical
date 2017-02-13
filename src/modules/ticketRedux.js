@@ -5,7 +5,7 @@ import deepMerge from 'util-deep-merge'
 
 /* TYPES AND ACTION CREATORS */
 
-const { types, creators } = createActions({
+const { Types: types, Creators: creators } = createActions({
   fetchRequest: ['payload'],
   fetchFailure: ['error'],
   createRequest: ['payload'],
@@ -17,10 +17,10 @@ const { types, creators } = createActions({
   deleteRequest: ['key'],
   deleteSuccess: ['key'],
   deleteFailure: ['error'],
-})
+});
 
 export const ticketTypes = types
-export const creators
+export default creators
 
 /* INITIAL STATE */
 
@@ -33,7 +33,11 @@ export const INITIAL_STATE = Immutable({
 
 /* REDUCERS */
 
-export const request = state => state.merge({ fetching: true })
+export const request = state =>
+  state.merge({
+    fetching: true,
+    error: null,
+  })
 
 export const success = (state, { ticket }) =>
   mergeWith(deepMerge, state, {
@@ -46,6 +50,8 @@ export const success = (state, { ticket }) =>
 export const failure = (state, { error }) => state.merge({ fetching: false, error })
 
 export const remove = (state, { key }) => state.merge({
+  fetching: false,
+  error: null,
   keys: state.keys.filter(k => k !== key),
   byKey: state.byKey.without(key)
 })
@@ -72,16 +78,16 @@ export const reducer = createReducer(INITIAL_STATE, {
 
 /* SELECTORS */
 
-export const ticketSelector = (state, key) => state.byKey[key]
+export const ticket = (state, key) => state.byKey[key]
 
-export const ticketsSelector = (state, keys) => {
+export const tickets = (state, keys) => {
   let ticketKeys = state.keys
 
   if (keys) {
-    ticketKeys = ticketKeys.filter(k => keys.includes(key))
+    ticketKeys = ticketKeys.filter(k => keys.includes(k))
   }
 
-  return ticketKeys.map(k => ticketSelector(state, k))
+  return ticketKeys.map(k => ticket(state, k))
 }
 
 export const fetching = state => state.fetching
