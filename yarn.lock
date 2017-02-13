@@ -3986,9 +3986,9 @@ redux@^3.6.0:
     loose-envify "^1.1.0"
     symbol-observable "^1.0.2"
 
-"reduxsauce@github:praelatus/reduxsauce":
+reduxsauce@^0.4.1:
   version "0.4.1"
-  resolved "https://codeload.github.com/praelatus/reduxsauce/tar.gz/e2f29e6d9b0ff8001141cdf05f75b7ff6db9bb7c"
+  resolved "https://registry.yarnpkg.com/reduxsauce/-/reduxsauce-0.4.1.tgz#ee5578c643a85f7866934e6b97db23bfec861b56"
   dependencies:
     ramda "^0.22.1"
     ramdasauce "^1.1.1"
@@ -4655,9 +4655,9 @@ user-home@^2.0.0:
   dependencies:
     os-homedir "^1.0.0"
 
-util-deep-merge@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/util-deep-merge/-/util-deep-merge-0.0.3.tgz#7368b94528373d7d75a7522e0012475f28d45b42"
+util-deep-merge@^0.1.x:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/util-deep-merge/-/util-deep-merge-0.1.1.tgz#b4359c8d3d8e9b4ec53485f9f16b1c8a267b7302"
   dependencies:
     ramda "^0.23.0"
 
