@@ -21,18 +21,21 @@ describe('Ticket - Redux', () => {
     })
 
     it('success', () => {
-      const ticket = {
-        id: 0,
-        key: 'TICKET-0',
-        summary: 'Ticket Summary',
-        description: 'Ticket Description',
+      const data = {
+        keys: ['TICKET-0'],
+        tickets: {
+          'TICKET-0': {
+            id: 0,
+            key: 'TICKET-0',
+          },
+        },
       }
-      const state = reducer(INITIAL_STATE, actions.updateSuccess(ticket))
+      const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
 
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.keys).to.include('TICKET-0')
-      expect(state.byKey['TICKET-0']).to.eq(ticket)
+      expect(state.byKey['TICKET-0']).to.eq(data.tickets['TICKET-0'])
     })
 
     it('failure', () => {
