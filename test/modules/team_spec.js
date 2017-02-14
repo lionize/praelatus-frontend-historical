@@ -21,16 +21,25 @@ describe('Team - Redux', () => {
     })
 
     it('success', () => {
-      const team = {
-        id: 0,
-        name: 'team0',
+      const data = {
+        names: ['team0', 'team1'],
+        teams: {
+          team0: {
+            id: 0,
+            name: 'team0',
+          },
+          team1: {
+            id: 1,
+            name: 'team1',
+          },
+        }
       }
-      const state = reducer(INITIAL_STATE, actions.updateSuccess(team))
+      const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
 
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.names).to.include('team0')
-      expect(state.byName['team0']).to.eq(team)
+      expect(state.byName['team0']).to.eq(data.teams.team0)
     })
 
     it('failure', () => {
