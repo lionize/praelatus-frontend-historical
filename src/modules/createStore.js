@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import createLogger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
@@ -25,7 +26,7 @@ export default (rootReducer, rootSaga) => {
 
   enhancers.push(applyMiddleware(...middleware))
 
-  const store = createStore(rootReducer, compose(...enhancers))
+  const store = createStore(rootReducer, composeWithDevTools(...enhancers))
 
   sagaMiddleware.run(rootSaga)
 
