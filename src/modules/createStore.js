@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
+import { browserHistory } from 'react-router'
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
 import createLogger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
@@ -10,6 +12,10 @@ export default (rootReducer, rootSaga) => {
 
   const middleware = []
   const enhancers = []
+
+  /* BROWSER HISTORY ROUTER MIDDLEWARE */
+  const browserHistoryRouterMiddleware = routerMiddleware(browserHistory)
+  middleware.push(browserHistoryRouterMiddleware)
 
   /* SAGA MIDDLEWARE */
 
@@ -30,5 +36,11 @@ export default (rootReducer, rootSaga) => {
 
   sagaMiddleware.run(rootSaga)
 
-  return store
+  /* CONFIGURE BROWSER HISTORY */
+  const history = syncHistoryWithStore(browserHistory, store)
+
+  return {
+    store,
+    history,
+  }
 }
