@@ -2215,10 +2215,6 @@ har-validator@~2.0.6:
     is-my-json-valid "^2.12.4"
     pinkie-promise "^2.0.0"
 
-harmony-proxy@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/harmony-proxy/-/harmony-proxy-1.0.1.tgz#7bec8fb1981af32fbfc14233e080be43e5f7bcfa"
-
 has-ansi@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -2338,7 +2334,7 @@ ignore@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.0.tgz#8d88f03c3002a0ac52114db25d2c673b0bf1e435"
 
-immutable@^3.7.6, immutable@^3.8.1:
+immutable@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
 
@@ -3085,21 +3081,9 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
-normalizr-immutable@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/normalizr-immutable/-/normalizr-immutable-0.0.3.tgz#c49114666bf04f8f2f4544e286e830ee403ca66e"
-  dependencies:
-    harmony-proxy "^1.0.1"
-    immutable "^3.7.6"
-    lodash "^4.2.1"
-    lodash-es "^4.2.1"
-    normalizr "^2.0.2"
-
-normalizr@^2.0.2:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-2.3.1.tgz#ac12d771ce1fe6a43094c3d828caada4ed9a4540"
-  dependencies:
-    lodash "^4.17.2"
+normalizr@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-3.2.1.tgz#85a2d3d0ffb9c3b08f4131cb8d8fbfb7e9211b35"
 
 npmlog@^4.0.1:
   version "4.0.2"

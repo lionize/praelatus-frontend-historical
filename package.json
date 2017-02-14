@@ -59,7 +59,7 @@
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.2",
-    "normalizr-immutable": "0.0.3",
+    "normalizr": "^3.2.1",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
     "react": "^15.4.1",
