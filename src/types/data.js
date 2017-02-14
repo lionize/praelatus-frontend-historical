@@ -1,3 +1,0 @@
-export default {
-  FETCH_DATA_SUCCESS: 'DATA/FETCH_SUCCESS',
-}
