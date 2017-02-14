@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 import configureStore from 'modules/createStore'
 
 export default () => {
@@ -11,6 +12,7 @@ export default () => {
       users: require('./userRedux').reducer,
     }),
     auth: require('./authRedux').reducer,
+    form: formReducer,
   })
 
   return configureStore(rootReducer)
