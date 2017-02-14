@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import configureStore from 'modules/createStore'
+import rootSaga from 'sagas'
 
 export default () => {
   const rootReducer = combineReducers({
@@ -16,5 +17,5 @@ export default () => {
     routing: require('./routerRedux').reducer,
   })
 
-  return configureStore(rootReducer)
+  return configureStore(rootReducer, rootSaga)
 }
