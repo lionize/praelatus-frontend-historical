@@ -21,16 +21,21 @@ describe('User - Redux', () => {
     })
 
     it('success', () => {
-      const user = {
-        id: 0,
-        username: 'user0',
+      const data = {
+        usernames: ['user0'],
+        users: {
+          user0: {
+            id: 0,
+            username: 'user0',
+          },
+        },
       }
-      const state = reducer(INITIAL_STATE, actions.updateSuccess(user))
+      const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
 
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.usernames).to.include('user0')
-      expect(state.byUsername['user0']).to.eq(user)
+      expect(state.byUsername['user0']).to.eq(data.users.user0)
     })
 
     it('failure', () => {
