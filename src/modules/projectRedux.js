@@ -7,12 +7,13 @@ import deepMerge from 'util-deep-merge'
 
 const { Types: types, Creators: creators } = createActions({
   fetchRequest: ['payload'],
+  fetchSuccess: ['response'],
   fetchFailure: ['error'],
   createRequest: ['payload'],
-  createSuccess: ['project'],
+  createSuccess: ['response'],
   createFailure: ['error'],
   updateRequest: ['payload'],
-  updateSuccess: ['project'],
+  updateSuccess: ['response'],
   updateFailure: ['error'],
   deleteRequest: ['key'],
   deleteSuccess: ['key'],
@@ -39,12 +40,12 @@ export const request = state =>
     error: null,
   })
 
-export const success = (state, { project }) =>
+export const success = (state, { response }) =>
   mergeWith(deepMerge, state, {
     fetching: false,
     error: null,
-    keys: [project.key],
-    byKey: { [project.key]: project }
+    keys: response.keys,
+    byKey: response.projects,
   })
 
 export const failure = (state, { error }) => state.merge({ fetching: false, error })
@@ -61,6 +62,7 @@ export const remove = (state, { key }) => state.merge({
 
 export const reducer = createReducer(INITIAL_STATE, {
   [types.FETCH_REQUEST]: request,
+  [types.FETCH_SUCCESS]: success,
   [types.FETCH_FAILURE]: failure,
 
   [types.CREATE_REQUEST]: request,
