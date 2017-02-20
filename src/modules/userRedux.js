@@ -44,8 +44,8 @@ export const success = (state, { response }) =>
   mergeWith(deepMerge, state, {
     fetching: false,
     error: null,
-    usernames: response.usernames,
-    byUsername: response.users,
+    usernames: response.result,
+    byUsername: response.entities.users,
   })
 
 export const failure = (state, { error }) => state.merge({ fetching: false, error })
