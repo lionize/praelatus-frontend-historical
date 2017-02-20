@@ -1,7 +1,6 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import { find, propEq } from 'ramda'
 import actions from 'modules/ticketRedux'
 import {
   fetchTicket,

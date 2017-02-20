@@ -3,7 +3,7 @@
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import { normalize } from 'normalizr'
-import { ticketSchema, ticketsSchema } from 'schema'
+import { ticketsSchema } from 'schema'
 import ticketActions from 'modules/ticketRedux'
 
 export function * fetchTicket(api, { key }) {
