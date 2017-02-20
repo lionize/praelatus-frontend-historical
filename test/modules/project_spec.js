@@ -22,20 +22,22 @@ describe('Project - Redux', () => {
 
     it('success', () => {
       const data = {
-        keys: ['PROJECT-0'],
-        projects: {
-          'PROJECT-0': {
-            id: 0,
-            key: 'PROJECT-0',
+        result: ['PROJECT-0'],
+        entities: {
+          projects: {
+            'PROJECT-0': {
+              id: 0,
+              key: 'PROJECT-0',
+            },
           },
-        },
+        }
       }
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
 
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.keys).to.include('PROJECT-0')
-      expect(state.byKey['PROJECT-0']).to.eq(data.projects['PROJECT-0'])
+      expect(state.byKey['PROJECT-0']).to.eq(data.entities.projects['PROJECT-0'])
     })
 
     it('failure', () => {
