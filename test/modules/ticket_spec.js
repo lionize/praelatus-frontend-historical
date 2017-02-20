@@ -22,11 +22,13 @@ describe('Ticket - Redux', () => {
 
     it('success', () => {
       const data = {
-        keys: ['TICKET-0'],
-        tickets: {
-          'TICKET-0': {
-            id: 0,
-            key: 'TICKET-0',
+        result: ['TICKET-0'],
+        entities: {
+          tickets: {
+            'TICKET-0': {
+              id: 0,
+              key: 'TICKET-0',
+            },
           },
         },
       }
@@ -35,7 +37,7 @@ describe('Ticket - Redux', () => {
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.keys).to.include('TICKET-0')
-      expect(state.byKey['TICKET-0']).to.eq(data.tickets['TICKET-0'])
+      expect(state.byKey['TICKET-0']).to.eq(data.entities.tickets['TICKET-0'])
     })
 
     it('failure', () => {
