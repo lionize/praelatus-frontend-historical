@@ -1,180 +1,216 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import { fromJS } from 'immutable'
-import api from 'api'
-import * as actions from 'actions/tickets'
-import * as dataActions from 'actions/data'
-import * as sagas from 'sagas/tickets'
+import { find, propEq } from 'ramda'
+import actions from 'modules/ticketRedux'
+import {
+  fetchTicket,
+  fetchTickets,
+  createTicket,
+  updateTicket,
+  deleteTicket,
+} from 'sagas/tickets'
 
-describe('tickets module sagas', () => {
-  describe('GET: fetch tickets', () => {
-    it('calls the api method', () => {
-      const generator = sagas.fetchTickets()
+const tickets = [
+  {
+    id: 0,
+    key: 'KEY-0',
+    summary: 'Ticket Summary',
+    description: 'Ticket Description'
+  }
+]
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchTickets, {}))
-    })
+const api = {
+  fetchTicket: () => {},
+  fetchTickets: () => {},
+  createTicket: () => {},
+  updateTicket: () => {},
+  deleteTicket: () => {},
+}
 
-    it('fetches tickets', () => {
-      const generator = sagas.fetchTickets()
-      generator.next()
-      const response = []
-      const next = generator.next(response).value
-      const expected = put(dataActions.fetchDataSuccess(response, 'ticket'))
+describe('Ticket - Sagas', () => {
+  describe('fetchTicket', () => {
+    it('success', () => {
+      const generator = fetchTicket(api, { key: 'KEY-0' })
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      expect(generator.next().value).to.deep.eq(call(api.fetchTicket, 'KEY-0'))
 
-    it('returns an error if fetching fails', () => {
-      const generator = sagas.fetchTickets()
-
-      expect(generator.next().value).to.deep.eq(call(api.fetchTickets, {}))
-
-      // fake response
-      const error = { message: 'Error!' }
-
-      expect(generator.throw(error).value).to.deep.eq(put(actions.fetchTicketsFailure(error)))
-    })
-  })
-
-  describe('POST: create ticket', () => {
-    const fixture = {
-      summary: 'Ticket summary',
-      description: 'Ticket description'
-    }
-
-    it('calls the api methods', () => {
-      const generator = sagas.createTicket({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.createTicket, fixture))
-    })
-
-    it('creates a ticket', () => {
-      const generator = sagas.createTicket({ payload: fixture })
-      generator.next()
       const response = {
-        id: 0,
-        ...fixture
+        result: ['KEY-0'],
+        entities: {
+          tickets: {
+            'KEY-0': tickets[0]
+          }
+        }
       }
-      const next = generator.next(response).value
-      const expected = put(actions.createTicketSuccess(response))
+      const next = generator.next(tickets[0]).value
+      const expected = put(actions.fetchSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to new ticket page', () => {
-      const generator = sagas.createTicket({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchTicket(api, { key: 'KEY-0' })
       generator.next()
-      const response = fromJS({
-        id: 0,
-        ...fixture
-      })
-      generator.next(response).value
 
-      const next = generator.next().value
-      const expected = put(push(`/teams/${response.id}`))
+      const error = {
+        message: 'Error!'
+      }
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-    it('returns an error if creation fails', () => {
-      const generator = sagas.createTicket({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.createTicket, fixture))
-
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.createTicketFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('PUT: update ticket', () => {
-    const fixture = {
-      id: 0,
-      summary: 'Ticket summary',
-      description: 'Ticket description'
-    }
+  describe('fetchTickets', () => {
+    it('success', () => {
+      const generator = fetchTickets(api, { project: 'PROJECT-0' })
 
-    it('calls the api method', () => {
-      const generator = sagas.updateTicket({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.fetchTickets, 'PROJECT-0'))
 
-      expect(generator.next().value).to.deep.eq(call(api.updateTicket, fixture))
+      const response = {
+        result: ['KEY-0'],
+        entities: {
+          tickets: {
+            'KEY-0': tickets[0]
+          }
+        }
+      }
+      const next = generator.next([tickets[0]]).value
+      const expected = put(actions.fetchSuccess(response))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('updates the ticket', () => {
-      const generator = sagas.updateTicket({ payload: fromJS(fixture) })
+    it('failure', () => {
+      const generator = fetchTickets(api, { project: 'PROJECT-0' })
       generator.next()
-      const next = generator.next(true).value
-      const expected = put(actions.updateTicketSuccess(fixture))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const error = {
+        message: 'Error!'
+      }
 
-    it('redirects to the given ticket', () => {
-      const generator = sagas.updateTicket({ payload: fromJS(fixture) })
-      generator.next()
-      generator.next(true).value
-      const next = generator.next().value
-      const expected = put(push(`/tickets/${fixture.id}`))
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
-
-    it('generates an error is updating fails', () => {
-      const generator = sagas.updateTicket({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.updateTicket, fixture))
-
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.updateTicketFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('DELETE: delete ticket', () => {
-    const fixture = {
-      id: 0
-    }
+  describe('createTicket', () => {
+    it('success', () => {
+      const generator = createTicket(api, { payload: tickets[0] })
 
-    it('calls the api method', () => {
-      const generator = sagas.deleteTicket({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.createTicket, tickets[0]))
 
-      expect(generator.next().value).to.deep.eq(call(api.deleteTicket, fixture))
+      const response = {
+        result: ['KEY-0'],
+        entities: {
+          tickets: {
+            'KEY-0': tickets[0]
+          }
+        }
+      }
+      let next = generator.next(tickets[0]).value
+      let expected = put(actions.createSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/tickets/${tickets[0].key}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('deletes a ticket', () => {
-      const generator = sagas.deleteTicket({ payload: fixture })
+    it('failure', () => {
+      const generator = createTicket(api, { payload: {} })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.deleteTicketSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.createFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('updateTicket', () => {
+    it('success', () => {
+      const generator = updateTicket(api, { payload: tickets[0] })
+
+      expect(generator.next().value).to.deep.eq(call(api.updateTicket, tickets[0]))
+
+      const response = {
+        result: ['KEY-0'],
+        entities: {
+          tickets: {
+            'KEY-0': tickets[0]
+          }
+        }
+      }
+      let next = generator.next(tickets[0]).value
+      let expected = put(actions.updateSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/tickets/${tickets[0].key}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to tickets index', () => {
-      const generator = sagas.deleteTicket({ payload: fixture })
+    it('failure', () => {
+      const generator = updateTicket(api, { payload: {} })
       generator.next()
-      generator.next(fixture).value
-      const next = generator.next().value
-      const expected = put(push(`/tickets`))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.updateFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('deleteTicket', () => {
+    it('success', () => {
+      const generator = deleteTicket(api, { key: 'TICKET-0' })
+
+      expect(generator.next().value).to.deep.eq(call(api.deleteTicket, 'TICKET-0'))
+
+      const response = { key: 'TICKET-0' }
+
+      let next = generator.next(response).value
+      let expected = put(actions.deleteSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push('/tickets'))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('returns an error if deleting fails', () => {
-      const generator = sagas.deleteTicket({ payload: fixture })
+    it('failure', () => {
+      const generator = deleteTicket(api, { key: 'TICKET-0' })
       generator.next()
-      const response = { message: 'Error!' }
 
-      expect(generator.throw(response).value).to.deep.eq(put(actions.deleteTicketFailure(response)))
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.deleteFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 })
+
