@@ -22,20 +22,22 @@ describe('Comment - Redux', () => {
 
     it('success', () => {
       const data = {
-        ids: [0],
-        comments: {
-          '0': {
-            id: 0,
-            body: 'A Comment!',
+        result: [0],
+        entities: {
+          comments: {
+            '0': {
+              id: 0,
+              body: 'A Comment!',
+            },
           },
-        },
+        }
       }
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
 
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.ids).to.include(0)
-      expect(state.byId['0']).to.eq(data.comments['0'])
+      expect(state.byId['0']).to.eq(data.entities.comments['0'])
     })
 
     it('failure', () => {
