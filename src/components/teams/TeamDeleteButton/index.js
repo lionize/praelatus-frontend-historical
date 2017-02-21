@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { deleteTeamRequest } from 'actions/teams'
+import { deleteRequest } from 'modules/teamRedux'
 import { DeleteButton } from 'components'
 
 class TeamDeleteButton extends Component {
@@ -18,7 +18,7 @@ class TeamDeleteButton extends Component {
 
 const mapDispatchToProps = dispatch => ({
   deleteTeam(id) {
-    dispatch(deleteTeamRequest(id))
+    dispatch(deleteRequest(id))
   },
 })
 

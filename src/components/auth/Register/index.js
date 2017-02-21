@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { registerRequest as register } from 'actions/auth'
+import { registerRequest } from 'modules/authRedux'
 import { RegisterForm } from 'components'
 
 class Register extends Component {
@@ -16,7 +16,7 @@ class Register extends Component {
 }
 
 Register = connect(null,
-  { register }
+  { register: registerRequest }
 )(Register)
 
 export default Register

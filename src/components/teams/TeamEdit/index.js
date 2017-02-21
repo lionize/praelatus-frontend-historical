@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { fetchTeamsRequest, updateTeamRequest } from 'actions/teams'
-import { teamSelector } from 'selectors/teams'
+import {
+  fetchRequest,
+  updateRequest,
+  team,
+} from 'modules/teamRedux'
 import { TeamForm } from 'components'
 
 class TeamEdit extends Component {
@@ -21,16 +24,16 @@ class TeamEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  initialValues: teamSelector(state, params.id)
+  initialValues: team(state.data.teams, params.id)
 })
 
 const mapDispatchToProps = dispatch => ({
   loadTeam(id) {
-    dispatch(fetchTeamsRequest({ id }))
+    dispatch(fetchRequest({ id }))
   },
 
   updateTeam(values) {
-    dispatch(updateTeamRequest(values))
+    dispatch(updateRequest(values))
   },
 })
 

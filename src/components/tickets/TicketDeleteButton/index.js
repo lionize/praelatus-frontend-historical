@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { deleteTicketRequest } from 'actions/tickets'
+import { deleteRequest } from 'modules/ticketRedux'
 import { DeleteButton } from 'components'
 
 class TicketDeleteButton extends Component {
@@ -20,7 +20,7 @@ const mapStateToProps = () => ({})
 
 const mapDispatchToProps = dispatch => ({
   deleteTicket(id) {
-    dispatch(deleteTicketRequest(id))
+    dispatch(deleteRequest(id))
   },
 })
 

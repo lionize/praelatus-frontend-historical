@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { fetchTicketsRequest, updateTicketRequest } from 'actions/tickets'
-import { ticketSelector } from 'selectors/tickets'
+import {
+  fetchRequest,
+  updateRequest,
+  ticket,
+} from 'modules/ticketRedux'
 import { TicketForm } from 'components'
 
 class TicketEdit extends Component {
@@ -22,16 +25,16 @@ class TicketEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  initialValues: ticketSelector(state, params.id),
+  initialValues: ticket(state.data.tickets, params.id),
 })
 
 const mapDispatchToProps = dispatch => ({
   loadTicket(id) {
-    dispatch(fetchTicketsRequest({ id }))
+    dispatch(fetchRequest({ id }))
   },
 
   updateTicket(values) {
-    dispatch(updateTicketRequest(values))
+    dispatch(updateRequest(values))
   },
 })
 

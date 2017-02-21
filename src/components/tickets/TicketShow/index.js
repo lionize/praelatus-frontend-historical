@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { ticketSelector } from 'selectors/tickets'
-import { fetchTicketsRequest } from 'actions/tickets'
+import {
+  ticket,
+  fetchRequest,
+} from 'modules/ticketRedux'
 import { TicketCard } from 'components'
 
 class TicketShow extends Component {
@@ -22,7 +24,7 @@ class TicketShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-  const ticket = ticketSelector(state, params.id)
+  const ticket = tickets(state.data.tickets, params.id)
 
   return {
     ticket,
@@ -31,7 +33,7 @@ const mapStateToProps = (state, { params }) => {
 
 const mapDispatchToProps = dispatch => ({
   loadTicket(id) {
-    dispatch(fetchTicketsRequest({ id }))
+    dispatch(fetchRequest({ id }))
   },
 })
 

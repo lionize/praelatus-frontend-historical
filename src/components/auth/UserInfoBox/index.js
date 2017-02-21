@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { currentUserSelector } from 'selectors/auth'
+import { currentUser } from 'modules/authRedux'
 import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
 const UserInfoBox = ({ user }) => {
@@ -17,7 +17,7 @@ const UserInfoBox = ({ user }) => {
 }
 
 const mapStateToProps = state => ({
-  user: currentUserSelector(state),
+  user: currentUser(state.auth),
 })
 
 export default connect(

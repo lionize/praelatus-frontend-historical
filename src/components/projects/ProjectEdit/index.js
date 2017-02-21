@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { fetchProjectsRequest, updateProjectRequest } from 'actions/projects'
-import { projectSelector } from 'selectors/projects'
+import {
+  fetchRequest,
+  updateRequest,
+  project,
+} from 'modules/projectRedux'
 import { ProjectForm } from 'components'
 
 class ProjectEdit extends Component {
@@ -21,16 +24,16 @@ class ProjectEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  initialValues: projectSelector(state, params.id)
+  initialValues: project(state.data.projects, params.id)
 })
 
 const mapDispatchToProps = dispatch => ({
   loadProject(id) {
-    dispatch(fetchProjectsRequest({ id }))
+    dispatch(fetchRequest({ id }))
   },
 
   updateProject(values) {
-    dispatch(updateProjectRequest(values))
+    dispatch(updateRequest(values))
   },
 })
 

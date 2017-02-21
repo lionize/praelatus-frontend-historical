@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { projectSelector } from 'selectors/projects'
-import { fetchProjectsRequest } from 'actions/projects'
+import {
+  project,
+  fetchRequest,
+} from 'modules/projectRedux'
 import { ProjectCard } from 'components'
 
 class ProjectShow extends Component {
@@ -22,7 +24,7 @@ class ProjectShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-  const project = projectSelector(state, params.id)
+  const project = project(state.data.projects, params.id)
 
   return {
     project,
@@ -31,7 +33,7 @@ const mapStateToProps = (state, { params }) => {
 
 const mapDispatchToProps = dispatch => ({
   loadProject(id) {
-    dispatch(fetchProjectsRequest({ id }))
+    dispatch(fetchRequest({ id }))
   },
 })
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { teamsSelector } from 'selectors/teams'
-import { fetchTeamsRequest } from 'actions/teams'
+import {
+  teams,
+  fetchRequest,
+} from 'modules/teamRedux'
 import { TeamTable } from 'components'
 
 class TeamList extends Component {
@@ -15,12 +17,12 @@ class TeamList extends Component {
 }
 
 const mapStateToProps = state => ({
-  teams: teamsSelector(state),
+  teams: teams(state.data.teams),
 })
 
 const mapDispatchToProps = dispatch => ({
   loadTeams() {
-    dispatch(fetchTeamsRequest())
+    dispatch(fetchRequest())
   },
 })
 

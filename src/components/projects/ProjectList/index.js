@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { projectsSelector } from 'selectors/projects'
-import { fetchProjectsRequest } from 'actions/projects'
+import {
+  projects,
+  fetchRequest,
+} from 'modules/projectRedux'
 import { ProjectTable } from 'components'
 
 class ProjectList extends Component {
@@ -15,12 +17,12 @@ class ProjectList extends Component {
 }
 
 const mapStateToProps = state => ({
-  projects: projectsSelector(state),
+  projects: projects(state.data.projects),
 })
 
 const mapDispatchToProps = dispatch => ({
   loadProjects() {
-    dispatch(fetchProjectsRequest())
+    dispatch(fetchRequest())
   },
 })
 
