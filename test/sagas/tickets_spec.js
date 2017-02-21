@@ -42,7 +42,7 @@ describe('Ticket - Sagas', () => {
           }
         }
       }
-      const next = generator.next(tickets[0]).value
+      const next = generator.next(response).value
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
@@ -77,7 +77,7 @@ describe('Ticket - Sagas', () => {
           }
         }
       }
-      const next = generator.next([tickets[0]]).value
+      const next = generator.next(response).value
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
@@ -112,7 +112,7 @@ describe('Ticket - Sagas', () => {
           }
         }
       }
-      let next = generator.next(tickets[0]).value
+      let next = generator.next(response).value
       let expected = put(actions.createSuccess(response))
 
       expect(next).to.deep.eq(expected)
@@ -152,7 +152,7 @@ describe('Ticket - Sagas', () => {
           }
         }
       }
-      let next = generator.next(tickets[0]).value
+      let next = generator.next(response).value
       let expected = put(actions.updateSuccess(response))
 
       expect(next).to.deep.eq(expected)
