@@ -1,141 +1,216 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
-import { fromJS } from 'immutable'
 import { push } from 'react-router-redux'
-import api from 'api'
-import * as actions from 'actions/users'
-import * as dataActions from 'actions/data'
-import * as sagas from 'sagas/users'
+import actions from 'modules/userRedux'
+import {
+  fetchUser,
+  fetchUsers,
+  createUser,
+  updateUser,
+  deleteUser,
+} from 'sagas/users'
 
-describe('users module sagas', () => {
-  describe('GET: fetch users', () => {
-    it('calls the api method', () => {
-      const generator = sagas.fetchUsers()
+const users = [
+  {
+    id: 0,
+    username: 'user0'
+  }
+]
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchUsers, {}))
-    })
+const api = {
+  fetchUser() {},
+  fetchUsers() {},
+  createUser() {},
+  updateUser() {},
+  deleteUser() {},
+}
 
-    it('fetches users', () => {
-      const generator = sagas.fetchUsers()
-      generator.next()
-      const response = []
-      const next = generator.next(response).value
-      const expected = put(dataActions.fetchDataSuccess(response, 'user'))
+describe('User - Sagas', () => {
+  describe('fetchUser', () => {
+    it('success', () => {
+      const generator = fetchUser(api, { username: 'user0' })
 
-      expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
-    })
+      expect(generator.next().value).to.deep.eq(call(api.fetchUser, 'user0'))
 
-    it('returns an error if fetching fails', () => {
-      const generator = sagas.fetchUsers()
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.fetchUsersFailure(response)))
-    })
-  })
-
-  describe('POST: create user', () => {
-    const fixture = {
-      name: 'The A User',
-    }
-
-    it('calls the api method', () => {
-      const generator = sagas.createUser({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.createUser, fixture))
-    })
-
-    it('creates a user', () => {
-      const generator = sagas.createUser({ payload: fixture })
-      generator.next()
       const response = {
-        id: 0,
-        ...fixture
+        result: ['user0'],
+        entities: {
+          users: {
+            'user0': users[0]
+          }
+        }
       }
+
       const next = generator.next(response).value
-      const expected = put(actions.createUserSuccess(response))
+      const expected = put(actions.fetchSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to new user page', () => {
-      const generator = sagas.createUser({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchUser(api, { username: 'user0' })
       generator.next()
-      const response = fromJS({
-        id: 0,
-        ...fixture
-      })
-      generator.next(response).value
 
-      const next = generator.next().value
-      const expected = put(push(`/users/${response.id}`))
+      const error = {
+        message: 'Error!'
+      }
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-    it('returns an error if creation fails', () => {
-      const generator = sagas.createUser({ payload: fixture })
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.createUserFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('PUT: update user', () => {
-    const fixture = {
-      icon: "",
-      name: 'The A User',
-      urlSlug: 'the-a-user'
-    }
+  describe('fetchUsers', () => {
+    it('success', () => {
+      const generator = fetchUsers(api)
 
-    it('calls the api method', () => {
-      const generator = sagas.updateUser({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.fetchUsers))
 
-      expect(generator.next().value).to.deep.eq(call(api.updateUser, fixture))
-    })
+      const response = {
+        result: ['user0'],
+        entities: {
+          users: {
+            'user0': users[0]
+          }
+        }
+      }
 
-    it('updates the ticket', () => {
-      const generator = sagas.updateUser({ payload: fixture })
-      generator.next()
-      const response = fixture
       const next = generator.next(response).value
-      const expected = put(actions.updateUserSuccess(response))
+      const expected = put(actions.fetchSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      expect(next).to.deep.eq(expected)
     })
 
-    it('generates an error if updating fails', () => {
-      const generator = sagas.updateUser({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchUsers(api)
       generator.next()
-      const response = { message: 'Error!' }
 
-      expect(generator.throw(response).value).to.deep.eq(put(actions.updateUserFailure(response)))
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('DELETE: delete user', () => {
-    const fixture = { id: 0 }
+  describe('createUser', () => {
+    it('success', () => {
+      const generator = createUser(api, { payload: users[0] })
 
-    it('calls the api method', () => {
-      const generator = sagas.deleteUser({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.createUser, users[0]))
 
-      expect(generator.next().value).to.deep.eq(call(api.deleteUser, fixture))
+      const response = {
+        result: ['user0'],
+        entities: {
+          users: {
+            'user0': users[0]
+          }
+        }
+      }
+
+      let next = generator.next(response).value
+      let expected = put(actions.createSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/users/${users[0].username}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('deletes a user', () => {
-      const generator = sagas.deleteUser({ payload: fixture })
+    it('failure', () => {
+      const generator = createUser(api, { payload: users[0] })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.deleteUserSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.createFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('updateUser', () => {
+    it('success', () => {
+      const generator = updateUser(api, { payload: users[0] })
+
+      expect(generator.next().value).to.deep.eq(call(api.updateUser, users[0]))
+
+      const response = {
+        result: ['user0'],
+        entities: {
+          users: {
+            'user0': users[0]
+          }
+        }
+      }
+
+      let next = generator.next(response).value
+      let expected = put(actions.updateSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/users/${users[0].username}`))
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('failure', () => {
+      const generator = updateUser(api, { payload: users[0] })
+      generator.next()
+
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.updateFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('deleteUser', () => {
+    it('success', () => {
+      const generator = deleteUser(api, { username: 'user0' })
+
+      expect(generator.next().value).to.deep.eq(call(api.deleteUser, 'user0'))
+
+      const response = { username: 'user0' }
+
+      let next = generator.next(response).value
+      let expected = put(actions.deleteSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push('/users'))
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('failure', () => {
+      const generator = deleteUser(api, { key: 'TICKET-0' })
+      generator.next()
+
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.deleteFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 })
