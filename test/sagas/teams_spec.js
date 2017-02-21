@@ -1,164 +1,216 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import { fromJS } from 'immutable'
-import api from 'api'
-import * as actions from 'actions/teams'
-import * as dataActions from 'actions/data'
-import * as sagas from 'sagas/teams'
+import actions from 'modules/teamRedux'
+import {
+  fetchTeam,
+  fetchTeams,
+  createTeam,
+  updateTeam,
+  deleteTeam,
+} from 'sagas/teams'
 
-describe('teams module sagas', () => {
-  describe('GET: fetch teams', () => {
-    it('calls the api method', () => {
-      const generator = sagas.fetchTeams()
+const teams = [
+  {
+    id: 0,
+    name: 'BEST TEAM'
+  }
+]
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchTeams, {}))
-    })
+const api = {
+  fetchTeam() {},
+  fetchTeams() {},
+  createTeam() {},
+  updateTeam() {},
+  deleteTeam() {},
+}
 
-    it('fetches teams', () => {
-      const generator = sagas.fetchTeams()
-      generator.next()
-      const response = []
-      const next = generator.next(response).value
-      const expected = put(dataActions.fetchDataSuccess(response, 'team'))
+describe('Team - Sagas', () => {
+  describe('fetchTeam', () => {
+    it('success', () => {
+      const generator = fetchTeam(api, { name: 'BEST TEAM' })
 
-      expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
-    })
+      expect(generator.next().value).to.deep.eq(call(api.fetchTeam, 'BEST TEAM'))
 
-    it('returns an error if fetching fails', () => {
-      const generator = sagas.fetchTeams()
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.fetchTeamsFailure(response)))
-    })
-  })
-
-  describe('POST: create team', () => {
-    const fixture = {
-      icon: "",
-      name: 'The A Team',
-      urlSlug: 'the-a-team'
-    }
-
-    it('calls the api method', () => {
-      const generator = sagas.createTeam({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.createTeam, fixture))
-    })
-
-    it('creates a team', () => {
-      const generator = sagas.createTeam({ payload: fixture })
-      generator.next()
       const response = {
-        id: 0,
-        ...fixture
+        result: ['BEST TEAM'],
+        entities: {
+          teams: {
+            'BEST TEAM': teams[0]
+          }
+        }
       }
+
       const next = generator.next(response).value
-      const expected = put(actions.createTeamSuccess(response))
+      const expected = put(actions.fetchSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to new team page', () => {
-      const generator = sagas.createTeam({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchTeam(api, { name: 'BEST TEAM' })
       generator.next()
-      const response = fromJS({
-        id: 0,
-        ...fixture
-      })
-      generator.next(response).value
 
-      const next = generator.next().value
-      const expected = put(push(`/teams/${response.id}`))
+      const error = {
+        message: 'Error!'
+      }
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-    it('returns an error if creation fails', () => {
-      const generator = sagas.createTeam({ payload: fixture })
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.createTeamFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('PUT: update team', () => {
-    const fixture = {
-      icon: "",
-      name: 'The A Team',
-      urlSlug: 'the-a-team'
-    }
+  describe('fetchTeams', () => {
+    it('success', () => {
+      const generator = fetchTeams(api)
 
-    it('calls the api method', () => {
-      const generator = sagas.updateTeam({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.fetchTeams))
 
-      expect(generator.next().value).to.deep.eq(call(api.updateTeam, fixture))
+      const response = {
+        result: ['BEST TEAM'],
+        entities: {
+          teams: {
+            'BEST TEAM': teams[0]
+          }
+        }
+      }
+
+      const next = generator.next(response).value
+      const expected = put(actions.fetchSuccess(response))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('updates the team', () => {
-      const generator = sagas.updateTeam({ payload: fromJS(fixture) })
+    it('failure', () => {
+      const generator = fetchTeams(api)
       generator.next()
-      const next = generator.next(true).value
-      const expected = put(actions.updateTeamSuccess(fixture))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const error = {
+        message: 'Error!'
+      }
 
-    it('redirects to the given team', () => {
-      const generator = sagas.updateTeam({ payload: fromJS(fixture) })
-      generator.next()
-      generator.next(true).value
-      const next = generator.next().value
-      const expected = put(push(`/teams/${fixture.id}`))
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
-
-    it('generates an error if updating fails', () => {
-      const generator = sagas.updateTeam({ payload: fixture })
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.updateTeamFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('DELETE: delete team', () => {
-    const fixture = { id: 0 }
+  describe('createTeam', () => {
+    it('success', () => {
+      const generator = createTeam(api, { payload: teams[0] })
 
-    it('calls the api method', () => {
-      const generator = sagas.deleteTeam({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.createTeam, teams[0]))
 
-      expect(generator.next().value).to.deep.eq(call(api.deleteTeam, fixture))
+      const response = {
+        result: ['BEST TEAM'],
+        entities: {
+          teams: {
+            'BEST TEAM': teams[0]
+          }
+        }
+      }
+
+      let next = generator.next(response).value
+      let expected = put(actions.createSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/teams/${teams[0].name}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('deletes a team', () => {
-      const generator = sagas.deleteTeam({ payload: fixture })
+    it('failure', () => {
+      const generator = createTeam(api, { payload: teams[0] })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.deleteTeamSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.createFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('updateTeam', () => {
+    it('success', () => {
+      const generator = updateTeam(api, { payload: teams[0] })
+
+      expect(generator.next().value).to.deep.eq(call(api.updateTeam, teams[0]))
+
+      const response = {
+        result: ['BEST TEAM'],
+        entities: {
+          teams: {
+            'BEST TEAM': teams[0]
+          }
+        }
+      }
+
+      let next = generator.next(response).value
+      let expected = put(actions.updateSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/teams/${teams[0].name}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to the teams list', () => {
-      const generator = sagas.deleteTeam({ payload: fixture })
+    it('failure', () => {
+      const generator = updateTeam(api, { payload: teams[0] })
       generator.next()
-      generator.next(fixture).value
-      const next = generator.next().value
-      const expected = put(push(`/tickets`))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.updateFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('deleteTeam', () => {
+    it('success', () => {
+      const generator = deleteTeam(api, { name: 'BEST TEAM' })
+
+      expect(generator.next().value).to.deep.eq(call(api.deleteTeam, 'BEST TEAM'))
+
+      const response = { name: 'BEST TEAM' }
+
+      let next = generator.next(response).value
+      let expected = put(actions.deleteSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push('/teams'))
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('failure', () => {
+      const generator = deleteTeam(api, { key: 'TICKET-0' })
+      generator.next()
+
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.deleteFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 })
