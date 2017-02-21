@@ -14,7 +14,6 @@ export default () => {
     }),
     auth: require('./authRedux').reducer,
     form: formReducer,
-    routing: require('./routerRedux').reducer,
   })
 
   return configureStore(rootReducer, rootSaga)
