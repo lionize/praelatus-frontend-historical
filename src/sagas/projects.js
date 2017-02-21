@@ -1,122 +1,51 @@
-/** @module projects/sagas */
-
-import { takeEvery } from 'redux-saga'
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import types from 'types/projects'
-import * as actions from 'actions/projects'
-import * as dataActions from 'actions/data'
-import api from 'api'
+import actions from 'modules/projectRedux'
 
-/**
- * Saga that represents async interaction with the server for fetching projects.
- *
- * The function calls the api fetchProjects method passing the action's
- * payload (filter options, etc.).
- *
- * It calls the fetchProjectsSuccess action passing the response if the call is
- * successful, and calls the fetchProjectsFailure action passing the error from
- * the server if the call fails.
- *
- * @param {object} action - The action that contains payload information.
- */
-export function* fetchProjects(action = {}) {
+export function * fetchProject(api, { key }) {
   try {
-    const payload = action.payload || {}
-    const response = yield call(api.fetchProjects, payload)
-    yield put(dataActions.fetchDataSuccess(response, 'project'))
+    const response = yield call(api.fetchProject, key)
+    yield put(actions.fetchSuccess(response))
   } catch (e) {
-    yield put(actions.fetchProjectsFailure(e))
+    yield put(actions.fetchFailure(e))
   }
 }
 
-/**
- * Saga that represents async interaction with the server for creating a
- * project.
- *
- * The function calls the api createProject method passing the action's payload
- * (information about the project to be created).
- *
- * It calls the createProjectSuccess action passing the response if the call is
- * successful, and calls the createProjectFailure action passing the error from
- * the server if the call fails.
- *
- * @param {object} action - The action that contains payload information.
- */
-export function* createProject(action = {}) {
+export function * fetchProjects(api) {
   try {
-    const payload = action.payload || {}
+    const response = yield call(api.fetchProjects)
+    yield put(actions.fetchSuccess(response))
+  } catch (e) {
+    yield put(actions.fetchFailure(e))
+  }
+}
+
+export function * createProject(api, { payload }) {
+  try {
     const response = yield call(api.createProject, payload)
-    yield put(actions.createProjectSuccess(response))
-    yield put(push(`/projects/${response.get('id')}`))
+    yield put(actions.createSuccess(response))
+    yield put(push(`/projects/${response.result[0]}`))
   } catch (e) {
-    yield put(actions.createProjectFailure(e))
+    yield put(actions.createFailure(e))
   }
 }
 
-/**
- * Saga that represents async interaction with the server for updating a
- * project.
- *
- * The function calls the api updateProject method passing the action's payload
- * (id of and updated fields for the project to be updated).
- *
- * If calls the updateProjectSuccess action passing the response if the call is
- * successful, and calls the updateProjectFailure action passing the error from
- * the server if the call fails.
- *
- * @param {object} action - The action that contains payload information.
- */
-export function* updateProject(action = {}) {
+export function * updateProject(api, { payload }) {
   try {
-    const payload = action.payload || {}
     const response = yield call(api.updateProject, payload)
-
-    if (response) {
-      yield put(actions.updateProjectSuccess(payload.toJS()))
-    }
-    yield put(push(`/projects/${payload.get('id')}`))
+    yield put(actions.updateSuccess(response))
+    yield put(push(`/projects/${response.result[0]}`))
   } catch (e) {
-    yield put(actions.updateProjectFailure(e))
+    yield put(actions.updateFailure(e))
   }
 }
 
-/**
- * Saga that represents async interaction with the server for deleting a
- * project.
- *
- * The function calls the api deleteProject method passing the action's payload
- * (the id of the project being deleted).
- *
- * It calls the deleteProjectSuccess action passing the response if the call is
- * successful, and calls the deleteProjectFailure action passing the error from
- * the server if the call fails.
- *
- * @param {object} action - The action that contains payload information.
- */
-export function* deleteProject(action) {
+export function * deleteProject(api, { key }) {
   try {
-    const response = yield call(api.deleteProject, action.payload)
-    yield put(actions.deleteProjectSuccess(response))
+    const response = yield call(api.deleteProject, key)
+    yield put(actions.deleteSuccess(response))
     yield put(push('/projects'))
   } catch (e) {
-    yield put(actions.deleteProjectFailure(e))
+    yield put(actions.deleteFailure(e))
   }
-}
-
-/**
- * Watcher generator details all of the project module sagas and their take
- * types.
- *
- * If the saga is added using takeEvery, the saga will process every action
- * that it receives. If the saga is added using takeLatest, the saga will drop
-  * all previous actions that it received and only handle the latest call.
- */
-export default function* watcher() {
-  yield [
-    takeEvery(types.FETCH_PROJECTS_REQUEST, fetchProjects),
-    takeEvery(types.CREATE_PROJECT_REQUEST, createProject),
-    takeEvery(types.UPDATE_PROJECT_REQUEST, updateProject),
-    takeEvery(types.DELETE_PROJECT_REQUEST, deleteProject),
-  ]
 }

@@ -1,162 +1,217 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import { fromJS } from 'immutable'
-import api from 'api'
-import * as actions from 'actions/projects'
-import * as dataActions from 'actions/data'
-import * as sagas from 'sagas/projects'
+import actions from 'modules/projectRedux'
+import {
+  fetchProject,
+  fetchProjects,
+  createProject,
+  updateProject,
+  deleteProject,
+} from 'sagas/projects'
 
-describe('projects module sagas', () => {
-  describe('GET: fetch projects', () => {
-    it('calls the api method', () => {
-      const generator = sagas.fetchProjects()
+const projects = [
+  {
+    id: 0,
+    key: 'KEY-0',
+    name: 'Best Project'
+  }
+]
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchProjects, {}))
-    })
+const api = {
+  fetchProject() {},
+  fetchProjects() {},
+  createProject() {},
+  updateProject() {},
+  deleteProject() {},
+}
 
-    it('fetches projects', () => {
-      const generator = sagas.fetchProjects()
-      generator.next()
-      const response = []
-      const next = generator.next(response).value
-      const expected = put(dataActions.fetchDataSuccess(response, 'project'))
+describe('Project - Sagas', () => {
+  describe('fetchProject', () => {
+    it('success', () => {
+      const generator = fetchProject(api, { key: 'KEY-0' })
 
-      expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
-    })
+      expect(generator.next().value).to.deep.eq(call(api.fetchProject, 'KEY-0'))
 
-    it('returns an error if fetching fails', () => {
-      const generator = sagas.fetchProjects()
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.fetchProjectsFailure(response)))
-    })
-  })
-
-  describe('POST: create project', () => {
-    const fixture = {
-      name: 'The A Project',
-    }
-
-    it('calls the api method', () => {
-      const generator = sagas.createProject({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.createProject, fixture))
-    })
-
-    it('creates a project', () => {
-      const generator = sagas.createProject({ payload: fixture })
-      generator.next()
       const response = {
-        id: 0,
-        ...fixture
+        result: ['KEY-0'],
+        entities: {
+          projects: {
+            'KEY-0': projects[0]
+          }
+        }
       }
+
       const next = generator.next(response).value
-      const expected = put(actions.createProjectSuccess(response))
+      const expected = put(actions.fetchSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to new project page', () => {
-      const generator = sagas.createProject({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchProject(api, { key: 'KEY-0' })
       generator.next()
-      const response = fromJS({
-        id: 0,
-        ...fixture
-      })
-      generator.next(response).value
 
-      const next = generator.next().value
-      const expected = put(push(`/projects/${response.id}`))
+      const error = {
+        message: 'Error!'
+      }
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-    it('returns an error if creation fails', () => {
-      const generator = sagas.createProject({ payload: fixture })
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.createProjectFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('PUT: update project', () => {
-    const fixture = {
-      icon: "",
-      name: 'The A Project',
-      urlSlug: 'the-a-project'
-    }
+  describe('fetchProjects', () => {
+    it('success', () => {
+      const generator = fetchProjects(api)
 
-    it('calls the api method', () => {
-      const generator = sagas.updateProject({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.fetchProjects))
 
-      expect(generator.next().value).to.deep.eq(call(api.updateProject, fixture))
+      const response = {
+        result: ['KEY-0'],
+        entities: {
+          projects: {
+            'KEY-0': projects[0]
+          }
+        }
+      }
+
+      const next = generator.next(response).value
+      const expected = put(actions.fetchSuccess(response))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('updates the project', () => {
-      const generator = sagas.updateProject({ payload: fromJS(fixture) })
+    it('failure', () => {
+      const generator = fetchProjects(api)
       generator.next()
-      const next = generator.next(true).value
-      const expected = put(actions.updateProjectSuccess(fixture))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
+      const error = {
+        message: 'Error!'
+      }
 
-    it('redirects to the given project', () => {
-      const generator = sagas.updateProject({ payload: fromJS(fixture) })
-      generator.next()
-      generator.next(true)
-      const next = generator.next().value
-      const expected = put(push(`/projects/${fixture.id}`))
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
-    })
-
-    it('generates an error if updating fails', () => {
-      const generator = sagas.updateProject({ payload: fixture })
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.updateProjectFailure(response)))
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('DELETE: delete project', () => {
-    const fixture = { id: 0 }
+  describe('createProject', () => {
+    it('success', () => {
+      const generator = createProject(api, { payload: projects[0] })
 
-    it('calls the api method', () => {
-      const generator = sagas.deleteProject({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.createProject, projects[0]))
 
-      expect(generator.next().value).to.deep.eq(call(api.deleteProject, fixture))
+      const response = {
+        result: ['KEY-0'],
+        entities: {
+          projects: {
+            'KEY-0': projects[0]
+          }
+        }
+      }
+
+      let next = generator.next(response).value
+      let expected = put(actions.createSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/projects/${projects[0].key}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('deletes a project', () => {
-      const generator = sagas.deleteProject({ payload: fixture })
+    it('failure', () => {
+      const generator = createProject(api, { payload: projects[0] })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.deleteProjectSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.createFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('updateProject', () => {
+    it('success', () => {
+      const generator = updateProject(api, { payload: projects[0] })
+
+      expect(generator.next().value).to.deep.eq(call(api.updateProject, projects[0]))
+
+      const response = {
+        result: ['KEY-0'],
+        entities: {
+          projects: {
+            'KEY-0': projects[0]
+          }
+        }
+      }
+
+      let next = generator.next(response).value
+      let expected = put(actions.updateSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push(`/projects/${projects[0].key}`))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('redirects to the projects list', () => {
-      const generator = sagas.deleteProject({ payload: fixture })
+    it('failure', () => {
+      const generator = updateProject(api, { payload: projects[0] })
       generator.next()
-      generator.next(fixture).value
-      const next = generator.next().value
-      const expected = put(push(`/projects`))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.updateFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('deleteProject', () => {
+    it('success', () => {
+      const generator = deleteProject(api, { key: 'KEY-0' })
+
+      expect(generator.next().value).to.deep.eq(call(api.deleteProject, 'KEY-0'))
+
+      const response = { key: 'KEY-0' }
+
+      let next = generator.next(response).value
+      let expected = put(actions.deleteSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push('/projects'))
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('failure', () => {
+      const generator = deleteProject(api, { key: 'TICKET-0' })
+      generator.next()
+
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.deleteFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 })
