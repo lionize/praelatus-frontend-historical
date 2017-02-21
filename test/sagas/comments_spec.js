@@ -1,123 +1,206 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
-import api from 'api'
-import * as actions from 'actions/comments'
-import * as dataActions from 'actions/data'
-import * as sagas from 'sagas/comments'
+import { push } from 'react-router-redux'
+import actions from 'modules/commentRedux'
+import {
+  fetchComment,
+  fetchComments,
+  createComment,
+  updateComment,
+  deleteComment,
+} from 'sagas/comments'
 
-describe('comments module sagas', () => {
-  describe('GET: fetch comments', () => {
-    it('calls the api method', () => {
-      const generator = sagas.fetchComments()
+const comments = [
+  {
+    id: 0,
+    body: 'Text'
+  }
+]
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchComments, {}))
-    })
+const api = {
+  fetchComment() {},
+  fetchComments() {},
+  createComment() {},
+  updateComment() {},
+  deleteComment() {},
+}
 
-    it('fetches comments', () => {
-      const generator = sagas.fetchComments()
-      generator.next()
-      const response = []
-      const next = generator.next(response).value
-      const expected = put(dataActions.fetchDataSuccess(response, 'comment'))
+describe('Comment - Sagas', () => {
+  describe('fetchComment', () => {
+    it('success', () => {
+      const generator = fetchComment(api, { id: 0 })
 
-      expect(next.PUT.action.type).to.eq(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.eq(expected.PUT.action.response)
-    })
+      expect(generator.next().value).to.deep.eq(call(api.fetchComment, 0))
 
-    it('returns an error if fetching fails', () => {
-      const generator = sagas.fetchComments()
-      generator.next()
-      const response = { message: 'Error!' }
-
-      expect(generator.throw(response).value).to.deep.eq(put(actions.fetchCommentsFailure(response)))
-    })
-  })
-
-  describe('POST: create comment', () => {
-    const fixture = {
-      name: 'The A Comment',
-    }
-
-    it('calls the api method', () => {
-      const generator = sagas.createComment({ payload: fixture })
-
-      expect(generator.next().value).to.deep.eq(call(api.createComment, fixture))
-    })
-
-    it('creates a comment', () => {
-      const generator = sagas.createComment({ payload: fixture })
-      generator.next()
       const response = {
-        id: 0,
-        ...fixture
+        result: [0],
+        entities: {
+          comments: {
+            0: comments[0]
+          }
+        }
       }
-      const next = generator.next(response).value
-      const expected = put(actions.createCommentSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      const next = generator.next(response).value
+      const expected = put(actions.fetchSuccess(response))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('returns an error if creation fails', () => {
-      const generator = sagas.createComment({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchComment(api, { id: 0 })
       generator.next()
-      const response = { message: 'Error!' }
 
-      expect(generator.throw(response).value).to.deep.eq(put(actions.createCommentFailure(response)))
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('PUT: update comment', () => {
-    const fixture = {
-      icon: "",
-      name: 'The A Comment',
-      urlSlug: 'the-a-comment'
-    }
+  describe('fetchComments', () => {
+    it('success', () => {
+      const generator = fetchComments(api)
 
-    it('calls the api method', () => {
-      const generator = sagas.updateComment({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.fetchComments))
 
-      expect(generator.next().value).to.deep.eq(call(api.updateComment, fixture))
-    })
+      const response = {
+        result: [0],
+        entities: {
+          comments: {
+            0: comments[0]
+          }
+        }
+      }
 
-    it('updates the ticket', () => {
-      const generator = sagas.updateComment({ payload: fixture })
-      generator.next()
-      const response = fixture
       const next = generator.next(response).value
-      const expected = put(actions.updateCommentSuccess(response))
+      const expected = put(actions.fetchSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.response).to.equal(expected.PUT.action.response)
+      expect(next).to.deep.eq(expected)
     })
 
-    it('generates an error if updating fails', () => {
-      const generator = sagas.updateComment({ payload: fixture })
+    it('failure', () => {
+      const generator = fetchComments(api)
       generator.next()
-      const response = { message: 'Error!' }
 
-      expect(generator.throw(response).value).to.deep.eq(put(actions.updateCommentFailure(response)))
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.fetchFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 
-  describe('DELETE: delete comment', () => {
-    const fixture = { id: 0 }
+  describe('createComment', () => {
+    it('success', () => {
+      const generator = createComment(api, { payload: comments[0] })
 
-    it('calls the api method', () => {
-      const generator = sagas.deleteComment({ payload: fixture })
+      expect(generator.next().value).to.deep.eq(call(api.createComment, comments[0]))
 
-      expect(generator.next().value).to.deep.eq(call(api.deleteComment, fixture))
+      const response = {
+        result: [0],
+        entities: {
+          comments: {
+            0: comments[0]
+          }
+        }
+      }
+
+      const next = generator.next(response).value
+      const expected = put(actions.createSuccess(response))
+
+      expect(next).to.deep.eq(expected)
     })
 
-    it('deletes a comment', () => {
-      const generator = sagas.deleteComment({ payload: fixture })
+    it('failure', () => {
+      const generator = createComment(api, { payload: comments[0] })
       generator.next()
-      const response = fixture
-      const next = generator.next(response).value
-      const expected = put(actions.deleteCommentSuccess(response))
 
-      expect(next.PUT.action.type).to.equal(expected.PUT.action.type)
-      expect(next.PUT.action.id).to.equal(expected.PUT.action.id)
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.createFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('updateComment', () => {
+    it('success', () => {
+      const generator = updateComment(api, { payload: comments[0] })
+
+      expect(generator.next().value).to.deep.eq(call(api.updateComment, comments[0]))
+
+      const response = {
+        result: [0],
+        entities: {
+          comments: {
+            0: comments[0]
+          }
+        }
+      }
+
+      const next = generator.next(response).value
+      const expected = put(actions.updateSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('failure', () => {
+      const generator = updateComment(api, { payload: comments[0] })
+      generator.next()
+
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.updateFailure(error))
+
+      expect(next).to.deep.eq(expected)
+    })
+  })
+
+  describe('deleteComment', () => {
+    it('success', () => {
+      const generator = deleteComment(api, { id: 0 })
+
+      expect(generator.next().value).to.deep.eq(call(api.deleteComment, 0))
+
+      const response = { id: 0 }
+
+      let next = generator.next(response).value
+      let expected = put(actions.deleteSuccess(response))
+
+      expect(next).to.deep.eq(expected)
+
+      next = generator.next().value
+      expected = put(push('/comments'))
+
+      expect(next).to.deep.eq(expected)
+    })
+
+    it('failure', () => {
+      const generator = deleteComment(api, { id: 0})
+      generator.next()
+
+      const error = {
+        message: 'Error!'
+      }
+
+      const next = generator.throw(error).value
+      const expected = put(actions.deleteFailure(error))
+
+      expect(next).to.deep.eq(expected)
     })
   })
 })
