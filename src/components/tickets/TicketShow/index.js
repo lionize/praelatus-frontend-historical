@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   ticket,
   fetchRequest,
-} from 'modules/ticketRedux'
+} from 'modules/ticket'
 import { TicketCard } from 'components'
 
 class TicketShow extends Component {

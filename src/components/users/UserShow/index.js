@@ -5,7 +5,7 @@ import {
   user,
   fetching,
   fetchRequest,
-} from 'modules/userRedux'
+} from 'modules/user'
 import { UserCard } from 'components'
 
 class UserShow extends Component {

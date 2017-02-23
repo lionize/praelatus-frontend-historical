@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   users,
   fetchRequest,
-} from 'modules/userRedux'
+} from 'modules/user'
 import { UserTable } from 'components'
 
 class UserList extends Component {

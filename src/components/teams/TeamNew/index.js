@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { createRequest } from 'modules/teamRedux'
+import { createRequest } from 'modules/team'
 import { TeamForm } from 'components'
 
 class TeamNew extends Component {

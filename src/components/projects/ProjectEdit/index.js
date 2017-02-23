@@ -5,7 +5,7 @@ import {
   fetchRequest,
   updateRequest,
   project,
-} from 'modules/projectRedux'
+} from 'modules/project'
 import { ProjectForm } from 'components'
 
 class ProjectEdit extends Component {

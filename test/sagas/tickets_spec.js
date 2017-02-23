@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import actions from 'modules/ticketRedux'
+import actions from 'modules/ticket'
 import {
   fetchTicket,
   fetchTickets,

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   team,
   fetchRequest,
-} from 'modules/teamRedux'
+} from 'modules/team'
 import { TeamCard } from 'components'
 
 class TeamShow extends Component {

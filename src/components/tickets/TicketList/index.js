@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   tickets,
   fetchRequest,
-} from 'modules/ticketRedux'
+} from 'modules/ticket'
 import { TicketTable } from 'components'
 
 class TicketList extends Component {

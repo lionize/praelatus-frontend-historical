@@ -2,12 +2,12 @@ import { takeLatest } from 'redux-saga'
 import API from 'services/api'
 
 /* Types */
-import { authTypes } from 'modules/authRedux'
-import { commentTypes } from 'modules/commentRedux'
-import { projectTypes } from 'modules/projectRedux'
-import { teamTypes } from 'modules/teamRedux'
-import { ticketTypes } from 'modules/ticketRedux'
-import { userTypes } from 'modules/userRedux'
+import { authTypes } from 'modules/auth'
+import { commentTypes } from 'modules/comment'
+import { projectTypes } from 'modules/project'
+import { teamTypes } from 'modules/team'
+import { ticketTypes } from 'modules/ticket'
+import { userTypes } from 'modules/user'
 
 /* Sagas */
 

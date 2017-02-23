@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { registerRequest } from 'modules/authRedux'
+import { registerRequest } from 'modules/auth'
 import { RegisterForm } from 'components'
 
 class Register extends Component {

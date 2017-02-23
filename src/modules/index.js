@@ -6,14 +6,15 @@ import rootSaga from 'sagas'
 export default () => {
   const rootReducer = combineReducers({
     data: combineReducers({
-      tickets: require('./ticketRedux').reducer,
-      projects: require('./projectRedux').reducer,
-      teams: require('./teamRedux').reducer,
-      comments: require('./commentRedux').reducer,
-      users: require('./userRedux').reducer,
+      tickets: require('./ticket').reducer,
+      projects: require('./project').reducer,
+      teams: require('./team').reducer,
+      comments: require('./comment').reducer,
+      users: require('./user').reducer,
     }),
-    auth: require('./authRedux').reducer,
+    auth: require('./auth').reducer,
     form: formReducer,
+    router: require('./router').reducer,
   })
 
   return configureStore(rootReducer, rootSaga)

@@ -6,7 +6,7 @@ import {
   fetchRequest,
   updateRequest,
   ticket,
-} from 'modules/ticketRedux'
+} from 'modules/ticket'
 import { TicketForm } from 'components'
 
 class TicketEdit extends Component {

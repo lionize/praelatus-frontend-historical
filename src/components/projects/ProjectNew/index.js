@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { createRequest } from 'modules/projectRedux'
+import { createRequest } from 'modules/project'
 import { ProjectForm } from 'components'
 
 class ProjectNew extends Component {

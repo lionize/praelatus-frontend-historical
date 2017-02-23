@@ -2,7 +2,7 @@
 
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import ticketActions from 'modules/ticketRedux'
+import ticketActions from 'modules/ticket'
 
 export function * fetchTicket(api, { key }) {
   try {

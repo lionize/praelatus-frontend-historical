@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { currentUser } from 'modules/authRedux'
+import { currentUser } from 'modules/auth'
 import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
 const UserInfoBox = ({ user }) => {

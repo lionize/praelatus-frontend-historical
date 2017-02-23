@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import actions from 'modules/teamRedux'
+import actions from 'modules/team'
 import {
   fetchTeam,
   fetchTeams,

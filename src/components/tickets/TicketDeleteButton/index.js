@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { deleteRequest } from 'modules/ticketRedux'
+import { deleteRequest } from 'modules/ticket'
 import { DeleteButton } from 'components'
 
 class TicketDeleteButton extends Component {

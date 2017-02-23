@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   project,
   fetchRequest,
-} from 'modules/projectRedux'
+} from 'modules/project'
 import { ProjectCard } from 'components'
 
 class ProjectShow extends Component {

@@ -6,9 +6,9 @@ import actions, {
   users,
   fetching,
   error,
-} from 'modules/userRedux'
+} from 'modules/user'
 
-describe('User - Redux', () => {
+describe('User - ', () => {
   describe('reducers', () => {
     it('request', () => {
       const startingState = INITIAL_STATE.merge({

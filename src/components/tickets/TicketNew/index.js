@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { createRequest } from 'modules/ticketRedux'
+import { createRequest } from 'modules/ticket'
 import { TicketForm } from 'components'
 
 class TicketNew extends Component {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import {
   logout,
-} from 'modules/authRedux'
+} from 'modules/auth'
 import { Button } from 'components'
 
 class LogoutLink extends Component {

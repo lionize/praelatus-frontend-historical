@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   teams,
   fetchRequest,
-} from 'modules/teamRedux'
+} from 'modules/team'
 import { TeamTable } from 'components'
 
 class TeamList extends Component {

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import actions from 'modules/authRedux'
+import actions from 'modules/auth'
 import {
   login,
   register,

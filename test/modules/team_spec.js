@@ -6,9 +6,9 @@ import actions, {
   teams,
   fetching,
   error,
-} from 'modules/teamRedux'
+} from 'modules/team'
 
-describe('Team - Redux', () => {
+describe('Team - ', () => {
   describe('reducers', () => {
     it('request', () => {
       const startingState = INITIAL_STATE.merge({

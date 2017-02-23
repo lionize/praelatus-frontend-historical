@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import actions from 'modules/commentRedux'
+import actions from 'modules/comment'
 
 export function * fetchComment(api, { id }) {
   try {

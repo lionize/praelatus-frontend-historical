@@ -6,9 +6,9 @@ import actions, {
   comments,
   fetching,
   error,
-} from 'modules/commentRedux'
+} from 'modules/comment'
 
-describe('Comment - Redux', () => {
+describe('Comment - ', () => {
   describe('reducers', () => {
     it('request', () => {
       const startingState = INITIAL_STATE.merge({

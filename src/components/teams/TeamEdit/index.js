@@ -5,7 +5,7 @@ import {
   fetchRequest,
   updateRequest,
   team,
-} from 'modules/teamRedux'
+} from 'modules/team'
 import { TeamForm } from 'components'
 
 class TeamEdit extends Component {

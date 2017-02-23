@@ -6,9 +6,9 @@ import actions, {
   projects,
   fetching,
   error,
-} from 'modules/projectRedux'
+} from 'modules/project'
 
-describe('Project - Redux', () => {
+describe('Project - ', () => {
   describe('reducers', () => {
     it('request', () => {
       const startingState = INITIAL_STATE.merge({

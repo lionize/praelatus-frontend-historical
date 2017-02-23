@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   projects,
   fetchRequest,
-} from 'modules/projectRedux'
+} from 'modules/project'
 import { ProjectTable } from 'components'
 
 class ProjectList extends Component {

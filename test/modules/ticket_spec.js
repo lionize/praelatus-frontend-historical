@@ -6,9 +6,9 @@ import actions, {
   tickets,
   fetching,
   error,
-} from 'modules/ticketRedux'
+} from 'modules/ticket'
 
-describe('Ticket - Redux', () => {
+describe('Ticket - ', () => {
   describe('reducers', () => {
     it('request', () => {
       const startingState = INITIAL_STATE.merge({

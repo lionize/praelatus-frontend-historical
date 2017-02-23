@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import actions from 'modules/teamRedux'
+import actions from 'modules/team'
 
 export function * fetchTeam(api, { name }) {
   try {

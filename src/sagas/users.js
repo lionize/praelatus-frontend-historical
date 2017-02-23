@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import actions from 'modules/userRedux'
+import actions from 'modules/user'
 
 export function * fetchUser(api, { username }) {
   try {
