@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import actions from 'modules/team'
 
-export function * fetchTeam(api, { name }) {
+export function* fetchTeam(api, { name }) {
   try {
     const response = yield call(api.fetchTeam, name)
     yield put(actions.fetchSuccess(response))
@@ -11,7 +11,7 @@ export function * fetchTeam(api, { name }) {
   }
 }
 
-export function * fetchTeams(api) {
+export function* fetchTeams(api) {
   try {
     const response = yield call(api.fetchTeams)
     yield put(actions.fetchSuccess(response))
@@ -20,7 +20,7 @@ export function * fetchTeams(api) {
   }
 }
 
-export function * createTeam(api, { payload }) {
+export function* createTeam(api, { payload }) {
   try {
     const response = yield call(api.createTeam, payload)
     yield put(actions.createSuccess(response))
@@ -30,7 +30,7 @@ export function * createTeam(api, { payload }) {
   }
 }
 
-export function * updateTeam(api, { payload }) {
+export function* updateTeam(api, { payload }) {
   try {
     const response = yield call(api.updateTeam, payload)
     yield put(actions.updateSuccess(response))
@@ -40,7 +40,7 @@ export function * updateTeam(api, { payload }) {
   }
 }
 
-export function * deleteTeam(api, { name }) {
+export function* deleteTeam(api, { name }) {
   try {
     const response = yield call(api.deleteTeam, name)
     yield put(actions.deleteSuccess(response))

@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import actions from 'modules/comment'
 
-export function * fetchComment(api, { id }) {
+export function* fetchComment(api, { id }) {
   try {
     const response = yield call(api.fetchComment, id)
     yield put(actions.fetchSuccess(response))
@@ -11,7 +11,7 @@ export function * fetchComment(api, { id }) {
   }
 }
 
-export function * fetchComments(api) {
+export function* fetchComments(api) {
   try {
     const response = yield call(api.fetchComments)
     yield put(actions.fetchSuccess(response))
@@ -20,7 +20,7 @@ export function * fetchComments(api) {
   }
 }
 
-export function * createComment(api, { payload }) {
+export function* createComment(api, { payload }) {
   try {
     const response = yield call(api.createComment, payload)
     yield put(actions.createSuccess(response))
@@ -30,7 +30,7 @@ export function * createComment(api, { payload }) {
   }
 }
 
-export function * updateComment(api, { payload }) {
+export function* updateComment(api, { payload }) {
   try {
     const response = yield call(api.updateComment, payload)
     yield put(actions.updateSuccess(response))
@@ -40,7 +40,7 @@ export function * updateComment(api, { payload }) {
   }
 }
 
-export function * deleteComment(api, { id }) {
+export function* deleteComment(api, { id }) {
   try {
     const response = yield call(api.deleteComment, id)
     yield put(actions.deleteSuccess(response))

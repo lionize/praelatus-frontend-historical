@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import actions from 'modules/user'
 
-export function * fetchUser(api, { username }) {
+export function* fetchUser(api, { username }) {
   try {
     const response = yield call(api.fetchUser, username)
     yield put(actions.fetchSuccess(response))
@@ -11,7 +11,7 @@ export function * fetchUser(api, { username }) {
   }
 }
 
-export function * fetchUsers(api) {
+export function* fetchUsers(api) {
   try {
     const response = yield call(api.fetchUsers)
     yield put(actions.fetchSuccess(response))
@@ -20,7 +20,7 @@ export function * fetchUsers(api) {
   }
 }
 
-export function * createUser(api, { payload }) {
+export function* createUser(api, { payload }) {
   try {
     const response = yield call(api.createUser, payload)
     yield put(actions.createSuccess(response))
@@ -30,7 +30,7 @@ export function * createUser(api, { payload }) {
   }
 }
 
-export function * updateUser(api, { payload }) {
+export function* updateUser(api, { payload }) {
   try {
     const response = yield call(api.updateUser, payload)
     yield put(actions.updateSuccess(response))
@@ -40,7 +40,7 @@ export function * updateUser(api, { payload }) {
   }
 }
 
-export function * deleteUser(api, { username }) {
+export function* deleteUser(api, { username }) {
   try {
     const response = yield call(api.deleteUser, username)
     yield put(actions.deleteSuccess(response))

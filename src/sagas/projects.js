@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import actions from 'modules/project'
 
-export function * fetchProject(api, { key }) {
+export function* fetchProject(api, { key }) {
   try {
     const response = yield call(api.fetchProject, key)
     yield put(actions.fetchSuccess(response))
@@ -11,7 +11,7 @@ export function * fetchProject(api, { key }) {
   }
 }
 
-export function * fetchProjects(api) {
+export function* fetchProjects(api) {
   try {
     const response = yield call(api.fetchProjects)
     yield put(actions.fetchSuccess(response))
@@ -20,7 +20,7 @@ export function * fetchProjects(api) {
   }
 }
 
-export function * createProject(api, { payload }) {
+export function* createProject(api, { payload }) {
   try {
     const response = yield call(api.createProject, payload)
     yield put(actions.createSuccess(response))
@@ -30,7 +30,7 @@ export function * createProject(api, { payload }) {
   }
 }
 
-export function * updateProject(api, { payload }) {
+export function* updateProject(api, { payload }) {
   try {
     const response = yield call(api.updateProject, payload)
     yield put(actions.updateSuccess(response))
@@ -40,7 +40,7 @@ export function * updateProject(api, { payload }) {
   }
 }
 
-export function * deleteProject(api, { key }) {
+export function* deleteProject(api, { key }) {
   try {
     const response = yield call(api.deleteProject, key)
     yield put(actions.deleteSuccess(response))

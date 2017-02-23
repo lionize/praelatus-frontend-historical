@@ -23,13 +23,9 @@ class TeamShow extends Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => {
-  const team = team(state.data.teams, params.id)
-
-  return {
-    team,
-  }
-}
+const mapStateToProps = (state, { params }) => ({
+  team: team(state.data.teams, params.id)
+})
 
 const mapDispatchToProps = dispatch => ({
   loadTeam(id) {

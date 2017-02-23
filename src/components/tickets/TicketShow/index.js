@@ -23,13 +23,9 @@ class TicketShow extends Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => {
-  const ticket = tickets(state.data.tickets, params.id)
-
-  return {
-    ticket,
-  }
-}
+const mapStateToProps = (state, { params }) => ({
+  ticket: ticket(state.data.tickets, params.id),
+})
 
 const mapDispatchToProps = dispatch => ({
   loadTicket(id) {

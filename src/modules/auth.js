@@ -1,6 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
-import deepMerge from 'util-deep-merge'
 
 /* TYPES AND ACTION CREATORS */
 

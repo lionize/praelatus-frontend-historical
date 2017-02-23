@@ -36,7 +36,7 @@ import {
 // services, e.g. fixture api, if we so choose.
 const api = API
 
-export default function * root () {
+export default function* root() {
   yield [
     // ticket
     takeLatest(ticketTypes.FETCH_REQUEST, fetchTicket, api),

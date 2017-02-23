@@ -23,13 +23,9 @@ class ProjectShow extends Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => {
-  const project = project(state.data.projects, params.id)
-
-  return {
-    project,
-  }
-}
+const mapStateToProps = (state, { params }) => ({
+  project: project(state.data.projects, params.id)
+})
 
 const mapDispatchToProps = dispatch => ({
   loadProject(id) {

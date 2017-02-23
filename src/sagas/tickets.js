@@ -4,7 +4,7 @@ import { call, put } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import ticketActions from 'modules/ticket'
 
-export function * fetchTicket(api, { key }) {
+export function* fetchTicket(api, { key }) {
   try {
     const response = yield call(api.fetchTicket, key)
     yield put(ticketActions.fetchSuccess(response))
@@ -13,7 +13,7 @@ export function * fetchTicket(api, { key }) {
   }
 }
 
-export function * fetchTickets(api, { project }) {
+export function* fetchTickets(api, { project }) {
   try {
     const response = yield call(api.fetchTickets, project)
     yield put(ticketActions.fetchSuccess(response))
@@ -22,7 +22,7 @@ export function * fetchTickets(api, { project }) {
   }
 }
 
-export function * createTicket(api, { payload }) {
+export function* createTicket(api, { payload }) {
   try {
     const response = yield call(api.createTicket, payload)
     yield put(ticketActions.createSuccess(response))
@@ -32,7 +32,7 @@ export function * createTicket(api, { payload }) {
   }
 }
 
-export function * updateTicket(api, { payload }) {
+export function* updateTicket(api, { payload }) {
   try {
     const response = yield call(api.updateTicket, payload)
     yield put(ticketActions.updateSuccess(response))
@@ -42,7 +42,7 @@ export function * updateTicket(api, { payload }) {
   }
 }
 
-export function * deleteTicket(api, { key }) {
+export function* deleteTicket(api, { key }) {
   try {
     const response = yield call(api.deleteTicket, key)
     yield put(ticketActions.deleteSuccess(response))
