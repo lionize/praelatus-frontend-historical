@@ -128,7 +128,7 @@ const createTicket = (payload = {}) => {
   const ticket = Object.assign({}, payload, { id })
   tickets.push(ticket)
 
-  return ticket
+  return respondWith(normalize([ ticket ], ticketsSchema))
 }
 
 const updateTicket = (payload = {}) => {
@@ -136,7 +136,7 @@ const updateTicket = (payload = {}) => {
 
   tickets[index] = payload
 
-  return true
+  return respondWith(normalize([ payload ], ticketsSchema))
 }
 
 const deleteTicket = payload => {
