@@ -17,7 +17,7 @@ const routes = (
     <Route path='register' component={Register} />
     <Route path='users'>
       <IndexRoute component={UserList} />
-      <Route path=':id' component={UserShow} />
+      <Route path=':username' component={UserShow} />
     </Route>
     <Route path="projects">
       <IndexRoute component={ProjectList} />
