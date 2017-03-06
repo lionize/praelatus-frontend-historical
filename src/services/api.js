@@ -122,7 +122,7 @@ const fetchTickets = (payload = {}) => {
   return respondWith(normalize(response, ticketsSchema))
 }
 
-const createTicket = payload => {
+const createTicket = (payload = {}) => {
   const id = nextID(tickets)
 
   const ticket = Object.assign({}, payload, { id })
@@ -131,7 +131,7 @@ const createTicket = payload => {
   return ticket
 }
 
-const updateTicket = payload => {
+const updateTicket = (payload = {}) => {
   const index = idIndex(payload.id, tickets)
 
   tickets[index] = payload

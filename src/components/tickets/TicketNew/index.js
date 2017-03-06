@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { createRequest } from 'modules/ticket'
+import actions from 'modules/ticket'
 import { TicketForm } from 'components'
 
 class TicketNew extends Component {
@@ -19,7 +19,7 @@ const mapStateToProps = () => ({})
 
 TicketNew = connect(
   mapStateToProps,
-  { createTicket: createRequest }
+  { createTicket: actions.createRequest }
 )(TicketNew)
 
 export default TicketNew
