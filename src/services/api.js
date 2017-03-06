@@ -156,21 +156,24 @@ const fetchTeams = (payload = {}) => {
 
   return respondWith(normalize(response, teamsSchema))
 }
+
 const createTeam = payload => {
   const id = nextID(teams)
 
   const team = Object.assign({}, payload, { id })
   teams.push(team)
 
-  return team
+  return respondWith(normalize([ team ], teamsSchema))
 }
+
 const updateTeam = payload => {
   const index = idIndex(payload.id, teams)
 
   teams[index] = payload
 
-  return true
+  return respondWith(normalize([ team ], teamsSchema))
 }
+
 const deleteTeam = payload => {
   const index = idIndex(payload, teams)
 
