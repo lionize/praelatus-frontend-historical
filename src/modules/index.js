@@ -8,7 +8,7 @@ import { reducer as teamReducer } from 'modules/team'
 import { reducer as commentReducer } from 'modules/comment'
 import { reducer as userReducer } from 'modules/user'
 import { reducer as authReducer } from 'modules/auth'
-import { reducer as routerReducer } from 'modules/routes'
+import { reducer as routerReducer } from 'modules/router'
 
 
 export default () => {
