@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { currentUser } from 'modules/auth'
+import { isLoggedIn, currentUser } from 'modules/auth'
 import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
-const UserInfoBox = ({ user }) => {
-  if (user) {
+const UserInfoBox = ({ loggedIn, user }) => {
+  if (loggedIn) {
     return <ProfileBox user={user} />
   }
 
@@ -16,10 +16,11 @@ const UserInfoBox = ({ user }) => {
   )
 }
 
-const mapStateToProps = state => ({
+const stateToProps = state => ({
   user: currentUser(state.auth),
+  loggedIn: isLoggedIn(state.auth),
 })
 
 export default connect(
-  mapStateToProps,
+  stateToProps,
 )(UserInfoBox)
