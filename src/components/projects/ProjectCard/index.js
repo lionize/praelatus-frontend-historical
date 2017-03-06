@@ -16,7 +16,7 @@ const ProjectCard = ({ project, error }) => {
                 Lead: <UserLink id={project.lead.id}>{project.lead.username}</UserLink>
               </CardText>
             }
-            <LinkButton to={`/projects/${project.id}/edit`}>Edit</LinkButton>
+            <LinkButton to={`/projects/${project.key}/edit`}>Edit</LinkButton>
             <ProjectDeleteButton id={project.id} />
           </CardBlock>
         </Card>

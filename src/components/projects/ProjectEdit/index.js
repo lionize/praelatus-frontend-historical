@@ -6,7 +6,7 @@ import { ProjectForm } from 'components'
 
 class ProjectEdit extends Component {
   componentDidMount() {
-    this.props.loadProject(this.props.params.id)
+    this.props.loadProject(this.props.params.key)
   }
 
   @autobind
@@ -20,12 +20,12 @@ class ProjectEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  initialValues: project(state.data.projects, params.id)
+  initialValues: project(state.data.projects, params.key)
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadProject(id) {
-    dispatch(actions.fetchRequest({ id }))
+  loadProject(key) {
+    dispatch(actions.fetchRequest({ key }))
   },
 
   updateProject(values) {

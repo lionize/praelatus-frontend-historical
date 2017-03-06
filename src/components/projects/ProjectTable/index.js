@@ -19,10 +19,10 @@ const ProjectTable = ({ projects }) => (
         {projects.map((project, i) =>
           <tr key={i}>
             <td>
-              <ProjectLink id={project.id}>{project.name}</ProjectLink>
+              <ProjectLink project={project}>{project.name}</ProjectLink>
             </td>
             <td>
-              <ProjectLink id={project.id}>{project.key}</ProjectLink>
+              <ProjectLink project={project}>{project.key}</ProjectLink>
             </td>
             <td>
               {project.lead &&

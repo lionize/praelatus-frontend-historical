@@ -22,8 +22,8 @@ const routes = (
     <Route path="projects">
       <IndexRoute component={ProjectList} />
       <Route path="new" component={ProjectNew} />
-      <Route path=":id/edit" component={ProjectEdit} />
-      <Route path=":id" component={ProjectShow} />
+      <Route path=":key/edit" component={ProjectEdit} />
+      <Route path=":key" component={ProjectShow} />
     </Route>
     <Route path="tickets">
       <IndexRoute component={TicketList} />

@@ -6,12 +6,12 @@ import { ProjectCard } from 'components'
 
 class ProjectShow extends Component {
   componentDidMount() {
-    this.props.loadProject(this.props.params.id)
+    this.props.loadProject(this.props.params.key)
   }
 
   componentDidUpdate({ params }) {
-    if (params.id !== this.props.params.id) {
-      this.props.loadProject(this.props.params.id)
+    if (params.key !== this.props.params.key) {
+      this.props.loadProject(this.props.params.key)
     }
   }
 
@@ -21,12 +21,12 @@ class ProjectShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  project: project(state.data.projects, params.id)
+  project: project(state.data.projects, params.key)
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadProject(id) {
-    dispatch(actions.fetchRequest({ id }))
+  loadProject(key) {
+    dispatch(actions.fetchRequest({ key }))
   },
 })
 
