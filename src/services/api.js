@@ -188,21 +188,25 @@ const fetchProjects = (payload = {}) => {
 
   return respondWith(normalize(response, projectsSchema))
 }
+
 const createProject = payload => {
   const id = nextID(projects)
+  const key = payload.name.toUpperCase() + '-' + id
 
-  const project = Object.assign({}, payload, { id })
+  const project = Object.assign({}, payload, { id, key })
   projects.push(project)
 
-  return project
+  return respondWith(normalize([project], projectsSchema))
 }
-const updateProject = payload => {
+
+const updateProject = (payload = {}) => {
   const index = idIndex(payload.id, projects)
 
   projects[index] = payload
 
-  return true
+  return respondWith(normalize(payload, projectsSchema))
 }
+
 const deleteProject = payload => {
   const index = idIndex(payload, projects)
 
