@@ -11,7 +11,7 @@ const { Types: types, Creators: creators } = createActions({
   registerRequest: ['payload'],
   registerSuccess: ['payload'],
   registerFailure: ['error'],
-});
+}, { prefix: 'AUTH_' });
 
 export const authTypes = types
 export default creators

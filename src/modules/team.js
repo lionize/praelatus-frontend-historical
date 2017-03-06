@@ -18,7 +18,7 @@ const { Types: types, Creators: creators } = createActions({
   deleteRequest: ['name'],
   deleteSuccess: ['name'],
   deleteFailure: ['error'],
-});
+}, { prefix: 'TEAM_' });
 
 export const teamTypes = types
 export default creators

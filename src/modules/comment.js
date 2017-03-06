@@ -18,7 +18,7 @@ const { Types: types, Creators: creators } = createActions({
   deleteRequest: ['id'],
   deleteSuccess: ['id'],
   deleteFailure: ['error'],
-});
+}, { prefix: 'COMMENT_' });
 
 export const commentTypes = types
 export default creators

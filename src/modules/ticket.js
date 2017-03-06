@@ -18,7 +18,7 @@ const { Types: types, Creators: creators } = createActions({
   deleteRequest: ['key'],
   deleteSuccess: ['key'],
   deleteFailure: ['error'],
-});
+}, { prefix: 'TICKET_' });
 
 export const ticketTypes = types
 export default creators
