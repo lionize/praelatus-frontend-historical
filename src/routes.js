@@ -28,8 +28,8 @@ const routes = (
     <Route path="tickets">
       <IndexRoute component={TicketList} />
       <Route path="new" component={TicketNew} />
-      <Route path=":id/edit" component={TicketEdit} />
-      <Route path=":id" component={TicketShow} />
+      <Route path=":key/edit" component={TicketEdit} />
+      <Route path=":key" component={TicketShow} />
     </Route>
     <Route path="teams">
       <IndexRoute component={TeamList} />
