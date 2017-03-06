@@ -112,13 +112,16 @@ const respondWith = info => Promise.resolve({
 const nextID = compose(add(1), max, map('id'))
 const idIndex = (id, collection) => findIndex({ id }, collection)
 
-const fetchTickets = payload => {
+const fetchTickets = (payload = {}) => {
+  let response
   if (payload.id != null) {
-    return respondWith([tickets[payload.id]])
+    response = [tickets[payload.id]]
   } else {
-    return respondWith(tickets)
+    response = tickets
   }
+  return respondWith(normalize(response, ticketsSchema))
 }
+
 const createTicket = payload => {
   const id = nextID(tickets)
 
@@ -144,12 +147,14 @@ const deleteTicket = payload => {
   return payload
 }
 
-const fetchTeams = payload => {
+const fetchTeams = (payload = {}) => {
+  let response = teams
+
   if (payload.id != null) {
-    return respondWith([teams[payload.id]])
-  } else {
-    return respondWith(teams)
+    response = [teams[payload.id]]
   }
+
+  return respondWith(normalize(response, teamsSchema))
 }
 const createTeam = payload => {
   const id = nextID(teams)
@@ -174,12 +179,14 @@ const deleteTeam = payload => {
   return payload
 }
 
-const fetchProjects = payload => {
+const fetchProjects = (payload = {}) => {
+  let response = projects
+
   if (payload.id != null) {
-    return respondWith([projects[payload.id]])
-  } else {
-    return respondWith(projects)
+    response = [projects[payload.id]]
   }
+
+  return respondWith(normalize(response, projectsSchema))
 }
 const createProject = payload => {
   const id = nextID(projects)
@@ -209,12 +216,14 @@ const createComment = payload => {}
 const updateComment = payload => {}
 const deleteComment = payload => {}
 
-const fetchUsers = payload => {
+const fetchUsers = (payload = {}) => {
+  let response = users
+
   if (payload.id != null) {
-    return respondWith([users[payload.id]])
-  } else {
-    return respondWith(users)
+    response = [users[payload.id]]
   }
+
+  return respondWith(normalize(response, usersSchema))
 }
 const createUser = payload => {}
 const updateUser = payload => {}
