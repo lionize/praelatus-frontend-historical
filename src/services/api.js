@@ -1,5 +1,4 @@
 import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
-import { fromJS } from 'immutable'
 
 const users = [
   {
@@ -106,7 +105,7 @@ const nextID = compose(add(1), max, map('id'))
 const idIndex = (id, collection) => findIndex({ id }, collection)
 
 const fetchTickets = payload => {
-  if (!!payload.id) {
+  if (payload.id != null) {
     return respondWith([tickets[payload.id]])
   } else {
     return respondWith(tickets)
@@ -115,25 +114,16 @@ const fetchTickets = payload => {
 const createTicket = payload => {
   const id = nextID(tickets)
 
-  const ticket = fromJS({
-    id,
-    createdDate: '',
-    updatedDate: '',
-    key: '',
-    summary: '',
-    description: '',
-    reporter: null,
-    assignee: null,
-  }).merge(payload)
-
-  tickets.push(ticket.toJS())
+  const ticket = Object.assign({}, payload, { id })
+  tickets.push(ticket)
 
   return ticket
 }
-const updateTicket = payload => {
-  const index = idIndex(payload.get('id'), tickets)
 
-  tickets[index] = payload.toJS()
+const updateTicket = payload => {
+  const index = idIndex(payload.id, tickets)
+
+  tickets[index] = payload
 
   return true
 }
@@ -147,7 +137,7 @@ const deleteTicket = payload => {
 }
 
 const fetchTeams = payload => {
-  if (!!payload.id) {
+  if (payload.id != null) {
     return respondWith([teams[payload.id]])
   } else {
     return respondWith(teams)
@@ -156,21 +146,15 @@ const fetchTeams = payload => {
 const createTeam = payload => {
   const id = nextID(teams)
 
-  const team = fromJS({
-    id,
-    name: '',
-    lead: null,
-    members: null,
-  }).merge(payload)
-
-  teams.push(team.toJS())
+  const team = Object.assign({}, payload, { id })
+  teams.push(team)
 
   return team
 }
 const updateTeam = payload => {
-  const index = idIndex(payload.get('id'), teams)
+  const index = idIndex(payload.id, teams)
 
-  teams[index] = payload.toJS()
+  teams[index] = payload
 
   return true
 }
@@ -183,7 +167,7 @@ const deleteTeam = payload => {
 }
 
 const fetchProjects = payload => {
-  if (!!payload.id) {
+  if (payload.id != null) {
     return respondWith([projects[payload.id]])
   } else {
     return respondWith(projects)
@@ -192,25 +176,15 @@ const fetchProjects = payload => {
 const createProject = payload => {
   const id = nextID(projects)
 
-  const project = fromJS({
-    id,
-    createdDate: '',
-    name: '',
-    key: '',
-    homepage: '',
-    iconURL: '',
-    repo: '',
-    lead: null,
-  }).merge(payload)
-
-  projects.push(project.toJS())
+  const project = Object.assign({}, payload, { id })
+  projects.push(project)
 
   return project
 }
 const updateProject = payload => {
-  const index = idIndex(payload.get('id'), projects)
+  const index = idIndex(payload.id, projects)
 
-  projects[index] = payload.toJS()
+  projects[index] = payload
 
   return true
 }
@@ -228,7 +202,7 @@ const updateComment = payload => {}
 const deleteComment = payload => {}
 
 const fetchUsers = payload => {
-  if (!!payload.id) {
+  if (payload.id != null) {
     return respondWith([users[payload.id]])
   } else {
     return respondWith(users)
@@ -239,13 +213,13 @@ const updateUser = payload => {}
 const deleteUser = payload => {}
 
 const login = payload => {
-  const user = find({ username: payload.get('username'), password: payload.get('password') }, users)
+  const user = find({ username: payload.username, password: payload.password }, users)
 
   return respondWith({ token: 'TOKEN_STRING', user })
 }
 
 const register = payload => {
-  const user = payload.toJS()
+  const user = payload
   user.id = nextID(users)
   users.push(user)
   delete user.password
