@@ -4,12 +4,12 @@ import Immutable from 'seamless-immutable'
 /* TYPES AND ACTION CREATORS */
 
 const { Types: types, Creators: creators } = createActions({
-  loginRequest: ['username', 'password'],
-  loginSuccess: ['username'],
+  loginRequest: ['payload'],
+  loginSuccess: ['payload'],
   loginFailure: ['error'],
   logout: null,
   registerRequest: ['payload'],
-  registerSuccess: ['username'],
+  registerSuccess: ['payload'],
   registerFailure: ['error'],
 });
 
@@ -32,11 +32,11 @@ export const request = state =>
     error: null,
   })
 
-export const success = (state, { username }) =>
+export const success = (state, { payload }) =>
   state.merge({
     fetching: false,
     error: null,
-    currentUser: username,
+    currentUser: payload,
   })
 
 export const failure = (state, { error }) =>
