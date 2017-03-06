@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import {
-  user,
-  fetching,
-  fetchRequest,
-} from 'modules/user'
+import actions, { user, fetching, } from 'modules/user'
 import { UserCard } from 'components'
 
 class UserShow extends Component {
   componentWillMount() {
-    this.props.loadUser(this.props.params.id)
+    this.props.loadUser(this.props.params.username)
   }
 
   render() {
@@ -19,13 +15,13 @@ class UserShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  user: user(state.data.users, params.id),
+  user: user(state.data.users, params.username),
   loading: fetching(state.data.users),
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadUser(id) {
-    dispatch(fetchRequest({ id }))
+  loadUser(username) {
+    dispatch(actions.fetchRequest({ username }))
   },
 })
 
