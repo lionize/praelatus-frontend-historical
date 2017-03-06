@@ -39,7 +39,7 @@ const api = API
 export default function* root() {
   yield [
     // ticket
-    takeLatest(ticketTypes.FETCH_REQUEST, fetchTicket, api),
+    //takeLatest(ticketTypes.FETCH_REQUEST, fetchTicket, api),
     // TODO: Differentiate between singular and multiple, or combine into one saga
     takeLatest(ticketTypes.FETCH_REQUEST, fetchTickets, api),
     takeLatest(ticketTypes.CREATE_REQUEST, createTicket, api),
@@ -47,7 +47,7 @@ export default function* root() {
     takeLatest(ticketTypes.DELETE_REQUEST, deleteTicket, api),
 
     // project
-    takeLatest(projectTypes.FETCH_REQUEST, fetchProject, api),
+    //takeLatest(projectTypes.FETCH_REQUEST, fetchProject, api),
     // TODO: Differentiate between singular and multiple, or combine into one saga
     takeLatest(projectTypes.FETCH_REQUEST, fetchProjects, api),
     takeLatest(projectTypes.CREATE_REQUEST, createProject, api),
@@ -55,7 +55,7 @@ export default function* root() {
     takeLatest(projectTypes.DELETE_REQUEST, deleteProject, api),
 
     // team
-    takeLatest(teamTypes.FETCH_REQUEST, fetchTeam, api),
+    //takeLatest(teamTypes.FETCH_REQUEST, fetchTeam, api),
     // TODO: Differentiate between singular and multiple, or combine into one saga
     takeLatest(teamTypes.FETCH_REQUEST, fetchTeams, api),
     takeLatest(teamTypes.CREATE_REQUEST, createTeam, api),
@@ -63,7 +63,7 @@ export default function* root() {
     takeLatest(teamTypes.DELETE_REQUEST, deleteTeam, api),
 
     // user
-    takeLatest(userTypes.FETCH_REQUEST, fetchUser, api),
+    //takeLatest(userTypes.FETCH_REQUEST, fetchUser, api),
     // TODO: Differentiate between singular and multiple, or combine into one saga
     takeLatest(userTypes.FETCH_REQUEST, fetchUsers, api),
     takeLatest(userTypes.CREATE_REQUEST, createUser, api),
@@ -71,7 +71,7 @@ export default function* root() {
     takeLatest(userTypes.DELETE_REQUEST, deleteUser, api),
 
     // comment
-    takeLatest(commentTypes.FETCH_REQUEST, fetchComment, api),
+    //takeLatest(commentTypes.FETCH_REQUEST, fetchComment, api),
     // TODO: Differentiate between singular and multiple, or combine into one saga
     takeLatest(commentTypes.FETCH_REQUEST, fetchComments, api),
     takeLatest(commentTypes.CREATE_REQUEST, createComment, api),
