@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { createRequest } from 'modules/team'
+import actions from 'modules/team'
 import { TeamForm } from 'components'
 
 class TeamNew extends Component {
@@ -19,7 +19,7 @@ const mapStateToProps = () => ({})
 
 TeamNew = connect(
   mapStateToProps,
-  { createTeam: createRequest }
+  { createTeam: actions.createRequest }
 )(TeamNew)
 
 export default TeamNew

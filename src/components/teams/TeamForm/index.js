@@ -7,7 +7,7 @@ import { Form } from 'components'
 const validate = (values) => {
   const errors = {}
 
-  if (!values.get('name')) {
+  if (!values.name) {
     errors.name = 'Required'
   }
 
