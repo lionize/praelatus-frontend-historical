@@ -22,7 +22,7 @@ export default () => {
     }),
     auth: authReducer,
     form: formReducer,
-    router: routerReducer,
+    routing: routerReducer,
   })
 
   return configureStore(rootReducer, rootSaga)
