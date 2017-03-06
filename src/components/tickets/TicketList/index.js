@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
+import actions, {
   tickets,
-  fetchRequest,
 } from 'modules/ticket'
 import { TicketTable } from 'components'
 
@@ -22,7 +21,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadTickets() {
-    dispatch(fetchRequest())
+    dispatch(actions.fetchRequest())
   },
 })
 

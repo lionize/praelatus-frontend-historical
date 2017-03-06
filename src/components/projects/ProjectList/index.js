@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  projects,
-  fetchRequest,
-} from 'modules/project'
+import actions, { projects } from 'modules/project'
 import { ProjectTable } from 'components'
 
 class ProjectList extends Component {
@@ -20,15 +17,9 @@ const mapStateToProps = state => ({
   projects: projects(state.data.projects),
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadProjects() {
-    dispatch(fetchRequest())
-  },
-})
-
 ProjectList = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { loadProjects: actions.fetchRequest },
 )(ProjectList)
 
 export default ProjectList
