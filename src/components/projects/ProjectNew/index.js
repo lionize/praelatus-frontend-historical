@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { createRequest } from 'modules/project'
+import actions from 'modules/project'
 import { ProjectForm } from 'components'
 
 class ProjectNew extends Component {
@@ -17,7 +17,7 @@ class ProjectNew extends Component {
 
 ProjectNew = connect(
   () => ({}),
-  { createProject: createRequest }
+  { createProject: actions.createRequest }
 )(ProjectNew)
 
 export default ProjectNew

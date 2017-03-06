@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import {
-  fetchRequest,
-  updateRequest,
-  project,
-} from 'modules/project'
+import actions, { project } from 'modules/project'
 import { ProjectForm } from 'components'
 
 class ProjectEdit extends Component {
@@ -29,11 +25,11 @@ const mapStateToProps = (state, { params }) => ({
 
 const mapDispatchToProps = dispatch => ({
   loadProject(id) {
-    dispatch(fetchRequest({ id }))
+    dispatch(actions.fetchRequest({ id }))
   },
 
   updateProject(values) {
-    dispatch(updateRequest(values))
+    dispatch(actions.updateRequest(values))
   },
 })
 
