@@ -29,8 +29,8 @@ const Ticket = ({ ticket, loading, error }) => {
                 Assignee: <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
               </CardText>
             }
-            <LinkButton to={`/tickets/${ticket.id}/edit`}>Edit</LinkButton>
-            <TicketDeleteButton id={ticket.id} />
+            <LinkButton to={`/tickets/${ticket.key}/edit`}>Edit</LinkButton>
+            <TicketDeleteButton id={ticket.key} />
           </CardBlock>
         </Card>
       </div>

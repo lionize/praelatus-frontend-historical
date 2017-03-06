@@ -20,7 +20,7 @@ const TicketTable = ({ tickets }) => (
           <tr key={i}>
             <td>{ticket.id}</td>
             <td>
-              <TicketLink id={ticket.id}>{ticket.key}</TicketLink>
+              <TicketLink ikey={ticket.key}>{ticket.key}</TicketLink>
             </td>
             <td>{ticket.summary}</td>
             <td>{ticket.description}</td>
