@@ -23,6 +23,6 @@ export function* register(api, { payload }) {
 }
 
 export function* logout() {
-  yield put(actions.logout())
+  actions.logout()
   yield put(push('/'))
 }
