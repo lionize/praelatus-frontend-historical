@@ -1,4 +1,12 @@
 import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
+import { normalize } from 'normalizr'
+import {
+  usersSchema,
+  ticketsSchema,
+  teamsSchema,
+  projectsSchema,
+  commentsSchema,
+} from 'schema'
 
 const users = [
   {
