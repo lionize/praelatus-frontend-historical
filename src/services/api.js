@@ -1,4 +1,4 @@
-import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
+import { compose, add, max, map, find, findIndex } from 'ramda'
 import parseResponse from 'utils/parse-response'
 
 const users = [
