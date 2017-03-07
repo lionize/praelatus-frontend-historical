@@ -13,11 +13,11 @@ const ProjectCard = ({ project, error }) => {
             <CardText>homepage: {project.homepage}</CardText>
             {project.lead &&
               <CardText>
-                Lead: <UserLink id={project.lead.id}>{project.lead.username}</UserLink>
+                Lead: <UserLink user={project.lead}>{project.lead.username}</UserLink>
               </CardText>
             }
             <LinkButton to={`/projects/${project.key}/edit`}>Edit</LinkButton>
-            <ProjectDeleteButton id={project.id} />
+            <ProjectDeleteButton project={project} />
           </CardBlock>
         </Card>
       </div>

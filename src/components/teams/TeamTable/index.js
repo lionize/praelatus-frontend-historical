@@ -16,11 +16,11 @@ const TeamTable = ({ teams }) => (
         {teams.map((team, i) =>
           <tr key={i}>
             <td>
-              <TeamLink name={team.name}>{team.name}</TeamLink>
+              <TeamLink team={team}>{team.name}</TeamLink>
             </td>
             <td>
               {team.lead &&
-                <UserLink id={team.lead.id}>{team.lead.username}</UserLink>
+                <UserLink user={team.lead}>{team.lead.username}</UserLink>
               }
             </td>
             <td>
@@ -28,7 +28,7 @@ const TeamTable = ({ teams }) => (
                 <ul>
                   {team.members.map((member, j) =>
                     <li key={j}>
-                      <UserLink id={member.id}>{member.username}</UserLink>
+                      <UserLink user={member}>{member.username}</UserLink>
                     </li>
                   )}
                 </ul>

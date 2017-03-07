@@ -24,7 +24,7 @@ const UserTable = ({ users }) => {
                 />
               </td>
               <td>
-                <UserLink username={user.username}>{user.username}</UserLink>
+                <UserLink user={user}>{user.username}</UserLink>
               </td>
               <td>{user.fullName}</td>
             </tr>

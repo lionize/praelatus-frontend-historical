@@ -8,7 +8,7 @@ class TeamDeleteButton extends Component {
   @autobind
   handleClick(e) {
     e.preventDefault()
-    this.props.deleteTeam(this.props.id)
+    this.props.deleteTeam(this.props.team.name)
   }
 
   render() {
@@ -17,8 +17,8 @@ class TeamDeleteButton extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  deleteTeam(id) {
-    dispatch(deleteRequest(id))
+  deleteTeam(name) {
+    dispatch(deleteRequest(name))
   },
 })
 

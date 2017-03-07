@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const TeamLink = ({ name, children }) => (
-  <Link to={`/teams/${name}`}>
+const TeamLink = ({ team, children }) => (
+  <Link to={`/teams/${team.name}`}>
     {children}
   </Link>
 )

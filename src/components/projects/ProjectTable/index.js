@@ -26,7 +26,7 @@ const ProjectTable = ({ projects }) => (
             </td>
             <td>
               {project.lead &&
-                <UserLink id={project.lead.id}>{project.lead.username}</UserLink>
+                <UserLink user={project.lead}>{project.lead.username}</UserLink>
               }
             </td>
             <td>{project.createdDate}</td>
