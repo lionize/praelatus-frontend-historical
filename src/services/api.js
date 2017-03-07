@@ -1,12 +1,5 @@
 import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
-import { normalize } from 'normalizr'
-import {
-  usersSchema,
-  ticketsSchema,
-  teamsSchema,
-  projectsSchema,
-  commentsSchema,
-} from 'schema'
+import parseResponse from 'utils/parse-response'
 
 const users = [
   {
@@ -28,44 +21,6 @@ const users = [
     gravatar: 'user2@users.com',
     profilePic: '',
     isAdmin: false,
-  }
-]
-
-const tickets = [
-  {
-    id: 0,
-    createdDate: '',
-    updatedDate: '',
-    key: 'TICKET-1',
-    summary: 'First ticket',
-    description: 'A ticket that is first',
-    reporter: users[0],
-    assignee: users[1],
-  },
-  {
-    id: 1,
-    createdDate: '',
-    updatedDate: '',
-    key: 'TICKET-2',
-    summary: 'Second ticket',
-    description: 'A ticket that is second',
-    reporter: users[1],
-    assignee: users[0],
-  }
-]
-
-const teams = [
-  {
-    id: 0,
-    name: 'Team 1',
-    lead: users[0],
-    members: users,
-  },
-  {
-    id: 1,
-    name: 'Team 2',
-    lead: users[1],
-    members: users,
   }
 ]
 
@@ -92,6 +47,46 @@ const projects = [
   }
 ]
 
+const tickets = [
+  {
+    id: 0,
+    createdDate: '',
+    updatedDate: '',
+    key: 'TICKET-1',
+    summary: 'First ticket',
+    description: 'A ticket that is first',
+    reporter: users[0],
+    assignee: users[1],
+    project: projects[0],
+  },
+  {
+    id: 1,
+    createdDate: '',
+    updatedDate: '',
+    key: 'TICKET-2',
+    summary: 'Second ticket',
+    description: 'A ticket that is second',
+    reporter: users[1],
+    assignee: users[0],
+    project: projects[1],
+  }
+]
+
+const teams = [
+  {
+    id: 0,
+    name: 'Team 1',
+    lead: users[0],
+    members: users,
+  },
+  {
+    id: 1,
+    name: 'Team 2',
+    lead: users[1],
+    members: users,
+  }
+]
+
 const comments = [
   {
     id: 0,
@@ -113,13 +108,7 @@ const nextID = compose(add(1), max, map('id'))
 const idIndex = (id, collection) => findIndex({ id }, collection)
 
 const fetchTickets = (payload = {}) => {
-  let response
-  if (payload.id != null) {
-    response = [tickets[payload.id]]
-  } else {
-    response = tickets
-  }
-  return respondWith(normalize(response, ticketsSchema))
+  return parseResponse(tickets, 'key')
 }
 
 const createTicket = (payload = {}) => {
@@ -128,7 +117,7 @@ const createTicket = (payload = {}) => {
   const ticket = Object.assign({}, payload, { id })
   tickets.push(ticket)
 
-  return respondWith(normalize([ ticket ], ticketsSchema))
+  return parseResponse(ticket, 'key')
 }
 
 const updateTicket = (payload = {}) => {
@@ -136,11 +125,11 @@ const updateTicket = (payload = {}) => {
 
   tickets[index] = payload
 
-  return respondWith(normalize([ payload ], ticketsSchema))
+  return parseResponse(payload, 'key')
 }
 
 const deleteTicket = payload => {
-  const index = idIndex(payload, tickets)
+  const index = idIndex(payload.id, tickets)
 
   tickets.splice(index, 1)
 
@@ -148,13 +137,7 @@ const deleteTicket = payload => {
 }
 
 const fetchTeams = (payload = {}) => {
-  let response = teams
-
-  if (payload.id != null) {
-    response = [teams[payload.id]]
-  }
-
-  return respondWith(normalize(response, teamsSchema))
+  return parseResponse(teams, 'name')
 }
 
 const createTeam = payload => {
@@ -163,7 +146,7 @@ const createTeam = payload => {
   const team = Object.assign({}, payload, { id })
   teams.push(team)
 
-  return respondWith(normalize([ team ], teamsSchema))
+  return parseResponse(team, 'name')
 }
 
 const updateTeam = payload => {
@@ -171,7 +154,7 @@ const updateTeam = payload => {
 
   teams[index] = payload
 
-  return respondWith(normalize([ team ], teamsSchema))
+  return parseResponse(payload, 'name')
 }
 
 const deleteTeam = payload => {
@@ -183,13 +166,7 @@ const deleteTeam = payload => {
 }
 
 const fetchProjects = (payload = {}) => {
-  let response = projects
-
-  if (payload.id != null) {
-    response = [projects[payload.id]]
-  }
-
-  return respondWith(normalize(response, projectsSchema))
+  return parseResponse(projects, 'key')
 }
 
 const createProject = payload => {
@@ -199,7 +176,7 @@ const createProject = payload => {
   const project = Object.assign({}, payload, { id, key })
   projects.push(project)
 
-  return respondWith(normalize([project], projectsSchema))
+  return parseResponse(project, 'key')
 }
 
 const updateProject = (payload = {}) => {
@@ -207,7 +184,7 @@ const updateProject = (payload = {}) => {
 
   projects[index] = payload
 
-  return respondWith(normalize(payload, projectsSchema))
+  return parseResponse(payload, 'key')
 }
 
 const deleteProject = payload => {
@@ -224,13 +201,7 @@ const updateComment = payload => {}
 const deleteComment = payload => {}
 
 const fetchUsers = (payload = {}) => {
-  let response = users
-
-  if (payload.id != null) {
-    response = [users[payload.id]]
-  }
-
-  return respondWith(normalize(response, usersSchema))
+  return parseResponse(users, 'username')
 }
 const createUser = payload => {}
 const updateUser = payload => {}
