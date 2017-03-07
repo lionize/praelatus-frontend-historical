@@ -24,7 +24,7 @@ export function* createProject(api, { payload }) {
   try {
     const response = yield call(api.createProject, payload)
     yield put(actions.createSuccess(response))
-    yield put(push(`/projects/${response.result[0]}`))
+    yield put(push(`/projects/${response.keys[0]}`))
   } catch (e) {
     yield put(actions.createFailure(e))
   }

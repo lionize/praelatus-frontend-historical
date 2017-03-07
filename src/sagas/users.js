@@ -34,7 +34,7 @@ export function* updateUser(api, { payload }) {
   try {
     const response = yield call(api.updateUser, payload)
     yield put(actions.updateSuccess(response))
-    yield put(push(`/users/${response.result[0]}`))
+    yield put(push(`/users/${response.keys[0]}`))
   } catch (e) {
     yield put(actions.updateFailure(e))
   }

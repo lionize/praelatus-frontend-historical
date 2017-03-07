@@ -26,7 +26,7 @@ export function* createTicket(api, { payload }) {
   try {
     const response = yield call(api.createTicket, payload)
     yield put(ticketActions.createSuccess(response))
-    yield put(push(`/tickets/${response.result[0]}`))
+    yield put(push(`/tickets/${response.keys[0]}`))
   } catch (e) {
     yield put(ticketActions.createFailure(e))
   }

@@ -24,7 +24,7 @@ export function* createTeam(api, { payload }) {
   try {
     const response = yield call(api.createTeam, payload)
     yield put(actions.createSuccess(response))
-    yield put(push(`/teams/${response.result[0]}`))
+    yield put(push(`/teams/${response.keys[0]}`))
   } catch (e) {
     yield put(actions.createFailure(e))
   }
