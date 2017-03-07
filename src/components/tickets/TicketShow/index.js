@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { ticketSelector } from 'selectors/tickets'
-import { fetchTicketsRequest } from 'actions/tickets'
+import actions, { ticket } from 'modules/ticket'
 import { TicketCard } from 'components'
 
 class TicketShow extends Component {
   componentWillMount() {
-    this.props.loadTicket(this.props.params.id)
+    this.props.loadTicket(this.props.params.key)
   }
 
   componentDidUpdate({ params }) {
-    if (params.id !== this.props.params.id) {
-      this.props.loadTicket(this.props.params.id)
+    if (params.key !== this.props.params.key) {
+      this.props.loadTicket(this.props.params.key)
     }
   }
 
@@ -21,17 +20,13 @@ class TicketShow extends Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => {
-  const ticket = ticketSelector(state, params.id)
-
-  return {
-    ticket,
-  }
-}
+const mapStateToProps = (state, { params }) => ({
+  ticket: ticket(state.data.tickets, params.key),
+})
 
 const mapDispatchToProps = dispatch => ({
-  loadTicket(id) {
-    dispatch(fetchTicketsRequest({ id }))
+  loadTicket(key) {
+    dispatch(actions.fetchRequest({ key }))
   },
 })
 

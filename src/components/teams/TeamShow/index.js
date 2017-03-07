@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import { teamSelector } from 'selectors/teams'
-import { fetchTeamsRequest } from 'actions/teams'
+import actions, { team } from 'modules/team'
 import { TeamCard } from 'components'
 
 class TeamShow extends Component {
   componentDidMount() {
-    this.props.loadTeam(this.props.params.id)
+    this.props.loadTeam(this.props.params.name)
   }
 
   componentDidUpdate({ params }) {
-    if (params.id !== this.props.params.id) {
-      this.props.loadTeam(this.props.params.id)
+    if (params.name !== this.props.params.name) {
+      this.props.loadTeam(this.props.params.name)
     }
   }
 
@@ -21,17 +20,13 @@ class TeamShow extends Component {
   }
 }
 
-const mapStateToProps = (state, { params }) => {
-  const team = teamSelector(state, params.id)
-
-  return {
-    team,
-  }
-}
+const mapStateToProps = (state, { params }) => ({
+  team: team(state.data.teams, params.name)
+})
 
 const mapDispatchToProps = dispatch => ({
-  loadTeam(id) {
-    dispatch(fetchTeamsRequest({ id }))
+  loadTeam(name) {
+    dispatch(actions.fetchRequest({ name }))
   },
 })
 

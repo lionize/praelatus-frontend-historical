@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { loginRequest as login } from 'actions/auth'
+import actions from 'modules/auth'
 import { LoginForm } from 'components'
 
 class Login extends Component {
@@ -16,7 +16,7 @@ class Login extends Component {
 }
 
 Login = connect(null,
-  { login }
+  { login: actions.loginRequest }
 )(Login)
 
 export default Login

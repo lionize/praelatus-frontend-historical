@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const UserLink = ({ id, children }) => (
-  <Link to={`/users/${id}`}>
+const UserLink = ({ user, children }) => (
+  <Link to={`/users/${user.username}`}>
     {children}
   </Link>
 )

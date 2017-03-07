@@ -20,18 +20,18 @@ const TicketTable = ({ tickets }) => (
           <tr key={i}>
             <td>{ticket.id}</td>
             <td>
-              <TicketLink id={ticket.id}>{ticket.key}</TicketLink>
+              <TicketLink ticket={ticket}>{ticket.key}</TicketLink>
             </td>
             <td>{ticket.summary}</td>
             <td>{ticket.description}</td>
             <td>
               {ticket.reporter &&
-                <UserLink id={ticket.reporter.id}>{ticket.reporter.username}</UserLink>
+                <UserLink user={ticket.reporter}>{ticket.reporter.username}</UserLink>
               }
             </td>
             <td>
               {ticket.assignee &&
-                <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
+                <UserLink user={ticket.assignee}>{ticket.assignee.username}</UserLink>
               }
             </td>
           </tr>

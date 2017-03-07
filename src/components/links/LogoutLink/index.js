@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
-import { logoutRequest as logout } from 'actions/auth'
+import actions from 'modules/auth'
 import { Button } from 'components'
 
 class LogoutLink extends Component {
@@ -16,7 +16,7 @@ class LogoutLink extends Component {
 }
 
 LogoutLink = connect(null,
-  { logout }
+  { logout: actions.logout }
 )(LogoutLink)
 
 export default LogoutLink

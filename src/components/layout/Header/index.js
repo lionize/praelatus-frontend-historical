@@ -13,7 +13,7 @@ const Header = () => (
 
     <ul className="nav navbar-nav">
       <li className="nav-item active">
-        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+        <Link to="/" className="nav-link">Home</Link>
       </li>
       <li className="nav-item">
         <Link to="/projects" className="nav-link">Projects</Link>

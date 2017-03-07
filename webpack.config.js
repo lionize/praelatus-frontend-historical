@@ -17,7 +17,7 @@ module.exports = {
       : path.resolve(__dirname, 'build', 'debug', 'static')
   },
 
-  devtool: 'inline-source-map',
+  devtool: "cheap-source-map",
   debug: true,
 
   devServer: {

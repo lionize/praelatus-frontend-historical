@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { deleteProjectRequest } from 'actions/projects'
+import actions from 'modules/project'
 import { DeleteButton } from 'components'
 
 class ProjectDeleteButton extends Component {
   @autobind
   handleClick(e) {
     e.preventDefault()
-    this.props.deleteProject(this.props.id)
+    this.props.deleteProject(this.props.project.key)
   }
 
   render() {
@@ -17,8 +17,8 @@ class ProjectDeleteButton extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  deleteProject(id) {
-    dispatch(deleteProjectRequest(id))
+  deleteProject(key) {
+    dispatch(actions.deleteRequest(key))
   },
 })
 

@@ -1,5 +1,5 @@
 webpack.config.js
 devServer.js
-src/api.js
+src/services/api.js
 test/*
 docs/*

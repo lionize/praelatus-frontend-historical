@@ -17,25 +17,25 @@ const routes = (
     <Route path='register' component={Register} />
     <Route path='users'>
       <IndexRoute component={UserList} />
-      <Route path=':id' component={UserShow} />
+      <Route path=':username' component={UserShow} />
     </Route>
     <Route path="projects">
       <IndexRoute component={ProjectList} />
       <Route path="new" component={ProjectNew} />
-      <Route path=":id/edit" component={ProjectEdit} />
-      <Route path=":id" component={ProjectShow} />
+      <Route path=":key/edit" component={ProjectEdit} />
+      <Route path=":key" component={ProjectShow} />
     </Route>
     <Route path="tickets">
       <IndexRoute component={TicketList} />
       <Route path="new" component={TicketNew} />
-      <Route path=":id/edit" component={TicketEdit} />
-      <Route path=":id" component={TicketShow} />
+      <Route path=":key/edit" component={TicketEdit} />
+      <Route path=":key" component={TicketShow} />
     </Route>
     <Route path="teams">
       <IndexRoute component={TeamList} />
       <Route path="new" component={TeamNew} />
-      <Route path=":id/edit" component={TeamEdit} />
-      <Route path=":id" component={TeamShow} />
+      <Route path=":name/edit" component={TeamEdit} />
+      <Route path=":name" component={TeamShow} />
     </Route>
   </Route>
 )

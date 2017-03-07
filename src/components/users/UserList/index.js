@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { usersSelector } from 'selectors/users'
-import { fetchUsersRequest } from 'actions/users'
+import actions, { users } from 'modules/user'
 import { UserTable } from 'components'
 
 class UserList extends Component {
@@ -15,18 +14,12 @@ class UserList extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: usersSelector(state),
-})
-
-const mapDispatchToProps = dispatch => ({
-  loadUsers() {
-    dispatch(fetchUsersRequest())
-  },
+  users: users(state.data.users),
 })
 
 UserList = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { loadUsers: actions.fetchRequest }
 )(UserList)
 
 export default UserList

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 import { Button } from 'reactstrap'
 import { renderField } from 'utils'
 import { Form } from 'components'
@@ -7,7 +7,7 @@ import { Form } from 'components'
 const validate = (values) => {
   const errors = {}
 
-  if (!values.get('name')) {
+  if (!values.name) {
     errors.name = 'Required'
   }
 

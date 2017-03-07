@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const ProjectLink = ({ id, children }) => (
-  <Link to={`/projects/${id}`}>
+const ProjectLink = ({ project, children }) => (
+  <Link to={`/projects/${project.key}`}>
     {children}
   </Link>
 )

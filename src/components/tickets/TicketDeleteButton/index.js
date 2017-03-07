@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { deleteTicketRequest } from 'actions/tickets'
+import actions from 'modules/ticket'
 import { DeleteButton } from 'components'
 
 class TicketDeleteButton extends Component {
   @autobind
   handleClick(e) {
     e.preventDefault()
-    this.props.deleteTicket(this.props.id)
+    this.props.deleteTicket(this.props.ikey)
   }
 
   render() {
@@ -19,8 +19,8 @@ class TicketDeleteButton extends Component {
 const mapStateToProps = () => ({})
 
 const mapDispatchToProps = dispatch => ({
-  deleteTicket(id) {
-    dispatch(deleteTicketRequest(id))
+  deleteTicket(key) {
+    dispatch(actions.deleteRequest(key))
   },
 })
 

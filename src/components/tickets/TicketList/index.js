@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ticketsSelector } from 'selectors/tickets'
-import { fetchTicketsRequest } from 'actions/tickets'
+import actions, {
+  tickets,
+} from 'modules/ticket'
 import { TicketTable } from 'components'
 
 class TicketList extends Component {
@@ -15,12 +16,12 @@ class TicketList extends Component {
 }
 
 const mapStateToProps = state => ({
-  tickets: ticketsSelector(state),
+  tickets: tickets(state.data.tickets),
 })
 
 const mapDispatchToProps = dispatch => ({
   loadTickets() {
-    dispatch(fetchTicketsRequest())
+    dispatch(actions.fetchRequest())
   },
 })
 

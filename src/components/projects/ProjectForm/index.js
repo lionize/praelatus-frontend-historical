@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 import { renderField } from 'utils'
 import { Button } from 'reactstrap'
 import { Form } from 'components'

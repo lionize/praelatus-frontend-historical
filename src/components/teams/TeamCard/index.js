@@ -19,16 +19,16 @@ const TeamCard = ({ team, loading, error }) => {
             <CardTitle>{team.name}</CardTitle>
             {team.lead &&
               <CardText>
-                Lead: <UserLink id={team.lead.id}>{team.lead.username}</UserLink>
+                Lead: <UserLink user={team.lead}>{team.lead.username}</UserLink>
               </CardText>
             }
             {team.members && team.members.map((member, i) =>
               <CardText key={i}>
-                Member: <UserLink id={member.id}>{member.username}</UserLink>
+                Member: <UserLink user={member}>{member.username}</UserLink>
               </CardText>
             )}
-            <LinkButton to={`/teams/${team.id}/edit`}>Edit</LinkButton>
-            <TeamDeleteButton id={team.id} />
+            <LinkButton to={`/teams/${team.name}/edit`}>Edit</LinkButton>
+            <TeamDeleteButton team={team} />
           </CardBlock>
         </Card>
       </div>

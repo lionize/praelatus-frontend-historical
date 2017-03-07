@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const TicketLink = ({ id, children }) => (
-  <Link to={`/tickets/${id}`}>
+const TicketLink = ({ ticket, children }) => (
+  <Link to={`/tickets/${ticket.key}`}>
     {children}
   </Link>
 )

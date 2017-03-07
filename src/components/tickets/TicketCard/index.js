@@ -21,16 +21,16 @@ const Ticket = ({ ticket, loading, error }) => {
             <CardText>Description: {ticket.description}</CardText>
             {ticket.reporter &&
               <CardText>
-                Reporter: <UserLink id={ticket.reporter.id}>{ticket.reporter.username}</UserLink>
+                Reporter: <UserLink user={ticket.reporter}>{ticket.reporter.username}</UserLink>
               </CardText>
             }
             {ticket.assignee &&
               <CardText>
-                Assignee: <UserLink id={ticket.assignee.id}>{ticket.assignee.username}</UserLink>
+                Assignee: <UserLink user={ticket.assignee}>{ticket.assignee.username}</UserLink>
               </CardText>
             }
-            <LinkButton to={`/tickets/${ticket.id}/edit`}>Edit</LinkButton>
-            <TicketDeleteButton id={ticket.id} />
+            <LinkButton to={`/tickets/${ticket.key}/edit`}>Edit</LinkButton>
+            <TicketDeleteButton ikey={ticket.key} />
           </CardBlock>
         </Card>
       </div>
