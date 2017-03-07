@@ -1,7 +1,7 @@
 export default function parseResponse(response, key) {
   if (!Array.isArray(response)) {
     return {
-      keys: [ response[key] ],
+      keys: [response[key]],
       entities: {
         [response[key]]: response
       }
@@ -10,8 +10,9 @@ export default function parseResponse(response, key) {
 
   const keys = response.map(item => item[key])
   const entities = response.reduce((acc, item) => {
-    acc[item[key]] = item
-    return acc
+    return Object.assign({}, acc, {
+      [item[key]]: item
+    })
   }, {})
 
   return {

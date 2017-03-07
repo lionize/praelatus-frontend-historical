@@ -21,8 +21,6 @@ class TicketEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => {
-  const initialValues = ticket(state.data.tickets, params.key)
-  console.log('init', initialValues)
   return {
     initialValues: ticket(state.data.tickets, params.key),
   }
