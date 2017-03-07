@@ -44,8 +44,8 @@ export const success = (state, { response }) =>
   Immutable(mergeWith(deepMerge, state, {
     fetching: false,
     error: null,
-    keys: response.result,
-    byKey: response.entities.tickets,
+    keys: response.keys,
+    byKey: response.entities,
   }))
 
 export const failure = (state, { error }) => state.merge({ fetching: false, error })
@@ -56,7 +56,6 @@ export const remove = (state, { key }) => state.merge({
   keys: state.keys.filter(k => k !== key),
   byKey: state.byKey.without(key)
 })
-
 
 /* HOOKUP REDUCERS TO TYPES */
 

@@ -44,8 +44,8 @@ export const success = (state, { response }) =>
   Immutable(mergeWith(deepMerge, state, {
     fetching: false,
     error: null,
-    usernames: response.result,
-    byUsername: response.entities.users,
+    usernames: response.keys,
+    byUsername: response.entities,
   }))
 
 export const failure = (state, { error }) => state.merge({ fetching: false, error })
