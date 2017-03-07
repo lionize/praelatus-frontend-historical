@@ -146,11 +146,9 @@ describe('User - Sagas', () => {
       expect(generator.next().value).to.deep.eq(call(api.updateUser, users[0]))
 
       const response = {
-        result: ['user0'],
+        keys: ['user0'],
         entities: {
-          users: {
-            'user0': users[0]
-          }
+          'user0': users[0]
         }
       }
 

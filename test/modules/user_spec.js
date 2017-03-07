@@ -22,22 +22,21 @@ describe('User - ', () => {
 
     it('success', () => {
       const data = {
-        result: ['user0'],
+        keys: ['user0'],
         entities: {
-          users: {
-            user0: {
-              id: 0,
-              username: 'user0',
-            },
+          user0: {
+            id: 0,
+            username: 'user0',
           },
         }
       }
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
+      console.log('state', state)
 
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.usernames).to.include('user0')
-      expect(state.byUsername['user0']).to.eq(data.entities.users.user0)
+      expect(state.byUsername['user0']).to.deep.eq(data.entities.user0)
     })
 
     it('failure', () => {

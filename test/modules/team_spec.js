@@ -22,18 +22,16 @@ describe('Team - ', () => {
 
     it('success', () => {
       const data = {
-        result: ['team0', 'team1'],
+        keys: ['team0', 'team1'],
         entities: {
-          teams: {
-            team0: {
-              id: 0,
-              name: 'team0',
-            },
-            team1: {
-              id: 1,
-              name: 'team1',
-            },
-          }
+          team0: {
+            id: 0,
+            name: 'team0',
+          },
+          team1: {
+            id: 1,
+            name: 'team1',
+          },
         }
       }
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
@@ -41,7 +39,7 @@ describe('Team - ', () => {
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.names).to.include('team0')
-      expect(state.byName['team0']).to.eq(data.entities.teams.team0)
+      expect(state.byName['team0']).to.deep.eq(data.entities.team0)
     })
 
     it('failure', () => {

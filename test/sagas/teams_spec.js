@@ -105,11 +105,9 @@ describe('Team - Sagas', () => {
       expect(generator.next().value).to.deep.eq(call(api.createTeam, teams[0]))
 
       const response = {
-        result: ['BEST TEAM'],
+        keys: ['BEST TEAM'],
         entities: {
-          teams: {
-            'BEST TEAM': teams[0]
-          }
+          'BEST TEAM': teams[0]
         }
       }
 

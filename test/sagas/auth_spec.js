@@ -21,16 +21,17 @@ const api = {
 describe('Auth - Sagas', () => {
   describe('login', () => {
     it('success', () => {
-      const generator = login(api, { ...fixture })
+      const generator = login(api, { payload: fixture })
 
-      expect(generator.next().value).to.deep.eq(call(api.login, { ...fixture }))
+      expect(generator.next().value).to.deep.eq(call(api.login, fixture))
 
       const response = {
         username: "username",
+        password: "password",
       }
 
       let next = generator.next(response).value
-      let expected = put(actions.loginSuccess(response.username))
+      let expected = put(actions.loginSuccess(response))
 
       expect(next).to.deep.eq(expected)
 
@@ -62,13 +63,12 @@ describe('Auth - Sagas', () => {
       expect(generator.next().value).to.deep.eq(call(api.register, fixture))
 
       const response = {
-        id: 0,
         username: "username",
         password: "password",
       }
 
       let next = generator.next(response).value
-      let expected = put(actions.registerSuccess(response.username))
+      let expected = put(actions.registerSuccess(response))
 
       expect(next).to.deep.eq(expected)
 
@@ -96,8 +96,6 @@ describe('Auth - Sagas', () => {
   describe('logout', () => {
     it('success', () => {
       const generator = logout()
-
-      expect(generator.next().value).to.deep.eq(put(actions.logout()))
 
       const next = generator.next().value
       const expected = put(push('/'))

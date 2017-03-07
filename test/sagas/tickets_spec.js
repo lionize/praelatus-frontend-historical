@@ -105,11 +105,9 @@ describe('Ticket - Sagas', () => {
       expect(generator.next().value).to.deep.eq(call(api.createTicket, tickets[0]))
 
       const response = {
-        result: ['KEY-0'],
+        keys: ['KEY-0'],
         entities: {
-          tickets: {
-            'KEY-0': tickets[0]
-          }
+          'KEY-0': tickets[0]
         }
       }
       let next = generator.next(response).value
