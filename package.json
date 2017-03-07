@@ -54,7 +54,6 @@
     "crypto-js": "^3.1.9-1",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
-    "isomorphic-fetch": "^2.2.1",
     "normalizr": "^3.2.1",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
