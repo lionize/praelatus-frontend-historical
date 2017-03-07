@@ -1,4 +1,4 @@
-import { compose, add, max, map, find, findIndex } from 'ramda'
+import { compose, allPass, propEq, add, max, map, find, findIndex } from 'ramda'
 import parseResponse from 'utils/parse-response'
 
 const users = [
@@ -207,8 +207,14 @@ const createUser = payload => {}
 const updateUser = payload => {}
 const deleteUser = payload => {}
 
+const findUser = payload => find(
+  allPass(
+    [propEq('username', payload.username), propEq('password', payload.password)]
+  )
+)(users)
+
 const login = payload => {
-  const user = find({ username: payload.username, password: payload.password }, users)
+  const user = findUser(payload)
 
   return respondWith({ token: 'TOKEN_STRING', user })
 }
