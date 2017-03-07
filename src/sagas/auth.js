@@ -15,7 +15,7 @@ export function* login(api, { payload }) {
 export function* register(api, { payload }) {
   try {
     yield call(api.register, payload)
-    yield put(actions.registerSuccess(payload.username))
+    yield put(actions.registerSuccess(payload))
     yield put(push('/'))
   } catch (e) {
     yield put(actions.registerFailure(e))
