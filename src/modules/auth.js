@@ -39,11 +39,12 @@ export const success = (state, { payload }) =>
     currentUser: payload,
   })
 
-export const failure = (state, { error }) =>
-  state.merge({
+export const failure = (state, { error }) => {
+  return state.merge({
     fetching: false,
-    error,
+    error: error.response,
   })
+}
 
 export const logout = () => INITIAL_STATE
 
