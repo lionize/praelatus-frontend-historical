@@ -1,10 +1,11 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from 'utils'
-import { Form, Button } from 'components'
+import { Flash, Form, Button } from 'components'
 
-const RegisterForm = ({ handleSubmit }) => (
+const RegisterForm = ({ handleSubmit, error }) => (
   <Form onSubmit={handleSubmit}>
+    <Flash message={error} />
     <Field name="username" component={renderField} type="text" label="Username" />
     <Field name="password" component={renderField} type="password" label="Password" />
     <Field name="name" component={renderField} type="text" label="Name" />
