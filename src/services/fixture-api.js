@@ -1,6 +1,5 @@
 import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
 import parseResponse from 'utils/parse-response'
-import axios from 'axios'
 
 const users = [
   {
@@ -108,105 +107,119 @@ const respondWith = info => Promise.resolve({
 const nextID = compose(add(1), max, map('id'))
 const idIndex = (id, collection) => findIndex({ id }, collection)
 
-
-const api = axios.create({
-  baseURL: 'http://localhost:8080'
-})
-
 const fetchTickets = (payload = {}) => {
-  return api.get('/api/tickets').
-    then(res => parseResponse(res.data, 'key'))
+  return parseResponse(tickets, 'key')
 }
 
 const createTicket = (payload = {}) => {
-  return api.post('/api/tickets', payload).
-    then(res => parseResponse(res, 'key'))
+  const id = nextID(tickets)
+
+  const ticket = Object.assign({}, payload, { id })
+  tickets.push(ticket)
+
+  return parseResponse(ticket, 'key')
 }
 
 const updateTicket = (payload = {}) => {
-  return api.put('/api/tickets/'+payload.key).
-    then(res => parseResponse(res, 'key'))
+  const index = idIndex(payload.id, tickets)
+
+  tickets[index] = payload
+
+  return parseResponse(payload, 'key')
 }
 
 const deleteTicket = payload => {
-  return api.delete('/api/tickets/'+payload.key).
-    then(res => res)
+  const index = idIndex(payload.id, tickets)
+
+  tickets.splice(index, 1)
+
+  return payload
 }
 
 const fetchTeams = (payload = {}) => {
-  return api.get('/api/teams').
-    then(res => parseResponse(res, 'name'))
+  return parseResponse(teams, 'name')
 }
 
 const createTeam = payload => {
-  return api.post('/api/teams', payload).
-    then(res => parseResponse(res, 'key'))
+  const id = nextID(teams)
+
+  const team = Object.assign({}, payload, { id })
+  teams.push(team)
+
+  return parseResponse(team, 'name')
 }
 
 const updateTeam = payload => {
-  return api.put('/api/tickets/'+payload.id, payload).
-    then(res => parseResponse(res, 'key'))
+  const index = idIndex(payload.id, teams)
+
+  teams[index] = payload
+
+  return parseResponse(payload, 'name')
 }
 
 const deleteTeam = payload => {
-  return api.delete('/api/tickets/'+payload.id).
-    then(res => parseResponse(res, 'key'))
+  const index = idIndex(payload, teams)
+
+  teams.splice(index, 1)
+
+  return payload
 }
 
 const fetchProjects = (payload = {}) => {
-  return api.get('/api/projects').
-    then(res => parseResponse(res, 'name'))
+  return parseResponse(projects, 'key')
 }
 
 const createProject = payload => {
-  return api.post('/api/projects', payload).
-    then(res => parseResponse(res, 'name'))
+  const id = nextID(projects)
+  const key = payload.name.toUpperCase() + '-' + id
+
+  const project = Object.assign({}, payload, { id, key })
+  projects.push(project)
+
+  return parseResponse(project, 'key')
 }
 
 const updateProject = (payload = {}) => {
-  return api.put('/api/projects/'+payload.key, payload).
-    then(res => parseResponse(res, 'name'))
+  const index = idIndex(payload.id, projects)
+
+  projects[index] = payload
+
+  return parseResponse(payload, 'key')
 }
 
 const deleteProject = payload => {
-  return api.post('/api/projects'+payload.key).
-    then(res => parseResponse(res, 'name'))
+  const index = idIndex(payload, projects)
+
+  projects.splice(index, 1)
+
+  return payload
 }
 
-const fetchComments = payload => {
-  return api.get('/api/tickets/'+payload.key+'/comments').
-    then(res => res)
-}
-
-const createComment = payload => {
-  return api.post('/api/tickets/'+payload.key+'/comments', payload).
-    then(res => res)
-}
-
-const updateComment = payload => {
-  return api.put('/api/tickets/comments/'+payload.id, payload).
-    then(res => res)
-}
-
-const deleteComment = payload => {
-  return api.delete('/api/tickets/comments/'+payload.id).
-    then(res => res)
-}
+const fetchComments = payload => respondWith(comments)
+const createComment = payload => {}
+const updateComment = payload => {}
+const deleteComment = payload => {}
 
 const fetchUsers = (payload = {}) => {
   return parseResponse(users, 'username')
 }
+const createUser = payload => {}
 const updateUser = payload => {}
 const deleteUser = payload => {}
 
 const login = payload => {
-  return api.post('/api/users/sessions', payload).
-    then((res) => res.data)
+  const user = find({ username: payload.username, password: payload.password }, users)
+
+  return respondWith({ token: 'TOKEN_STRING', user })
 }
 
 const register = payload => {
-  return api.post('/api/users', payload).
-    then((res) => res.data)
+  const user = payload
+  user.id = nextID(users)
+  users.push(user)
+  delete user.password
+
+  return respondWith({ token: 'TOKEN_STRING', user })
 }
 
 export default {
@@ -227,6 +240,7 @@ export default {
   updateComment,
   deleteComment,
   fetchUsers,
+  createUser,
   updateUser,
   deleteUser,
   login,
