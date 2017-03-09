@@ -109,8 +109,8 @@ const nextID = compose(add(1), max, map('id'))
 const idIndex = (id, collection) => findIndex({ id }, collection)
 
 
-const api = axios.create({
-  baseURL: 'http://localhost:8080'
+let api = axios.create({
+  withCredentials: true
 })
 
 const fetchTickets = (payload = {}) => {
@@ -201,7 +201,11 @@ const deleteUser = payload => {}
 
 const login = payload => {
   return api.post('/api/users/sessions', payload).
-    then((res) => res.data)
+    then((res) => {
+      console.log('res', res)
+      api.defaults.headers.common['Authorization'] = res.headers.token
+      return res.data
+    })
 }
 
 const register = payload => {
