@@ -33,7 +33,7 @@ describe('Auth - ', () => {
     })
 
     it('failure', () => {
-      const state = reducer(INITIAL_STATE, actions.loginFailure('Error'))
+      const state = reducer(INITIAL_STATE, actions.loginFailure({response: 'Error'}))
 
       expect(state.fetching).to.be.false
       expect(state.error).to.eq('Error')
