@@ -15,7 +15,7 @@ class Register extends Component {
   }
 }
 
-const stateToProps = state => ({ error: error( state.auth ) })
+const stateToProps = state => ({ error: error(state.auth) })
 
 Register = connect(stateToProps,
   { register: actions.registerRequest }
