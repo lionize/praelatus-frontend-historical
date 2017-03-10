@@ -27,11 +27,13 @@ class Register extends Component {
   }
 
   render() {
-    return <RegisterForm onSubmit={this.handleSubmit} />
+    return <RegisterForm onSubmit={this.handleSubmit} error={this.props.error} />
   }
 }
 
-Register = connect(null,
+const stateToProps = state => ({ error: error(state.auth) })
+
+Register = connect(stateToProps,
   { register: actions.registerRequest }
 )(Register)
 

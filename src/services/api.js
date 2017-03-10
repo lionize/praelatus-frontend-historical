@@ -1,231 +1,108 @@
-import { compose, allPass, propEq, add, max, map, find, findIndex } from 'ramda'
 import parseResponse from 'utils/parse-response'
+import axios from 'axios'
 
-const users = [
-  {
-    id: 0,
-    username: 'user1',
-    password: 'user1',
-    email: 'user1@users.com',
-    fullName: 'User 1',
-    gravatar: 'user1@users.com',
-    profilePic: '',
-    isAdmin: false,
-  },
-  {
-    id: 1,
-    username: 'user2',
-    password: 'user2',
-    email: 'user2@users.com',
-    fullName: 'User 2',
-    gravatar: 'user2@users.com',
-    profilePic: '',
-    isAdmin: false,
-  }
-]
-
-const projects = [
-  {
-    id: 0,
-    createdDate: '',
-    name: 'Project 1',
-    key: 'PROJECT-1',
-    homepage: '',
-    iconURL: '',
-    repo: '',
-    lead: users[0],
-  },
-  {
-    id: 1,
-    createdDate: '',
-    name: 'Project 2',
-    key: 'PROJECT-2',
-    homepage: '',
-    iconURL: '',
-    repo: '',
-    lead: users[1],
-  }
-]
-
-const tickets = [
-  {
-    id: 0,
-    createdDate: '',
-    updatedDate: '',
-    key: 'TICKET-1',
-    summary: 'First ticket',
-    description: 'A ticket that is first',
-    reporter: users[0],
-    assignee: users[1],
-    project: projects[0],
-  },
-  {
-    id: 1,
-    createdDate: '',
-    updatedDate: '',
-    key: 'TICKET-2',
-    summary: 'Second ticket',
-    description: 'A ticket that is second',
-    reporter: users[1],
-    assignee: users[0],
-    project: projects[1],
-  }
-]
-
-const teams = [
-  {
-    id: 0,
-    name: 'Team 1',
-    lead: users[0],
-    members: users,
-  },
-  {
-    id: 1,
-    name: 'Team 2',
-    lead: users[1],
-    members: users,
-  }
-]
-
-const comments = [
-  {
-    id: 0,
-    body: 'This is first comment',
-    author: users[0],
-  },
-  {
-    id: 1,
-    body: 'This is second comment',
-    author: users[1],
-  }
-]
-
-const respondWith = info => Promise.resolve({
-  ...info
+const api = axios.create({
+  baseURL: 'http://localhost:4000'
 })
 
-const nextID = compose(add(1), max, map('id'))
-const idIndex = (id, collection) => findIndex({ id }, collection)
-
-const fetchTickets = (payload = {}) => {
-  return parseResponse(tickets, 'key')
+const fetchTickets = () => {
+  return api.get('/api/tickets')
+    .then(res => parseResponse(res.data, 'key'))
 }
 
 const createTicket = (payload = {}) => {
-  const id = nextID(tickets)
-
-  const ticket = Object.assign({}, payload, { id })
-  tickets.push(ticket)
-
-  return parseResponse(ticket, 'key')
+  return api.post('/api/tickets', payload)
+    .then(res => parseResponse(res.data, 'key'))
 }
 
 const updateTicket = (payload = {}) => {
-  const index = idIndex(payload.id, tickets)
-
-  tickets[index] = payload
-
-  return parseResponse(payload, 'key')
+  return api.put(`/api/tickets/${payload.key}`)
+    .then(res => parseResponse(res.data, 'key'))
 }
 
-const deleteTicket = payload => {
-  const index = idIndex(payload.id, tickets)
-
-  tickets.splice(index, 1)
-
-  return payload
+const deleteTicket = (payload) => {
+  return api.delete(`/api/tickets/${payload.key}`)
+    .then(res => res.data)
 }
 
-const fetchTeams = (payload = {}) => {
-  return parseResponse(teams, 'name')
+const fetchTeams = () => {
+  return api.get('/api/teams')
+    .then(res => parseResponse(res.data, 'name'))
 }
 
-const createTeam = payload => {
-  const id = nextID(teams)
-
-  const team = Object.assign({}, payload, { id })
-  teams.push(team)
-
-  return parseResponse(team, 'name')
+const createTeam = (payload) => {
+  return api.post('/api/teams', payload)
+    .then(res => parseResponse(res.data, 'name'))
 }
 
-const updateTeam = payload => {
-  const index = idIndex(payload.id, teams)
-
-  teams[index] = payload
-
-  return parseResponse(payload, 'name')
+const updateTeam = (payload) => {
+  return api.put(`/api/tickets/${payload.id}`, payload)
+    .then(res => parseResponse(res.data, 'name'))
 }
 
-const deleteTeam = payload => {
-  const index = idIndex(payload, teams)
-
-  teams.splice(index, 1)
-
-  return payload
+const deleteTeam = (payload) => {
+  return api.delete(`/api/tickets/${payload.id}`)
+    .then(res => parseResponse(res.data, 'name'))
 }
 
-const fetchProjects = (payload = {}) => {
-  return parseResponse(projects, 'key')
+const fetchProjects = () => {
+  return api.get('/api/projects')
+    .then(res => parseResponse(res.data, 'key'))
 }
 
-const createProject = payload => {
-  const id = nextID(projects)
-  const key = payload.name.toUpperCase() + '-' + id
-
-  const project = Object.assign({}, payload, { id, key })
-  projects.push(project)
-
-  return parseResponse(project, 'key')
+const createProject = (payload) => {
+  return api.post('/api/projects', payload)
+    .then(res => parseResponse(res.data, 'key'))
 }
 
 const updateProject = (payload = {}) => {
-  const index = idIndex(payload.id, projects)
-
-  projects[index] = payload
-
-  return parseResponse(payload, 'key')
+  return api.put(`/api/projects/${payload.key}`, payload)
+    .then(res => parseResponse(res.data, 'key'))
 }
 
-const deleteProject = payload => {
-  const index = idIndex(payload, projects)
-
-  projects.splice(index, 1)
-
-  return payload
+const deleteProject = (payload) => {
+  return api.post(`/api/projects/${payload.key}`)
+    .then(res => parseResponse(res.data, 'key'))
 }
 
-const fetchComments = payload => respondWith(comments)
-const createComment = payload => {}
-const updateComment = payload => {}
-const deleteComment = payload => {}
-
-const fetchUsers = (payload = {}) => {
-  return parseResponse(users, 'username')
-}
-const createUser = payload => {}
-const updateUser = payload => {}
-const deleteUser = payload => {}
-
-const findUser = payload => find(
-  allPass(
-    [propEq('username', payload.username), propEq('password', payload.password)]
-  )
-)(users)
-
-const login = payload => {
-  const user = findUser(payload)
-
-  return respondWith({ token: 'TOKEN_STRING', user })
+const fetchComments = (payload) => {
+  return api.get(`/api/tickets/${payload.key}/comments`)
+    .then(res => res.data)
 }
 
-const register = payload => {
-  const user = payload
-  user.id = nextID(users)
-  users.push(user)
-  delete user.password
+const createComment = (payload) => {
+  return api.post(`/api/tickets/${payload.key}/comments`, payload)
+    .then(res => res.data)
+}
 
-  return respondWith({ token: 'TOKEN_STRING', user })
+const updateComment = (payload) => {
+  return api.put(`/api/tickets/comments/${payload.id}`, payload)
+    .then(res => res.data)
+}
+
+const deleteComment = (payload) => {
+  return api.delete(`/api/tickets/comments/${payload.id}`)
+    .then(res => res.data)
+}
+
+const fetchUsers = () => {
+  return api.get('/api/users')
+    .then(res => parseResponse(res.data, 'username'))
+}
+const updateUser = () => {}
+const deleteUser = () => {}
+
+const login = (payload) => {
+  return api.post('/api/users/sessions', payload)
+    .then((res) => {
+      api.defaults.headers.common.Authorization = res.headers.token
+      return res.data
+    })
+}
+
+const register = (payload) => {
+  return api.post('/api/users', payload)
+    .then(res => res.data)
 }
 
 export default {
@@ -246,7 +123,6 @@ export default {
   updateComment,
   deleteComment,
   fetchUsers,
-  createUser,
   updateUser,
   deleteUser,
   login,
