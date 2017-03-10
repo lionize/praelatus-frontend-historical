@@ -4,7 +4,7 @@ import { Table } from 'reactstrap'
 import { ProjectLink, UserLink } from 'components'
 import actions, { projects } from 'modules/project'
 
-const ProjectTable = ({ projects }) => (
+const ProjectTable = ({ projects: projectList }) => (
   <div>
     <Table>
       <thead>
@@ -18,7 +18,7 @@ const ProjectTable = ({ projects }) => (
         </tr>
       </thead>
       <tbody>
-        {projects.map((project, i) =>
+        {projectList.map((project, i) =>
           <tr key={i}>
             <td>
               <ProjectLink project={project}>{project.name}</ProjectLink>

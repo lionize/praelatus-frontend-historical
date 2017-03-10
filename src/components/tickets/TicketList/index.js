@@ -6,7 +6,7 @@ import actions, {
 import { Table } from 'reactstrap'
 import { TicketLink, UserLink } from 'components'
 
-const TicketTable = ({ tickets }) => (
+const TicketTable = ({ tickets: ticketList }) => (
   <div>
     <Table>
       <thead>
@@ -20,7 +20,7 @@ const TicketTable = ({ tickets }) => (
         </tr>
       </thead>
       <tbody>
-        {tickets.map((ticket, i) =>
+        {ticketList.map((ticket, i) =>
           <tr key={i}>
             <td>{ticket.id}</td>
             <td>

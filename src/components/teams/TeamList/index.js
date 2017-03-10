@@ -4,7 +4,7 @@ import { Table } from 'reactstrap'
 import actions, { teams } from 'modules/team'
 import { TeamLink, UserLink } from 'components'
 
-const TeamTable = ({ teams }) => (
+const TeamTable = ({ teams: teamList }) => (
   <div>
     <Table>
       <thead>
@@ -15,7 +15,7 @@ const TeamTable = ({ teams }) => (
         </tr>
       </thead>
       <tbody>
-        {teams.map((team, i) =>
+        {teamList.map((team, i) =>
           <tr key={i}>
             <td>
               <TeamLink team={team}>{team.name}</TeamLink>

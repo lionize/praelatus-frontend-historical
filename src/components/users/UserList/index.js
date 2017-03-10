@@ -5,7 +5,7 @@ import actions, { users } from 'modules/user'
 import { Gravatar, UserLink } from 'components'
 import './userList.css'
 
-const UserTable = ({ users }) => {
+const UserTable = ({ users: userList }) => {
   return (
     <div>
       <Table>
@@ -17,7 +17,7 @@ const UserTable = ({ users }) => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, i) =>
+          {userList.map((user, i) =>
             <tr key={i}>
               <td>
                 <Gravatar
