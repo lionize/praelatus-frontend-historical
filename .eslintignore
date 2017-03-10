@@ -1,5 +1,5 @@
 webpack.config.js
 devServer.js
-src/services/api.js
+src/services/fixture-api.js
 test/*
 docs/*
