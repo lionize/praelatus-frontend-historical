@@ -49,10 +49,7 @@ const deleteTeam = payload => {
 
 const fetchProjects = (payload = {}) => {
   return api.get('/api/projects').
-    then(res => {
-      console.log('res', res)
-      return parseResponse(res.data, 'key')
-    })
+    then(res => parseResponse(res.data, 'key'))
 }
 
 const createProject = payload => {
@@ -100,8 +97,6 @@ const deleteUser = payload => {}
 const login = payload => {
   return api.post('/api/users/sessions', payload).
     then((res) => {
-      console.log('res', res.headers)
-      console.log('res', res)
       api.defaults.headers.common['Authorization'] = res.headers.token
       return res.data
     })
