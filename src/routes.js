@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
-import Home from 'components/Home'
 import {
   ProjectShow, ProjectNew, ProjectEdit, ProjectList,
   TicketShow, TicketNew, TicketEdit, TicketList,
   TeamShow, TeamNew, TeamEdit, TeamList,
   UserShow, UserList,
   Login, Register,
+  Home
 } from 'components'
 
 const routes = (

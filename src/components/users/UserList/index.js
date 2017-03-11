@@ -1,7 +1,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Table } from 'reactstrap'
 import actions, { users } from 'modules/user'
-import { UserTable } from 'components'
+import { Gravatar, UserLink } from 'components'
+import './userList.css'
+
+const UserTable = ({ users: userList }) => {
+  return (
+    <div>
+      <Table>
+        <thead>
+          <tr>
+            <th />
+            <th>Username</th>
+            <th>Full Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userList.map((user, i) =>
+            <tr key={i}>
+              <td>
+                <Gravatar
+                  email={user.email}
+                  size={30}
+                />
+              </td>
+              <td>
+                <UserLink user={user}>{user.username}</UserLink>
+              </td>
+              <td>{user.fullName}</td>
+            </tr>
+          )}
+        </tbody>
+      </Table>
+    </div>
+  )
+}
 
 class UserList extends Component {
   componentWillMount() {

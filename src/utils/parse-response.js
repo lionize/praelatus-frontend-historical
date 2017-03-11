@@ -1,22 +1,14 @@
-export default function parseResponse(response, key) {
-  if (!Array.isArray(response)) {
-    return {
-      keys: [response[key]],
-      entities: {
-        [response[key]]: response
-      }
-    }
-  }
+import { pluck, zipObj } from 'ramda'
 
-  const keys = response.map(item => item[key])
-  const entities = response.reduce((acc, item) => {
-    return Object.assign({}, acc, {
-      [item[key]]: item
-    })
-  }, {})
+export default function parseResponse(response, key) {
+  let input = response
+
+  if (!(response instanceof Array)) input = [input]
+
+  const keys = pluck(key, input)
+  const entities = zipObj(keys, input)
 
   return {
-    keys,
-    entities,
+    keys, entities,
   }
 }
