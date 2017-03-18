@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import actions, { teams } from 'modules/team'
-import { TeamLink, UserLink } from 'components'
+import { TeamLink } from 'components/teams'
+import { UserLink } from 'components/users'
 
 const TeamTable = ({ teams: teamList }) => (
   <div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { user, fetching } from 'modules/user'
-import { UserCard } from 'components'
+import { UserCard } from 'components/users'
 
 class UserShow extends Component {
   componentWillMount() {

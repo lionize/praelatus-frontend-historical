@@ -1,5 +1,5 @@
 import React from 'react'
-import { LogoutLink } from 'components'
+import { LogoutLink } from 'components/auth'
 
 const ProfileBox = ({ user }) => (
   <div>

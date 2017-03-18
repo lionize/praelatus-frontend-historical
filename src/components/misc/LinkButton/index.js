@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { Button } from 'components'
+import { Button } from 'components/misc'
 
 const LinkButton = props => (
   <Link to={props.to}>
