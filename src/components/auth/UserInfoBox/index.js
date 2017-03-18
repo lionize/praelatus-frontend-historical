@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { isLoggedIn, currentUser } from 'modules/auth'
-import { ProfileBox } from 'components/layout'
-import { LoginLink, RegisterLink } from 'components/auth'
+import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
 const UserInfoBox = ({ loggedIn, user }) => {
   if (loggedIn) {

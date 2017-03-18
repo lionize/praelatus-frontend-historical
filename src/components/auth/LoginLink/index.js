@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinkButton } from 'components/misc'
+import { LinkButton } from 'components'
 
 const LoginLink = () => (
   <LinkButton to='/login'>Login</LinkButton>

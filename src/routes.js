@@ -1,24 +1,14 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from 'components/App'
 import {
+  App,
   ProjectShow, ProjectNew, ProjectEdit, ProjectList,
-} from 'components/projects'
-import {
   TicketShow, TicketNew, TicketEdit, TicketList,
-} from 'components/tickets'
-import {
   TeamShow, TeamNew, TeamEdit, TeamList,
-} from 'components/teams'
-import {
   UserShow, UserList,
-} from 'components/users'
-import {
   Login, Register,
-} from 'components/auth'
-import {
   Home,
-} from 'components/layout'
+} from 'components'
 
 const routes = (
   <Route path='/' component={App}>

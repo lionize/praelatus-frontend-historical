@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'components/misc'
+import { Button } from 'components'
 
 const DeleteButton = ({ handleClick }) => (
   <Button onClick={handleClick}>Delete</Button>

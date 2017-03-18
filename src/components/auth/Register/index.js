@@ -4,8 +4,7 @@ import autobind from 'autobind-decorator'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from 'utils'
 import actions, { error } from 'modules/auth'
-import { Form } from 'components/forms'
-import { Button } from 'components/misc'
+import { Form, Button } from 'components'
 
 let RegisterForm = ({ handleSubmit }) => (
   <Form onSubmit={handleSubmit}>

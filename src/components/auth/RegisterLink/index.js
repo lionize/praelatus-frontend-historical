@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinkButton } from 'components/misc'
+import { LinkButton } from 'components'
 
 const RegisterLink = () => (
   <LinkButton to='/register'>Register</LinkButton>

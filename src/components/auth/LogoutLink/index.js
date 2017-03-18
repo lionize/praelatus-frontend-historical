@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 import actions from 'modules/auth'
-import { Button } from 'components/misc'
+import { Button } from 'components'
 
 class LogoutLink extends Component {
   @autobind
