@@ -31,8 +31,6 @@ describe('User - ', () => {
         }
       }
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
-      console.log('state', state)
-
       expect(state.fetching).to.be.false
       expect(state.error).to.be.null
       expect(state.usernames).to.include('user0')
