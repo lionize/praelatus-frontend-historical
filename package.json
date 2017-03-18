@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node devServer.js",
-    "test": "cross-env NODE_PATH=./src mocha --compilers js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
+    "test": "cross-env NODE_PATH=./src mocha --compilers png:./mochacfg.js,js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
     "test:watch": "npm run test -- --watch",
     "lint": "node ./node_modules/eslint/bin/eslint.js -c .eslintrc.js . || true"
   },
