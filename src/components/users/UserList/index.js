@@ -4,7 +4,6 @@ import { Table } from 'reactstrap'
 import actions, { users } from 'modules/user'
 import { Gravatar } from 'components/misc'
 import { UserLink } from 'components/users'
-import './userList.css'
 
 const UserTable = ({ users: userList }) => {
   return (

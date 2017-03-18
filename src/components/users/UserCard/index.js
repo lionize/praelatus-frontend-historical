@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { Gravatar, NotFoundCard, ErrorCard } from 'components'
-import './userCard.css'
 
 const UserCard = ({ user, loading, error }) => {
   if (loading) {
