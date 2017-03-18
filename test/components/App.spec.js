@@ -14,13 +14,29 @@ describe('App Component', () => {
     return {
       props,
       wrapper,
-      header: wrapper.find('.header'),
-      footer: wrapper.find('footer'),
+      header: wrapper.find('Header'),
+      footer: wrapper.find('Footer'),
     }
   }
 
-  it('render', () => {
+  it('renders', () => {
     const { wrapper } = setup()
     expect(wrapper.exists()).to.be.true
+  })
+
+  it('renders header', () => {
+    const { header } = setup()
+    expect(header.exists()).to.be.true
+  })
+
+  it('renders footer', () => {
+    const { footer } = setup()
+    expect(footer.exists()).to.be.true
+  })
+
+  it('renders children', () => {
+    const child = <div></div>
+    const { wrapper } = setup({ children: child })
+    expect(wrapper).to.contain(child)
   })
 })
