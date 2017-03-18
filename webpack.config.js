@@ -18,24 +18,20 @@ module.exports = {
   },
 
   devtool: "cheap-source-map",
-  debug: true,
-
-  devServer: {
-    historyApiFallback: {
-      index: 'index.html'
-    }
-  },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
+        use: [
+          'style-loader',
+          'css-loader',
+        ]
       },
       {
         test: /\.(png|jpg)$/,
@@ -44,19 +40,18 @@ module.exports = {
     ]
   },
 
-  postcss: function() {
-    return [
-      require('precss'),
-      require('autoprefixer'),
-    ]
-  },
-
   resolve: {
-    root: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
-    extensions: ['', '.js']
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules'
+    ],
+    extensions: ['.js']
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 }
