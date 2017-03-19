@@ -6,7 +6,7 @@ import actions, {
 import { Table } from 'reactstrap'
 import { TicketLink, UserLink } from 'components'
 
-const TicketTable = ({ tickets: ticketList }) => (
+export const TicketTable = ({ tickets: ticketList }) => (
   <div>
     <Table>
       <thead>

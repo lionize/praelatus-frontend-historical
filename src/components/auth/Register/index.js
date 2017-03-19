@@ -20,6 +20,8 @@ RegisterForm = reduxForm({
   form: 'register',
 })(RegisterForm)
 
+export { RegisterForm }
+
 class Register extends Component {
   @autobind
   handleSubmit(values) {

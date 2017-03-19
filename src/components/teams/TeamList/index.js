@@ -5,7 +5,7 @@ import actions, { teams } from 'modules/team'
 import { TeamLink } from 'components/teams'
 import { UserLink } from 'components/users'
 
-const TeamTable = ({ teams: teamList }) => (
+export const TeamTable = ({ teams: teamList }) => (
   <div>
     <Table>
       <thead>

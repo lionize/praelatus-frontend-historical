@@ -18,6 +18,8 @@ LoginForm = reduxForm({
   form: 'login',
 })(LoginForm)
 
+export { LoginForm }
+
 class Login extends Component {
   @autobind
   handleSubmit(values) {

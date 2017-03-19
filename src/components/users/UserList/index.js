@@ -5,7 +5,7 @@ import actions, { users } from 'modules/user'
 import { Gravatar } from 'components/misc'
 import { UserLink } from 'components/users'
 
-const UserTable = ({ users: userList }) => {
+export const UserTable = ({ users: userList }) => {
   return (
     <div>
       <Table>
