@@ -4,7 +4,8 @@ import { shallow } from 'enzyme'
 import { CardTitle, CardText } from 'reactstrap'
 import {
   TeamCard, ErrorCard, NotFoundCard,
-  LinkButton, TeamDeleteButton
+  LinkButton, TeamDeleteButton,
+  UserLink,
 } from 'components'
 
 describe('TeamCard Component', () => {
@@ -23,6 +24,7 @@ describe('TeamCard Component', () => {
       notFound: wrapper.find(NotFoundCard),
       button: wrapper.find(LinkButton),
       deleteButton: wrapper.find(TeamDeleteButton),
+      userLink: wrapper.find(UserLink),
     }
   }
 
@@ -65,6 +67,23 @@ describe('TeamCard Component', () => {
       const { button, wrapper } = setup({ team })
 
       expect(button.prop('to')).to.eq('/teams/Team Name/edit')
+    })
+
+    it('renders team lead link', () => {
+      const team = { name: 'team', lead: { username: 'user0' } }
+      const { userLink } = setup({ team })
+
+      expect(userLink.prop('user')).to.deep.eq({ username: 'user0' })
+      expect(userLink.prop('children')).to.eq('user0')
+    })
+
+    it('renders team member links', () => {
+      const team = { name: 'team', members: [{ username: 'user0' }] }
+
+      const { userLink } = setup({ team })
+
+      expect(userLink.prop('user')).to.deep.eq({ username: 'user0' })
+      expect(userLink.prop('children')).to.eq('user0')
     })
 
     it('renders team delete link', () => {
