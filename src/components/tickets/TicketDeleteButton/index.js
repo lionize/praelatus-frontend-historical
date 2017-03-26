@@ -8,7 +8,7 @@ class TicketDeleteButton extends Component {
   @autobind
   handleClick(e) {
     e.preventDefault()
-    this.props.deleteTicket(this.props.ikey)
+    this.props.deleteTicket(this.props.ticket.key)
   }
 
   render() {

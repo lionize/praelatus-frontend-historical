@@ -76,7 +76,7 @@ describe('TicketCard Component', () => {
       const { wrapper } = setup({ ticket })
       const button = wrapper.find(TicketDeleteButton)
 
-      expect(button.prop('ikey')).to.eq('TICKET-1')
+      expect(button.prop('ticket')).to.eq(ticket)
     })
 
     it('renders ticket reporter link', () => {
