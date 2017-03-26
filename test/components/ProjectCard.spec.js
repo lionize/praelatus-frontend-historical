@@ -4,7 +4,8 @@ import { shallow } from 'enzyme'
 import { CardTitle, CardText } from 'reactstrap'
 import {
   ProjectCard, ErrorCard, NotFoundCard,
-  LinkButton, ProjectDeleteButton
+  LinkButton, ProjectDeleteButton,
+  UserLink,
 } from 'components'
 
 describe('ProjectCard Component', () => {
@@ -21,7 +22,8 @@ describe('ProjectCard Component', () => {
       title: wrapper.find(CardTitle),
       error: wrapper.find(ErrorCard),
       notFound: wrapper.find(NotFoundCard),
-      text: wrapper.find(CardText)
+      text: wrapper.find(CardText),
+      userLink: wrapper.find(UserLink),
     }
   }
 
@@ -53,6 +55,9 @@ describe('ProjectCard Component', () => {
       key: 'PROJECT-1',
       name: 'PROJECT 1',
       homepage: 'http://www.google.com/',
+      lead: {
+        username: 'user0',
+      },
     }
 
     it("renders project's information", () => {
@@ -60,7 +65,13 @@ describe('ProjectCard Component', () => {
 
       expect(title.shallow()).to.contain.text(project.name)
       expect(text.first().shallow()).to.contain.text('key: PROJECT-1')
-      expect(text.last().shallow()).to.contain.text('homepage: http://www.google.com/')
+      expect(text.at(1).shallow()).to.contain.text('homepage: http://www.google.com/')
+    })
+
+    it('renders project lead link', () => {
+      const { userLink } = setup({ project })
+
+      expect(userLink.prop('user')).to.eq(project.lead)
     })
 
     it('renders project edit link', () => {
