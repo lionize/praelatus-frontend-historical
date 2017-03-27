@@ -4,7 +4,8 @@ import { shallow } from 'enzyme'
 import { CardTitle, CardText } from 'reactstrap'
 import {
   TicketCard, ErrorCard, NotFoundCard,
-  LinkButton, TicketDeleteButton
+  LinkButton, TicketDeleteButton,
+  UserLink,
 } from 'components'
 
 describe('TicketCard Component', () => {
@@ -22,6 +23,7 @@ describe('TicketCard Component', () => {
       error: wrapper.find(ErrorCard),
       notFound: wrapper.find(NotFoundCard),
       text: wrapper.find(CardText),
+      userLink: wrapper.find(UserLink),
     }
   }
 
@@ -74,7 +76,33 @@ describe('TicketCard Component', () => {
       const { wrapper } = setup({ ticket })
       const button = wrapper.find(TicketDeleteButton)
 
-      expect(button.prop('ikey')).to.eq('TICKET-1')
+      expect(button.prop('ticket')).to.eq(ticket)
+    })
+
+    it('renders ticket reporter link', () => {
+      const ticket = {
+        reporter: {
+          username: 'user0',
+        }
+      }
+
+      const { userLink } = setup({ ticket })
+
+      expect(userLink.prop('user')).to.eq(ticket.reporter)
+      expect(userLink.prop('children')).to.eq(ticket.reporter.username)
+    })
+
+    it('renders ticket assignee link', () => {
+      const ticket = {
+        assignee: {
+          username: 'user0'
+        }
+      }
+
+      const { userLink } = setup({ ticket })
+
+      expect(userLink.prop('user')).to.eq(ticket.assignee)
+      expect(userLink.prop('children')).to.eq(ticket.assignee.username)
     })
   })
 })
