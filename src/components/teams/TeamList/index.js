@@ -45,7 +45,7 @@ export const TeamTable = ({ teams: teamList }) => (
 )
 
 class TeamList extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.loadTeams()
   }
 
@@ -54,13 +54,13 @@ class TeamList extends Component {
   }
 }
 
+export { TeamList }
+
 const mapStateToProps = state => ({
   teams: teams(state.data.teams),
 })
 
-TeamList = connect(
+export default connect(
   mapStateToProps,
   { loadTeams: actions.fetchRequest },
 )(TeamList)
-
-export default TeamList
