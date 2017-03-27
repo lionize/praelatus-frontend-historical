@@ -3,17 +3,14 @@ import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import sinon from 'sinon'
-import configureStore from 'redux-mock-store'
+import { wrapWithProvider } from '../utilities'
 import Login, { LoginForm } from 'components/auth/Login'
 import { Form } from 'components'
-const store = configureStore()({})
 
 describe('Login Component', () => {
   it('renders', () => {
     const wrapper = mount(
-      <Provider store={store}>
-        <Login />
-      </Provider>
+      wrapWithProvider(Login)
     )
 
     const container = wrapper.find(Login)
