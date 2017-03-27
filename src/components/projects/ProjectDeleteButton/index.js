@@ -4,26 +4,12 @@ import { connect } from 'react-redux'
 import actions from 'modules/project'
 import { DeleteButton } from 'components'
 
-class ProjectDeleteButton extends Component {
-  @autobind
-  handleClick(e) {
-    e.preventDefault()
-    this.props.deleteProject(this.props.project.key)
-  }
+const ProjectDeleteButton = ({ project, deleteProject }) => (
+  <DeleteButton handleClick={() => { deleteProject(project.key) }} />
+)
 
-  render() {
-    return <DeleteButton handleClick={this.handleClick} />
-  }
-}
+export { ProjectDeleteButton }
 
-const mapDispatchToProps = dispatch => ({
-  deleteProject(key) {
-    dispatch(actions.deleteRequest(key))
-  },
-})
-
-ProjectDeleteButton = connect(null,
-  mapDispatchToProps,
+export default connect(null,
+  { deleteProject: actions.deleteRequest },
 )(ProjectDeleteButton)
-
-export default ProjectDeleteButton
