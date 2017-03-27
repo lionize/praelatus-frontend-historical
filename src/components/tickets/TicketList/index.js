@@ -45,8 +45,8 @@ export const TicketTable = ({ tickets: ticketList }) => (
   </div>
 )
 
-class TicketList extends Component {
-  componentDidMount() {
+export class TicketList extends Component {
+  componentWillMount() {
     this.props.loadTickets()
   }
 
@@ -59,15 +59,7 @@ const mapStateToProps = state => ({
   tickets: tickets(state.data.tickets),
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadTickets() {
-    dispatch(actions.fetchRequest())
-  },
-})
-
-TicketList = connect(
+export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { loadTickets: actions.fetchRequest },
 )(TicketList)
-
-export default TicketList
