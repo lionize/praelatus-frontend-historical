@@ -16,27 +16,16 @@ let RegisterForm = ({ handleSubmit }) => (
   </Form>
 )
 
-RegisterForm = reduxForm({
-  form: 'register',
-})(RegisterForm)
-
 export { RegisterForm }
 
-class Register extends Component {
-  @autobind
-  handleSubmit(values) {
-    this.props.register(values)
-  }
-
-  render() {
-    return <RegisterForm onSubmit={this.handleSubmit} error={this.props.error} />
-  }
-}
+let Register = reduxForm({
+  form: 'register',
+})(RegisterForm)
 
 const stateToProps = state => ({ error: error(state.auth) })
 
 Register = connect(stateToProps,
-  { register: actions.registerRequest }
+  { onSubmit: actions.registerRequest }
 )(Register)
 
 export default Register
