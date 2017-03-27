@@ -14,25 +14,14 @@ let LoginForm = ({ handleSubmit }) => (
   </Form>
 )
 
-LoginForm = reduxForm({
+export { LoginForm }
+
+let Login = reduxForm({
   form: 'login',
 })(LoginForm)
 
-export { LoginForm }
-
-class Login extends Component {
-  @autobind
-  handleSubmit(values) {
-    this.props.login(values)
-  }
-
-  render() {
-    return <LoginForm onSubmit={this.handleSubmit} />
-  }
-}
-
 Login = connect(null,
-  { login: actions.loginRequest }
+  { onSubmit: actions.loginRequest }
 )(Login)
 
 export default Login
