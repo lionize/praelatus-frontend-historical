@@ -1,29 +1,15 @@
 import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { deleteRequest } from 'modules/team'
+import actions from 'modules/team'
 import { DeleteButton } from 'components'
 
-class TeamDeleteButton extends Component {
-  @autobind
-  handleClick(e) {
-    e.preventDefault()
-    this.props.deleteTeam(this.props.team.name)
-  }
+const TeamDeleteButton = ({ team, deleteTeam }) => (
+  <DeleteButton handleClick={() => { deleteTeam(team.name) }} />
+)
 
-  render() {
-    return <DeleteButton handleClick={this.handleClick} />
-  }
-}
+export { TeamDeleteButton }
 
-const mapDispatchToProps = dispatch => ({
-  deleteTeam(name) {
-    dispatch(deleteRequest(name))
-  },
-})
-
-TeamDeleteButton = connect(null,
-  mapDispatchToProps,
+export default connect(null,
+  { deleteTeam: actions.deleteRequest },
 )(TeamDeleteButton)
-
-export default TeamDeleteButton
