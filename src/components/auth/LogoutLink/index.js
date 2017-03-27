@@ -4,16 +4,9 @@ import autobind from 'autobind-decorator'
 import actions from 'modules/auth'
 import { Button } from 'components'
 
-class LogoutLink extends Component {
-  @autobind
-  handleClick() {
-    this.props.logout()
-  }
-
-  render() {
-    return <Button onClick={this.handleClick}>Logout</Button>
-  }
-}
+let LogoutLink = ({ logout }) => (
+  <Button onClick={logout}>Logout</Button>
+)
 
 LogoutLink = connect(null,
   { logout: actions.logout }

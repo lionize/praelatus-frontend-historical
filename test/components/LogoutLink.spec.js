@@ -10,5 +10,8 @@ describe('LogoutLink Component', () => {
     const wrapper = mount(
       wrapWithProvider(LogoutLink)
     )
+    const button = wrapper.find(Button)
+
+    expect(button.exists()).to.be.true
   })
 })
