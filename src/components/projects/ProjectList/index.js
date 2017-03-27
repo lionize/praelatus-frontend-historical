@@ -51,13 +51,13 @@ class ProjectList extends Component {
   }
 }
 
+export { ProjectList }
+
 const mapStateToProps = state => ({
   projects: projects(state.data.projects),
 })
 
-ProjectList = connect(
+export default connect(
   mapStateToProps,
   { loadProjects: actions.fetchRequest },
 )(ProjectList)
-
-export default ProjectList
