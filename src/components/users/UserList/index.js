@@ -37,7 +37,7 @@ export const UserTable = ({ users: userList }) => {
   )
 }
 
-class UserList extends Component {
+export class UserList extends Component {
   componentWillMount() {
     this.props.loadUsers()
   }
@@ -51,9 +51,7 @@ const mapStateToProps = state => ({
   users: users(state.data.users),
 })
 
-UserList = connect(
+export default connect(
   mapStateToProps,
   { loadUsers: actions.fetchRequest }
 )(UserList)
-
-export default UserList
