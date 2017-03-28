@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import sinon from 'sinon'
-import { wrapWithProvider } from '../utilities'
+import { wrapProvider } from '../utilities'
 import Register, { RegisterForm } from 'components/auth/Register'
 import { Form } from 'components'
 
@@ -17,7 +17,7 @@ describe('Register Component', () => {
     }
 
     const wrapper = mount(
-      wrapWithProvider(Register, { state })
+      wrapProvider(Register, { state })
     )
 
     const container = wrapper.find(Register)

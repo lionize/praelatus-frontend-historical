@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
-import { wrapWithProvider } from '../utilities'
+import { wrapProvider } from '../utilities'
 import Container, { TeamList, TeamTable } from 'components/teams/TeamList'
 
 describe('TeamList Component', () => {
@@ -21,7 +21,7 @@ describe('TeamList Component', () => {
 
   it('renders', () => {
     const wrapper = mount(
-      wrapWithProvider(Container, { state })
+      wrapProvider(Container, { state })
     )
 
     const container = wrapper.find(Container)

@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
-import { wrapWithProvider } from '../utilities'
+import { wrapProvider } from '../utilities'
 import BoxContainer, { UserInfoBox as BoxComponent } from 'components/auth/UserInfoBox'
 import { ProfileBox, LoginLink, RegisterLink } from 'components'
 
@@ -14,7 +14,7 @@ describe('UserInfoBox Component', () => {
       }
     }
     const wrapper = mount(
-      wrapWithProvider(BoxContainer, { state })
+      wrapProvider(BoxContainer, { state })
     )
 
     const container = wrapper.find(BoxContainer)

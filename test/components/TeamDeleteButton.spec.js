@@ -2,14 +2,14 @@ import React from 'react'
 import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
-import { wrapWithProvider } from '../utilities'
+import { wrapProvider } from '../utilities'
 import Container, { TeamDeleteButton } from 'components/teams/TeamDeleteButton'
 import { DeleteButton } from 'components'
 
 describe('TeamDeleteButton Component', () => {
   it('renders', () => {
     const wrapper = mount(
-      wrapWithProvider(Container)
+      wrapProvider(Container)
     )
 
     const container = wrapper.find(Container)

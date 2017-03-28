@@ -3,14 +3,14 @@ import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import sinon from 'sinon'
-import { wrapWithProvider } from '../utilities'
+import { wrapProvider } from '../utilities'
 import Login, { LoginForm } from 'components/auth/Login'
 import { Form } from 'components'
 
 describe('Login Component', () => {
   it('renders', () => {
     const wrapper = mount(
-      wrapWithProvider(Login)
+      wrapProvider(Login)
     )
 
     const container = wrapper.find(Login)
