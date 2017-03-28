@@ -6,6 +6,13 @@ export default function wrapRouter({ params, props }) {
       getChildContext() {
         const router = {
           createHref: () => {},
+          push: () => {},
+          replace: () => {},
+          go: () => {},
+          goBack: () => {},
+          goForward: () => {},
+          setRouteLeaveHook: () => {},
+          isActive: () => {},
           params,
         }
         return { router }
