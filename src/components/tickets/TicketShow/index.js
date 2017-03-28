@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import actions, { ticket } from 'modules/ticket'
 import { TicketCard } from 'components'
 
-class TicketShow extends Component {
+export class TicketShow extends Component {
   componentWillMount() {
     this.props.loadTicket(this.props.params.key)
   }
@@ -24,15 +24,7 @@ const mapStateToProps = (state, { params }) => ({
   ticket: ticket(state.data.tickets, params.key),
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadTicket(key) {
-    dispatch(actions.fetchRequest({ key }))
-  },
-})
-
-TicketShow = withRouter(connect(
+export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps
+  { loadTicket: actions.fetchRequest }
 )(TicketShow))
-
-export default TicketShow
