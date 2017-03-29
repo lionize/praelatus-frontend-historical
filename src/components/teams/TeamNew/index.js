@@ -4,22 +4,10 @@ import autobind from 'autobind-decorator'
 import actions from 'modules/team'
 import { TeamForm } from 'components'
 
-class TeamNew extends Component {
-  @autobind
-  handleSubmit(values) {
-    this.props.createTeam(values)
-  }
+export const TeamNew = ({ createTeam }) => (
+  <TeamForm handleSubmit={createTeam} />
+)
 
-  render() {
-    return <TeamForm onSubmit={this.handleSubmit} {...this.props} />
-  }
-}
-
-const mapStateToProps = () => ({})
-
-TeamNew = connect(
-  mapStateToProps,
+export default connect(null,
   { createTeam: actions.createRequest }
 )(TeamNew)
-
-export default TeamNew
