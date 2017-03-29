@@ -20,8 +20,8 @@ const containers = [
   forms,
 ]
 
-containers.forEach(container => {
-  Object.keys(container).forEach(k => {
+containers.forEach((container) => {
+  Object.keys(container).forEach((k) => {
     module.exports[k] = container[k]
   })
 })

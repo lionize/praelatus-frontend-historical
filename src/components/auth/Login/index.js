@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 import { Field, reduxForm } from 'redux-form'
 import actions from 'modules/auth'
 import { renderField } from 'utils'
 import { Form, Button } from 'components'
 
-let LoginForm = ({ handleSubmit }) => (
+const LoginForm = ({ handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
     <Field name="username" component={renderField} type="text" label="Username" />
     <Field name="password" component={renderField} type="password" label="Password" />
@@ -16,12 +15,8 @@ let LoginForm = ({ handleSubmit }) => (
 
 export { LoginForm }
 
-let Login = reduxForm({
-  form: 'login',
-})(LoginForm)
-
-Login = connect(null,
+export default connect(null,
   { onSubmit: actions.loginRequest }
-)(Login)
-
-export default Login
+)(reduxForm({
+  form: 'login'
+})(LoginForm))

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 import actions, { project } from 'modules/project'
 import { ProjectForm } from 'components'
 

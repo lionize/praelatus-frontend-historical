@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import autobind from 'autobind-decorator'
+import React from 'react'
 import { connect } from 'react-redux'
 import actions from 'modules/ticket'
 import { DeleteButton } from 'components'
