@@ -4,20 +4,12 @@ import autobind from 'autobind-decorator'
 import actions from 'modules/project'
 import { ProjectForm } from 'components'
 
-class ProjectNew extends Component {
-  @autobind
-  handleSubmit(values) {
-    this.props.createProject(values)
-  }
-
+export class ProjectNew extends Component {
   render() {
-    return <ProjectForm onSubmit={this.handleSubmit} {...this.props} />
+    return <ProjectForm handleSubmit={this.props.createProject} />
   }
 }
 
-ProjectNew = connect(
-  () => ({}),
+export default connect(null,
   { createProject: actions.createRequest }
 )(ProjectNew)
-
-export default ProjectNew
