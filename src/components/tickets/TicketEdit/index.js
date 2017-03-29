@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 import actions, { ticket } from 'modules/ticket'
 import { TicketForm } from 'components'
 
-class TicketEdit extends Component {
-  componentDidMount() {
+export class TicketEdit extends Component {
+  componentWillMount() {
     this.props.loadTicket(this.props.params.key)
   }
 
-  @autobind
-  handleSubmit(values) {
-    this.props.updateTicket(values)
-  }
-
   render() {
-    return <TicketForm onSubmit={this.handleSubmit} {...this.props} />
+    const { updateTicket, initialValues } = this.props
+    return <TicketForm handleSubmit={updateTicket} initialValues={initialValues} />
   }
 }
 
@@ -26,19 +21,10 @@ const mapStateToProps = (state, { params }) => {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  loadTicket(key) {
-    dispatch(actions.fetchRequest({ key }))
-  },
-
-  updateTicket(values) {
-    dispatch(actions.updateRequest(values))
-  },
-})
-
-TicketEdit = withRouter(connect(
+export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
+  {
+    loadTicket: actions.fetchRequest,
+    updateTicket: actions.updateRequest,
+  },
 )(TicketEdit))
-
-export default TicketEdit
