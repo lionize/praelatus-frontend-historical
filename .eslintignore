@@ -3,3 +3,5 @@ devServer.js
 src/services/fixture-api.js
 test/*
 docs/*
+build/*
+static
