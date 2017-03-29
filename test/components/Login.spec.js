@@ -9,9 +9,8 @@ import { Form } from 'components'
 
 describe('Login Component', () => {
   it('renders', () => {
-    const wrapper = mount(
-      wrapProvider(Login)
-    )
+    const Enhanced = wrapProvider()(Login)
+    const wrapper = mount(<Enhanced />)
 
     const container = wrapper.find(Login)
     const component = wrapper.find(LoginForm)

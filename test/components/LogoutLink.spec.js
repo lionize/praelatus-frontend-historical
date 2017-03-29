@@ -7,9 +7,8 @@ import { LogoutLink, Button } from 'components'
 
 describe('LogoutLink Component', () => {
   it('renders', () => {
-    const wrapper = mount(
-      wrapProvider(LogoutLink)
-    )
+    const Enhanced = wrapProvider()(LogoutLink)
+    const wrapper = mount(<Enhanced />)
     const button = wrapper.find(Button)
 
     expect(button.exists()).to.be.true

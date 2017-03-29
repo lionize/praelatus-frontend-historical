@@ -8,9 +8,8 @@ import { DeleteButton } from 'components'
 
 describe('TeamDeleteButton Component', () => {
   it('renders', () => {
-    const wrapper = mount(
-      wrapProvider(Container)
-    )
+    const Enhanced = wrapProvider()(Container)
+    const wrapper = mount(<Enhanced />)
 
     const container = wrapper.find(Container)
     const component = wrapper.find(TeamDeleteButton)

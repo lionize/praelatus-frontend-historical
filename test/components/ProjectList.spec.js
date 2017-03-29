@@ -20,9 +20,8 @@ describe('ProjectList Component', () => {
   }
 
   it('renders', () => {
-    const wrapper = mount(
-      wrapProvider(Container, { state })
-    )
+    const Enhanced = wrapProvider({ state })(Container)
+    const wrapper = mount(<Enhanced />)
 
     const container = wrapper.find(Container)
     const component = wrapper.find(ProjectTable)

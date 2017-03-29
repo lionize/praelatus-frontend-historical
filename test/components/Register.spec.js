@@ -16,9 +16,8 @@ describe('Register Component', () => {
       }
     }
 
-    const wrapper = mount(
-      wrapProvider(Register, { state })
-    )
+    const Enhanced = wrapProvider({ state })(Register)
+    const wrapper = mount(<Enhanced />)
 
     const container = wrapper.find(Register)
     const component = wrapper.find(RegisterForm)

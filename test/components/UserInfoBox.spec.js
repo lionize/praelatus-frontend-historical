@@ -13,9 +13,9 @@ describe('UserInfoBox Component', () => {
         currentUser: {}
       }
     }
-    const wrapper = mount(
-      wrapProvider(BoxContainer, { state })
-    )
+
+    const Enhanced = wrapProvider({ state })(BoxContainer)
+    const wrapper = mount(<Enhanced />)
 
     const container = wrapper.find(BoxContainer)
     const component = wrapper.find(BoxComponent)
