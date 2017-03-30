@@ -121,7 +121,6 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.createSuccess(response))
 
       expect(next).to.deep.eq(expected)
-      console.log(generator.next().value)
       expect(generator.next().done).to.be.true
     })
 
