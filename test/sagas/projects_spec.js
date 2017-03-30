@@ -46,6 +46,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -60,6 +61,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.fetchFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -82,6 +84,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -96,6 +99,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.fetchFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -121,6 +125,7 @@ describe('Project - Sagas', () => {
       expected = put(push(`/projects/${projects[0].key}`))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -135,6 +140,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.createFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -162,6 +168,7 @@ describe('Project - Sagas', () => {
       expected = put(push(`/projects/${projects[0].key}`))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -176,6 +183,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.updateFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -196,6 +204,7 @@ describe('Project - Sagas', () => {
       expected = put(push('/projects'))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -210,6 +219,7 @@ describe('Project - Sagas', () => {
       const expected = put(actions.deleteFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 })

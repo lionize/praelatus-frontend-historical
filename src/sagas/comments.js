@@ -24,7 +24,6 @@ export function* createComment(api, { payload }) {
   try {
     const response = yield call(api.createComment, payload)
     yield put(actions.createSuccess(response))
-    yield put(push(`/comments/${response.result[0]}`))
   } catch (e) {
     yield put(actions.createFailure(e))
   }
@@ -34,7 +33,6 @@ export function* updateComment(api, { payload }) {
   try {
     const response = yield call(api.updateComment, payload)
     yield put(actions.updateSuccess(response))
-    yield put(push(`/comments/${response.result[0]}`))
   } catch (e) {
     yield put(actions.updateFailure(e))
   }

@@ -45,6 +45,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -59,6 +60,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.fetchFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -81,6 +83,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -95,6 +98,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.fetchFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -117,6 +121,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.createSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -131,6 +136,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.createFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -153,6 +159,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.updateSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -167,6 +174,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.updateFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -187,6 +195,7 @@ describe('Comment - Sagas', () => {
       expected = put(push('/comments'))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -201,6 +210,7 @@ describe('Comment - Sagas', () => {
       const expected = put(actions.deleteFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 })
