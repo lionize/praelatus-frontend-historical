@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 import actions, { project } from 'modules/project'
 import { ProjectForm } from 'components'
 
-class ProjectEdit extends Component {
-  componentDidMount() {
+export class ProjectEdit extends Component {
+  componentWillMount() {
     this.props.loadProject(this.props.params.key)
   }
 
-  @autobind
-  handleSubmit(values) {
-    this.props.updateProject(values)
-  }
-
   render() {
-    return <ProjectForm onSubmit={this.handleSubmit} {...this.props} />
+    return <ProjectForm handleSubmit={this.props.updateProject} {...this.props} />
   }
 }
 
@@ -23,19 +18,10 @@ const mapStateToProps = (state, { params }) => ({
   initialValues: project(state.data.projects, params.key)
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadProject(key) {
-    dispatch(actions.fetchRequest({ key }))
-  },
-
-  updateProject(values) {
-    dispatch(actions.updateRequest(values))
-  },
-})
-
-ProjectEdit = connect(
+export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(ProjectEdit)
-
-export default ProjectEdit
+  {
+    loadProject: actions.fetchRequest,
+    updateProject: actions.updateRequest,
+  },
+)(ProjectEdit))

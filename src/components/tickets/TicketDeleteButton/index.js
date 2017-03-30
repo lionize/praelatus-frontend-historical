@@ -1,32 +1,14 @@
-import React, { Component } from 'react'
-import autobind from 'autobind-decorator'
+import React from 'react'
 import { connect } from 'react-redux'
 import actions from 'modules/ticket'
 import { DeleteButton } from 'components'
 
-class TicketDeleteButton extends Component {
-  @autobind
-  handleClick(e) {
-    e.preventDefault()
-    this.props.deleteTicket(this.props.ikey)
-  }
+const TicketDeleteButton = ({ ticket, deleteTicket }) => (
+  <DeleteButton handleClick={() => { deleteTicket(ticket.key) }} />
+)
 
-  render() {
-    return <DeleteButton handleClick={this.handleClick} />
-  }
-}
+export { TicketDeleteButton }
 
-const mapStateToProps = () => ({})
-
-const mapDispatchToProps = dispatch => ({
-  deleteTicket(key) {
-    dispatch(actions.deleteRequest(key))
-  },
-})
-
-TicketDeleteButton = connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default connect(null,
+  { deleteTicket: actions.deleteRequest },
 )(TicketDeleteButton)
-
-export default TicketDeleteButton

@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node devServer.js",
-    "test": "cross-env NODE_PATH=./src mocha --compilers js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
+    "test": "cross-env NODE_PATH=./src mocha --compilers png:./mochacfg.js,js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
     "test:watch": "npm run test -- --watch",
-    "lint": "node ./node_modules/eslint/bin/eslint.js -c .eslintrc.js . || true"
+    "test:coverage": "cross-env NODE_PATH=./src nyc mocha --compilers png:./mochacfg.js,js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
+    "lint": "node ./node_modules/eslint/bin/eslint.js -c .eslintrc.js ."
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
     "cross-env": "^3.1.2",
     "enzyme": "^2.7.1",
     "eslint": "^3.12.2",
@@ -40,14 +42,16 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
+    "istanbul": "^0.4.5",
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
     "path": "^0.12.7",
     "react-addons-test-utils": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.5",
+    "redux-mock-store": "^1.2.2",
     "sinon": "^1.17.6",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "autoprefixer": "^6.5.0",

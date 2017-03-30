@@ -1,5 +1,8 @@
 import chai from 'chai'
+import chaiEnzyme from 'chai-enzyme'
 import jsdom from 'jsdom';
+
+chai.use(chaiEnzyme())
 
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 const win = doc.defaultView;

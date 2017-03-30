@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import actions, { teams } from 'modules/team'
-import { TeamLink, UserLink } from 'components'
+import { TeamLink } from 'components/teams'
+import { UserLink } from 'components/users'
 
-const TeamTable = ({ teams: teamList }) => (
+export const TeamTable = ({ teams: teamList }) => (
   <div>
     <Table>
       <thead>
@@ -44,7 +45,7 @@ const TeamTable = ({ teams: teamList }) => (
 )
 
 class TeamList extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.loadTeams()
   }
 
@@ -53,13 +54,13 @@ class TeamList extends Component {
   }
 }
 
+export { TeamList }
+
 const mapStateToProps = state => ({
   teams: teams(state.data.teams),
 })
 
-TeamList = connect(
+export default connect(
   mapStateToProps,
   { loadTeams: actions.fetchRequest },
 )(TeamList)
-
-export default TeamList

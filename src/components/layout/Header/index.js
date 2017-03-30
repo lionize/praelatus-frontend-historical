@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import { Navbar, NavbarBrand } from 'reactstrap'
 import { UserInfoBox } from 'components'
-import './Header.css'
 
 const Header = () => (
   <Navbar color="faded" className="nav-main" light>

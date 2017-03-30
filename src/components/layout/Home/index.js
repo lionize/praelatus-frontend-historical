@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Card, CardTitle, CardText, Row, Col } from 'reactstrap'
-import './home.css'
 
 const Home = () => (
   <Row>

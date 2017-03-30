@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 import { Field, reduxForm } from 'redux-form'
 import { renderField } from 'utils'
-import actions from 'modules/auth'
+import actions, { error } from 'modules/auth'
 import { Form, Button } from 'components'
 
-let RegisterForm = ({ handleSubmit }) => (
+const RegisterForm = ({ handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
     <Field name="username" component={renderField} type="text" label="Username" />
     <Field name="password" component={renderField} type="password" label="Password" />
@@ -16,25 +15,12 @@ let RegisterForm = ({ handleSubmit }) => (
   </Form>
 )
 
-RegisterForm = reduxForm({
-  form: 'register',
-})(RegisterForm)
-
-class Register extends Component {
-  @autobind
-  handleSubmit(values) {
-    this.props.register(values)
-  }
-
-  render() {
-    return <RegisterForm onSubmit={this.handleSubmit} error={this.props.error} />
-  }
-}
+export { RegisterForm }
 
 const stateToProps = state => ({ error: error(state.auth) })
 
-Register = connect(stateToProps,
-  { register: actions.registerRequest }
-)(Register)
-
-export default Register
+export default connect(stateToProps,
+  { onSubmit: actions.registerRequest }
+)(reduxForm({
+  form: 'register'
+})(RegisterForm))

@@ -30,7 +30,7 @@ const Ticket = ({ ticket, loading, error }) => {
               </CardText>
             }
             <LinkButton to={`/tickets/${ticket.key}/edit`}>Edit</LinkButton>
-            <TicketDeleteButton ikey={ticket.key} />
+            <TicketDeleteButton ticket={ticket} />
           </CardBlock>
         </Card>
       </div>

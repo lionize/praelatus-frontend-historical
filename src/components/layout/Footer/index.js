@@ -1,6 +1,5 @@
 import React from 'react'
 import { Nav, NavLink } from 'reactstrap'
-import './Footer.css'
 
 const Footer = () => (
   <div className="footer">

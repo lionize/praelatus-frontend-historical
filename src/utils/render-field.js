@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormGroup, Label, Input, FormText } from 'components'
+import { FormGroup, Label, Input, FormText } from 'components/forms'
 
 export default ({ input, label, type, meta: { touched, error, warning } }) => {
   let state
@@ -14,7 +14,7 @@ export default ({ input, label, type, meta: { touched, error, warning } }) => {
   return (
     <FormGroup color={touched ? state : null}>
       <Label>{label}</Label>
-      <Input {...input} type={type} state={state} />
+      <Input {...input} type={type} state={touched ? state : null} />
       {touched && (error || warning) && <FormText>{error || warning}</FormText>}
     </FormGroup>
   )

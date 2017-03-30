@@ -4,7 +4,7 @@ import { Table } from 'reactstrap'
 import { ProjectLink, UserLink } from 'components'
 import actions, { projects } from 'modules/project'
 
-const ProjectTable = ({ projects: projectList }) => (
+export const ProjectTable = ({ projects: projectList }) => (
   <div>
     <Table>
       <thead>
@@ -51,13 +51,13 @@ class ProjectList extends Component {
   }
 }
 
+export { ProjectList }
+
 const mapStateToProps = state => ({
   projects: projects(state.data.projects),
 })
 
-ProjectList = connect(
+export default connect(
   mapStateToProps,
   { loadProjects: actions.fetchRequest },
 )(ProjectList)
-
-export default ProjectList

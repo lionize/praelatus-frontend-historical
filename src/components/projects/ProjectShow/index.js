@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import actions, { project } from 'modules/project'
 import { ProjectCard } from 'components'
 
-class ProjectShow extends Component {
-  componentDidMount() {
+export class ProjectShow extends Component {
+  componentWillMount() {
     this.props.loadProject(this.props.params.key)
   }
 
@@ -24,15 +24,7 @@ const mapStateToProps = (state, { params }) => ({
   project: project(state.data.projects, params.key)
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadProject(key) {
-    dispatch(actions.fetchRequest({ key }))
-  },
-})
-
-ProjectShow = withRouter(connect(
+export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { loadProject: actions.fetchRequest },
 )(ProjectShow))
-
-export default ProjectShow

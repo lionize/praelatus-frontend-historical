@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import actions, { users } from 'modules/user'
-import { Gravatar, UserLink } from 'components'
-import './userList.css'
+import { Gravatar } from 'components/misc'
+import { UserLink } from 'components/users'
 
-const UserTable = ({ users: userList }) => {
+export const UserTable = ({ users: userList }) => {
   return (
     <div>
       <Table>
@@ -37,7 +37,7 @@ const UserTable = ({ users: userList }) => {
   )
 }
 
-class UserList extends Component {
+export class UserList extends Component {
   componentWillMount() {
     this.props.loadUsers()
   }
@@ -51,9 +51,7 @@ const mapStateToProps = state => ({
   users: users(state.data.users),
 })
 
-UserList = connect(
+export default connect(
   mapStateToProps,
   { loadUsers: actions.fetchRequest }
 )(UserList)
-
-export default UserList

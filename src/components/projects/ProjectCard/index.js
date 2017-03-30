@@ -2,7 +2,15 @@ import React from 'react'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { ProjectDeleteButton, LinkButton, UserLink, NotFoundCard, ErrorCard } from 'components'
 
-const ProjectCard = ({ project, error }) => {
+const ProjectCard = ({ project, error, loading }) => {
+  if (loading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
+
   if (project) {
     return (
       <div>

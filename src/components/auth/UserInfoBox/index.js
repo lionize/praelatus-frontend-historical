@@ -16,6 +16,8 @@ const UserInfoBox = ({ loggedIn, user }) => {
   )
 }
 
+export { UserInfoBox }
+
 const stateToProps = state => ({
   user: currentUser(state.auth),
   loggedIn: isLoggedIn(state.auth),

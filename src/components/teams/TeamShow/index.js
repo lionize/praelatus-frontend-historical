@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import actions, { team } from 'modules/team'
 import { TeamCard } from 'components'
 
-class TeamShow extends Component {
-  componentDidMount() {
+export class TeamShow extends Component {
+  componentWillMount() {
     this.props.loadTeam(this.props.params.name)
   }
 
@@ -24,15 +24,7 @@ const mapStateToProps = (state, { params }) => ({
   team: team(state.data.teams, params.name)
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadTeam(name) {
-    dispatch(actions.fetchRequest({ name }))
-  },
-})
-
-TeamShow = withRouter(connect(
+export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
+  { loadTeam: actions.fetchRequest },
 )(TeamShow))
-
-export default TeamShow
