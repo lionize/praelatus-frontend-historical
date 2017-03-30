@@ -39,6 +39,7 @@ describe('Auth - Sagas', () => {
       expected = put(push('/'))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -53,6 +54,7 @@ describe('Auth - Sagas', () => {
       const expected = put(actions.loginFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -76,6 +78,7 @@ describe('Auth - Sagas', () => {
       expected = put(push('/'))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -90,6 +93,7 @@ describe('Auth - Sagas', () => {
       const expected = put(actions.registerFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -101,6 +105,7 @@ describe('Auth - Sagas', () => {
       const expected = put(push('/'))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 })

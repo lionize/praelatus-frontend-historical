@@ -45,6 +45,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -59,6 +60,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.fetchFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -81,6 +83,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.fetchSuccess(response))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -95,6 +98,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.fetchFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -120,6 +124,7 @@ describe('Team - Sagas', () => {
       expected = put(push(`/teams/${teams[0].name}`))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -134,6 +139,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.createFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -161,6 +167,7 @@ describe('Team - Sagas', () => {
       expected = put(push(`/teams/${teams[0].name}`))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -175,6 +182,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.updateFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 
@@ -195,6 +203,7 @@ describe('Team - Sagas', () => {
       expected = put(push('/teams'))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
 
     it('failure', () => {
@@ -209,6 +218,7 @@ describe('Team - Sagas', () => {
       const expected = put(actions.deleteFailure(error))
 
       expect(next).to.deep.eq(expected)
+      expect(generator.next().done).to.be.true
     })
   })
 })
