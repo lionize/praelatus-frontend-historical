@@ -7,6 +7,11 @@ const ProjectDeleteButton = ({ project, deleteProject }) => (
   <DeleteButton handleClick={() => { deleteProject(project.key) }} />
 )
 
+ProjectDeleteButton.propTypes = {
+  project: React.PropTypes.object.isRequired,
+  deleteProject: React.PropTypes.func.isRequired,
+}
+
 export { ProjectDeleteButton }
 
 export default connect(null,

@@ -7,6 +7,10 @@ export const ProjectNew = ({ createProject }) => (
   <ProjectForm handleSubmit={createProject} />
 )
 
+ProjectNew.propTypes = {
+  createProject: React.PropTypes.func.isRequired,
+}
+
 export default connect(null,
   { createProject: actions.createRequest }
 )(ProjectNew)

@@ -7,4 +7,9 @@ const ProjectLink = ({ project, children }) => (
   </Link>
 )
 
+ProjectLink.propTypes = {
+  project: React.PropTypes.object.isRequired,
+  children: React.PropTypes.node,
+}
+
 export default ProjectLink

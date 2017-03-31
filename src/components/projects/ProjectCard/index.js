@@ -37,4 +37,10 @@ const ProjectCard = ({ project, error, loading }) => {
     : <NotFoundCard type="Project" />
 }
 
+ProjectCard.propTypes = {
+  error: React.PropTypes.string,
+  project: React.PropTypes.object,
+  loading: React.PropTypes.bool,
+}
+
 export default ProjectCard

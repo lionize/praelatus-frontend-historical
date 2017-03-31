@@ -14,6 +14,10 @@ const ProjectNew = ({ handleSubmit }) => (
   </Form>
 )
 
+ProjectNew.propTypes = {
+  handleSubmit: React.PropTypes.func.isRequired,
+}
+
 export default reduxForm({
   form: 'project',
 })(ProjectNew)
