@@ -5,4 +5,8 @@ const DeleteButton = ({ handleClick }) => (
   <Button onClick={handleClick}>Delete</Button>
 )
 
+DeleteButton.propTypes = {
+  handleClick: React.PropTypes.func.isRequired,
+}
+
 export default DeleteButton

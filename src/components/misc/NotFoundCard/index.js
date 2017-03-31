@@ -14,4 +14,8 @@ const NotFoundCard = ({ type }) => (
   </div>
 )
 
+NotFoundCard.propTypes = {
+  type: React.PropTypes.string.isRequired,
+}
+
 export default NotFoundCard
