@@ -89,7 +89,7 @@ export const projects = (state, keys) => {
     projectKeys = projectKeys.filter(k => keys.includes(k))
   }
 
-  return projectKeys.map(k => project(state, k))
+  return projectKeys.map(k => project(state, k)) || []
 }
 
 export const fetching = state => state.fetching
