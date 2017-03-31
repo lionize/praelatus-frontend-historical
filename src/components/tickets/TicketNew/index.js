@@ -7,6 +7,10 @@ export const TicketNew = ({ createTicket }) => (
   <TicketForm handleSubmit={createTicket} />
 )
 
+TicketNew.propTypes = {
+  createTicket: React.PropTypes.func.isRequired,
+}
+
 export default connect(null,
   { createTicket: actions.createRequest }
 )(TicketNew)

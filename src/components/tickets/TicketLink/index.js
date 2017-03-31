@@ -7,4 +7,9 @@ const TicketLink = ({ ticket, children }) => (
   </Link>
 )
 
+TicketLink.propTypes = {
+  ticket: React.PropTypes.object.isRequired,
+  children: React.PropTypes.node,
+}
+
 export default TicketLink

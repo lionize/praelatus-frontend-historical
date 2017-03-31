@@ -12,6 +12,10 @@ const TicketForm = ({ handleSubmit }) => (
   </Form>
 )
 
+TicketForm.propTypes = {
+  handleSubmit: React.PropTypes.func.isRequired,
+}
+
 export default reduxForm({
   form: 'ticket',
 })(TicketForm)

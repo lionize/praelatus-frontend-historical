@@ -5,6 +5,12 @@ import actions, { ticket } from 'modules/ticket'
 import { TicketCard } from 'components'
 
 export class TicketShow extends Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+    loadTicket: React.PropTypes.func.isRequired,
+    ticket: React.PropTypes.object,
+  }
+
   componentWillMount() {
     this.props.loadTicket(this.props.params.key)
   }
