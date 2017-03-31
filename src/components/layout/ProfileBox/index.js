@@ -8,4 +8,8 @@ const ProfileBox = ({ user }) => (
   </div>
 )
 
+ProfileBox.propTypes = {
+  user: React.PropTypes.object.isRequired,
+}
+
 export default ProfileBox
