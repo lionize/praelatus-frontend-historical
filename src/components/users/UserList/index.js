@@ -37,7 +37,17 @@ export const UserTable = ({ users: userList }) => {
   )
 }
 
+UserTable.propTypes = {
+  users: React.PropTypes.array.isRequired,
+}
+
 export class UserList extends Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+    loadUser: React.PropTypes.func.isRequired,
+    users: React.PropTypes.array,
+  }
+
   componentWillMount() {
     this.props.loadUsers()
   }

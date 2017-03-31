@@ -31,4 +31,10 @@ const UserCard = ({ user, loading, error }) => {
     : <NotFoundCard type="User" />
 }
 
+UserCard.propTypes = {
+  users: React.PropTypes.object,
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.string,
+}
+
 export default UserCard

@@ -7,4 +7,9 @@ const UserLink = ({ user, children }) => (
   </Link>
 )
 
+UserLink.propTypes = {
+  user: React.PropTypes.object.isRequired,
+  children: React.PropTypes.node,
+}
+
 export default UserLink
