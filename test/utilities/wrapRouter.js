@@ -20,7 +20,7 @@ export default function wrapRouter({ params, props } = {}) {
 
       render() {
         return (
-          <WrappedComponent {...this.props} {...props} />
+          <WrappedComponent {...this.props} params={params} {...props} />
         )
       }
     }
