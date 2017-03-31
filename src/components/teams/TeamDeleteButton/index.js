@@ -7,6 +7,11 @@ const TeamDeleteButton = ({ team, deleteTeam }) => (
   <DeleteButton handleClick={() => { deleteTeam(team.name) }} />
 )
 
+TeamDeleteButton.propTypes = {
+  team: React.PropTypes.object.isRequired,
+  deleteTeam: React.PropTypes.func.isRequired,
+}
+
 export { TeamDeleteButton }
 
 export default connect(null,

@@ -44,7 +44,16 @@ export const TeamTable = ({ teams: teamList }) => (
   </div>
 )
 
+TeamTable.propTypes = {
+  teams: React.PropTypes.array.isRequired,
+}
+
 class TeamList extends Component {
+  static propTypes = {
+    loadTeams: React.PropTypes.func.isRequired,
+    teams: React.PropTypes.array,
+  }
+
   componentWillMount() {
     this.props.loadTeams()
   }
