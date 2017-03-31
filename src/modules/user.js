@@ -89,7 +89,7 @@ export const users = (state, usernames) => {
     stateUsernames = stateUsernames.filter(u => usernames.includes(u))
   }
 
-  return stateUsernames.map(u => user(state, u))
+  return stateUsernames.map(u => user(state, u)) || []
 }
 
 export const fetching = state => state.fetching
