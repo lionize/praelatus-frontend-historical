@@ -88,7 +88,7 @@ export const tickets = (state, keys) => {
     ticketKeys = ticketKeys.filter(k => keys.includes(k))
   }
 
-  return ticketKeys.map(k => ticket(state, k))
+  return ticketKeys.map(k => ticket(state, k)) || []
 }
 
 export const fetching = state => state.fetching
