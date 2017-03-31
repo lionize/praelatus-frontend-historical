@@ -16,6 +16,11 @@ const UserInfoBox = ({ loggedIn, user }) => {
   )
 }
 
+UserInfoBox.propTypes = {
+  loggedIn: React.PropTypes.bool,
+  user: React.PropTypes.object,
+}
+
 export { UserInfoBox }
 
 const stateToProps = state => ({
