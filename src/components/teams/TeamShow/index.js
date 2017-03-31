@@ -5,6 +5,12 @@ import actions, { team } from 'modules/team'
 import { TeamCard } from 'components'
 
 export class TeamShow extends Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+    loadTeam: React.PropTypes.func.isRequired,
+    team: React.PropTypes.object,
+  }
+
   componentWillMount() {
     this.props.loadTeam(this.props.params.name)
   }
@@ -16,7 +22,8 @@ export class TeamShow extends Component {
   }
 
   render() {
-    return <TeamCard {...this.props} />
+    const { team: teamProp } = this.props
+    return <TeamCard team={teamProp} />
   }
 }
 

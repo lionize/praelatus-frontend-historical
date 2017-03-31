@@ -15,6 +15,10 @@ const RegisterForm = ({ handleSubmit }) => (
   </Form>
 )
 
+RegisterForm.propTypes = {
+  handleSubmit: React.PropTypes.func.isRequired,
+}
+
 export { RegisterForm }
 
 const stateToProps = state => ({ error: error(state.auth) })

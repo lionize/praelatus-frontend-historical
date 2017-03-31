@@ -10,4 +10,8 @@ const ErrorCard = ({ error }) => (
   </div>
 )
 
+ErrorCard.propTypes = {
+  error: React.PropTypes.string.isRequired,
+}
+
 export default ErrorCard

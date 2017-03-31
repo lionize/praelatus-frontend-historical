@@ -40,4 +40,10 @@ const TeamCard = ({ team, loading, error }) => {
     : <NotFoundCard type="Team" />
 }
 
+TeamCard.propTypes = {
+  team: React.PropTypes.object,
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.string,
+}
+
 export default TeamCard

@@ -7,4 +7,9 @@ const TeamLink = ({ team, children }) => (
   </Link>
 )
 
+TeamLink.propTypes = {
+  team: React.PropTypes.object.isRequired,
+  children: React.PropTypes.node,
+}
+
 export default TeamLink

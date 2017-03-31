@@ -14,4 +14,8 @@ const Gravatar = ({ email }) => {
   )
 }
 
+Gravatar.propTypes = {
+  email: React.PropTypes.string.isRequired,
+}
+
 export default Gravatar

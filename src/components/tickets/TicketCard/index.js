@@ -42,4 +42,10 @@ const Ticket = ({ ticket, loading, error }) => {
     : <NotFoundCard type="Ticket" />
 }
 
+Ticket.propTypes = {
+  ticket: React.PropTypes.object,
+  error: React.PropTypes.string,
+  loading: React.PropTypes.bool,
+}
+
 export default Ticket

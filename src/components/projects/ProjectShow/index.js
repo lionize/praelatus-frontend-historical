@@ -5,6 +5,12 @@ import actions, { project } from 'modules/project'
 import { ProjectCard } from 'components'
 
 export class ProjectShow extends Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+    loadProject: React.PropTypes.func.isRequired,
+    project: React.PropTypes.object,
+  }
+
   componentWillMount() {
     this.props.loadProject(this.props.params.key)
   }
@@ -16,7 +22,8 @@ export class ProjectShow extends Component {
   }
 
   render() {
-    return <ProjectCard {...this.props} />
+    const { project: projectProp } = this.props
+    return <ProjectCard project={projectProp} />
   }
 }
 

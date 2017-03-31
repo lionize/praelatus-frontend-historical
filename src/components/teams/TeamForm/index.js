@@ -21,6 +21,10 @@ const TeamForm = ({ handleSubmit }) => (
   </Form>
 )
 
+TeamForm.propTypes = {
+  handleSubmit: React.PropTypes.func.isRequired,
+}
+
 export default reduxForm({
   form: 'team',
   validate,

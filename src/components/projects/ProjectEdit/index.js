@@ -5,12 +5,20 @@ import actions, { project } from 'modules/project'
 import { ProjectForm } from 'components'
 
 export class ProjectEdit extends Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+    updateProject: React.PropTypes.func.isRequired,
+    loadProject: React.PropTypes.func.isRequired,
+    initialValues: React.PropTypes.object,
+  }
+
   componentWillMount() {
     this.props.loadProject(this.props.params.key)
   }
 
   render() {
-    return <ProjectForm handleSubmit={this.props.updateProject} {...this.props} />
+    const { updateProject, initialValues } = this.props
+    return <ProjectForm handleSubmit={updateProject} initialValues={initialValues} />
   }
 }
 

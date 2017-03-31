@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Header, Footer } from 'components'
 
 const App = ({ children }) => (
@@ -8,5 +8,9 @@ const App = ({ children }) => (
     <Footer />
   </div>
 )
+
+App.propTypes = {
+  children: PropTypes.any,
+}
 
 export default App

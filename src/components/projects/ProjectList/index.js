@@ -41,13 +41,23 @@ export const ProjectTable = ({ projects: projectList }) => (
   </div>
 )
 
+ProjectTable.propTypes = {
+  projects: React.PropTypes.array.isRequired,
+}
+
 class ProjectList extends Component {
+  static propTypes = {
+    projects: React.PropTypes.array.isRequired,
+    loadProjects: React.PropTypes.func.isRequired,
+  }
+
   componentWillMount() {
     this.props.loadProjects()
   }
 
   render() {
-    return <ProjectTable {...this.props} />
+    const { projects: projectsProp } = this.props
+    return <ProjectTable projects={projectsProp} />
   }
 }
 

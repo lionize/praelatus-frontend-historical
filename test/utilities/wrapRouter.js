@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function wrapRouter({ params, props }) {
+export default function wrapRouter({ params, props } = {}) {
   return function WrapRouterFactory(WrappedComponent) {
     class WrapRouter extends React.Component {
       getChildContext() {
@@ -20,7 +20,7 @@ export default function wrapRouter({ params, props }) {
 
       render() {
         return (
-          <WrappedComponent {...this.props} {...props} />
+          <WrappedComponent {...this.props} params={params} {...props} />
         )
       }
     }

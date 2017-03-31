@@ -2,7 +2,7 @@ import React from 'react'
 import { expect } from 'chai'
 import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
-import { wrapProvider } from '../utilities'
+import { wrapProvider, wrapRouter } from '../utilities'
 import Container, { UserList, UserTable } from 'components/users/UserList'
 
 describe('UserList Component', () => {
@@ -12,16 +12,38 @@ describe('UserList Component', () => {
         usernames: ['USER1'],
         byUsername: {
           'USER1': {
-            username: 'USER1'
+            username: 'USER1',
+            email: 'user1@users.com',
           }
         }
       }
     }
   }
+  const params = {
+    username: 'USER1',
+  }
+
+  const setup = propOverrides => {
+    const props = Object.assign({
+      params,
+      users: [],
+      loadUsers: () => {},
+    }, propOverrides)
+
+    const wrapper = shallow(<UserList {...props}/>)
+
+    return {
+      wrapper,
+      props,
+    }
+  }
 
   it('renders', () => {
-    const Enhanced = wrapProvider({ state })(Container)
-    const wrapper = mount(<Enhanced />)
+    let Enhanced = wrapProvider({ state })(Container)
+    Enhanced = wrapRouter({ params })(Enhanced)
+
+    const props = { loadUser: () => {} }
+    const wrapper = mount(<Enhanced {...props} />)
 
     const container = wrapper.find(Container)
     const component = wrapper.find(UserTable)
@@ -32,7 +54,7 @@ describe('UserList Component', () => {
 
   it('calls load users action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<UserList loadUsers={callback} />)
+    const { wrapper } = setup({ loadUsers: callback })
     expect(callback.calledOnce).to.be.true
   })
 
@@ -41,7 +63,7 @@ describe('UserList Component', () => {
       { username: 'USER1' },
       { username: 'USER2' },
     ]
-    const wrapper = shallow(<UserList users={users} loadUsers={() => {}} />)
+    const { wrapper } = setup({ users })
     const table = wrapper.find(UserTable)
 
     expect(table.prop('users')).to.deep.eq(users)

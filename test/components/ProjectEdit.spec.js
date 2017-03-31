@@ -7,6 +7,21 @@ import Container, { ProjectEdit } from 'components/projects/ProjectEdit'
 import { ProjectForm } from 'components'
 
 describe('ProjectEdit Component', () => {
+  const setup = propOverrides => {
+    const props = Object.assign({
+      projects: [],
+      loadProject: () => {},
+      updateProject: () => {},
+    }, propOverrides)
+
+    const wrapper = shallow(<ProjectEdit {...props} />)
+
+    return {
+      props,
+      wrapper,
+    }
+  }
+
   it('renders', () => {
     const state = {
       data: {
@@ -38,13 +53,15 @@ describe('ProjectEdit Component', () => {
 
   it('calls load project action on mount', () => {
     const callback = spy()
-    const wrapper = shallow(<ProjectEdit loadProject={callback} params={{ key: 'PROJECT-1' }} />)
+    const params = { key: 'PROJECT-1' }
+    const { wrapper } = setup({ loadProject: callback, params })
     expect(callback.calledOnce).to.be.true
   })
 
   it('passes callback to ProjectForm child', () => {
     const callback = () => {}
-    const wrapper = shallow(<ProjectEdit loadProject={() => {}} updateProject={callback} params={{ key: 'PROJECT-1' }} />)
+    const params = { key: 'PROJECT-1' }
+    const { wrapper } = setup({ updateProject: callback, params })
     const form = wrapper.find(ProjectForm)
     expect(form.prop('handleSubmit')).to.eq(callback)
   })

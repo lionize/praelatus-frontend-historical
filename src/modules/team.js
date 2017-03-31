@@ -89,7 +89,7 @@ export const teams = (state, names) => {
     teamNames = teamNames.filter(n => names.includes(n))
   }
 
-  return teamNames.map(n => team(state, n))
+  return teamNames.map(n => team(state, n)) || []
 }
 
 export const fetching = state => state.fetching

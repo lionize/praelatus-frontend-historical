@@ -7,6 +7,10 @@ export const TeamNew = ({ createTeam }) => (
   <TeamForm handleSubmit={createTeam} />
 )
 
+TeamNew.propTypes = {
+  createTeam: React.PropTypes.func.isRequired,
+}
+
 export default connect(null,
   { createTeam: actions.createRequest }
 )(TeamNew)

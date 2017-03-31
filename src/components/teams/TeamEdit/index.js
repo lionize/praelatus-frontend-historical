@@ -5,6 +5,13 @@ import actions, { team } from 'modules/team'
 import { TeamForm } from 'components'
 
 export class TeamEdit extends Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+    loadTeam: React.PropTypes.func.isRequired,
+    updateTeam: React.PropTypes.func.isRequired,
+    initialValues: React.PropTypes.object,
+  }
+
   componentWillMount() {
     this.props.loadTeam(this.props.params.name)
   }

@@ -19,6 +19,20 @@ describe('ProjectList Component', () => {
     }
   }
 
+  const setup = propOverrides => {
+    const props = Object.assign({
+      projects: [],
+      loadProjects: () => {},
+    }, propOverrides)
+
+    const wrapper = shallow(<ProjectList {...props} />)
+
+    return {
+      props,
+      wrapper,
+    }
+  }
+
   it('renders', () => {
     const Enhanced = wrapProvider({ state })(Container)
     const wrapper = mount(<Enhanced />)
@@ -32,7 +46,7 @@ describe('ProjectList Component', () => {
 
   it('calls load projects action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<ProjectList loadProjects={callback} />)
+    const { wrapper } = setup({ loadProjects: callback })
     expect(callback.calledOnce).to.be.true
   })
 
@@ -42,7 +56,7 @@ describe('ProjectList Component', () => {
       { key: 'PROJECT-2' },
       { key: 'PROJECT-3' },
     ]
-    const wrapper = shallow(<ProjectList projects={projects} loadProjects={() => {}} />)
+    const { wrapper } = setup({ projects })
     const table = wrapper.find(ProjectTable)
 
     expect(table.prop('projects')).to.deep.eq(projects)

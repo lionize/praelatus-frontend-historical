@@ -13,6 +13,10 @@ const LoginForm = ({ handleSubmit }) => (
   </Form>
 )
 
+LoginForm.propTypes = {
+  handleSubmit: React.PropTypes.func.isRequired,
+}
+
 export { LoginForm }
 
 export default connect(null,

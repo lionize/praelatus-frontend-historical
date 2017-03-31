@@ -45,13 +45,23 @@ export const TicketTable = ({ tickets: ticketList }) => (
   </div>
 )
 
+TicketTable.propTypes = {
+  tickets: React.PropTypes.array.isRequired,
+}
+
 export class TicketList extends Component {
+  static propTypes = {
+    loadTickets: React.PropTypes.func.isRequired,
+    tickets: React.PropTypes.array,
+  }
+
   componentWillMount() {
     this.props.loadTickets()
   }
 
   render() {
-    return <TicketTable {...this.props} />
+    const { tickets: ticketsProp } = this.props
+    return <TicketTable tickets={ticketsProp} />
   }
 }
 

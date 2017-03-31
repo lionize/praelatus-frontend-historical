@@ -19,6 +19,20 @@ describe('TeamList Component', () => {
     }
   }
 
+  const setup = propOverrides => {
+    const props = Object.assign({
+      teams: [],
+      loadTeams: () => {},
+    }, propOverrides)
+
+    const wrapper = shallow(<TeamList {...props} />)
+
+    return {
+      props,
+      wrapper,
+    }
+  }
+
   it('renders', () => {
     const Enhanced = wrapProvider({ state })(Container)
     const wrapper = mount(<Enhanced />)
@@ -32,7 +46,7 @@ describe('TeamList Component', () => {
 
   it('calls load teams action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<TeamList loadTeams={callback} />)
+    const { wrapper } = setup({ loadTeams: callback })
 
     expect(callback.calledOnce).to.be.true
   })
@@ -43,7 +57,7 @@ describe('TeamList Component', () => {
       { name: 'TEAM-2' },
       { name: 'TEAM-3' },
     ]
-    const wrapper = shallow(<TeamList teams={teams} loadTeams={() => {}} />)
+    const { wrapper } = setup({ teams })
     const table = wrapper.find(TeamTable)
 
     expect(table.prop('teams')).to.deep.eq(teams)

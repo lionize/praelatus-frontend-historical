@@ -21,4 +21,11 @@ const Flash = ({ message }) => {
   )
 }
 
+Flash.propTypes = {
+  message: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object,
+  ])
+}
+
 export default Flash

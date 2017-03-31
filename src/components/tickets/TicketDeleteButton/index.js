@@ -7,6 +7,11 @@ const TicketDeleteButton = ({ ticket, deleteTicket }) => (
   <DeleteButton handleClick={() => { deleteTicket(ticket.key) }} />
 )
 
+TicketDeleteButton.propTypes = {
+  ticket: React.PropTypes.object,
+  deleteTicket: React.PropTypes.func.isRequired,
+}
+
 export { TicketDeleteButton }
 
 export default connect(null,
