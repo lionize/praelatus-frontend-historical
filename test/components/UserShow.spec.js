@@ -13,7 +13,8 @@ describe('UserShow Component', () => {
           usernames: ['USER'],
           byUsername: {
             USER: {
-              username: 'USER'
+              username: 'USER',
+              email: 'user@users.com',
             }
           }
         }

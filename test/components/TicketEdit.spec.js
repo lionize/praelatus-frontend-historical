@@ -7,6 +7,21 @@ import Container, { TicketEdit } from 'components/tickets/TicketEdit'
 import { TicketForm } from 'components'
 
 describe('TicketEdit Component', () => {
+  const setup = propOverrides => {
+    const props = Object.assign({
+      tickets: [],
+      updateTicket: () => {},
+      loadTicket: () => {},
+    }, propOverrides)
+
+    const wrapper = shallow(<TicketEdit {...props} />)
+
+    return {
+      props,
+      wrapper,
+    }
+  }
+
   it('renders', () => {
     const state = {
       data: {
@@ -38,13 +53,15 @@ describe('TicketEdit Component', () => {
 
   it('calls load ticket action on mount', () => {
     const callback = spy()
-    const wrapper = shallow(<TicketEdit loadTicket={callback} params={{ key: 'TICKET1' }} />)
+    const params = { key: 'TICKET1' }
+    setup({ loadTicket: callback, params })
     expect(callback.calledOnce).to.be.true
   })
 
   it('passes update callback to TicketForm child', () => {
     const callback = () => {}
-    const wrapper = shallow(<TicketEdit updateTicket={callback} loadTicket={() => {}} params={{ key: 'TICKET1' }} />)
+    const params = { key: 'TICKET1' }
+    const { wrapper } = setup({ updateTicket: callback, params })
     const form = wrapper.find(TicketForm)
     expect(form.prop('handleSubmit')).to.eq(callback)
   })

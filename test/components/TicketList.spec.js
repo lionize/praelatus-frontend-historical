@@ -19,6 +19,20 @@ describe('TicketList Component', () => {
     }
   }
 
+  const setup = propOverrides => {
+    const props = Object.assign({
+      tickets: [],
+      loadTickets: () => {},
+    }, propOverrides)
+
+    const wrapper = shallow(<TicketList {...props} />)
+
+    return {
+      props,
+      wrapper,
+    }
+  }
+
   it('renders', () => {
     const Enhanced = wrapProvider({ state })(Container)
     const wrapper = mount(<Enhanced />)
@@ -32,7 +46,7 @@ describe('TicketList Component', () => {
 
   it('calls load tickets action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<TicketList loadTickets={callback} />)
+    const { wrapper } = setup({ loadTickets: callback })
 
     expect(callback.calledOnce).to.be.true
   })
@@ -42,7 +56,7 @@ describe('TicketList Component', () => {
       { key: 'TICKET-1' },
       { key: 'TICKET-2' },
     ]
-    const wrapper = shallow(<TicketList tickets={tickets} loadTickets={() => {}} />)
+    const { wrapper } = setup({ tickets })
     const table = wrapper.find(TicketTable)
 
     expect(table.prop('tickets')).to.deep.eq(tickets)
