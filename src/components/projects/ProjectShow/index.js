@@ -22,7 +22,8 @@ export class ProjectShow extends Component {
   }
 
   render() {
-    return <ProjectCard {...this.props} />
+    const { project: projectProp } = this.props
+    return <ProjectCard project={projectProp} />
   }
 }
 

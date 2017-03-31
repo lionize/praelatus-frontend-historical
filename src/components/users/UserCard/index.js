@@ -32,7 +32,7 @@ const UserCard = ({ user, loading, error }) => {
 }
 
 UserCard.propTypes = {
-  users: React.PropTypes.object,
+  user: React.PropTypes.object,
   loading: React.PropTypes.bool,
   error: React.PropTypes.string,
 }

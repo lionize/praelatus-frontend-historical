@@ -17,7 +17,8 @@ export class UserShow extends Component {
   }
 
   render() {
-    return <UserCard {...this.props} />
+    const { loading, user: userProp } = this.props
+    return <UserCard loading={loading} user={userProp} />
   }
 }
 

@@ -22,7 +22,8 @@ export class TeamShow extends Component {
   }
 
   render() {
-    return <TeamCard {...this.props} />
+    const { team: teamProp } = this.props
+    return <TeamCard team={teamProp} />
   }
 }
 

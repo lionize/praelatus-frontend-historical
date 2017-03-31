@@ -59,7 +59,8 @@ class TeamList extends Component {
   }
 
   render() {
-    return <TeamTable {...this.props} />
+    const { teams: teamsProp } = this.props
+    return <TeamTable teams={teamsProp} />
   }
 }
 

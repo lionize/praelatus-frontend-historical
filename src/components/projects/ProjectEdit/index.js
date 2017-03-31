@@ -17,7 +17,8 @@ export class ProjectEdit extends Component {
   }
 
   render() {
-    return <ProjectForm handleSubmit={this.props.updateProject} {...this.props} />
+    const { updateProject, initialValues } = this.props
+    return <ProjectForm handleSubmit={updateProject} initialValues={initialValues} />
   }
 }
 

@@ -22,7 +22,8 @@ export class TicketShow extends Component {
   }
 
   render() {
-    return <TicketCard {...this.props} />
+    const { ticket: ticketProp } = this.props
+    return <TicketCard ticket={ticketProp} />
   }
 }
 

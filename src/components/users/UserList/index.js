@@ -43,7 +43,6 @@ UserTable.propTypes = {
 
 export class UserList extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
     loadUsers: React.PropTypes.func.isRequired,
     users: React.PropTypes.array,
   }
@@ -53,7 +52,8 @@ export class UserList extends Component {
   }
 
   render() {
-    return <UserTable {...this.props} />
+    const { users: usersProp } = this.props
+    return <UserTable users={usersProp} />
   }
 }
 

@@ -60,7 +60,8 @@ export class TicketList extends Component {
   }
 
   render() {
-    return <TicketTable {...this.props} />
+    const { tickets: ticketsProp } = this.props
+    return <TicketTable tickets={ticketsProp} />
   }
 }
 

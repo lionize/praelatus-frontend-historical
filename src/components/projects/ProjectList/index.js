@@ -56,7 +56,8 @@ class ProjectList extends Component {
   }
 
   render() {
-    return <ProjectTable {...this.props} />
+    const { projects: projectsProp } = this.props
+    return <ProjectTable projects={projectsProp} />
   }
 }
 
