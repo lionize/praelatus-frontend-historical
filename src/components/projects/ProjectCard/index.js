@@ -43,4 +43,10 @@ ProjectCard.propTypes = {
   loading: React.PropTypes.bool,
 }
 
+ProjectCard.defaultProps = {
+  error: null,
+  project: null,
+  loading: false,
+}
+
 export default ProjectCard

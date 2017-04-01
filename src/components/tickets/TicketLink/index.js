@@ -12,4 +12,8 @@ TicketLink.propTypes = {
   children: React.PropTypes.node,
 }
 
+TicketLink.defaultProps = {
+  children: [],
+}
+
 export default TicketLink

@@ -8,7 +8,7 @@ export class ProjectShow extends Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     loadProject: React.PropTypes.func.isRequired,
-    project: React.PropTypes.object,
+    project: React.PropTypes.object.isRequired,
   }
 
   componentWillMount() {

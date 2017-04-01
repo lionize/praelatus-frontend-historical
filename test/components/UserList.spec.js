@@ -12,6 +12,7 @@ describe('UserList Component', () => {
         usernames: ['USER1'],
         byUsername: {
           'USER1': {
+            id: 1,
             username: 'USER1',
             email: 'user1@users.com',
           }

@@ -22,8 +22,8 @@ const TeamCard = ({ team, loading, error }) => {
                 Lead: <UserLink user={team.lead}>{team.lead.username}</UserLink>
               </CardText>
             }
-            {team.members && team.members.map((member, i) =>
-              <CardText key={i}>
+            {team.members && team.members.map(member =>
+              <CardText key={member.id}>
                 Member: <UserLink user={member}>{member.username}</UserLink>
               </CardText>
             )}
@@ -44,6 +44,12 @@ TeamCard.propTypes = {
   team: React.PropTypes.object,
   loading: React.PropTypes.bool,
   error: React.PropTypes.string,
+}
+
+TeamCard.defaultProps = {
+  team: null,
+  loading: false,
+  error: null,
 }
 
 export default TeamCard

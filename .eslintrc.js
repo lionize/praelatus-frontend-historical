@@ -7,7 +7,10 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  extends: 'airbnb',
+  extends: [
+    'airbnb',
+    'plugin:import/errors'
+  ],
 
   parserOptions: {
     ecmaVersion: 6,
@@ -32,7 +35,7 @@ module.exports = {
   },
 
   rules: {
-    semi: 0,
+    semi: ['error', 'never'],
     'jsx-quotes': 0,
     'no-undef': 0,
     'arrow-body-style': 0,
@@ -49,8 +52,9 @@ module.exports = {
     'import/prefer-default-export': 0,
 
     'react/jsx-filename-extension': 0,
-    'react/forbid-prop-types': 0,
-    'react/prop-types': 0,
+    'react/forbid-prop-types': 1,
+    'react/require-default-props': 2,
+    'react/no-array-index-key': 2,
 
     'jsx-a11y/href-no-hash': 0,
   }

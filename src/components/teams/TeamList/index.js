@@ -16,8 +16,8 @@ export const TeamTable = ({ teams: teamList }) => (
         </tr>
       </thead>
       <tbody>
-        {teamList.map((team, i) =>
-          <tr key={i}>
+        {teamList.map(team =>
+          <tr key={team.id}>
             <td>
               <TeamLink team={team}>{team.name}</TeamLink>
             </td>
@@ -29,8 +29,8 @@ export const TeamTable = ({ teams: teamList }) => (
             <td>
               {team.members &&
                 <ul>
-                  {team.members.map((member, j) =>
-                    <li key={j}>
+                  {team.members.map(member =>
+                    <li key={member.id}>
                       <UserLink user={member}>{member.username}</UserLink>
                     </li>
                   )}
@@ -51,7 +51,7 @@ TeamTable.propTypes = {
 class TeamList extends Component {
   static propTypes = {
     loadTeams: React.PropTypes.func.isRequired,
-    teams: React.PropTypes.array,
+    teams: React.PropTypes.array.isRequired,
   }
 
   componentWillMount() {

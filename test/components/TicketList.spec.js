@@ -12,6 +12,7 @@ describe('TicketList Component', () => {
         keys: ['TICKET-TEST'],
         byKey: {
           'TICKET-TEST': {
+            id: 0,
             key: 'TICKET-TEST'
           }
         }

@@ -21,10 +21,4 @@ describe('Flash Component', () => {
 
     expect(wrapper).to.contain.text('Message')
   })
-
-  it('renders an empty div if no message', () => {
-    const wrapper = shallow(<Flash />)
-
-    expect(wrapper.text().length).to.eq(0)
-  })
 })

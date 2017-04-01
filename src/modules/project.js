@@ -18,7 +18,7 @@ const { Types: types, Creators: creators } = createActions({
   deleteRequest: ['key'],
   deleteSuccess: ['key'],
   deleteFailure: ['error'],
-}, { prefix: 'PROJECT_' });
+}, { prefix: 'PROJECT_' })
 
 export const projectTypes = types
 export default creators

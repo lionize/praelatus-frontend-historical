@@ -37,4 +37,10 @@ UserCard.propTypes = {
   error: React.PropTypes.string,
 }
 
+UserCard.defaultProps = {
+  user: null,
+  loading: false,
+  error: null,
+}
+
 export default UserCard

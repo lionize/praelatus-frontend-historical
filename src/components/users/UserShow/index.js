@@ -5,11 +5,15 @@ import actions, { user, fetching } from 'modules/user'
 import { UserCard } from 'components/users'
 
 export class UserShow extends Component {
+  static defaultProps = {
+    loading: false,
+  }
+
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     loadUser: React.PropTypes.func.isRequired,
     loading: React.PropTypes.bool,
-    user: React.PropTypes.object,
+    user: React.PropTypes.object.isRequired,
   }
 
   componentWillMount() {

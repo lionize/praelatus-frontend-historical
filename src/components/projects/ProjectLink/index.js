@@ -12,4 +12,8 @@ ProjectLink.propTypes = {
   children: React.PropTypes.node,
 }
 
+ProjectLink.defaultProps = {
+  children: [],
+}
+
 export default ProjectLink

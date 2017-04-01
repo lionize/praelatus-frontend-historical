@@ -12,6 +12,10 @@ export class TicketEdit extends Component {
     initialValues: React.PropTypes.object,
   }
 
+  static defaultProps = {
+    initialValues: {},
+  }
+
   componentWillMount() {
     this.props.loadTicket(this.props.params.key)
   }

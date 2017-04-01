@@ -22,9 +22,11 @@ describe('ProjectTable', () => {
   }
 
   const fixture = {
+    id: 0,
     name: 'Project 1',
     key: 'PROJECT-1',
     lead: {
+      id: 0,
       username: 'user0',
       fullName: 'User 0',
     },

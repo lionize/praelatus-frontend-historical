@@ -38,7 +38,7 @@ describe('UserShow Component', () => {
 
   it('calls load user action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<UserShow loadUser={callback} params={{ username: 'USER' }} />)
+    const wrapper = shallow(<UserShow loadUser={callback} user={{}} params={{ username: 'USER' }} />)
     expect(callback.calledOnce).to.be.true
   })
 })

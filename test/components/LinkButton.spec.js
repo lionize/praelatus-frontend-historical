@@ -7,7 +7,8 @@ import { Link } from 'react-router'
 describe('LinkButton Component', () => {
   const setup = propOverrides => {
     const props = Object.assign({
-      children: null,
+      children: [],
+      to: '',
     }, propOverrides)
 
     const wrapper = shallow(<LinkButton {...props} />)

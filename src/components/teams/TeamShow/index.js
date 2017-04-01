@@ -8,7 +8,7 @@ export class TeamShow extends Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     loadTeam: React.PropTypes.func.isRequired,
-    team: React.PropTypes.object,
+    team: React.PropTypes.object.isRequired,
   }
 
   componentWillMount() {

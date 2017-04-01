@@ -12,6 +12,7 @@ describe('ProjectList Component', () => {
         keys: ['PROJECT-TEST'],
         byKey: {
           'PROJECT-TEST': {
+            id: 0,
             key: 'PROJECT-TEST'
           }
         }
@@ -52,9 +53,9 @@ describe('ProjectList Component', () => {
 
   it('passes projects to table component', () => {
     const projects = [
-      { key: 'PROJECT-1' },
-      { key: 'PROJECT-2' },
-      { key: 'PROJECT-3' },
+      { key: 'PROJECT-1', id: 0 },
+      { key: 'PROJECT-2', id: 1 },
+      { key: 'PROJECT-3', id: 2 },
     ]
     const { wrapper } = setup({ projects })
     const table = wrapper.find(ProjectTable)

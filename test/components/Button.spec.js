@@ -5,7 +5,7 @@ import { Button } from 'components'
 
 describe('Button Component', () => {
   it('renders', () => {
-    const wrapper = shallow(<Button />)
+    const wrapper = shallow(<Button children={[]} />)
 
     expect(wrapper.exists()).to.be.true
   })

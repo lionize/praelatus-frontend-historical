@@ -48,4 +48,10 @@ Ticket.propTypes = {
   loading: React.PropTypes.bool,
 }
 
+Ticket.defaultProps = {
+  ticket: null,
+  error: null,
+  loading: false,
+}
+
 export default Ticket

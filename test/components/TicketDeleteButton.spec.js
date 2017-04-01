@@ -9,7 +9,7 @@ import { DeleteButton } from 'components'
 describe('TicketDeleteButton Component', () => {
   it('renders', () => {
     const Enhanced = wrapProvider()(Container)
-    const wrapper = mount(<Enhanced />)
+    const wrapper = mount(<Enhanced ticket={{}} />)
 
     const container = wrapper.find(Container)
     const component = wrapper.find(TicketDeleteButton)
