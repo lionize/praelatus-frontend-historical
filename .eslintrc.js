@@ -54,6 +54,7 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/forbid-prop-types': 1,
     'react/require-default-props': 2,
+    'react/no-array-index-key': 2,
 
     'jsx-a11y/href-no-hash': 0,
   }
