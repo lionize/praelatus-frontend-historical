@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormGroup, Label, Input, FormText } from 'components/forms'
 
-export default ({ input, label, type, meta: { touched, error, warning } }) => {
+export const RenderField = ({ input, label, type, meta: { touched, error, warning } }) => {
   let state
 
   if (warning) {
@@ -18,4 +18,15 @@ export default ({ input, label, type, meta: { touched, error, warning } }) => {
       {touched && (error || warning) && <FormText>{error || warning}</FormText>}
     </FormGroup>
   )
+}
+
+RenderField.propTypes = {
+  input: React.PropTypes.object.isRequired,
+  label: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired,
+  meta: React.PropTypes.shape({
+    touched: React.PropTypes.bool,
+    error: React.PropTypes.string,
+    warning: React.PropTypes.string,
+  }).isRequired
 }
