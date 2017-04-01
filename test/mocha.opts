@@ -1,0 +1,4 @@
+--compilers png:./test/mochacfg.js,js:babel-core/register
+--require ./test/test_helper.js
+--require babel-polyfill
+--recursive
