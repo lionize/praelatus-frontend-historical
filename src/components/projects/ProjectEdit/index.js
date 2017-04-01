@@ -12,6 +12,10 @@ export class ProjectEdit extends Component {
     initialValues: React.PropTypes.object,
   }
 
+  static defaultProps = {
+    initialValues: {},
+  }
+
   componentWillMount() {
     this.props.loadProject(this.props.params.key)
   }

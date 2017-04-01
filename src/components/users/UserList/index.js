@@ -17,8 +17,8 @@ export const UserTable = ({ users: userList }) => {
           </tr>
         </thead>
         <tbody>
-          {userList.map((user, i) =>
-            <tr key={i}>
+          {userList.map(user =>
+            <tr key={user.id}>
               <td>
                 <Gravatar
                   email={user.email}
@@ -45,6 +45,10 @@ export class UserList extends Component {
   static propTypes = {
     loadUsers: React.PropTypes.func.isRequired,
     users: React.PropTypes.array,
+  }
+
+  static defaultProps = {
+    users: [],
   }
 
   componentWillMount() {

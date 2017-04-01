@@ -21,6 +21,11 @@ UserInfoBox.propTypes = {
   user: React.PropTypes.object,
 }
 
+UserInfoBox.defaultProps = {
+  loggedIn: false,
+  user: {},
+}
+
 export { UserInfoBox }
 
 const stateToProps = state => ({

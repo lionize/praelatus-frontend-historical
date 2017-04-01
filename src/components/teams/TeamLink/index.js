@@ -12,4 +12,8 @@ TeamLink.propTypes = {
   children: React.PropTypes.node,
 }
 
+TeamLink.defaultProps = {
+  children: [],
+}
+
 export default TeamLink

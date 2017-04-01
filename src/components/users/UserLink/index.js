@@ -12,4 +12,8 @@ UserLink.propTypes = {
   children: React.PropTypes.node,
 }
 
+UserLink.defaultProps = {
+  children: [],
+}
+
 export default UserLink

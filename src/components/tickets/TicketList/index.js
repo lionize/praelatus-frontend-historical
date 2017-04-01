@@ -20,8 +20,8 @@ export const TicketTable = ({ tickets: ticketList }) => (
         </tr>
       </thead>
       <tbody>
-        {ticketList.map((ticket, i) =>
-          <tr key={i}>
+        {ticketList.map(ticket =>
+          <tr key={ticket.id}>
             <td>{ticket.id}</td>
             <td>
               <TicketLink ticket={ticket}>{ticket.key}</TicketLink>
@@ -52,7 +52,7 @@ TicketTable.propTypes = {
 export class TicketList extends Component {
   static propTypes = {
     loadTickets: React.PropTypes.func.isRequired,
-    tickets: React.PropTypes.array,
+    tickets: React.PropTypes.array.isRequired,
   }
 
   componentWillMount() {

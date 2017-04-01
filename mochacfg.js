@@ -1,1 +1,1 @@
-require.extensions['.png'] = function mochaPngConfig() { return null; }
+require.extensions['.png'] = function mochaPngConfig() { return null }

@@ -18,8 +18,8 @@ export const ProjectTable = ({ projects: projectList }) => (
         </tr>
       </thead>
       <tbody>
-        {projectList.map((project, i) =>
-          <tr key={i}>
+        {projectList.map(project =>
+          <tr key={project.id}>
             <td>
               <ProjectLink project={project}>{project.name}</ProjectLink>
             </td>

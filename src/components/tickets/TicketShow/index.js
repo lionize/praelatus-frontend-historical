@@ -8,7 +8,7 @@ export class TicketShow extends Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired,
     loadTicket: React.PropTypes.func.isRequired,
-    ticket: React.PropTypes.object,
+    ticket: React.PropTypes.object.isRequired,
   }
 
   componentWillMount() {

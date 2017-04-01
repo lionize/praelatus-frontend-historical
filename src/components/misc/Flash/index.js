@@ -1,11 +1,6 @@
 import React from 'react'
 
 const Flash = ({ message }) => {
-  if (message == null || message.length === 0 ||
-     (typeof message === 'object' && message.data == null)) {
-    return (<div />)
-  }
-
   if (typeof message === 'object') {
     return (
       <div className="flash-message">
@@ -25,7 +20,7 @@ Flash.propTypes = {
   message: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.object,
-  ])
+  ]).isRequired,
 }
 
 export default Flash

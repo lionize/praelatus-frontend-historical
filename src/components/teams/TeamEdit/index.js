@@ -12,6 +12,10 @@ export class TeamEdit extends Component {
     initialValues: React.PropTypes.object,
   }
 
+  static defaultProps = {
+    initialValues: {},
+  }
+
   componentWillMount() {
     this.props.loadTeam(this.props.params.name)
   }

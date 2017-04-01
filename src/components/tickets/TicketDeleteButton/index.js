@@ -8,7 +8,7 @@ const TicketDeleteButton = ({ ticket, deleteTicket }) => (
 )
 
 TicketDeleteButton.propTypes = {
-  ticket: React.PropTypes.object,
+  ticket: React.PropTypes.object.isRequired,
   deleteTicket: React.PropTypes.func.isRequired,
 }
 
