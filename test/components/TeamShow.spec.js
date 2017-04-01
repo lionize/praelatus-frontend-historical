@@ -37,13 +37,13 @@ describe('TeamShow Component', () => {
 
   it('calls load team action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<TeamShow loadTeam={callback} params={{ name: 'TEAM-1' }} />)
+    const wrapper = shallow(<TeamShow loadTeam={callback} team={{}} params={{ name: 'TEAM-1' }} />)
     expect(callback.calledOnce).to.be.true
   })
 
   it('calls load team action on update', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<TeamShow loadTeam={callback} params={{name: 'TEAM-2'}} />)
+    const wrapper = shallow(<TeamShow loadTeam={callback} team={{}} params={{name: 'TEAM-2'}} />)
     callback.reset()
     wrapper.instance().componentDidUpdate({ params: { name: 'TEAM-1' } })
     expect(callback.calledOnce).to.be.true

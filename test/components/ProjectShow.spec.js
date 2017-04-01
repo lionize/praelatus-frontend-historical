@@ -13,6 +13,7 @@ describe('ProjectShow Component', () => {
           keys: ['PROJECT-TEST'],
           byKey: {
             'PROJECT-TEST': {
+              id: 0,
               key: 'PROJECT-TEST'
             }
           }
@@ -39,13 +40,13 @@ describe('ProjectShow Component', () => {
 
   it('calls load project action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<ProjectShow loadProject={callback} params={{ key: 'PROJECT-1' }} />)
+    const wrapper = shallow(<ProjectShow loadProject={callback} project={{ id: 0 }} params={{ key: 'PROJECT-1' }} />)
     expect(callback.calledOnce).to.be.true
   })
 
   it('calls load project action on update', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<ProjectShow loadProject={callback} params={{ key: 'PROJECT-1' }} />)
+    const wrapper = shallow(<ProjectShow loadProject={callback} project={{ id: 0 }} params={{ key: 'PROJECT-1' }} />)
     callback.reset()
     wrapper.instance().componentDidUpdate({ params: { key: 'PROJECT-2' } })
     expect(callback.calledOnce).to.be.true

@@ -28,9 +28,11 @@ describe('TicketTable Component', () => {
       summary: 'Ticket Summary',
       description: 'Ticket Description',
       reporter: {
+        id: 0,
         username: 'user0',
       },
       assignee: {
+        id: 1,
         username: 'user1',
       },
     }
@@ -58,7 +60,7 @@ describe('TicketTable Component', () => {
   })
 
   it('does not render reporter and assignee links if not provided', () => {
-    const { userLink } = setup({ tickets: [{}] })
+    const { userLink } = setup({ tickets: [{ id: 0 }] })
 
     expect(userLink.exists()).to.be.false
   })

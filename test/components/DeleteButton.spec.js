@@ -6,7 +6,7 @@ import { DeleteButton } from 'components'
 
 describe('DeleteButton Component', () => {
   it('renders', () => {
-    const wrapper = shallow(<DeleteButton />)
+    const wrapper = shallow(<DeleteButton handleClick={() => {}} />)
 
     expect(wrapper.exists()).to.be.true
   })

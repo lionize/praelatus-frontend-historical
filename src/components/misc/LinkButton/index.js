@@ -13,11 +13,6 @@ const LinkButton = ({ to, children, ...rest }) => (
 LinkButton.propTypes = {
   to: React.PropTypes.string.isRequired,
   children: React.PropTypes.node.isRequired,
-  rest: React.PropTypes.any,
-}
-
-LinkButton.defaultProps = {
-  rest: {},
 }
 
 export default LinkButton

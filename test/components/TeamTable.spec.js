@@ -23,20 +23,24 @@ describe('TeamTable Component', () => {
 
   const fixtures = [
     {
+      id: 0,
       name: 'Team With Lead',
       lead: {
         username: 'user0',
+        id: 0,
       },
     },
     {
+      id: 1,
       name: 'Team With Members',
       members: [
-        { username: 'user0' },
-        { username: 'user1' },
-        { username: 'user2' },
+        { username: 'user0', id: 0 },
+        { username: 'user1', id: 1 },
+        { username: 'user2', id: 2 },
       ],
     },
     {
+      id: 2,
       name: 'Team With None'
     }
   ]

@@ -70,19 +70,21 @@ describe('TeamCard Component', () => {
     })
 
     it('renders team lead link', () => {
-      const team = { name: 'team', lead: { username: 'user0' } }
+      const user = { username: 'user0', id: 0 }
+      const team = { name: 'team', lead: user }
       const { userLink } = setup({ team })
 
-      expect(userLink.prop('user')).to.deep.eq({ username: 'user0' })
+      expect(userLink.prop('user')).to.deep.eq(user)
       expect(userLink.prop('children')).to.eq('user0')
     })
 
     it('renders team member links', () => {
-      const team = { name: 'team', members: [{ username: 'user0' }] }
+      const user = { username: 'user0', id: 0 }
+      const team = { name: 'team', members: [user] }
 
       const { userLink } = setup({ team })
 
-      expect(userLink.prop('user')).to.deep.eq({ username: 'user0' })
+      expect(userLink.prop('user')).to.deep.eq(user)
       expect(userLink.prop('children')).to.eq('user0')
     })
 

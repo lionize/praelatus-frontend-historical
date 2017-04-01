@@ -12,6 +12,7 @@ describe('TeamList Component', () => {
         names: ['TEAM-TEST'],
         byName: {
           'TEAM-TEST': {
+            id: 0,
             name: 'TEST-TEST',
           }
         }
@@ -53,9 +54,9 @@ describe('TeamList Component', () => {
 
   it('passes teams to table component', () => {
     const teams = [
-      { name: 'TEAM-1' },
-      { name: 'TEAM-2' },
-      { name: 'TEAM-3' },
+      { name: 'TEAM-1', id: 0 },
+      { name: 'TEAM-2', id: 1 },
+      { name: 'TEAM-3', id: 2 },
     ]
     const { wrapper } = setup({ teams })
     const table = wrapper.find(TeamTable)

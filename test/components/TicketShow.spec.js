@@ -37,13 +37,13 @@ describe('TicketShow Component', () => {
 
   it('calls load ticket action on mount', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<TicketShow loadTicket={callback} params={{ key: 'TICKET-1' }} />)
+    const wrapper = shallow(<TicketShow loadTicket={callback} ticket={{}} params={{ key: 'TICKET-1' }} />)
     expect(callback.calledOnce)
   })
 
   it('calls load ticket action on update', () => {
     const callback = sinon.spy()
-    const wrapper = shallow(<TicketShow loadTicket={callback} params={{ key: 'TICKET-1' }} />)
+    const wrapper = shallow(<TicketShow loadTicket={callback} ticket={{}} params={{ key: 'TICKET-1' }} />)
     callback.reset()
     wrapper.instance().componentDidUpdate({ params: { key: 'TICKET-2' } })
     expect(callback.calledOnce).to.be.true

@@ -9,11 +9,6 @@ const Button = ({ children, ...rest }) => (
 
 Button.propTypes = {
   children: React.PropTypes.node.isRequired,
-  rest: React.PropTypes.object,
-}
-
-Button.defaultProps = {
-  rest: {},
 }
 
 export default Button
