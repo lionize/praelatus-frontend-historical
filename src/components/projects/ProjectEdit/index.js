@@ -27,7 +27,7 @@ export class ProjectEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  initialValues: project(state.data.projects, params.key)
+  initialValues: project(state, params.key)
 })
 
 export default withRouter(connect(

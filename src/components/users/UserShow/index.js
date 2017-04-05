@@ -27,8 +27,8 @@ export class UserShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  user: user(state.data.users, params.username),
-  loading: fetching(state.data.users),
+  user: user(state, params.username),
+  loading: fetching(state),
 })
 
 export default withRouter(connect(

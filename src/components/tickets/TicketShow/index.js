@@ -28,7 +28,7 @@ export class TicketShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  ticket: ticket(state.data.tickets, params.key),
+  ticket: ticket(state, params.key),
 })
 
 export default withRouter(connect(

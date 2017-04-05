@@ -28,7 +28,7 @@ export class TicketEdit extends Component {
 
 const mapStateToProps = (state, { params }) => {
   return {
-    initialValues: ticket(state.data.tickets, params.key),
+    initialValues: ticket(state, params.key),
   }
 }
 

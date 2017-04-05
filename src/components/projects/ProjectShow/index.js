@@ -28,7 +28,7 @@ export class ProjectShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  project: project(state.data.projects, params.key)
+  project: project(state, params.key)
 })
 
 export default withRouter(connect(

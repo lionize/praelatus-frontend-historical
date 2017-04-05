@@ -28,7 +28,7 @@ export class TeamShow extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  team: team(state.data.teams, params.name)
+  team: team(state, params.name)
 })
 
 export default withRouter(connect(

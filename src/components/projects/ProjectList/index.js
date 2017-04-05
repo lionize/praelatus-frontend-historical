@@ -64,7 +64,7 @@ class ProjectList extends Component {
 export { ProjectList }
 
 const mapStateToProps = state => ({
-  projects: projects(state.data.projects),
+  projects: projects(state),
 })
 
 export default connect(
