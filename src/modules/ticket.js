@@ -79,10 +79,10 @@ export const reducer = createReducer(INITIAL_STATE, {
 
 /* SELECTORS */
 
-export const ticket = (state, key) => state.byKey[key]
+export const ticket = (state, key) => state.data.tickets.byKey[key]
 
 export const tickets = (state, keys) => {
-  let ticketKeys = state.keys
+  let ticketKeys = state.data.tickets.keys
 
   if (keys) {
     ticketKeys = ticketKeys.filter(k => keys.includes(k))
@@ -91,6 +91,6 @@ export const tickets = (state, keys) => {
   return ticketKeys.map(k => ticket(state, k)) || []
 }
 
-export const fetching = state => state.fetching
+export const fetching = state => state.data.tickets.fetching
 
-export const error = state => state.error
+export const error = state => state.data.tickets.error

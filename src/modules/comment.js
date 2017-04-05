@@ -80,10 +80,10 @@ export const reducer = createReducer(INITIAL_STATE, {
 
 /* SELECTORS */
 
-export const comment = (state, id) => state.byId[String(id)]
+export const comment = (state, id) => state.data.comments.byId[String(id)]
 
 export const comments = (state, ids) => {
-  let commentIds = state.ids
+  let commentIds = state.data.comments.ids
 
   if (ids) {
     commentIds = commentIds.filter(i => ids.includes(i))
@@ -92,6 +92,6 @@ export const comments = (state, ids) => {
   return commentIds.map(i => comment(state, i))
 }
 
-export const fetching = state => state.fetching
+export const fetching = state => state.data.comments.fetching
 
-export const error = state => state.error
+export const error = state => state.data.comments.error

@@ -62,27 +62,31 @@ describe('User - ', () => {
 
   describe('selectors', () => {
     const state = {
-      usernames: ['user0', 'user1'],
-      byUsername: {
-        'user0': {
-          id: 0,
-          username: 'user0',
-        },
-        'user1': {
-          id: 1,
-          username: 'user1'
-        },
-      },
-      fetching: true,
-      error: 'Error',
+      data: {
+        users: {
+          usernames: ['user0', 'user1'],
+          byUsername: {
+            'user0': {
+              id: 0,
+              username: 'user0',
+            },
+            'user1': {
+              id: 1,
+              username: 'user1'
+            },
+          },
+          fetching: true,
+          error: 'Error',
+        }
+      }
     }
 
     it('user', () => {
-      expect(user(state, 'user0')).to.eq(state.byUsername['user0'])
+      expect(user(state, 'user0')).to.eq(state.data.users.byUsername['user0'])
     })
 
     it('users', () => {
-      const expected = [state.byUsername['user0'], state.byUsername['user1']]
+      const expected = [state.data.users.byUsername['user0'], state.data.users.byUsername['user1']]
       expect(users(state, ['user0', 'user1'])).to.deep.eq(expected)
     })
 

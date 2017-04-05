@@ -65,27 +65,31 @@ describe('Comment - ', () => {
 
   describe('selectors', () => {
     const state = {
-      ids: [0, 1],
-      byId: {
-        '0': {
-          id: 0,
-          body: 'comment-0',
-        },
-        '1': {
-          id: 1,
-          body: 'comment-1'
-        },
-      },
-      fetching: true,
-      error: 'Error',
+      data: {
+        comments: {
+          ids: [0, 1],
+          byId: {
+            '0': {
+              id: 0,
+              body: 'comment-0',
+            },
+            '1': {
+              id: 1,
+              body: 'comment-1'
+            },
+          },
+          fetching: true,
+          error: 'Error',
+        }
+      }
     }
 
     it('comment', () => {
-      expect(comment(state, 0)).to.eq(state.byId['0'])
+      expect(comment(state, 0)).to.eq(state.data.comments.byId['0'])
     })
 
     it('comments', () => {
-      const expected = [state.byId['0'], state.byId['1']]
+      const expected = [state.data.comments.byId['0'], state.data.comments.byId['1']]
       expect(comments(state, [0, 1])).to.deep.eq(expected)
     })
 
