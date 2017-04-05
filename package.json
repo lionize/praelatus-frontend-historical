@@ -9,7 +9,7 @@
     "test:watch": "npm run test -- --watch",
     "test:coverage": "cross-env NODE_PATH=./src nyc mocha --compilers png:./mochacfg.js,js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
     "lint": "node ./node_modules/eslint/bin/eslint.js -c .eslintrc.js .",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 4999",
     "build-storybook": "build-storybook"
   },
   "repository": {
