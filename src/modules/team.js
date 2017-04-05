@@ -80,10 +80,10 @@ export const reducer = createReducer(INITIAL_STATE, {
 
 /* SELECTORS */
 
-export const team = (state, name) => state.byName[name]
+export const team = (state, name) => state.data.teams.byName[name]
 
 export const teams = (state, names) => {
-  let teamNames = state.names
+  let teamNames = state.data.teams.names
 
   if (names) {
     teamNames = teamNames.filter(n => names.includes(n))
@@ -92,6 +92,6 @@ export const teams = (state, names) => {
   return teamNames.map(n => team(state, n)) || []
 }
 
-export const fetching = state => state.fetching
+export const fetching = state => state.data.teams.fetching
 
-export const error = state => state.error
+export const error = state => state.data.teams.error

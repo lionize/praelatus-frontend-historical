@@ -63,27 +63,31 @@ describe('Ticket - ', () => {
 
   describe('selectors', () => {
     const state = {
-      keys: ['TICKET-0', 'TICKET-1'],
-      byKey: {
-        'TICKET-0': {
-          id: 0,
-          key: 'TICKET-0',
-        },
-        'TICKET-1': {
-          id: 1,
-          key: 'TICKET-1'
-        },
-      },
-      fetching: true,
-      error: 'Error',
+      data: {
+        tickets: {
+          keys: ['TICKET-0', 'TICKET-1'],
+          byKey: {
+            'TICKET-0': {
+              id: 0,
+              key: 'TICKET-0',
+            },
+            'TICKET-1': {
+              id: 1,
+              key: 'TICKET-1'
+            },
+          },
+          fetching: true,
+          error: 'Error',
+        }
+      }
     }
 
     it('ticket', () => {
-      expect(ticket(state, 'TICKET-0')).to.eq(state.byKey['TICKET-0'])
+      expect(ticket(state, 'TICKET-0')).to.eq(state.data.tickets.byKey['TICKET-0'])
     })
 
     it('tickets', () => {
-      const expected = [state.byKey['TICKET-0'], state.byKey['TICKET-1']]
+      const expected = [state.data.tickets.byKey['TICKET-0'], state.data.tickets.byKey['TICKET-1']]
       expect(tickets(state, ['TICKET-0', 'TICKET-1'])).to.deep.eq(expected)
     })
 

@@ -62,7 +62,7 @@ export class UserList extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: users(state.data.users),
+  users: users(state),
 })
 
 export default connect(

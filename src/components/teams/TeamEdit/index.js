@@ -27,7 +27,7 @@ export class TeamEdit extends Component {
 }
 
 const mapStateToProps = (state, { params }) => ({
-  initialValues: team(state.data.teams, params.name)
+  initialValues: team(state, params.name)
 })
 
 export default withRouter(connect(

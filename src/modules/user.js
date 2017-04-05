@@ -80,10 +80,10 @@ export const reducer = createReducer(INITIAL_STATE, {
 
 /* SELECTORS */
 
-export const user = (state, username) => state.byUsername[username]
+export const user = (state, username) => state.data.users.byUsername[username]
 
 export const users = (state, usernames) => {
-  let stateUsernames = state.usernames
+  let stateUsernames = state.data.users.usernames
 
   if (usernames) {
     stateUsernames = stateUsernames.filter(u => usernames.includes(u))
@@ -92,6 +92,6 @@ export const users = (state, usernames) => {
   return stateUsernames.map(u => user(state, u)) || []
 }
 
-export const fetching = state => state.fetching
+export const fetching = state => state.data.users.fetching
 
-export const error = state => state.error
+export const error = state => state.data.users.error

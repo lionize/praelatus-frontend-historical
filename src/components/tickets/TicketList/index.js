@@ -66,7 +66,7 @@ export class TicketList extends Component {
 }
 
 const mapStateToProps = state => ({
-  tickets: tickets(state.data.tickets),
+  tickets: tickets(state),
 })
 
 export default connect(

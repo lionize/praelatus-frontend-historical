@@ -67,27 +67,31 @@ describe('Team - ', () => {
 
   describe('selectors', () => {
     const state = {
-      names: ['team0', 'team1'],
-      byName: {
-        'team0': {
-          id: 0,
-          name: 'team0',
-        },
-        'team1': {
-          id: 1,
-          name: 'team1'
-        },
-      },
-      fetching: true,
-      error: 'Error',
+      data: {
+        teams: {
+          names: ['team0', 'team1'],
+          byName: {
+            'team0': {
+              id: 0,
+              name: 'team0',
+            },
+            'team1': {
+              id: 1,
+              name: 'team1'
+            },
+          },
+          fetching: true,
+          error: 'Error',
+        }
+      }
     }
 
     it('team', () => {
-      expect(team(state, 'team0')).to.eq(state.byName['team0'])
+      expect(team(state, 'team0')).to.eq(state.data.teams.byName['team0'])
     })
 
     it('teams', () => {
-      const expected = [state.byName['team0'], state.byName['team1']]
+      const expected = [state.data.teams.byName['team0'], state.data.teams.byName['team1']]
       expect(teams(state, ['team0', 'team1'])).to.deep.eq(expected)
     })
 

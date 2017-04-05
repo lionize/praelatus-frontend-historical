@@ -80,10 +80,10 @@ export const reducer = createReducer(INITIAL_STATE, {
 
 /* SELECTORS */
 
-export const project = (state, key) => state.byKey[key]
+export const project = (state, key) => state.data.projects.byKey[key]
 
 export const projects = (state, keys) => {
-  let projectKeys = state.keys
+  let projectKeys = state.data.projects.keys
 
   if (keys) {
     projectKeys = projectKeys.filter(k => keys.includes(k))
@@ -92,6 +92,6 @@ export const projects = (state, keys) => {
   return projectKeys.map(k => project(state, k)) || []
 }
 
-export const fetching = state => state.fetching
+export const fetching = state => state.data.projects.fetching
 
-export const error = state => state.error
+export const error = state => state.data.projects.error

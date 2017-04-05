@@ -63,27 +63,31 @@ describe('Project - ', () => {
 
   describe('selectors', () => {
     const state = {
-      keys: ['PROJECT-0', 'PROJECT-1'],
-      byKey: {
-        'PROJECT-0': {
-          id: 0,
-          key: 'PROJECT-0',
-        },
-        'PROJECT-1': {
-          id: 1,
-          key: 'PROJECT-1'
-        },
-      },
-      fetching: true,
-      error: 'Error',
+      data: {
+        projects: {
+          keys: ['PROJECT-0', 'PROJECT-1'],
+          byKey: {
+            'PROJECT-0': {
+              id: 0,
+              key: 'PROJECT-0',
+            },
+            'PROJECT-1': {
+              id: 1,
+              key: 'PROJECT-1'
+            },
+          },
+          fetching: true,
+          error: 'Error',
+        }
+      }
     }
 
     it('project', () => {
-      expect(project(state, 'PROJECT-0')).to.eq(state.byKey['PROJECT-0'])
+      expect(project(state, 'PROJECT-0')).to.eq(state.data.projects.byKey['PROJECT-0'])
     })
 
     it('projects', () => {
-      const expected = [state.byKey['PROJECT-0'], state.byKey['PROJECT-1']]
+      const expected = [state.data.projects.byKey['PROJECT-0'], state.data.projects.byKey['PROJECT-1']]
       expect(projects(state, ['PROJECT-0', 'PROJECT-1'])).to.deep.eq(expected)
     })
 
