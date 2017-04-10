@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import Flash from './index'
+import { Flash } from 'components'
 
 storiesOf('ErrorCard', module)
   .add('renders', () => (

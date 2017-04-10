@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import FormGroup from './index'
+import { FormGroup } from 'components'
 
 storiesOf('FormGroup', module)
   .add('renders', () => (

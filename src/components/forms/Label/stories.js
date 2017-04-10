@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import Label from './index'
+import { Label } from 'components'
 
 storiesOf('Label', module)
   .add('renders', () => (

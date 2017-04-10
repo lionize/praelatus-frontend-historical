@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { UserInfoBox } from './index'
+import { UserInfoBox } from 'components'
 
 storiesOf('UserInfoBox', module)
   .add('renders', () => (

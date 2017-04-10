@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import LoginLink from './index'
+import { LoginLink } from 'components'
 
 storiesOf('LoginLink', module)
   .add('renders', () => (

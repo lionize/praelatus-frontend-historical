@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import LinkButton from './index'
+import { LinkButton } from 'components'
 
 storiesOf('ErrorCard', module)
   .add('renders', () => (

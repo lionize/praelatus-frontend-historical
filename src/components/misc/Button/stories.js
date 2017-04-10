@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import Button from './index'
+import { Button } from 'components'
 
 storiesOf('Button', module)
   .add('renders', () => (
