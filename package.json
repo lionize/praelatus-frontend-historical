@@ -8,7 +8,8 @@
     "test": "cross-env NODE_PATH=./src mocha",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "cross-env NODE_PATH=./src nyc mocha --compilers png:./mochacfg.js,js:babel-core/register --require ./test/test_helper.js --require babel-polyfill --recursive",
-    "lint": "node ./node_modules/eslint/bin/eslint.js -c .eslintrc.js ."
+    "lint": "node ./node_modules/eslint/bin/eslint.js -c .eslintrc.js .",
+    "prettier": "prettier --single-quote --trailing-comma all --write \"{src,test}/**/*.js\""
   },
   "repository": {
     "type": "git",
