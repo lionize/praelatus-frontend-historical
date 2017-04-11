@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { LinkButton, UserLink, NotFoundCard, ErrorCard, TicketDeleteButton } from 'components'
 

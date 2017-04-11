@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import md5 from 'crypto-js/md5'
 
 const Gravatar = ({ email }) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { FormGroup, Label, Input, FormText } from 'components/forms'
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
