@@ -1,8 +1,10 @@
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { LoginForm } from 'components'
+import { storiesOf, action } from '@kadira/storybook'
+import Provider from 'provider'
+import { ConnectedForm as Form } from './index'
 
 storiesOf('LoginForm', module)
+  .addDecorator(Provider)
   .add('renders', () => (
-    <LoginForm>Render</LoginForm>
+    <Form onSubmit={action('submit')} />
   ))
