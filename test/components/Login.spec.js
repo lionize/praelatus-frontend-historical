@@ -25,7 +25,6 @@ describe('Login Component', () => {
     const wrapper = shallow(<LoginForm
       handleSubmit={callback}
     />)
-    console.log(wrapper)
     wrapper.find(Form).simulate('submit')
     expect(callback.called).to.be.true
   })
