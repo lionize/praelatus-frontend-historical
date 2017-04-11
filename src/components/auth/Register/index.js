@@ -19,12 +19,14 @@ RegisterForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
 }
 
-export { RegisterForm }
+const ConnectedForm = reduxForm({
+  form: 'register'
+})(RegisterForm)
+
+export { RegisterForm as Form, ConnectedForm }
 
 const stateToProps = state => ({ error: error(state.auth) })
 
 export default connect(stateToProps,
   { onSubmit: actions.registerRequest }
-)(reduxForm({
-  form: 'register'
-})(RegisterForm))
+)(ConnectedForm)
