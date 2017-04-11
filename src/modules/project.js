@@ -1,27 +1,30 @@
-import { createReducer, createActions } from 'reduxsauce'
-import { mergeWith } from 'ramda'
-import Immutable from 'seamless-immutable'
-import deepMerge from 'util-deep-merge'
+import { createReducer, createActions } from 'reduxsauce';
+import { mergeWith } from 'ramda';
+import Immutable from 'seamless-immutable';
+import deepMerge from 'util-deep-merge';
 
 /* TYPES AND ACTION CREATORS */
 
-const { Types: types, Creators: creators } = createActions({
-  fetchRequest: ['payload'],
-  fetchSuccess: ['response'],
-  fetchFailure: ['error'],
-  createRequest: ['payload'],
-  createSuccess: ['response'],
-  createFailure: ['error'],
-  updateRequest: ['payload'],
-  updateSuccess: ['response'],
-  updateFailure: ['error'],
-  deleteRequest: ['key'],
-  deleteSuccess: ['key'],
-  deleteFailure: ['error'],
-}, { prefix: 'PROJECT_' })
+const { Types: types, Creators: creators } = createActions(
+  {
+    fetchRequest: ['payload'],
+    fetchSuccess: ['response'],
+    fetchFailure: ['error'],
+    createRequest: ['payload'],
+    createSuccess: ['response'],
+    createFailure: ['error'],
+    updateRequest: ['payload'],
+    updateSuccess: ['response'],
+    updateFailure: ['error'],
+    deleteRequest: ['key'],
+    deleteSuccess: ['key'],
+    deleteFailure: ['error'],
+  },
+  { prefix: 'PROJECT_' },
+);
 
-export const projectTypes = types
-export default creators
+export const projectTypes = types;
+export default creators;
 
 /* INITIAL STATE */
 
@@ -30,7 +33,7 @@ export const INITIAL_STATE = Immutable({
   keys: [],
   error: null,
   fetching: false,
-})
+});
 
 /* REDUCERS */
 
@@ -38,25 +41,28 @@ export const request = state =>
   state.merge({
     fetching: true,
     error: null,
-  })
+  });
 
 export const success = (state, { response }) =>
-  Immutable(mergeWith(deepMerge, state, {
+  Immutable(
+    mergeWith(deepMerge, state, {
+      fetching: false,
+      error: null,
+      keys: response.keys,
+      byKey: response.entities,
+    }),
+  );
+
+export const failure = (state, { error }) =>
+  state.merge({ fetching: false, error });
+
+export const remove = (state, { key }) =>
+  state.merge({
     fetching: false,
     error: null,
-    keys: response.keys,
-    byKey: response.entities,
-  }))
-
-export const failure = (state, { error }) => state.merge({ fetching: false, error })
-
-export const remove = (state, { key }) => state.merge({
-  fetching: false,
-  error: null,
-  keys: state.keys.filter(k => k !== key),
-  byKey: state.byKey.without(key)
-})
-
+    keys: state.keys.filter(k => k !== key),
+    byKey: state.byKey.without(key),
+  });
 
 /* HOOKUP REDUCERS TO TYPES */
 
@@ -76,22 +82,22 @@ export const reducer = createReducer(INITIAL_STATE, {
   [types.DELETE_REQUEST]: request,
   [types.DELETE_SUCCESS]: remove,
   [types.DELETE_FAILURE]: failure,
-})
+});
 
 /* SELECTORS */
 
-export const project = (state, key) => state.data.projects.byKey[key]
+export const project = (state, key) => state.data.projects.byKey[key];
 
 export const projects = (state, keys) => {
-  let projectKeys = state.data.projects.keys
+  let projectKeys = state.data.projects.keys;
 
   if (keys) {
-    projectKeys = projectKeys.filter(k => keys.includes(k))
+    projectKeys = projectKeys.filter(k => keys.includes(k));
   }
 
-  return projectKeys.map(k => project(state, k)) || []
-}
+  return projectKeys.map(k => project(state, k)) || [];
+};
 
-export const fetching = state => state.data.projects.fetching
+export const fetching = state => state.data.projects.fetching;
 
-export const error = state => state.data.projects.error
+export const error = state => state.data.projects.error;

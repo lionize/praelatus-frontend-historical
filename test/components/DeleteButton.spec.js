@@ -1,22 +1,22 @@
-import React from 'react'
-import { expect } from 'chai'
-import sinon from 'sinon'
-import { shallow } from 'enzyme'
-import { DeleteButton } from 'components'
+import React from 'react';
+import { expect } from 'chai';
+import sinon from 'sinon';
+import { shallow } from 'enzyme';
+import { DeleteButton } from 'components';
 
 describe('DeleteButton Component', () => {
   it('renders', () => {
-    const wrapper = shallow(<DeleteButton handleClick={() => {}} />)
+    const wrapper = shallow(<DeleteButton handleClick={() => {}} />);
 
-    expect(wrapper.exists()).to.be.true
-  })
+    expect(wrapper.exists()).to.be.true;
+  });
 
   it('handles click callback', () => {
-    const callback = sinon.spy()
-    const wrapper = shallow(<DeleteButton handleClick={callback} />)
+    const callback = sinon.spy();
+    const wrapper = shallow(<DeleteButton handleClick={callback} />);
 
-    wrapper.simulate('click')
+    wrapper.simulate('click');
 
-    expect(callback.called).to.be.true
-  })
-})
+    expect(callback.called).to.be.true;
+  });
+});

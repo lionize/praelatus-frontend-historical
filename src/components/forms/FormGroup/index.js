@@ -1,8 +1,6 @@
-import React from 'react'
-import { FormGroup as ReactstrapFormGroup } from 'reactstrap'
+import React from 'react';
+import { FormGroup as ReactstrapFormGroup } from 'reactstrap';
 
-const FormGroup = props => (
-  <ReactstrapFormGroup {...props} />
-)
+const FormGroup = props => <ReactstrapFormGroup {...props} />;
 
-export default FormGroup
+export default FormGroup;

@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Card, CardTitle, CardText } from 'reactstrap'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Card, CardTitle, CardText } from 'reactstrap';
 
 const ErrorCard = ({ error }) => (
   <div>
@@ -9,10 +9,10 @@ const ErrorCard = ({ error }) => (
       <CardText>Error: {error}</CardText>
     </Card>
   </div>
-)
+);
 
 ErrorCard.propTypes = {
   error: PropTypes.string.isRequired,
-}
+};
 
-export default ErrorCard
+export default ErrorCard;

@@ -1,5 +1,12 @@
-import { flowRight as compose, add, max, map, find, findIndex } from 'lodash/fp'
-import parseResponse from 'utils/parse-response'
+import {
+  flowRight as compose,
+  add,
+  max,
+  map,
+  find,
+  findIndex,
+} from 'lodash/fp';
+import parseResponse from 'utils/parse-response';
 
 const users = [
   {
@@ -21,8 +28,8 @@ const users = [
     gravatar: 'user2@users.com',
     profilePic: '',
     isAdmin: false,
-  }
-]
+  },
+];
 
 const projects = [
   {
@@ -44,8 +51,8 @@ const projects = [
     iconURL: '',
     repo: '',
     lead: users[1],
-  }
-]
+  },
+];
 
 const tickets = [
   {
@@ -69,8 +76,8 @@ const tickets = [
     reporter: users[1],
     assignee: users[0],
     project: projects[1],
-  }
-]
+  },
+];
 
 const teams = [
   {
@@ -84,8 +91,8 @@ const teams = [
     name: 'Team 2',
     lead: users[1],
     members: users,
-  }
-]
+  },
+];
 
 const comments = [
   {
@@ -97,130 +104,134 @@ const comments = [
     id: 1,
     body: 'This is second comment',
     author: users[1],
-  }
-]
+  },
+];
 
-const respondWith = info => Promise.resolve({
-  ...info
-})
+const respondWith = info =>
+  Promise.resolve({
+    ...info,
+  });
 
-const nextID = compose(add(1), max, map('id'))
-const idIndex = (id, collection) => findIndex({ id }, collection)
+const nextID = compose(add(1), max, map('id'));
+const idIndex = (id, collection) => findIndex({ id }, collection);
 
 const fetchTickets = (payload = {}) => {
-  return parseResponse(tickets, 'key')
-}
+  return parseResponse(tickets, 'key');
+};
 
 const createTicket = (payload = {}) => {
-  const id = nextID(tickets)
+  const id = nextID(tickets);
 
-  const ticket = Object.assign({}, payload, { id })
-  tickets.push(ticket)
+  const ticket = Object.assign({}, payload, { id });
+  tickets.push(ticket);
 
-  return parseResponse(ticket, 'key')
-}
+  return parseResponse(ticket, 'key');
+};
 
 const updateTicket = (payload = {}) => {
-  const index = idIndex(payload.id, tickets)
+  const index = idIndex(payload.id, tickets);
 
-  tickets[index] = payload
+  tickets[index] = payload;
 
-  return parseResponse(payload, 'key')
-}
+  return parseResponse(payload, 'key');
+};
 
 const deleteTicket = payload => {
-  const index = idIndex(payload.id, tickets)
+  const index = idIndex(payload.id, tickets);
 
-  tickets.splice(index, 1)
+  tickets.splice(index, 1);
 
-  return payload
-}
+  return payload;
+};
 
 const fetchTeams = (payload = {}) => {
-  return parseResponse(teams, 'name')
-}
+  return parseResponse(teams, 'name');
+};
 
 const createTeam = payload => {
-  const id = nextID(teams)
+  const id = nextID(teams);
 
-  const team = Object.assign({}, payload, { id })
-  teams.push(team)
+  const team = Object.assign({}, payload, { id });
+  teams.push(team);
 
-  return parseResponse(team, 'name')
-}
+  return parseResponse(team, 'name');
+};
 
 const updateTeam = payload => {
-  const index = idIndex(payload.id, teams)
+  const index = idIndex(payload.id, teams);
 
-  teams[index] = payload
+  teams[index] = payload;
 
-  return parseResponse(payload, 'name')
-}
+  return parseResponse(payload, 'name');
+};
 
 const deleteTeam = payload => {
-  const index = idIndex(payload, teams)
+  const index = idIndex(payload, teams);
 
-  teams.splice(index, 1)
+  teams.splice(index, 1);
 
-  return payload
-}
+  return payload;
+};
 
 const fetchProjects = (payload = {}) => {
-  return parseResponse(projects, 'key')
-}
+  return parseResponse(projects, 'key');
+};
 
 const createProject = payload => {
-  const id = nextID(projects)
-  const key = payload.name.toUpperCase() + '-' + id
+  const id = nextID(projects);
+  const key = payload.name.toUpperCase() + '-' + id;
 
-  const project = Object.assign({}, payload, { id, key })
-  projects.push(project)
+  const project = Object.assign({}, payload, { id, key });
+  projects.push(project);
 
-  return parseResponse(project, 'key')
-}
+  return parseResponse(project, 'key');
+};
 
 const updateProject = (payload = {}) => {
-  const index = idIndex(payload.id, projects)
+  const index = idIndex(payload.id, projects);
 
-  projects[index] = payload
+  projects[index] = payload;
 
-  return parseResponse(payload, 'key')
-}
+  return parseResponse(payload, 'key');
+};
 
 const deleteProject = payload => {
-  const index = idIndex(payload, projects)
+  const index = idIndex(payload, projects);
 
-  projects.splice(index, 1)
+  projects.splice(index, 1);
 
-  return payload
-}
+  return payload;
+};
 
-const fetchComments = payload => respondWith(comments)
-const createComment = payload => {}
-const updateComment = payload => {}
-const deleteComment = payload => {}
+const fetchComments = payload => respondWith(comments);
+const createComment = payload => {};
+const updateComment = payload => {};
+const deleteComment = payload => {};
 
 const fetchUsers = (payload = {}) => {
-  return parseResponse(users, 'username')
-}
-const createUser = payload => {}
-const updateUser = payload => {}
-const deleteUser = payload => {}
+  return parseResponse(users, 'username');
+};
+const createUser = payload => {};
+const updateUser = payload => {};
+const deleteUser = payload => {};
 
 const login = payload => {
-  const user = find({ username: payload.username, password: payload.password }, users)
+  const user = find(
+    { username: payload.username, password: payload.password },
+    users,
+  );
 
-  return respondWith({ token: 'TOKEN_STRING', user })
-}
+  return respondWith({ token: 'TOKEN_STRING', user });
+};
 
 const register = payload => {
-  const user = payload
-  user.id = nextID(users)
-  users.push(user)
-  delete user.password
+  const user = payload;
+  user.id = nextID(users);
+  users.push(user);
+  delete user.password;
 
-  return respondWith({ token: 'TOKEN_STRING', user })
-}
+  return respondWith({ token: 'TOKEN_STRING', user });
+};
 
 export default {
   fetchTickets,
@@ -245,4 +256,4 @@ export default {
   deleteUser,
   login,
   register,
-}
+};

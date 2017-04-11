@@ -1,40 +1,43 @@
-import { takeLatest } from 'redux-saga'
-import API from 'services/api'
+import { takeLatest } from 'redux-saga';
+import API from 'services/api';
 
 /* Types */
-import { authTypes } from 'modules/auth'
-import { commentTypes } from 'modules/comment'
-import { projectTypes } from 'modules/project'
-import { teamTypes } from 'modules/team'
-import { ticketTypes } from 'modules/ticket'
-import { userTypes } from 'modules/user'
+import { authTypes } from 'modules/auth';
+import { commentTypes } from 'modules/comment';
+import { projectTypes } from 'modules/project';
+import { teamTypes } from 'modules/team';
+import { ticketTypes } from 'modules/ticket';
+import { userTypes } from 'modules/user';
 
 /* Sagas */
 
+import { login, register, logout } from 'sagas/auth';
 import {
-  login, register, logout
-} from 'sagas/auth'
+  fetchComments,
+  createComment,
+  updateComment,
+  deleteComment,
+} from 'sagas/comments';
 import {
-  fetchComments, createComment, updateComment, deleteComment
-} from 'sagas/comments'
+  fetchProjects,
+  createProject,
+  updateProject,
+  deleteProject,
+} from 'sagas/projects';
+import { fetchTeams, createTeam, updateTeam, deleteTeam } from 'sagas/teams';
 import {
-  fetchProjects, createProject, updateProject, deleteProject
-} from 'sagas/projects'
-import {
-  fetchTeams, createTeam, updateTeam, deleteTeam
-} from 'sagas/teams'
-import {
-  fetchTickets, createTicket, updateTicket, deleteTicket
-} from 'sagas/tickets'
-import {
-  fetchUsers, createUser, updateUser, deleteUser
-} from 'sagas/users'
+  fetchTickets,
+  createTicket,
+  updateTicket,
+  deleteTicket,
+} from 'sagas/tickets';
+import { fetchUsers, createUser, updateUser, deleteUser } from 'sagas/users';
 
 /* API */
 
 // We use a separate variable so that we can switch between different API
 // services, e.g. fixture api, if we so choose.
-const api = API
+const api = API;
 
 export default function* root() {
   yield [
@@ -72,5 +75,5 @@ export default function* root() {
     takeLatest(authTypes.LOGIN_REQUEST, login, api),
     takeLatest(authTypes.REGISTER_REQUEST, register, api),
     takeLatest(authTypes.LOGOUT, logout),
-  ]
+  ];
 }

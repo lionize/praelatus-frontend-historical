@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Card, CardTitle, CardText, Row, Col } from 'reactstrap'
+import React from 'react';
+import { Button, Card, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 const Home = () => (
   <Row>
@@ -7,10 +7,10 @@ const Home = () => (
       <Card block>
         <CardTitle>Welcome to Praelatus</CardTitle>
         <CardText>New to Praelatus?</CardText>
-        <Button color="primary">See the User&apos;s Guide</Button>
+        <Button color="primary">See the User's Guide</Button>
       </Card>
     </Col>
   </Row>
- )
+);
 
-export default Home
+export default Home;

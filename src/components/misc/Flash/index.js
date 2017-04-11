@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const Flash = ({ message }) => {
   if (typeof message === 'object') {
@@ -8,21 +8,18 @@ const Flash = ({ message }) => {
       <div className="flash-message">
         {message.data.message}
       </div>
-    )
+    );
   }
 
   return (
     <div className="flash-message">
       {message}
     </div>
-  )
-}
+  );
+};
 
 Flash.propTypes = {
-  message: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]).isRequired,
-}
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+};
 
-export default Flash
+export default Flash;
