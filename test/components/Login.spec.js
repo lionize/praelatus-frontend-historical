@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import sinon from 'sinon'
 import { wrapProvider } from '../utilities'
-import Login, { LoginForm } from 'components/auth/Login'
+import Login, { Form as LoginForm } from 'components/auth/Login'
 import { Form } from 'components'
 
 describe('Login Component', () => {
@@ -25,6 +25,7 @@ describe('Login Component', () => {
     const wrapper = shallow(<LoginForm
       handleSubmit={callback}
     />)
+    console.log(wrapper)
     wrapper.find(Form).simulate('submit')
     expect(callback.called).to.be.true
   })

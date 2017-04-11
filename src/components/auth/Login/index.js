@@ -17,10 +17,10 @@ LoginForm.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
 }
 
-export { LoginForm }
+const ConnectedForm = reduxForm({ form: 'login' })(LoginForm)
+
+export { LoginForm as Form, ConnectedForm }
 
 export default connect(null,
   { onSubmit: actions.loginRequest }
-)(reduxForm({
-  form: 'login'
-})(LoginForm))
+)(ConnectedForm)
