@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { ticket } from 'modules/ticket'
@@ -6,9 +7,9 @@ import { TicketCard } from 'components'
 
 export class TicketShow extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadTicket: React.PropTypes.func.isRequired,
-    ticket: React.PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    loadTicket: PropTypes.func.isRequired,
+    ticket: PropTypes.object.isRequired,
   }
 
   componentWillMount() {

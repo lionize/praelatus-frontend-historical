@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { LinkButton, UserLink, NotFoundCard, ErrorCard, TicketDeleteButton } from 'components'
 
@@ -43,9 +44,9 @@ const Ticket = ({ ticket, loading, error }) => {
 }
 
 Ticket.propTypes = {
-  ticket: React.PropTypes.object,
-  error: React.PropTypes.string,
-  loading: React.PropTypes.bool,
+  ticket: PropTypes.object,
+  error: PropTypes.string,
+  loading: PropTypes.bool,
 }
 
 Ticket.defaultProps = {

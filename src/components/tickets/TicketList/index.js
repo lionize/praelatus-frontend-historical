@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import actions, {
   tickets,
@@ -46,13 +47,13 @@ export const TicketTable = ({ tickets: ticketList }) => (
 )
 
 TicketTable.propTypes = {
-  tickets: React.PropTypes.array.isRequired,
+  tickets: PropTypes.array.isRequired,
 }
 
 export class TicketList extends Component {
   static propTypes = {
-    loadTickets: React.PropTypes.func.isRequired,
-    tickets: React.PropTypes.array.isRequired,
+    loadTickets: PropTypes.func.isRequired,
+    tickets: PropTypes.array.isRequired,
   }
 
   componentWillMount() {

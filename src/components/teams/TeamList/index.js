@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import actions, { teams } from 'modules/team'
@@ -45,13 +46,13 @@ export const TeamTable = ({ teams: teamList }) => (
 )
 
 TeamTable.propTypes = {
-  teams: React.PropTypes.array.isRequired,
+  teams: PropTypes.array.isRequired,
 }
 
 class TeamList extends Component {
   static propTypes = {
-    loadTeams: React.PropTypes.func.isRequired,
-    teams: React.PropTypes.array.isRequired,
+    loadTeams: PropTypes.func.isRequired,
+    teams: PropTypes.array.isRequired,
   }
 
   componentWillMount() {

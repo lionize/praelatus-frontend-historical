@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import { Button } from 'components'
 
@@ -11,8 +12,8 @@ const LinkButton = ({ to, children, ...rest }) => (
 )
 
 LinkButton.propTypes = {
-  to: React.PropTypes.string.isRequired,
-  children: React.PropTypes.node.isRequired,
+  to: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default LinkButton

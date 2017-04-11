@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
 const TicketLink = ({ ticket, children }) => (
@@ -8,8 +9,8 @@ const TicketLink = ({ ticket, children }) => (
 )
 
 TicketLink.propTypes = {
-  ticket: React.PropTypes.object.isRequired,
-  children: React.PropTypes.node,
+  ticket: PropTypes.object.isRequired,
+  children: PropTypes.node,
 }
 
 TicketLink.defaultProps = {

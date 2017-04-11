@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { ticket } from 'modules/ticket'
@@ -6,10 +7,10 @@ import { TicketForm } from 'components'
 
 export class TicketEdit extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadTicket: React.PropTypes.func.isRequired,
-    updateTicket: React.PropTypes.func.isRequired,
-    initialValues: React.PropTypes.object,
+    params: PropTypes.object.isRequired,
+    loadTicket: PropTypes.func.isRequired,
+    updateTicket: PropTypes.func.isRequired,
+    initialValues: PropTypes.object,
   }
 
   static defaultProps = {

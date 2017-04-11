@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import actions from 'modules/team'
 import { TeamForm } from 'components'
@@ -8,7 +9,7 @@ export const TeamNew = ({ createTeam }) => (
 )
 
 TeamNew.propTypes = {
-  createTeam: React.PropTypes.func.isRequired,
+  createTeam: PropTypes.func.isRequired,
 }
 
 export default connect(null,

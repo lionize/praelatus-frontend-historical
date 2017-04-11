@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import actions from 'modules/auth'
 import { Button } from 'components'
@@ -8,7 +9,7 @@ const LogoutLink = ({ logout }) => (
 )
 
 LogoutLink.propTypes = {
-  logout: React.PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 }
 
 export default connect(null,

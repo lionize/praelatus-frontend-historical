@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import actions from 'modules/auth'
@@ -14,7 +15,7 @@ const LoginForm = ({ handleSubmit }) => (
 )
 
 LoginForm.propTypes = {
-  handleSubmit: React.PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 export { LoginForm }

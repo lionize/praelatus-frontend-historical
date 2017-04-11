@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { Gravatar, NotFoundCard, ErrorCard } from 'components'
 
@@ -32,9 +33,9 @@ const UserCard = ({ user, loading, error }) => {
 }
 
 UserCard.propTypes = {
-  user: React.PropTypes.object,
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.string,
+  user: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
 }
 
 UserCard.defaultProps = {

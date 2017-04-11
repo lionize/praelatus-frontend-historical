@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Card, CardTitle, CardText } from 'reactstrap'
 import { LinkButton } from 'components'
 
@@ -15,7 +16,7 @@ const NotFoundCard = ({ type }) => (
 )
 
 NotFoundCard.propTypes = {
-  type: React.PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 export default NotFoundCard

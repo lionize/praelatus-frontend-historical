@@ -1,5 +1,7 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 const Flash = ({ message }) => {
   if (typeof message === 'object') {
     return (
@@ -17,9 +19,9 @@ const Flash = ({ message }) => {
 }
 
 Flash.propTypes = {
-  message: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
   ]).isRequired,
 }
 

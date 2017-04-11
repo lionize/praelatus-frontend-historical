@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FormGroup, Label, Input, FormText } from 'components/forms'
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
@@ -21,13 +22,13 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 }
 
 renderField.propTypes = {
-  input: React.PropTypes.object.isRequired,
-  label: React.PropTypes.string.isRequired,
-  type: React.PropTypes.string.isRequired,
-  meta: React.PropTypes.shape({
-    touched: React.PropTypes.bool,
-    error: React.PropTypes.string,
-    warning: React.PropTypes.string,
+  input: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool,
+    error: PropTypes.string,
+    warning: PropTypes.string,
   }).isRequired
 }
 
