@@ -20,6 +20,7 @@ module.exports = {
       modules: src + '/modules',
       assets: src + '/assets',
       utils: src + '/utils',
+      provider: path.resolve(__dirname, 'Provider.js')
     },
     extensions: ['', '.js']
   },
