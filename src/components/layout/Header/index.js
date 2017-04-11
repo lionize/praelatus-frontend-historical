@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router'
-import { Navbar, NavbarBrand } from 'reactstrap'
-import { UserInfoBox } from 'components'
+import React from 'react';
+import { Link } from 'react-router';
+import { Navbar, NavbarBrand } from 'reactstrap';
+import { UserInfoBox } from 'components';
 
 const Header = () => (
   <Navbar color="faded" className="nav-main" light>
@@ -31,6 +31,6 @@ const Header = () => (
       <UserInfoBox />
     </div>
   </Navbar>
-)
+);
 
-export default Header
+export default Header;

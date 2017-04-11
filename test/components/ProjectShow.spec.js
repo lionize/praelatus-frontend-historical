@@ -1,9 +1,9 @@
-import React from 'react'
-import { expect } from 'chai'
-import { shallow, mount } from 'enzyme'
-import sinon from 'sinon'
-import { wrapRouter, wrapProvider } from '../utilities'
-import Container, { ProjectShow } from 'components/projects/ProjectShow'
+import React from 'react';
+import { expect } from 'chai';
+import { shallow, mount } from 'enzyme';
+import sinon from 'sinon';
+import { wrapRouter, wrapProvider } from '../utilities';
+import Container, { ProjectShow } from 'components/projects/ProjectShow';
 
 describe('ProjectShow Component', () => {
   it('renders', () => {
@@ -14,41 +14,51 @@ describe('ProjectShow Component', () => {
           byKey: {
             'PROJECT-TEST': {
               id: 0,
-              key: 'PROJECT-TEST'
-            }
-          }
-        }
-      }
-    }
+              key: 'PROJECT-TEST',
+            },
+          },
+        },
+      },
+    };
     const params = {
-      key: 'PROJECT-TEST'
-    }
+      key: 'PROJECT-TEST',
+    };
 
-    let Enhanced = wrapProvider({ state })(Container)
-    Enhanced = wrapRouter({ params })(Enhanced)
+    let Enhanced = wrapProvider({ state })(Container);
+    Enhanced = wrapRouter({ params })(Enhanced);
 
-    const wrapper = mount(
-      <Enhanced />
-    )
+    const wrapper = mount(<Enhanced />);
 
-    const container = wrapper.find(Container)
-    const component = wrapper.find(ProjectShow)
+    const container = wrapper.find(Container);
+    const component = wrapper.find(ProjectShow);
 
-    expect(container.exists()).to.be.true
-    expect(component.exists()).to.be.true
-  })
+    expect(container.exists()).to.be.true;
+    expect(component.exists()).to.be.true;
+  });
 
   it('calls load project action on mount', () => {
-    const callback = sinon.spy()
-    const wrapper = shallow(<ProjectShow loadProject={callback} project={{ id: 0 }} params={{ key: 'PROJECT-1' }} />)
-    expect(callback.calledOnce).to.be.true
-  })
+    const callback = sinon.spy();
+    const wrapper = shallow(
+      <ProjectShow
+        loadProject={callback}
+        project={{ id: 0 }}
+        params={{ key: 'PROJECT-1' }}
+      />,
+    );
+    expect(callback.calledOnce).to.be.true;
+  });
 
   it('calls load project action on update', () => {
-    const callback = sinon.spy()
-    const wrapper = shallow(<ProjectShow loadProject={callback} project={{ id: 0 }} params={{ key: 'PROJECT-1' }} />)
-    callback.reset()
-    wrapper.instance().componentDidUpdate({ params: { key: 'PROJECT-2' } })
-    expect(callback.calledOnce).to.be.true
-  })
-})
+    const callback = sinon.spy();
+    const wrapper = shallow(
+      <ProjectShow
+        loadProject={callback}
+        project={{ id: 0 }}
+        params={{ key: 'PROJECT-1' }}
+      />,
+    );
+    callback.reset();
+    wrapper.instance().componentDidUpdate({ params: { key: 'PROJECT-2' } });
+    expect(callback.calledOnce).to.be.true;
+  });
+});

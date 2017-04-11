@@ -1,27 +1,30 @@
-import { createReducer, createActions } from 'reduxsauce'
-import { mergeWith } from 'ramda'
-import Immutable from 'seamless-immutable'
-import deepMerge from 'util-deep-merge'
+import { createReducer, createActions } from 'reduxsauce';
+import { mergeWith } from 'ramda';
+import Immutable from 'seamless-immutable';
+import deepMerge from 'util-deep-merge';
 
 /* TYPES AND ACTION CREATORS */
 
-const { Types: types, Creators: creators } = createActions({
-  fetchRequest: ['payload'],
-  fetchSuccess: ['response'],
-  fetchFailure: ['error'],
-  createRequest: ['payload'],
-  createSuccess: ['response'],
-  createFailure: ['error'],
-  updateRequest: ['payload'],
-  updateSuccess: ['response'],
-  updateFailure: ['error'],
-  deleteRequest: ['id'],
-  deleteSuccess: ['id'],
-  deleteFailure: ['error'],
-}, { prefix: 'COMMENT_' })
+const { Types: types, Creators: creators } = createActions(
+  {
+    fetchRequest: ['payload'],
+    fetchSuccess: ['response'],
+    fetchFailure: ['error'],
+    createRequest: ['payload'],
+    createSuccess: ['response'],
+    createFailure: ['error'],
+    updateRequest: ['payload'],
+    updateSuccess: ['response'],
+    updateFailure: ['error'],
+    deleteRequest: ['id'],
+    deleteSuccess: ['id'],
+    deleteFailure: ['error'],
+  },
+  { prefix: 'COMMENT_' },
+);
 
-export const commentTypes = types
-export default creators
+export const commentTypes = types;
+export default creators;
 
 /* INITIAL STATE */
 
@@ -30,7 +33,7 @@ export const INITIAL_STATE = Immutable({
   ids: [],
   error: null,
   fetching: false,
-})
+});
 
 /* REDUCERS */
 
@@ -38,7 +41,7 @@ export const request = state =>
   state.merge({
     fetching: true,
     error: null,
-  })
+  });
 
 export const success = (state, { response }) =>
   mergeWith(deepMerge, state, {
@@ -46,17 +49,18 @@ export const success = (state, { response }) =>
     error: null,
     ids: response.result,
     byId: response.entities.comments,
-  })
+  });
 
-export const failure = (state, { error }) => state.merge({ fetching: false, error })
+export const failure = (state, { error }) =>
+  state.merge({ fetching: false, error });
 
-export const remove = (state, { id }) => state.merge({
-  fetching: false,
-  error: null,
-  ids: state.ids.filter(i => i !== id),
-  byId: state.byId.without(id)
-})
-
+export const remove = (state, { id }) =>
+  state.merge({
+    fetching: false,
+    error: null,
+    ids: state.ids.filter(i => i !== id),
+    byId: state.byId.without(id),
+  });
 
 /* HOOKUP REDUCERS TO TYPES */
 
@@ -76,22 +80,22 @@ export const reducer = createReducer(INITIAL_STATE, {
   [types.DELETE_REQUEST]: request,
   [types.DELETE_SUCCESS]: remove,
   [types.DELETE_FAILURE]: failure,
-})
+});
 
 /* SELECTORS */
 
-export const comment = (state, id) => state.data.comments.byId[String(id)]
+export const comment = (state, id) => state.data.comments.byId[String(id)];
 
 export const comments = (state, ids) => {
-  let commentIds = state.data.comments.ids
+  let commentIds = state.data.comments.ids;
 
   if (ids) {
-    commentIds = commentIds.filter(i => ids.includes(i))
+    commentIds = commentIds.filter(i => ids.includes(i));
   }
 
-  return commentIds.map(i => comment(state, i))
-}
+  return commentIds.map(i => comment(state, i));
+};
 
-export const fetching = state => state.data.comments.fetching
+export const fetching = state => state.data.comments.fetching;
 
-export const error = state => state.data.comments.error
+export const error = state => state.data.comments.error;

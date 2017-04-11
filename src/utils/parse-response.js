@@ -1,14 +1,15 @@
-import { pluck, zipObj } from 'ramda'
+import { pluck, zipObj } from 'ramda';
 
 export default function parseResponse(response, key) {
-  let input = response
+  let input = response;
 
-  if (!(response instanceof Array)) input = [input]
+  if (!(response instanceof Array)) input = [input];
 
-  const keys = pluck(key, input)
-  const entities = zipObj(keys, input)
+  const keys = pluck(key, input);
+  const entities = zipObj(keys, input);
 
   return {
-    keys, entities,
-  }
+    keys,
+    entities,
+  };
 }

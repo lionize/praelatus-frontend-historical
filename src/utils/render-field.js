@@ -1,15 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { FormGroup, Label, Input, FormText } from 'components/forms'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormGroup, Label, Input, FormText } from 'components/forms';
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
-  let state
+const renderField = (
+  { input, label, type, meta: { touched, error, warning } },
+) => {
+  let state;
 
   if (warning) {
-    state = 'warning'
+    state = 'warning';
   }
   if (error) {
-    state = 'danger'
+    state = 'danger';
   }
 
   return (
@@ -18,8 +20,8 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
       <Input {...input} type={type} state={touched ? state : null} />
       {touched && (error || warning) && <FormText>{error || warning}</FormText>}
     </FormGroup>
-  )
-}
+  );
+};
 
 renderField.propTypes = {
   input: PropTypes.object.isRequired,
@@ -29,7 +31,7 @@ renderField.propTypes = {
     touched: PropTypes.bool,
     error: PropTypes.string,
     warning: PropTypes.string,
-  }).isRequired
-}
+  }).isRequired,
+};
 
-export default renderField
+export default renderField;

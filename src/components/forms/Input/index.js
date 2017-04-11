@@ -1,8 +1,6 @@
-import React from 'react'
-import { Input as ReactstrapInput } from 'reactstrap'
+import React from 'react';
+import { Input as ReactstrapInput } from 'reactstrap';
 
-const Input = props => (
-  <ReactstrapInput {...props} />
-)
+const Input = props => <ReactstrapInput {...props} />;
 
-export default Input
+export default Input;
