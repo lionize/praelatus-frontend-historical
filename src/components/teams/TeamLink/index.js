@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router'
 
 const TeamLink = ({ team, children }) => (
@@ -8,8 +9,8 @@ const TeamLink = ({ team, children }) => (
 )
 
 TeamLink.propTypes = {
-  team: React.PropTypes.object.isRequired,
-  children: React.PropTypes.node,
+  team: PropTypes.object.isRequired,
+  children: PropTypes.node,
 }
 
 TeamLink.defaultProps = {

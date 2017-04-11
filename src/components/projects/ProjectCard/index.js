@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { ProjectDeleteButton, LinkButton, UserLink, NotFoundCard, ErrorCard } from 'components'
 
@@ -38,9 +39,9 @@ const ProjectCard = ({ project, error, loading }) => {
 }
 
 ProjectCard.propTypes = {
-  error: React.PropTypes.string,
-  project: React.PropTypes.object,
-  loading: React.PropTypes.bool,
+  error: PropTypes.string,
+  project: PropTypes.object,
+  loading: PropTypes.bool,
 }
 
 ProjectCard.defaultProps = {

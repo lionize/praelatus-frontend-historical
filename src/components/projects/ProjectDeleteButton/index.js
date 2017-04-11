@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import actions from 'modules/project'
 import { DeleteButton } from 'components'
@@ -8,8 +9,8 @@ const ProjectDeleteButton = ({ project, deleteProject }) => (
 )
 
 ProjectDeleteButton.propTypes = {
-  project: React.PropTypes.object.isRequired,
-  deleteProject: React.PropTypes.func.isRequired,
+  project: PropTypes.object.isRequired,
+  deleteProject: PropTypes.func.isRequired,
 }
 
 export { ProjectDeleteButton }

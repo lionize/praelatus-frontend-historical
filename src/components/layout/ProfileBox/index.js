@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { LogoutLink } from 'components'
 
 const ProfileBox = ({ user }) => (
@@ -9,7 +10,7 @@ const ProfileBox = ({ user }) => (
 )
 
 ProfileBox.propTypes = {
-  user: React.PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default ProfileBox

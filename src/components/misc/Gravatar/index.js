@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5'
 
 const Gravatar = ({ email }) => {
@@ -15,7 +16,7 @@ const Gravatar = ({ email }) => {
 }
 
 Gravatar.propTypes = {
-  email: React.PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 }
 
 export default Gravatar

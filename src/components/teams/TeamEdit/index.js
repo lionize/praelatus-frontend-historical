@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { team } from 'modules/team'
@@ -6,10 +7,10 @@ import { TeamForm } from 'components'
 
 export class TeamEdit extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadTeam: React.PropTypes.func.isRequired,
-    updateTeam: React.PropTypes.func.isRequired,
-    initialValues: React.PropTypes.object,
+    params: PropTypes.object.isRequired,
+    loadTeam: PropTypes.func.isRequired,
+    updateTeam: PropTypes.func.isRequired,
+    initialValues: PropTypes.object,
   }
 
   static defaultProps = {

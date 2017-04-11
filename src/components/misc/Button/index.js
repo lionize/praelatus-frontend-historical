@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Button as ButtonReactstrap } from 'reactstrap'
 
 const Button = ({ children, ...rest }) => (
@@ -8,7 +9,7 @@ const Button = ({ children, ...rest }) => (
 )
 
 Button.propTypes = {
-  children: React.PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default Button

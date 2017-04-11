@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form'
 import { Button } from 'reactstrap'
 import { renderField } from 'utils'
@@ -13,7 +14,7 @@ const TicketForm = ({ handleSubmit }) => (
 )
 
 TicketForm.propTypes = {
-  handleSubmit: React.PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 export default reduxForm({

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Card, CardBlock, CardTitle, CardText } from 'reactstrap'
 import { LinkButton, TeamDeleteButton, UserLink, NotFoundCard, ErrorCard } from 'components'
 
@@ -41,9 +42,9 @@ const TeamCard = ({ team, loading, error }) => {
 }
 
 TeamCard.propTypes = {
-  team: React.PropTypes.object,
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.string,
+  team: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
 }
 
 TeamCard.defaultProps = {

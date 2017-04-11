@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import { ProjectLink, UserLink } from 'components'
@@ -42,13 +43,13 @@ export const ProjectTable = ({ projects: projectList }) => (
 )
 
 ProjectTable.propTypes = {
-  projects: React.PropTypes.array.isRequired,
+  projects: PropTypes.array.isRequired,
 }
 
 class ProjectList extends Component {
   static propTypes = {
-    projects: React.PropTypes.array.isRequired,
-    loadProjects: React.PropTypes.func.isRequired,
+    projects: PropTypes.array.isRequired,
+    loadProjects: PropTypes.func.isRequired,
   }
 
   componentWillMount() {

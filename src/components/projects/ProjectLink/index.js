@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router'
 
 const ProjectLink = ({ project, children }) => (
@@ -8,8 +9,8 @@ const ProjectLink = ({ project, children }) => (
 )
 
 ProjectLink.propTypes = {
-  project: React.PropTypes.object.isRequired,
-  children: React.PropTypes.node,
+  project: PropTypes.object.isRequired,
+  children: PropTypes.node,
 }
 
 ProjectLink.defaultProps = {

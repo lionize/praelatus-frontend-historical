@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { project } from 'modules/project'
@@ -6,10 +7,10 @@ import { ProjectForm } from 'components'
 
 export class ProjectEdit extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    updateProject: React.PropTypes.func.isRequired,
-    loadProject: React.PropTypes.func.isRequired,
-    initialValues: React.PropTypes.object,
+    params: PropTypes.object.isRequired,
+    updateProject: PropTypes.func.isRequired,
+    loadProject: PropTypes.func.isRequired,
+    initialValues: PropTypes.object,
   }
 
   static defaultProps = {

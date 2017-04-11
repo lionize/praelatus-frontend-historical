@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
 import actions, { users } from 'modules/user'
@@ -38,13 +39,13 @@ export const UserTable = ({ users: userList }) => {
 }
 
 UserTable.propTypes = {
-  users: React.PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
 }
 
 export class UserList extends Component {
   static propTypes = {
-    loadUsers: React.PropTypes.func.isRequired,
-    users: React.PropTypes.array,
+    loadUsers: PropTypes.func.isRequired,
+    users: PropTypes.array,
   }
 
   static defaultProps = {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { user, fetching } from 'modules/user'
@@ -10,10 +11,10 @@ export class UserShow extends Component {
   }
 
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadUser: React.PropTypes.func.isRequired,
-    loading: React.PropTypes.bool,
-    user: React.PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
+    user: PropTypes.object.isRequired,
   }
 
   componentWillMount() {

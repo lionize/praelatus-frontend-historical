@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { project } from 'modules/project'
@@ -6,9 +7,9 @@ import { ProjectCard } from 'components'
 
 export class ProjectShow extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadProject: React.PropTypes.func.isRequired,
-    project: React.PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    loadProject: PropTypes.func.isRequired,
+    project: PropTypes.object.isRequired,
   }
 
   componentWillMount() {

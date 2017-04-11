@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import actions, { team } from 'modules/team'
@@ -6,9 +7,9 @@ import { TeamCard } from 'components'
 
 export class TeamShow extends Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadTeam: React.PropTypes.func.isRequired,
-    team: React.PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+    loadTeam: PropTypes.func.isRequired,
+    team: PropTypes.object.isRequired,
   }
 
   componentWillMount() {

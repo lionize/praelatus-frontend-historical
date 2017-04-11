@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router'
 
 const UserLink = ({ user, children }) => (
@@ -8,8 +9,8 @@ const UserLink = ({ user, children }) => (
 )
 
 UserLink.propTypes = {
-  user: React.PropTypes.object.isRequired,
-  children: React.PropTypes.node,
+  user: PropTypes.object.isRequired,
+  children: PropTypes.node,
 }
 
 UserLink.defaultProps = {
