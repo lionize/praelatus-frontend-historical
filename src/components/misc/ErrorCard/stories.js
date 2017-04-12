@@ -4,5 +4,5 @@ import { ErrorCard } from 'components'
 
 storiesOf('ErrorCard', module)
   .add('renders', () => (
-    <ErrorCard handleSubmit={() => {}}>Render</ErrorCard>
+    <ErrorCard error={"Broken!"} />
   ))
