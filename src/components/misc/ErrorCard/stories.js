@@ -4,5 +4,5 @@ import { ErrorCard } from 'components'
 
 storiesOf('ErrorCard', module)
   .add('renders', () => (
-    <ErrorCard error={"Broken!"} />
+    <ErrorCard error={'Broken!'} />
   ))
