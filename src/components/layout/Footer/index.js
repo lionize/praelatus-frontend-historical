@@ -1,5 +1,5 @@
-import React from 'react'
-import { Nav, NavLink } from 'reactstrap'
+import React from 'react';
+import { Nav, NavLink } from 'reactstrap';
 
 const Footer = () => (
   <div className="footer">
@@ -10,6 +10,6 @@ const Footer = () => (
       <NavLink>Maintenance schedule</NavLink>
     </Nav>
   </div>
-)
+);
 
-export default Footer
+export default Footer;

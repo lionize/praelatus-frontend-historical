@@ -1,7 +1,7 @@
-import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import Provider from 'provider'
-import { TicketList } from 'components'
+import React from 'react';
+import { storiesOf } from '@kadira/storybook';
+import Provider from 'provider';
+import { TicketList } from 'components';
 
 const store = {
   data: {
@@ -12,17 +12,13 @@ const store = {
           id: 0,
           key: 'TICKET-0',
           summary: 'Ticket Summary',
-          description: 'Ticket Description'
-        }
-      }
-    }
-  }
-}
+          description: 'Ticket Description',
+        },
+      },
+    },
+  },
+};
 
 storiesOf('TicketList', module)
-  .addDecorator(story => (
-    Provider(story, store)
-  ))
-  .add('renders', () => (
-    <TicketList>Render</TicketList>
-  ))
+  .addDecorator(story => Provider(story, store))
+  .add('renders', () => <TicketList>Render</TicketList>);

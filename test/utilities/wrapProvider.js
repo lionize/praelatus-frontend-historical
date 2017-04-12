@@ -1,9 +1,9 @@
-import React from 'react'
-import configureStore from 'redux-mock-store'
-import { Provider } from 'react-redux'
+import React from 'react';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 
 export default function wrapProvider({ state } = {}) {
-  const store = configureStore()(state ? state : {})
+  const store = configureStore()(state ? state : {});
 
   return function WrapProviderFactory(WrappedComponent) {
     return class WrapProvider extends React.Component {
@@ -12,8 +12,8 @@ export default function wrapProvider({ state } = {}) {
           <Provider store={store}>
             <WrappedComponent {...this.props} />
           </Provider>
-        )
+        );
       }
-    }
-  }
+    };
+  };
 }

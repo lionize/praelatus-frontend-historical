@@ -3,4 +3,6 @@
   handle the file format in component tests.
 */
 
-require.extensions['.png'] = function mochaPngConfig() { return null }
+require.extensions['.png'] = function mochaPngConfig() {
+  return null;
+};

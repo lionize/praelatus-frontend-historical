@@ -1,37 +1,37 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { connect } from 'react-redux'
-import actions, { user, fetching } from 'modules/user'
-import { UserCard } from 'components/users'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import actions, { user, fetching } from 'modules/user';
+import { UserCard } from 'components/users';
 
 export class UserShow extends Component {
   static defaultProps = {
     loading: false,
-  }
+  };
 
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    loadUser: React.PropTypes.func.isRequired,
-    loading: React.PropTypes.bool,
-    user: React.PropTypes.object.isRequired,
-  }
+    params: PropTypes.object.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
+    user: PropTypes.object.isRequired,
+  };
 
   componentWillMount() {
-    this.props.loadUser(this.props.params.username)
+    this.props.loadUser(this.props.params.username);
   }
 
   render() {
-    const { loading, user: userProp } = this.props
-    return <UserCard loading={loading} user={userProp} />
+    const { loading, user: userProp } = this.props;
+    return <UserCard loading={loading} user={userProp} />;
   }
 }
 
 const mapStateToProps = (state, { params }) => ({
   user: user(state, params.username),
   loading: fetching(state),
-})
+});
 
-export default withRouter(connect(
-  mapStateToProps,
-  { loadUser: actions.fetchRequest },
-)(UserShow))
+export default withRouter(
+  connect(mapStateToProps, { loadUser: actions.fetchRequest })(UserShow),
+);

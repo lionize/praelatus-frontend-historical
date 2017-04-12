@@ -1,23 +1,34 @@
-import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
 import {
   App,
-  ProjectShow, ProjectNew, ProjectEdit, ProjectList,
-  TicketShow, TicketNew, TicketEdit, TicketList,
-  TeamShow, TeamNew, TeamEdit, TeamList,
-  UserShow, UserList,
-  Login, Register,
+  ProjectShow,
+  ProjectNew,
+  ProjectEdit,
+  ProjectList,
+  TicketShow,
+  TicketNew,
+  TicketEdit,
+  TicketList,
+  TeamShow,
+  TeamNew,
+  TeamEdit,
+  TeamList,
+  UserShow,
+  UserList,
+  Login,
+  Register,
   Home,
-} from 'components'
+} from 'components';
 
 const routes = (
-  <Route path='/' component={App}>
+  <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path='login' component={Login} />
-    <Route path='register' component={Register} />
-    <Route path='users'>
+    <Route path="login" component={Login} />
+    <Route path="register" component={Register} />
+    <Route path="users">
       <IndexRoute component={UserList} />
-      <Route path=':username' component={UserShow} />
+      <Route path=":username" component={UserShow} />
     </Route>
     <Route path="projects">
       <IndexRoute component={ProjectList} />
@@ -38,6 +49,6 @@ const routes = (
       <Route path=":name" component={TeamShow} />
     </Route>
   </Route>
-)
+);
 
-export default routes
+export default routes;

@@ -1,19 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 const UserLink = ({ user, children }) => (
   <Link to={`/users/${user.username}`}>
     {children}
   </Link>
-)
+);
 
 UserLink.propTypes = {
-  user: React.PropTypes.object.isRequired,
-  children: React.PropTypes.node,
-}
+  user: PropTypes.object.isRequired,
+  children: PropTypes.node,
+};
 
 UserLink.defaultProps = {
   children: [],
-}
+};
 
-export default UserLink
+export default UserLink;

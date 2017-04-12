@@ -1,14 +1,15 @@
-import React from 'react'
-import { Button as ButtonReactstrap } from 'reactstrap'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button as ButtonReactstrap } from 'reactstrap';
 
 const Button = ({ children, ...rest }) => (
   <ButtonReactstrap {...rest}>
     {children}
   </ButtonReactstrap>
-)
+);
 
 Button.propTypes = {
-  children: React.PropTypes.node.isRequired,
-}
+  children: PropTypes.node.isRequired,
+};
 
-export default Button
+export default Button;

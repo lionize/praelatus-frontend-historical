@@ -1,8 +1,6 @@
-import React from 'react'
-import { Form as ReactstrapForm } from 'reactstrap'
+import React from 'react';
+import { Form as ReactstrapForm } from 'reactstrap';
 
-const Form = props => (
-  <ReactstrapForm {...props} />
-)
+const Form = props => <ReactstrapForm {...props} />;
 
-export default Form
+export default Form;

@@ -1,4 +1,4 @@
-import { expect } from 'chai'
+import { expect } from 'chai';
 import actions, {
   reducer,
   INITIAL_STATE,
@@ -6,19 +6,19 @@ import actions, {
   tickets,
   fetching,
   error,
-} from 'modules/ticket'
+} from 'modules/ticket';
 
 describe('Ticket - ', () => {
   describe('reducers', () => {
     it('request', () => {
       const startingState = INITIAL_STATE.merge({
         error: 'Error',
-      })
-      const state = reducer(startingState, actions.fetchRequest())
+      });
+      const state = reducer(startingState, actions.fetchRequest());
 
-      expect(state.fetching).to.be.true
-      expect(state.error).to.be.null
-    })
+      expect(state.fetching).to.be.true;
+      expect(state.error).to.be.null;
+    });
 
     it('success', () => {
       const data = {
@@ -29,21 +29,21 @@ describe('Ticket - ', () => {
             key: 'TICKET-0',
           },
         },
-      }
-      const state = reducer(INITIAL_STATE, actions.fetchSuccess(data))
+      };
+      const state = reducer(INITIAL_STATE, actions.fetchSuccess(data));
 
-      expect(state.fetching).to.be.false
-      expect(state.error).to.be.null
-      expect(state.keys).to.include('TICKET-0')
-      expect(state.byKey['TICKET-0']).to.deep.eq(data.entities['TICKET-0'])
-    })
+      expect(state.fetching).to.be.false;
+      expect(state.error).to.be.null;
+      expect(state.keys).to.include('TICKET-0');
+      expect(state.byKey['TICKET-0']).to.deep.eq(data.entities['TICKET-0']);
+    });
 
     it('failure', () => {
-      const state = reducer(INITIAL_STATE, actions.updateFailure('Error'))
+      const state = reducer(INITIAL_STATE, actions.updateFailure('Error'));
 
-      expect(state.fetching).to.be.false
-      expect(state.error).to.eq('Error')
-    })
+      expect(state.fetching).to.be.false;
+      expect(state.error).to.eq('Error');
+    });
 
     it('remove', () => {
       const startingState = INITIAL_STATE.merge({
@@ -51,15 +51,15 @@ describe('Ticket - ', () => {
         byKey: { 'KEY-0': { key: 'KEY-0' } },
         fetching: true,
         error: 'Error',
-      })
-      const state = reducer(startingState, actions.deleteSuccess('KEY-0'))
+      });
+      const state = reducer(startingState, actions.deleteSuccess('KEY-0'));
 
-      expect(state.error).to.be.null
-      expect(state.fetching).to.be.false
-      expect(state.keys).to.not.include('KEY-0')
-      expect(state.byKey).to.not.have.key('KEY-0')
-    })
-  })
+      expect(state.error).to.be.null;
+      expect(state.fetching).to.be.false;
+      expect(state.keys).to.not.include('KEY-0');
+      expect(state.byKey).to.not.have.key('KEY-0');
+    });
+  });
 
   describe('selectors', () => {
     const state = {
@@ -73,30 +73,35 @@ describe('Ticket - ', () => {
             },
             'TICKET-1': {
               id: 1,
-              key: 'TICKET-1'
+              key: 'TICKET-1',
             },
           },
           fetching: true,
           error: 'Error',
-        }
-      }
-    }
+        },
+      },
+    };
 
     it('ticket', () => {
-      expect(ticket(state, 'TICKET-0')).to.eq(state.data.tickets.byKey['TICKET-0'])
-    })
+      expect(ticket(state, 'TICKET-0')).to.eq(
+        state.data.tickets.byKey['TICKET-0'],
+      );
+    });
 
     it('tickets', () => {
-      const expected = [state.data.tickets.byKey['TICKET-0'], state.data.tickets.byKey['TICKET-1']]
-      expect(tickets(state, ['TICKET-0', 'TICKET-1'])).to.deep.eq(expected)
-    })
+      const expected = [
+        state.data.tickets.byKey['TICKET-0'],
+        state.data.tickets.byKey['TICKET-1'],
+      ];
+      expect(tickets(state, ['TICKET-0', 'TICKET-1'])).to.deep.eq(expected);
+    });
 
     it('fetching', () => {
-      expect(fetching(state)).to.be.true
-    })
+      expect(fetching(state)).to.be.true;
+    });
 
     it('error', () => {
-      expect(error(state)).to.eq('Error')
-    })
-  })
-})
+      expect(error(state)).to.eq('Error');
+    });
+  });
+});
