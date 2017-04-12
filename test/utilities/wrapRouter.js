@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function wrapRouter({ params, props } = {}) {
   return function WrapRouterFactory(WrappedComponent) {
@@ -24,7 +25,7 @@ export default function wrapRouter({ params, props } = {}) {
     }
 
     WrapRouter.childContextTypes = {
-      router: React.PropTypes.object,
+      router: PropTypes.object,
     };
 
     return WrapRouter;

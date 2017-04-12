@@ -1,37 +1,32 @@
-var path = require('path')
+var path = require('path');
 
 module.exports = {
   env: {
-    es6: true
+    es6: true,
   },
 
   parser: 'babel-eslint',
 
-  extends: [
-    'airbnb',
-    'plugin:import/errors'
-  ],
+  extends: ['airbnb', 'plugin:import/errors'],
 
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-      experimentalObjectRestSpread: true
-    }
+      experimentalObjectRestSpread: true,
+    },
   },
 
-  plugins: [
-    'react'
-  ],
+  plugins: ['react'],
 
   settings: {
     'import/parser': 'babel-eslint',
     'import/resolver': {
       webpack: {
-        config: 'webpack.config.js'
-      }
-    }
+        config: 'webpack.config.js',
+      },
+    },
   },
 
   rules: {
@@ -41,7 +36,7 @@ module.exports = {
     'new-cap': 0,
     'no-class-assign': 0,
     'no-underscore-dangle': 0,
-    'radix': 0,
+    radix: 0,
     'comma-dangle': ['error', 'only-multiline'],
     'arrow-parens': 0,
 
@@ -58,5 +53,5 @@ module.exports = {
     'react/no-unescaped-entities': 0,
 
     'jsx-a11y/href-no-hash': 0,
-  }
-}
+  },
+};

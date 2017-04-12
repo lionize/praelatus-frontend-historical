@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import { wrapProvider } from '../utilities';
-import Register, { RegisterForm } from 'components/auth/Register';
+import Register, { Form as RegisterForm } from 'components/auth/Register';
 import { Form } from 'components';
 
 describe('Register Component', () => {
