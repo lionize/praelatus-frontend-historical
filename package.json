@@ -20,6 +20,12 @@
       "git add"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/praelatus/frontend.git"
@@ -47,7 +53,7 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "cross-env": "^3.1.2",
-    "enzyme": "^2.7.1",
+    "enzyme": "^2.8.2",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
