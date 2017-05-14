@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { ProjectLink } from 'components';
 
@@ -8,7 +7,7 @@ describe('ProjectLink Component', () => {
     const project = {};
     const wrapper = shallow(<ProjectLink project={project} children={null} />);
 
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('has props for href and children', () => {
@@ -20,7 +19,7 @@ describe('ProjectLink Component', () => {
     );
     const { to, children } = wrapper.props();
 
-    expect(to).to.eq('/projects/PROJECT-1');
-    expect(children).to.deep.eq(<div />);
+    expect(to).toEqual('/projects/PROJECT-1');
+    expect(children).toEqual(<div />);
   });
 });

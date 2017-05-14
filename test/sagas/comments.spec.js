@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import actions from 'modules/comment';
@@ -30,7 +29,7 @@ describe('Comment - Sagas', () => {
     it('success', () => {
       const generator = fetchComment(api, { id: 0 });
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchComment, 0));
+      expect(generator.next().value).toEqual(call(api.fetchComment, 0));
 
       const response = {
         result: [0],
@@ -44,8 +43,8 @@ describe('Comment - Sagas', () => {
       const next = generator.next(response).value;
       const expected = put(actions.fetchSuccess(response));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -59,8 +58,8 @@ describe('Comment - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.fetchFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -68,7 +67,7 @@ describe('Comment - Sagas', () => {
     it('success', () => {
       const generator = fetchComments(api);
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchComments));
+      expect(generator.next().value).toEqual(call(api.fetchComments));
 
       const response = {
         result: [0],
@@ -82,8 +81,8 @@ describe('Comment - Sagas', () => {
       const next = generator.next(response).value;
       const expected = put(actions.fetchSuccess(response));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -97,8 +96,8 @@ describe('Comment - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.fetchFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -106,7 +105,7 @@ describe('Comment - Sagas', () => {
     it('success', () => {
       const generator = createComment(api, { payload: comments[0] });
 
-      expect(generator.next().value).to.deep.eq(
+      expect(generator.next().value).toEqual(
         call(api.createComment, comments[0]),
       );
 
@@ -122,8 +121,8 @@ describe('Comment - Sagas', () => {
       const next = generator.next(response).value;
       const expected = put(actions.createSuccess(response));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -137,8 +136,8 @@ describe('Comment - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.createFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -146,7 +145,7 @@ describe('Comment - Sagas', () => {
     it('success', () => {
       const generator = updateComment(api, { payload: comments[0] });
 
-      expect(generator.next().value).to.deep.eq(
+      expect(generator.next().value).toEqual(
         call(api.updateComment, comments[0]),
       );
 
@@ -162,8 +161,8 @@ describe('Comment - Sagas', () => {
       const next = generator.next(response).value;
       const expected = put(actions.updateSuccess(response));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -177,8 +176,8 @@ describe('Comment - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.updateFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -186,20 +185,20 @@ describe('Comment - Sagas', () => {
     it('success', () => {
       const generator = deleteComment(api, { id: 0 });
 
-      expect(generator.next().value).to.deep.eq(call(api.deleteComment, 0));
+      expect(generator.next().value).toEqual(call(api.deleteComment, 0));
 
       const response = { id: 0 };
 
       let next = generator.next(response).value;
       let expected = put(actions.deleteSuccess(response));
 
-      expect(next).to.deep.eq(expected);
+      expect(next).toEqual(expected);
 
       next = generator.next().value;
       expected = put(push('/comments'));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -213,8 +212,8 @@ describe('Comment - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.deleteFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 });

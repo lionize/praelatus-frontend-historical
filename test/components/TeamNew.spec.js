@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import { wrapProvider } from '../utilities';
 import Container, { TeamNew } from 'components/teams/TeamNew';
@@ -13,14 +12,14 @@ describe('TeamNew Component', () => {
     const container = wrapper.find(Container);
     const component = wrapper.find(TeamNew);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('passes create callback to TeamForm child', () => {
     const callback = () => {};
     const wrapper = shallow(<TeamNew createTeam={callback} />);
     const form = wrapper.find(TeamForm);
-    expect(form.prop('handleSubmit')).to.eq(callback);
+    expect(form.prop('handleSubmit')).toEqual(callback);
   });
 });

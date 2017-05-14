@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { App } from 'components';
 
@@ -24,22 +23,22 @@ describe('App Component', () => {
 
   it('renders', () => {
     const { wrapper } = setup();
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('renders header', () => {
     const { header } = setup();
-    expect(header.exists()).to.be.true;
+    expect(header.exists()).toBe(true);
   });
 
   it('renders footer', () => {
     const { footer } = setup();
-    expect(footer.exists()).to.be.true;
+    expect(footer.exists()).toBe(true);
   });
 
   it('renders children', () => {
     const child = <div />;
     const { wrapper } = setup({ children: child });
-    expect(wrapper).to.contain(child);
+    expect(wrapper.contains(child)).toBe(true);
   });
 });

@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { Card, CardTitle, CardText } from 'reactstrap';
 import { LinkButton, NotFoundCard } from 'components';
@@ -29,27 +28,29 @@ describe('NotFoundCard Component', () => {
   it('renders', () => {
     const { wrapper } = setup();
 
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('sets up the card props', () => {
     const { card } = setup();
 
-    expect(card.prop('block')).to.be.true;
-    expect(card.prop('inverse')).to.be.true;
-    expect(card.prop('color')).to.eq('danger');
+    expect(card.prop('block')).toBe(true);
+    expect(card.prop('inverse')).toBe(true);
+    expect(card.prop('color')).toEqual('danger');
   });
 
   it('displays the correct title', () => {
     const { title } = setup({ type: 'Team' });
 
-    expect(title.shallow()).to.contain.text('Team Not Found');
+    expect(title.shallow().text()).toContain('Team Not Found');
   });
 
   it('displays the correct text', () => {
     const { text } = setup({ type: 'TICKET' });
 
-    expect(text.shallow()).to.contain.text('No ticket with that id was found.');
+    expect(text.shallow().text()).toContain(
+      'No ticket with that id was found.',
+    );
   });
 
   it('displays a link button with the correct text', () => {
@@ -57,7 +58,7 @@ describe('NotFoundCard Component', () => {
     link = link.shallow();
 
     const text = link.prop('children').props.children.join('');
-    expect(link.prop('to')).to.eq('/projects');
-    expect(text).to.eq('See list of all projects');
+    expect(link.prop('to')).toEqual('/projects');
+    expect(text).toEqual('See list of all projects');
   });
 });

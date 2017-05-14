@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import { spy } from 'sinon';
 import { wrapRouter, wrapProvider } from '../utilities';
@@ -50,15 +49,15 @@ describe('TeamEdit Component', () => {
     const container = wrapper.find(Container);
     const component = wrapper.find(TeamEdit);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('calls load team action on mount', () => {
     const callback = spy();
     const params = { name: 'TEAM1' };
     const { wrapper } = setup({ loadTeam: callback, params });
-    expect(callback.calledOnce).to.be.true;
+    expect(callback.calledOnce).toBe(true);
   });
 
   it('passes update callback to TeamForm child', () => {
@@ -66,6 +65,6 @@ describe('TeamEdit Component', () => {
     const params = { name: 'TEAM1' };
     const { wrapper } = setup({ updateTeam: callback, params });
     const form = wrapper.find(TeamForm);
-    expect(form.prop('handleSubmit')).to.eq(callback);
+    expect(form.prop('handleSubmit')).toEqual(callback);
   });
 });

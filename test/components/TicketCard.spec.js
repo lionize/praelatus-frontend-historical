@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { CardTitle, CardText } from 'reactstrap';
 import {
@@ -35,28 +34,28 @@ describe('TicketCard Component', () => {
 
   it('renders', () => {
     const { wrapper } = setup();
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('renders a loading message when loading', () => {
     const { wrapper } = setup({ loading: true });
 
-    expect(wrapper.find('h1')).to.have.text('Loading...');
+    expect(wrapper.find('h1').text()).toContain('Loading...');
   });
 
   it('renders ErrorCard when error exists', () => {
     const { error } = setup({ error: 'Error' });
 
-    expect(error.exists()).to.be.true;
+    expect(error.exists()).toBe(true);
   });
 
   it('renders NotFoundCard when no ticket found', () => {
     const { notFound } = setup();
 
-    expect(notFound.exists()).to.be.true;
+    expect(notFound.exists()).toBe(true);
   });
 
-  context('when provided a ticket', () => {
+  describe('when provided a ticket', () => {
     const ticket = {
       key: 'TICKET-1',
       summary: 'Ticket Summary',
@@ -66,9 +65,11 @@ describe('TicketCard Component', () => {
     it("render's ticket's information", () => {
       const { wrapper, title, text } = setup({ ticket });
 
-      expect(title.shallow()).to.contain.text('TICKET-1');
-      expect(text.first().shallow()).to.contain.text('Summary: Ticket Summary');
-      expect(text.last().shallow()).to.contain.text(
+      expect(title.shallow().text()).toContain('TICKET-1');
+      expect(text.first().shallow().text()).toContain(
+        'Summary: Ticket Summary',
+      );
+      expect(text.last().shallow().text()).toContain(
         'Description: Ticket Description',
       );
     });
@@ -77,14 +78,14 @@ describe('TicketCard Component', () => {
       const { wrapper } = setup({ ticket });
       const button = wrapper.find(LinkButton);
 
-      expect(button.prop('to')).to.eq('/tickets/TICKET-1/edit');
+      expect(button.prop('to')).toEqual('/tickets/TICKET-1/edit');
     });
 
     it('renders ticket delete link', () => {
       const { wrapper } = setup({ ticket });
       const button = wrapper.find(TicketDeleteButton);
 
-      expect(button.prop('ticket')).to.eq(ticket);
+      expect(button.prop('ticket')).toEqual(ticket);
     });
 
     it('renders ticket reporter link', () => {
@@ -96,8 +97,8 @@ describe('TicketCard Component', () => {
 
       const { userLink } = setup({ ticket });
 
-      expect(userLink.prop('user')).to.eq(ticket.reporter);
-      expect(userLink.prop('children')).to.eq(ticket.reporter.username);
+      expect(userLink.prop('user')).toEqual(ticket.reporter);
+      expect(userLink.prop('children')).toEqual(ticket.reporter.username);
     });
 
     it('renders ticket assignee link', () => {
@@ -109,8 +110,8 @@ describe('TicketCard Component', () => {
 
       const { userLink } = setup({ ticket });
 
-      expect(userLink.prop('user')).to.eq(ticket.assignee);
-      expect(userLink.prop('children')).to.eq(ticket.assignee.username);
+      expect(userLink.prop('user')).toEqual(ticket.assignee);
+      expect(userLink.prop('children')).toEqual(ticket.assignee.username);
     });
   });
 });

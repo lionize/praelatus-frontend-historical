@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import { wrapProvider } from '../utilities';
@@ -47,15 +46,15 @@ describe('TicketList Component', () => {
     const container = wrapper.find(Container);
     const component = wrapper.find(TicketTable);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('calls load tickets action on mount', () => {
     const callback = sinon.spy();
     const { wrapper } = setup({ loadTickets: callback });
 
-    expect(callback.calledOnce).to.be.true;
+    expect(callback.calledOnce).toBe(true);
   });
 
   it('passes tickets to table component', () => {
@@ -63,6 +62,6 @@ describe('TicketList Component', () => {
     const { wrapper } = setup({ tickets });
     const table = wrapper.find(TicketTable);
 
-    expect(table.prop('tickets')).to.deep.eq(tickets);
+    expect(table.prop('tickets')).toEqual(tickets);
   });
 });

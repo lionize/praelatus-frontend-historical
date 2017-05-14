@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import actions, {
   reducer,
   INITIAL_STATE,
@@ -16,8 +15,8 @@ describe('Comment - ', () => {
       });
       const state = reducer(startingState, actions.fetchRequest());
 
-      expect(state.fetching).to.be.true;
-      expect(state.error).to.be.null;
+      expect(state.fetching).toBe(true);
+      expect(state.error).toBeNull();
     });
 
     it('success', () => {
@@ -34,17 +33,17 @@ describe('Comment - ', () => {
       };
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.be.null;
-      expect(state.ids).to.include(0);
-      expect(state.byId['0']).to.eq(data.entities.comments['0']);
+      expect(state.fetching).toBe(false);
+      expect(state.error).toBeNull();
+      expect(state.ids).toContain(0);
+      expect(state.byId['0']).toEqual(data.entities.comments['0']);
     });
 
     it('failure', () => {
       const state = reducer(INITIAL_STATE, actions.updateFailure('Error'));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.eq('Error');
+      expect(state.fetching).toBe(false);
+      expect(state.error).toEqual('Error');
     });
 
     it('remove', () => {
@@ -56,10 +55,10 @@ describe('Comment - ', () => {
       });
       const state = reducer(startingState, actions.deleteSuccess(0));
 
-      expect(state.error).to.be.null;
-      expect(state.fetching).to.be.false;
-      expect(state.ids).to.not.include(0);
-      expect(state.byId).to.not.have.key('0');
+      expect(state.error).toBeNull();
+      expect(state.fetching).toBe(false);
+      expect(state.ids).not.toContain(0);
+      expect(state.byId).not.toHaveProperty('0');
     });
   });
 
@@ -85,7 +84,7 @@ describe('Comment - ', () => {
     };
 
     it('comment', () => {
-      expect(comment(state, 0)).to.eq(state.data.comments.byId['0']);
+      expect(comment(state, 0)).toEqual(state.data.comments.byId['0']);
     });
 
     it('comments', () => {
@@ -93,15 +92,15 @@ describe('Comment - ', () => {
         state.data.comments.byId['0'],
         state.data.comments.byId['1'],
       ];
-      expect(comments(state, [0, 1])).to.deep.eq(expected);
+      expect(comments(state, [0, 1])).toEqual(expected);
     });
 
     it('fetching', () => {
-      expect(fetching(state)).to.be.true;
+      expect(fetching(state)).toBe(true);
     });
 
     it('error', () => {
-      expect(error(state)).to.eq('Error');
+      expect(error(state)).toEqual('Error');
     });
   });
 });

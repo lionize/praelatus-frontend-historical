@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { LinkButton, Button } from 'components';
 import { Link } from 'react-router';
@@ -26,7 +25,7 @@ describe('LinkButton Component', () => {
   it('renders', () => {
     const { wrapper } = setup();
 
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('renders the link with props', () => {
@@ -36,8 +35,8 @@ describe('LinkButton Component', () => {
       children: <div />,
     });
 
-    expect(wrapper.prop('to')).to.eq('home');
-    expect(button.prop('color')).to.eq('red');
-    expect(button.find('div').exists()).to.be.true;
+    expect(wrapper.prop('to')).toEqual('home');
+    expect(button.prop('color')).toEqual('red');
+    expect(button.find('div').exists()).toBe(true);
   });
 });

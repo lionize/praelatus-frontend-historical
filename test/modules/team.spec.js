@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import actions, {
   reducer,
   INITIAL_STATE,
@@ -16,8 +15,8 @@ describe('Team - ', () => {
       });
       const state = reducer(startingState, actions.fetchRequest());
 
-      expect(state.fetching).to.be.true;
-      expect(state.error).to.be.null;
+      expect(state.fetching).toBe(true);
+      expect(state.error).toBeNull();
     });
 
     it('success', () => {
@@ -36,17 +35,17 @@ describe('Team - ', () => {
       };
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.be.null;
-      expect(state.names).to.include('team0');
-      expect(state.byName['team0']).to.deep.eq(data.entities.team0);
+      expect(state.fetching).toBe(false);
+      expect(state.error).toBeNull();
+      expect(state.names).toContain('team0');
+      expect(state.byName['team0']).toEqual(data.entities.team0);
     });
 
     it('failure', () => {
       const state = reducer(INITIAL_STATE, actions.updateFailure('Error'));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.eq('Error');
+      expect(state.fetching).toBe(false);
+      expect(state.error).toEqual('Error');
     });
 
     it('remove', () => {
@@ -58,10 +57,10 @@ describe('Team - ', () => {
       });
       const state = reducer(startingState, actions.deleteSuccess('team0'));
 
-      expect(state.error).to.be.null;
-      expect(state.fetching).to.be.false;
-      expect(state.names).to.not.include('team0');
-      expect(state.byName).to.not.have.key('team0');
+      expect(state.error).toBeNull();
+      expect(state.fetching).toBe(false);
+      expect(state.names).not.toContain('team0');
+      expect(state.byName).not.toHaveProperty('team0');
     });
   });
 
@@ -87,7 +86,7 @@ describe('Team - ', () => {
     };
 
     it('team', () => {
-      expect(team(state, 'team0')).to.eq(state.data.teams.byName['team0']);
+      expect(team(state, 'team0')).toEqual(state.data.teams.byName['team0']);
     });
 
     it('teams', () => {
@@ -95,15 +94,15 @@ describe('Team - ', () => {
         state.data.teams.byName['team0'],
         state.data.teams.byName['team1'],
       ];
-      expect(teams(state, ['team0', 'team1'])).to.deep.eq(expected);
+      expect(teams(state, ['team0', 'team1'])).toEqual(expected);
     });
 
     it('fetching', () => {
-      expect(fetching(state)).to.be.true;
+      expect(fetching(state)).toBe(true);
     });
 
     it('error', () => {
-      expect(error(state)).to.eq('Error');
+      expect(error(state)).toEqual('Error');
     });
   });
 });

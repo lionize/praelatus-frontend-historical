@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { renderField } from 'utils';
 
@@ -31,11 +30,11 @@ describe('renderField', () => {
 
     const { wrapper, formGroup, label, input, formText } = setup(data);
 
-    expect(formGroup).to.not.have.prop('color');
-    expect(label).to.contain.text('Name');
-    expect(input).to.have.prop('type', 'text');
-    expect(input).to.have.prop('name', 'name');
-    expect(formText.exists()).to.be.false;
+    expect(formGroup.props()).not.toContain('color');
+    expect(label.text()).toContain('Name');
+    expect(input.prop('type')).toEqual('text');
+    expect(input.prop('name')).toEqual('name');
+    expect(formText.exists()).toBe(false);
   });
 
   it('renders a field with an error', () => {
@@ -54,9 +53,9 @@ describe('renderField', () => {
 
     const { formGroup, input, formText } = setup(data);
 
-    expect(formGroup).to.have.className('has-danger');
-    expect(input).to.have.className('form-control-danger');
-    expect(formText).to.have.text('This is an error');
+    expect(formGroup.hasClass('has-danger')).toBe(true);
+    expect(input.hasClass('form-control-danger')).toBe(true);
+    expect(formText.text()).toContain('This is an error');
   });
 
   it('renders a field with a warning', () => {
@@ -75,9 +74,9 @@ describe('renderField', () => {
 
     const { formGroup, input, formText } = setup(data);
 
-    expect(formGroup).to.have.className('has-warning');
-    expect(input).to.have.className('form-control-warning');
-    expect(formText).to.have.text('This is a warning');
+    expect(formGroup.hasClass('has-warning')).toBe(true);
+    expect(input.hasClass('form-control-warning')).toBe(true);
+    expect(formText.text()).toContain('This is a warning');
   });
 
   it('does not render error or warning if not touched', () => {
@@ -96,10 +95,10 @@ describe('renderField', () => {
 
     const { formGroup, input, formText } = setup(data);
 
-    expect(formGroup).to.not.have.className('has-warning');
-    expect(formGroup).to.not.have.className('has-danger');
-    expect(input).to.not.have.className('form-control-warning');
-    expect(input).to.not.have.className('form-control-danger');
-    expect(formText.exists()).to.be.false;
+    expect(formGroup.hasClass('has-warning')).toBe(false);
+    expect(formGroup.hasClass('has-danger')).toBe(false);
+    expect(input.hasClass('form-control-warning')).toBe(false);
+    expect(input.hasClass('form-control-danger')).toBe(false);
+    expect(formText.exists()).toBe(false);
   });
 });

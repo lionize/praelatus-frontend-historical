@@ -4,4 +4,5 @@ src/services/fixture-api.js
 test/*
 docs/*
 build/*
+coverage/*
 static

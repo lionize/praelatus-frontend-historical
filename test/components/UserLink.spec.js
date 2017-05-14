@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { UserLink } from 'components';
 
@@ -22,7 +21,7 @@ describe('UserLink Component', () => {
 
   it('renders', () => {
     const { wrapper } = setup({ user: {} });
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('has props for href and children', () => {
@@ -32,7 +31,7 @@ describe('UserLink Component', () => {
     const { wrapper } = setup({ user, children: <div /> });
     const { to, children } = wrapper.props();
 
-    expect(to).to.eq('/users/username');
-    expect(children).to.deep.eq(<div />);
+    expect(to).toEqual('/users/username');
+    expect(children).toEqual(<div />);
   });
 });

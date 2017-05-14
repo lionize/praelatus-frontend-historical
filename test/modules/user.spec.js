@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import actions, {
   reducer,
   INITIAL_STATE,
@@ -16,8 +15,8 @@ describe('User - ', () => {
       });
       const state = reducer(startingState, actions.fetchRequest());
 
-      expect(state.fetching).to.be.true;
-      expect(state.error).to.be.null;
+      expect(state.fetching).toBe(true);
+      expect(state.error).toBeNull();
     });
 
     it('success', () => {
@@ -31,17 +30,17 @@ describe('User - ', () => {
         },
       };
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data));
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.be.null;
-      expect(state.usernames).to.include('user0');
-      expect(state.byUsername['user0']).to.deep.eq(data.entities.user0);
+      expect(state.fetching).toBe(false);
+      expect(state.error).toBeNull();
+      expect(state.usernames).toContain('user0');
+      expect(state.byUsername['user0']).toEqual(data.entities.user0);
     });
 
     it('failure', () => {
       const state = reducer(INITIAL_STATE, actions.updateFailure('Error'));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.eq('Error');
+      expect(state.fetching).toBe(false);
+      expect(state.error).toEqual('Error');
     });
 
     it('remove', () => {
@@ -53,10 +52,10 @@ describe('User - ', () => {
       });
       const state = reducer(startingState, actions.deleteSuccess('user0'));
 
-      expect(state.error).to.be.null;
-      expect(state.fetching).to.be.false;
-      expect(state.usernames).to.not.include('user0');
-      expect(state.byUsername).to.not.have.key('user0');
+      expect(state.error).toBeNull();
+      expect(state.fetching).toBe(false);
+      expect(state.usernames).not.toContain('user0');
+      expect(state.byUsername).not.toHaveProperty('user0');
     });
   });
 
@@ -82,7 +81,9 @@ describe('User - ', () => {
     };
 
     it('user', () => {
-      expect(user(state, 'user0')).to.eq(state.data.users.byUsername['user0']);
+      expect(user(state, 'user0')).toEqual(
+        state.data.users.byUsername['user0'],
+      );
     });
 
     it('users', () => {
@@ -90,15 +91,15 @@ describe('User - ', () => {
         state.data.users.byUsername['user0'],
         state.data.users.byUsername['user1'],
       ];
-      expect(users(state, ['user0', 'user1'])).to.deep.eq(expected);
+      expect(users(state, ['user0', 'user1'])).toEqual(expected);
     });
 
     it('fetching', () => {
-      expect(fetching(state)).to.be.true;
+      expect(fetching(state)).toBe(true);
     });
 
     it('error', () => {
-      expect(error(state)).to.eq('Error');
+      expect(error(state)).toEqual('Error');
     });
   });
 });

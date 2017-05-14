@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import actions from 'modules/project';
@@ -31,9 +30,7 @@ describe('Project - Sagas', () => {
     it('success', () => {
       const generator = fetchProject(api, { key: 'KEY-0' });
 
-      expect(generator.next().value).to.deep.eq(
-        call(api.fetchProject, 'KEY-0'),
-      );
+      expect(generator.next().value).toEqual(call(api.fetchProject, 'KEY-0'));
 
       const response = {
         result: ['KEY-0'],
@@ -47,8 +44,8 @@ describe('Project - Sagas', () => {
       const next = generator.next(response).value;
       const expected = put(actions.fetchSuccess(response));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -62,8 +59,8 @@ describe('Project - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.fetchFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -71,7 +68,7 @@ describe('Project - Sagas', () => {
     it('success', () => {
       const generator = fetchProjects(api);
 
-      expect(generator.next().value).to.deep.eq(call(api.fetchProjects));
+      expect(generator.next().value).toEqual(call(api.fetchProjects));
 
       const response = {
         result: ['KEY-0'],
@@ -85,8 +82,8 @@ describe('Project - Sagas', () => {
       const next = generator.next(response).value;
       const expected = put(actions.fetchSuccess(response));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -100,8 +97,8 @@ describe('Project - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.fetchFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -109,7 +106,7 @@ describe('Project - Sagas', () => {
     it('success', () => {
       const generator = createProject(api, { payload: projects[0] });
 
-      expect(generator.next().value).to.deep.eq(
+      expect(generator.next().value).toEqual(
         call(api.createProject, projects[0]),
       );
 
@@ -123,13 +120,13 @@ describe('Project - Sagas', () => {
       let next = generator.next(response).value;
       let expected = put(actions.createSuccess(response));
 
-      expect(next).to.deep.eq(expected);
+      expect(next).toEqual(expected);
 
       next = generator.next().value;
       expected = put(push(`/projects/${projects[0].key}`));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -143,8 +140,8 @@ describe('Project - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.createFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -152,7 +149,7 @@ describe('Project - Sagas', () => {
     it('success', () => {
       const generator = updateProject(api, { payload: projects[0] });
 
-      expect(generator.next().value).to.deep.eq(
+      expect(generator.next().value).toEqual(
         call(api.updateProject, projects[0]),
       );
 
@@ -168,13 +165,13 @@ describe('Project - Sagas', () => {
       let next = generator.next(response).value;
       let expected = put(actions.updateSuccess(response));
 
-      expect(next).to.deep.eq(expected);
+      expect(next).toEqual(expected);
 
       next = generator.next().value;
       expected = put(push(`/projects/${projects[0].key}`));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -188,8 +185,8 @@ describe('Project - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.updateFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -197,22 +194,20 @@ describe('Project - Sagas', () => {
     it('success', () => {
       const generator = deleteProject(api, { key: 'KEY-0' });
 
-      expect(generator.next().value).to.deep.eq(
-        call(api.deleteProject, 'KEY-0'),
-      );
+      expect(generator.next().value).toEqual(call(api.deleteProject, 'KEY-0'));
 
       const response = { key: 'KEY-0' };
 
       let next = generator.next(response).value;
       let expected = put(actions.deleteSuccess(response));
 
-      expect(next).to.deep.eq(expected);
+      expect(next).toEqual(expected);
 
       next = generator.next().value;
       expected = put(push('/projects'));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -226,8 +221,8 @@ describe('Project - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.deleteFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 });
