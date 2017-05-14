@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import { wrapProvider } from '../utilities';
@@ -16,8 +15,8 @@ describe('TicketDeleteButton Component', () => {
     const container = wrapper.find(Container);
     const component = wrapper.find(TicketDeleteButton);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('calls the delete ticket action', () => {
@@ -28,7 +27,7 @@ describe('TicketDeleteButton Component', () => {
     );
 
     wrapper.find(DeleteButton).simulate('click');
-    expect(callback.called).to.be.true;
-    expect(callback.calledWith(ticket.key)).to.be.true;
+    expect(callback.called).toBe(true);
+    expect(callback.calledWith(ticket.key)).toBe(true);
   });
 });

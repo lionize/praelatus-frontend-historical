@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { UserTable } from 'components/users/UserList';
 import { Gravatar } from 'components/misc';
@@ -43,22 +42,22 @@ describe('UserTable Component', () => {
     const { thead } = setup({ users: fixtures });
 
     const headers = thead.find('th');
-    expect(headers.at(0)).to.contain.text('');
-    expect(headers.at(1)).to.contain.text('Username');
-    expect(headers.at(2)).to.contain.text('Full Name');
+    expect(headers.at(0).text()).toContain('');
+    expect(headers.at(1).text()).toContain('Username');
+    expect(headers.at(2).text()).toContain('Full Name');
   });
 
-  context('provided users', () => {
+  describe('provided users', () => {
     it('renders a user row', () => {
       const { rows } = setup({ users: fixtures });
 
       const row = rows.at(1);
       const gravatar = row.find(Gravatar);
       const link = row.find(UserLink);
-      expect(gravatar.exists()).to.be.true;
-      expect(link.prop('user')).to.deep.eq(fixtures[0]);
-      expect(link.prop('children')).to.eq(fixtures[0].username);
-      expect(row).to.contain.text(fixtures[0].fullName);
+      expect(gravatar.exists()).toBe(true);
+      expect(link.prop('user')).toEqual(fixtures[0]);
+      expect(link.prop('children')).toEqual(fixtures[0].username);
+      expect(row.text()).toContain(fixtures[0].fullName);
     });
   });
 });

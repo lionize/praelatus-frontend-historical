@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
@@ -22,8 +21,8 @@ describe('Register Component', () => {
     const container = wrapper.find(Register);
     const component = wrapper.find(RegisterForm);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('performs register', () => {
@@ -31,6 +30,6 @@ describe('Register Component', () => {
 
     const wrapper = shallow(<RegisterForm handleSubmit={callback} />);
     wrapper.find(Form).simulate('submit');
-    expect(callback.called).to.be.true;
+    expect(callback.called).toBe(true);
   });
 });

@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import { wrapRouter, wrapProvider } from '../utilities';
@@ -31,8 +30,8 @@ describe('TeamShow Component', () => {
     const container = wrapper.find(Container);
     const component = wrapper.find(TeamShow);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('calls load team action on mount', () => {
@@ -40,7 +39,7 @@ describe('TeamShow Component', () => {
     const wrapper = shallow(
       <TeamShow loadTeam={callback} team={{}} params={{ name: 'TEAM-1' }} />,
     );
-    expect(callback.calledOnce).to.be.true;
+    expect(callback.calledOnce).toBe(true);
   });
 
   it('calls load team action on update', () => {
@@ -50,6 +49,6 @@ describe('TeamShow Component', () => {
     );
     callback.reset();
     wrapper.instance().componentDidUpdate({ params: { name: 'TEAM-1' } });
-    expect(callback.calledOnce).to.be.true;
+    expect(callback.calledOnce).toBe(true);
   });
 });

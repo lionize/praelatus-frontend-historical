@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import parseResponse from 'utils/parse-response';
 
 describe('parseResponse', () => {
@@ -33,14 +32,14 @@ describe('parseResponse', () => {
     it('returns the keys as a list', () => {
       const keys = parseResponse(response, 'key').keys;
 
-      expect(keys).to.include.members(['TICKET-0', 'TICKET-1']);
+      expect(keys).toEqual(expect.arrayContaining(['TICKET-0', 'TICKET-1']));
     });
 
     it('returns the entities as an object with entity keys as keys', () => {
       const entities = parseResponse(response, 'key').entities;
 
-      expect(entities['TICKET-0']).to.deep.eq(response[0]);
-      expect(entities['TICKET-1']).to.deep.eq(response[1]);
+      expect(entities['TICKET-0']).toEqual(response[0]);
+      expect(entities['TICKET-1']).toEqual(response[1]);
     });
   });
 
@@ -57,13 +56,13 @@ describe('parseResponse', () => {
     it('returns the key in an array', () => {
       const key = parseResponse(response, 'key').keys;
 
-      expect(key).to.have.members(['TICKET-0']);
+      expect(key).toEqual(expect.arrayContaining(['TICKET-0']));
     });
 
     it('returns the entitity in entities', () => {
       const entities = parseResponse(response, 'key').entities;
 
-      expect(entities['TICKET-0']).to.deep.eq(response);
+      expect(entities['TICKET-0']).toEqual(response);
     });
   });
 });

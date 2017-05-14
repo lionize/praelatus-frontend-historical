@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { CardTitle, CardText } from 'reactstrap';
 import {
@@ -37,28 +36,28 @@ describe('TeamCard Component', () => {
   it('renders', () => {
     const { wrapper } = setup();
 
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('renders a loading message when loading', () => {
     const { wrapper } = setup({ loading: true });
 
-    expect(wrapper.find('h1')).to.have.text('Loading...');
+    expect(wrapper.find('h1').text()).toContain('Loading...');
   });
 
   it('renders ErrorCard when error exists', () => {
     const { error } = setup({ error: 'Error' });
 
-    expect(error.exists()).to.be.true;
+    expect(error.exists()).toBe(true);
   });
 
   it('renders NotFoundCard when no team found', () => {
     const { notFound } = setup();
 
-    expect(notFound.exists()).to.be.true;
+    expect(notFound.exists()).toBe(true);
   });
 
-  context('when provided a team', () => {
+  describe('when provided a team', () => {
     const team = {
       name: 'Team Name',
     };
@@ -66,13 +65,13 @@ describe('TeamCard Component', () => {
     it("renders team's information", () => {
       const { wrapper, title } = setup({ team });
 
-      expect(title.shallow()).to.contain.text('Team Name');
+      expect(title.shallow().text()).toContain('Team Name');
     });
 
     it('renders team edit link', () => {
       const { button, wrapper } = setup({ team });
 
-      expect(button.prop('to')).to.eq('/teams/Team Name/edit');
+      expect(button.prop('to')).toEqual('/teams/Team Name/edit');
     });
 
     it('renders team lead link', () => {
@@ -80,8 +79,8 @@ describe('TeamCard Component', () => {
       const team = { name: 'team', lead: user };
       const { userLink } = setup({ team });
 
-      expect(userLink.prop('user')).to.deep.eq(user);
-      expect(userLink.prop('children')).to.eq('user0');
+      expect(userLink.prop('user')).toEqual(user);
+      expect(userLink.prop('children')).toEqual('user0');
     });
 
     it('renders team member links', () => {
@@ -90,14 +89,14 @@ describe('TeamCard Component', () => {
 
       const { userLink } = setup({ team });
 
-      expect(userLink.prop('user')).to.deep.eq(user);
-      expect(userLink.prop('children')).to.eq('user0');
+      expect(userLink.prop('user')).toEqual(user);
+      expect(userLink.prop('children')).toEqual('user0');
     });
 
     it('renders team delete link', () => {
       const { deleteButton } = setup({ team });
 
-      expect(deleteButton.prop('team')).to.deep.eq(team);
+      expect(deleteButton.prop('team')).toEqual(team);
     });
   });
 });

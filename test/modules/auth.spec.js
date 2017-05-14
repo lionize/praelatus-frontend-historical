@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import actions, {
   reducer,
   INITIAL_STATE,
@@ -16,8 +15,8 @@ describe('Auth - ', () => {
       });
       const state = reducer(startingState, actions.loginRequest());
 
-      expect(state.fetching).to.be.true;
-      expect(state.error).to.be.null;
+      expect(state.fetching).toBe(true);
+      expect(state.error).toBeNull();
     });
 
     it('success', () => {
@@ -27,9 +26,9 @@ describe('Auth - ', () => {
       };
       const state = reducer(INITIAL_STATE, actions.loginSuccess(user));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.be.null;
-      expect(state.currentUser).to.deep.eq(user);
+      expect(state.fetching).toBe(false);
+      expect(state.error).toBeNull();
+      expect(state.currentUser).toEqual(user);
     });
 
     it('failure', () => {
@@ -38,8 +37,8 @@ describe('Auth - ', () => {
         actions.loginFailure({ response: 'Error' }),
       );
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.eq('Error');
+      expect(state.fetching).toBe(false);
+      expect(state.error).toEqual('Error');
     });
 
     it('logout', () => {
@@ -50,9 +49,9 @@ describe('Auth - ', () => {
       });
       const state = reducer(startingState, actions.logout());
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.be.null;
-      expect(state.currentUser).to.be.null;
+      expect(state.fetching).toBe(false);
+      expect(state.error).toBeNull();
+      expect(state.currentUser).toBeNull();
     });
   });
 
@@ -64,19 +63,19 @@ describe('Auth - ', () => {
     };
 
     it('isLoggedIn', () => {
-      expect(isLoggedIn(state)).to.be.true;
+      expect(isLoggedIn(state)).toBe(true);
     });
 
     it('currentUser', () => {
-      expect(currentUser(state)).to.eq('user0');
+      expect(currentUser(state)).toEqual('user0');
     });
 
     it('fetching', () => {
-      expect(fetching(state)).to.be.true;
+      expect(fetching(state)).toBe(true);
     });
 
     it('error', () => {
-      expect(error(state)).to.eq('Error');
+      expect(error(state)).toEqual('Error');
     });
   });
 });

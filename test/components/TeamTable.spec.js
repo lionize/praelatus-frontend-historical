@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { TeamTable } from 'components/teams/TeamList';
 import { TeamLink, UserLink } from 'components';
@@ -19,8 +18,8 @@ describe('TeamTable Component', () => {
       props,
       wrapper,
       rows: wrapper.find('tbody tr'),
-      teamLink: wrapper.find(TeamLink),
-      userLink: wrapper.find(UserLink),
+      teamLink: wrapper.find('TeamLink'),
+      userLink: wrapper.find('UserLink'),
     };
   };
 
@@ -48,37 +47,37 @@ describe('TeamTable Component', () => {
     },
   ];
 
-  context('team', () => {
+  describe('team', () => {
     it("renders a row with team's information", () => {
       const { teamLink } = setup({ teams: [fixtures[0]] });
 
-      expect(teamLink.prop('team')).to.eq(fixtures[0]);
-      expect(teamLink.prop('children')).to.eq(fixtures[0].name);
+      expect(teamLink.prop('team')).toEqual(fixtures[0]);
+      expect(teamLink.prop('children')).toEqual(fixtures[0].name);
     });
   });
 
-  context('lead', () => {
+  describe('lead', () => {
     it('renders a link to team lead', () => {
       const { userLink } = setup({ teams: [fixtures[0]] });
 
-      expect(userLink.prop('user')).to.eq(fixtures[0].lead);
-      expect(userLink.prop('children')).to.eq(fixtures[0].lead.username);
+      expect(userLink.prop('user')).toEqual(fixtures[0].lead);
+      expect(userLink.prop('children')).toEqual(fixtures[0].lead.username);
     });
 
     it('does not render lead link if lead does not exist', () => {
       const { userLink } = setup({ teams: [fixtures[2]] });
 
-      expect(userLink.exists()).to.be.false;
+      expect(userLink.exists()).toBe(false);
     });
   });
 
-  context('members', () => {
+  describe('members', () => {
     it('renders links to team members', () => {
       const { userLink } = setup({ teams: [fixtures[1]] });
 
-      expect(userLink.length).to.eq(3);
-      expect(userLink.at(0).prop('user')).to.eq(fixtures[1].members[0]);
-      expect(userLink.at(0).prop('children')).to.eq(
+      expect(userLink.length).toEqual(3);
+      expect(userLink.at(0).prop('user')).toEqual(fixtures[1].members[0]);
+      expect(userLink.at(0).prop('children')).toEqual(
         fixtures[1].members[0].username,
       );
     });
@@ -86,7 +85,7 @@ describe('TeamTable Component', () => {
     it('does not render member links if members do not exist', () => {
       const { userLink } = setup({ teams: [fixtures[2]] });
 
-      expect(userLink.exists()).to.be.false;
+      expect(userLink.exists()).toBe(false);
     });
   });
 });

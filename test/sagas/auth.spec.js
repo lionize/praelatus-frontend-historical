@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import actions from 'modules/auth';
@@ -19,7 +18,7 @@ describe('Auth - Sagas', () => {
     it('success', () => {
       const generator = login(api, { payload: fixture });
 
-      expect(generator.next().value).to.deep.eq(call(api.login, fixture));
+      expect(generator.next().value).toEqual(call(api.login, fixture));
 
       const response = {
         username: 'username',
@@ -29,13 +28,13 @@ describe('Auth - Sagas', () => {
       let next = generator.next(response).value;
       let expected = put(actions.loginSuccess(response));
 
-      expect(next).to.deep.eq(expected);
+      expect(next).toEqual(expected);
 
       next = generator.next().value;
       expected = put(push('/'));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -49,8 +48,8 @@ describe('Auth - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.loginFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -58,7 +57,7 @@ describe('Auth - Sagas', () => {
     it('success', () => {
       const generator = register(api, { payload: fixture });
 
-      expect(generator.next().value).to.deep.eq(call(api.register, fixture));
+      expect(generator.next().value).toEqual(call(api.register, fixture));
 
       const response = {
         username: 'username',
@@ -68,13 +67,13 @@ describe('Auth - Sagas', () => {
       let next = generator.next(response).value;
       let expected = put(actions.registerSuccess(response));
 
-      expect(next).to.deep.eq(expected);
+      expect(next).toEqual(expected);
 
       next = generator.next().value;
       expected = put(push('/'));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
 
     it('failure', () => {
@@ -88,8 +87,8 @@ describe('Auth - Sagas', () => {
       const next = generator.throw(error).value;
       const expected = put(actions.registerFailure(error));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 
@@ -100,8 +99,8 @@ describe('Auth - Sagas', () => {
       const next = generator.next().value;
       const expected = put(push('/'));
 
-      expect(next).to.deep.eq(expected);
-      expect(generator.next().done).to.be.true;
+      expect(next).toEqual(expected);
+      expect(generator.next().done).toBe(true);
     });
   });
 });

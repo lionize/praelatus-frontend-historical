@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import actions, {
   reducer,
   INITIAL_STATE,
@@ -16,8 +15,8 @@ describe('Project - ', () => {
       });
       const state = reducer(startingState, actions.fetchRequest());
 
-      expect(state.fetching).to.be.true;
-      expect(state.error).to.be.null;
+      expect(state.fetching).toBe(true);
+      expect(state.error).toBeNull();
     });
 
     it('success', () => {
@@ -32,17 +31,17 @@ describe('Project - ', () => {
       };
       const state = reducer(INITIAL_STATE, actions.fetchSuccess(data));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.be.null;
-      expect(state.keys).to.include('PROJECT-0');
-      expect(state.byKey['PROJECT-0']).to.deep.eq(data.entities['PROJECT-0']);
+      expect(state.fetching).toBe(false);
+      expect(state.error).toBeNull();
+      expect(state.keys).toContain('PROJECT-0');
+      expect(state.byKey['PROJECT-0']).toEqual(data.entities['PROJECT-0']);
     });
 
     it('failure', () => {
       const state = reducer(INITIAL_STATE, actions.updateFailure('Error'));
 
-      expect(state.fetching).to.be.false;
-      expect(state.error).to.eq('Error');
+      expect(state.fetching).toBe(false);
+      expect(state.error).toEqual('Error');
     });
 
     it('remove', () => {
@@ -54,10 +53,10 @@ describe('Project - ', () => {
       });
       const state = reducer(startingState, actions.deleteSuccess('KEY-0'));
 
-      expect(state.error).to.be.null;
-      expect(state.fetching).to.be.false;
-      expect(state.keys).to.not.include('KEY-0');
-      expect(state.byKey).to.not.have.key('KEY-0');
+      expect(state.error).toBeNull();
+      expect(state.fetching).toBe(false);
+      expect(state.keys).not.toContain('KEY-0');
+      expect(state.byKey).not.toHaveProperty('KEY-0');
     });
   });
 
@@ -83,7 +82,7 @@ describe('Project - ', () => {
     };
 
     it('project', () => {
-      expect(project(state, 'PROJECT-0')).to.eq(
+      expect(project(state, 'PROJECT-0')).toEqual(
         state.data.projects.byKey['PROJECT-0'],
       );
     });
@@ -93,15 +92,15 @@ describe('Project - ', () => {
         state.data.projects.byKey['PROJECT-0'],
         state.data.projects.byKey['PROJECT-1'],
       ];
-      expect(projects(state, ['PROJECT-0', 'PROJECT-1'])).to.deep.eq(expected);
+      expect(projects(state, ['PROJECT-0', 'PROJECT-1'])).toEqual(expected);
     });
 
     it('fetching', () => {
-      expect(fetching(state)).to.be.true;
+      expect(fetching(state)).toBe(true);
     });
 
     it('error', () => {
-      expect(error(state)).to.eq('Error');
+      expect(error(state)).toEqual('Error');
     });
   });
 });

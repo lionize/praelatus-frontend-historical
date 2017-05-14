@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
@@ -15,8 +14,8 @@ describe('Login Component', () => {
     const container = wrapper.find(Login);
     const component = wrapper.find(LoginForm);
 
-    expect(container.exists()).to.be.true;
-    expect(component.exists()).to.be.true;
+    expect(container.exists()).toBe(true);
+    expect(component.exists()).toBe(true);
   });
 
   it('performs login', () => {
@@ -24,6 +23,6 @@ describe('Login Component', () => {
 
     const wrapper = shallow(<LoginForm handleSubmit={callback} />);
     wrapper.find(Form).simulate('submit');
-    expect(callback.called).to.be.true;
+    expect(callback.called).toBe(true);
   });
 });

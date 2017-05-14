@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { TicketLink } from 'components';
 
@@ -8,7 +7,7 @@ describe('TicketLink Component', () => {
     const ticket = {};
     const wrapper = shallow(<TicketLink ticket={ticket} children={null} />);
 
-    expect(wrapper.exists()).to.be.true;
+    expect(wrapper.exists()).toBe(true);
   });
 
   it('has props for href and children', () => {
@@ -18,7 +17,7 @@ describe('TicketLink Component', () => {
     const wrapper = shallow(<TicketLink ticket={ticket} children={<div />} />);
     const { to, children } = wrapper.props();
 
-    expect(to).to.eq('/tickets/TICKET-1');
-    expect(children).to.deep.eq(<div />);
+    expect(to).toEqual('/tickets/TICKET-1');
+    expect(children).toEqual(<div />);
   });
 });

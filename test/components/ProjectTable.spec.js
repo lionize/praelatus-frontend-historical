@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { ProjectTable } from 'components/projects/ProjectList';
 import { ProjectLink, UserLink } from 'components';
@@ -44,18 +43,18 @@ describe('ProjectTable', () => {
     const row = rows.at(1);
     const links = row.find(ProjectLink);
 
-    expect(links.at(0).prop('project')).to.eq(fixture);
-    expect(links.at(0).prop('children')).to.eq(fixture.name);
-    expect(links.at(1).prop('project')).to.eq(fixture);
-    expect(links.at(1).prop('children')).to.eq(fixture.key);
-    expect(row.text()).to.contain(fixture.createdDate);
-    expect(row.text()).to.contain(fixture.homepage);
-    expect(row.text()).to.contain(fixture.repo);
+    expect(links.at(0).prop('project')).toEqual(fixture);
+    expect(links.at(0).prop('children')).toEqual(fixture.name);
+    expect(links.at(1).prop('project')).toEqual(fixture);
+    expect(links.at(1).prop('children')).toEqual(fixture.key);
+    expect(row.text()).toContain(fixture.createdDate);
+    expect(row.text()).toContain(fixture.homepage);
+    expect(row.text()).toContain(fixture.repo);
   });
 
   it("renders a link to the project's lead", () => {
     const { userLink } = setup({ projects: [fixture] });
 
-    expect(userLink.prop('user')).to.eq(fixture.lead);
+    expect(userLink.prop('user')).toEqual(fixture.lead);
   });
 });
